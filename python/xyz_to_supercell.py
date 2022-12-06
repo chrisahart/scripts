@@ -2,8 +2,8 @@ from __future__ import division, print_function
 import pandas as pd
 import numpy as np
 import glob
-from scripts.formatting import load_coordinates
-from scripts.formatting import print_xyz
+from general import load_coordinates
+from general import print_xyz
 import matplotlib.pyplot as plt
 import math
 
@@ -11,28 +11,23 @@ import math
     .xyz unit cell to supercell
 """
 
-# Supercell
+# Au-BDT junction
 # origin_atom = 0
-# cell = [4.146369, 4.146369, 4.146369]
-# supercell = [4, 4, 4]
-# coordinate_max = [math.inf, math.inf, 12]
+# cell = [4.1712875, 4.1712875, 4.1712875]
+# supercell = [3, 3, 3]
+# coordinate_max = [math.inf, math.inf, 9]
+# folder = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/structures'
+# input_filename = '/unit_cell.xyz'
+# output_filename = '/hollow-site/5-4_3x3/supercell_3x3-5.xyz'
 
-# Supercell
+# Au capacitor
 origin_atom = 0
 cell = [4.1712875, 4.1712875, 4.1712875]
 supercell = [3, 3, 3]
-# coordinate_max = [math.inf, math.inf, math.inf]
-coordinate_max = [math.inf, math.inf, 9]
-
-# Files
-# folder = '/Volumes/Storage/Data/Work/Postdoc/Work/testing/cp2k-smeagol/bdt/cp2k/bulk/cell_opt/DIRECT_CELL_OPT'
-# input_filename = 'opt.xyz'
-# output_filename = 'supercell_4x4-6.xyz'
-
-# Files
-folder = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/structures'
+coordinate_max = [math.inf, math.inf, math.inf]
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/structures'
 input_filename = '/unit_cell.xyz'
-output_filename = '/hollow-site/5-4_3x3/supercell_3x3-5.xyz'
+output_filename = 'supercell_3x3-3.xyz'
 
 # Read number of atoms and labels from .xyz file
 cols = ['Species', 'X', 'Y', 'Z']
