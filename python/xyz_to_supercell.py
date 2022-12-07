@@ -21,13 +21,22 @@ import math
 # output_filename = '/hollow-site/5-4_3x3/supercell_3x3-5.xyz'
 
 # Au capacitor
+# origin_atom = 0
+# cell = [4.1712875, 4.1712875, 4.1712875]
+# supercell = [3, 3, 3]
+# coordinate_max = [math.inf, math.inf, math.inf]
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/structures'
+# input_filename = '/unit_cell.xyz'
+# output_filename = 'supercell_3x3-3.xyz'
+
+# Au capacitor test
 origin_atom = 0
 cell = [4.1712875, 4.1712875, 4.1712875]
-supercell = [3, 3, 3]
+supercell = [2, 2, 1]
 coordinate_max = [math.inf, math.inf, math.inf]
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/structures'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/structures'
 input_filename = '/unit_cell.xyz'
-output_filename = 'supercell_3x3-3.xyz'
+output_filename = 'layer.xyz'
 
 # Read number of atoms and labels from .xyz file
 cols = ['Species', 'X', 'Y', 'Z']

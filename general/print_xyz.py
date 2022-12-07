@@ -8,7 +8,7 @@ import csv
     Functions for printing .xyz given different inputs. """
 
 
-def print_from_pandas(coord_xyz, num_atoms, filename_output):
+def print_from_pandas(coord_xyz, num_atoms, filename_output, save_dp='%.3f'):
     """ Print xyz from pandas dataframe of species and coordinates, adding header of number of atoms. """
 
     # Add number of atoms to header with blank line
@@ -19,10 +19,11 @@ def print_from_pandas(coord_xyz, num_atoms, filename_output):
     coord_xyz.loc[-1] = [str(num_atoms), None, None, None]  # Use string as Pandas would convert int to float
     coord_xyz.index = coord_xyz.index + 1
     coord_xyz = coord_xyz.sort_index()
-    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ")
+    print(coord_xyz)
+    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ", float_format=save_dp)
 
 
-def print_from_pandas2(coord_xyz, num_atoms, filename_output):
+def print_from_pandas2(coord_xyz, num_atoms, filename_output, save_dp='%.3f'):
     """ Print xyz from pandas dataframe of species and coordinates, adding header of number of atoms. """
 
     # Add number of atoms to header with blank line
@@ -33,10 +34,10 @@ def print_from_pandas2(coord_xyz, num_atoms, filename_output):
     coord_xyz.loc[-1] = [str(num_atoms), None, None, None, None]  # Use string as Pandas would convert int to float
     coord_xyz.index = coord_xyz.index + 1
     coord_xyz = coord_xyz.sort_index()
-    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ")
+    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ", float_format=save_dp)
 
 
-def print_from_pandas3(coord_xyz, num_atoms, filename_output):
+def print_from_pandas3(coord_xyz, num_atoms, filename_output, save_dp='%.3f'):
     """ Print xyz from pandas dataframe of species and coordinates, adding header of number of atoms. """
 
     # Add number of atoms to header with blank line
@@ -47,7 +48,7 @@ def print_from_pandas3(coord_xyz, num_atoms, filename_output):
     coord_xyz.loc[-1] = [str(num_atoms), None, None, None, None, None]  # Use string as Pandas would convert int to float
     coord_xyz.index = coord_xyz.index + 1
     coord_xyz = coord_xyz.sort_index()
-    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ")
+    coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ", float_format=save_dp)
 
 
 def print_from_cube_xyz(filename_xyz, filename_cube, filename_output):

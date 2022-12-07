@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scripts.main import parameters as param
+from general import parameters as param
 
 """ Plotting of SMEAGOL output _TRC.agr by filename"""
 
@@ -29,16 +29,16 @@ from scripts.main import parameters as param
 #     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-1_z-0-0']
 
 # CP2K Lithium 1D wire 1e
-bulk_charge = 'bulk-RHO_z.dat'
-bulk_hartree = 'bulk-VH_AV.dat'
-em_hartree = '0V-VH_z.dat'
-em_charge = '0V-RHO_z.dat'
-labels_em = ['EM']
-labels_bulk = ['Bulk']
-ylim = [-3, 2]
-folder = [
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-F_z-0-0-pbe-DZVP-MOLOPT-SR-GTH-q1',
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-1_z-0-0-pbe-DZVP-MOLOPT-SR-GTH-q1']
+# bulk_charge = 'bulk-RHO_z.dat'
+# bulk_hartree = 'bulk-VH_AV.dat'
+# em_hartree = '0V-VH_z.dat'
+# em_charge = '0V-RHO_z.dat'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# folder = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-F_z-0-0-pbe-DZVP-MOLOPT-SR-GTH-q1',
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-1_z-0-0-pbe-DZVP-MOLOPT-SR-GTH-q1']
 
 # CP2K Au 1D wire
 # bulk_charge = 'bulk-RHO_z.dat'
@@ -76,6 +76,17 @@ folder = [
 #     '/Volumes/Storage/Data/delete/Work/Postdoc/Work/calculations/transport/iv/au/siesta/V-0_HLB-0_z-0-0-sdp',
 #     '/Volumes/Storage/Data/delete/Work/Postdoc/Work/calculations/transport/iv/au/siesta/V-0_HLB-1_z-0-0-sdp']
 
+# CP2K Lithium 1D wire 1e
+bulk_charge = 'bulk-RHO_z.dat'
+bulk_hartree = 'bulk-VH_AV.dat'
+em_hartree = '0V-VH_z_ORIG-0001.dat'
+em_charge = 'RHO_AO-0001.txt'
+labels_em = ['EM']
+labels_bulk = ['Bulk']
+ylim = [-3, 2]
+folder = [
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/cp2k-smeagol/single-points/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered_hartree']
+
 data_bulk_charge = []
 data_bulk_hartree = []
 data_em_hartree = []
@@ -112,24 +123,40 @@ for i in range(len(folder)):
 #     fig_plot_2.savefig('{}/charge_density.png'.format(folder[i]), dpi=param.save_dpi)
 
 # Plot charge density difference
-fig_plot_3, ax_plot_3 = plt.subplots()
-ax_plot_3.plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1]-data_em_charge[1][:, 1], 'k-')
-ax_plot_3.set_xlabel(r'Position / Å')
-ax_plot_3.set_ylabel('Charge density difference (0 - 1)')
-fig_plot_3.tight_layout()
-for i in range(len(folder)):
-    fig_plot_3.savefig('{}/charge_density_difference.png'.format(folder[i]), dpi=param.save_dpi)
+# fig_plot_3, ax_plot_3 = plt.subplots()
+# ax_plot_3.plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1]-data_em_charge[1][:, 1], 'k-')
+# ax_plot_3.set_xlabel(r'Position / Å')
+# ax_plot_3.set_ylabel('Charge density difference (0 - 1)')
+# fig_plot_3.tight_layout()
+# for i in range(len(folder)):
+#     fig_plot_3.savefig('{}/charge_density_difference.png'.format(folder[i]), dpi=param.save_dpi)
+
+# Plot Hartree potential and charge density
+# rows, cols = 2, 1
+# fig_plot_both, ax_plot_both = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
+# ax_plot_both[0].plot(data_em_hartree[0][:, 0], data_em_hartree[0][:, 1], 'g-', label='EM HLB 0=F')
+# ax_plot_both[0].plot(data_em_hartree[1][:, 0], data_em_hartree[1][:, 1], 'r-', label='EM HLB 1 eV')
+# ax_plot_both[0].plot(data_bulk_hartree[0][:, 0], data_bulk_hartree[0][:, 1], 'k-', label='Bulk')
+# ax_plot_both[0].legend(frameon=False)
+# ax_plot_both[0].set_ylabel('Hartree potential / eV')
+# ax_plot_both[1].plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1], 'g-', label='EM HLB 0=F')
+# ax_plot_both[1].plot(data_em_charge[1][:, 0], data_em_charge[1][:, 1], 'r-', label='EM HLB 1 eV')
+# ax_plot_both[1].plot(data_bulk_charge[0][:, 0], data_bulk_charge[0][:, 1], 'k-', label='Bulk')
+# ax_plot_both[1].legend(frameon=False)
+# ax_plot_both[1].set_xlabel(r'Position / Å')
+# ax_plot_both[1].set_ylabel('Charge density')
+# fig_plot_both.tight_layout()
+# for i in range(len(folder)):
+#     fig_plot_both.savefig('{}/hartree_potential_charge.png'.format(folder[i]), dpi=param.save_dpi)
 
 # Plot Hartree potential and charge density
 rows, cols = 2, 1
 fig_plot_both, ax_plot_both = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
-ax_plot_both[0].plot(data_em_hartree[0][:, 0], data_em_hartree[0][:, 1], 'g-', label='EM HLB 0=F')
-ax_plot_both[0].plot(data_em_hartree[1][:, 0], data_em_hartree[1][:, 1], 'r-', label='EM HLB 1 eV')
+ax_plot_both[0].plot(data_em_hartree[0][:, 0], data_em_hartree[0][:, 1], 'g-', label='EM')
 ax_plot_both[0].plot(data_bulk_hartree[0][:, 0], data_bulk_hartree[0][:, 1], 'k-', label='Bulk')
 ax_plot_both[0].legend(frameon=False)
 ax_plot_both[0].set_ylabel('Hartree potential / eV')
-ax_plot_both[1].plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1], 'g-', label='EM HLB 0=F')
-ax_plot_both[1].plot(data_em_charge[1][:, 0], data_em_charge[1][:, 1], 'r-', label='EM HLB 1 eV')
+ax_plot_both[1].plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1], 'g-', label='EM')
 ax_plot_both[1].plot(data_bulk_charge[0][:, 0], data_bulk_charge[0][:, 1], 'k-', label='Bulk')
 ax_plot_both[1].legend(frameon=False)
 ax_plot_both[1].set_xlabel(r'Position / Å')
@@ -137,7 +164,7 @@ ax_plot_both[1].set_ylabel('Charge density')
 fig_plot_both.tight_layout()
 for i in range(len(folder)):
     fig_plot_both.savefig('{}/hartree_potential_charge.png'.format(folder[i]), dpi=param.save_dpi)
-    
+
 if __name__ == "__main__":
     print('Finished.')
     plt.show()
