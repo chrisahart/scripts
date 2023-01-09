@@ -13,7 +13,7 @@ import math
 dp = 4
 
 # Au capacitor
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/structures'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/structures/new'
 input_filename_1 = 'supercell_3x3-6.xyz'
 output_filename_1 = 'au-capacitor_cp2k.xyz'
 output_filename_2 = 'au-capacitor_cp2k_dummy.xyz'

@@ -4,6 +4,10 @@ from ase.io.cube import read_cube_data
 import optparse
 import os
 
+"""
+Plot .cube as average along Cartesian direction (useful for transport calculations)
+"""
+
 # Find file
 parser = optparse.OptionParser()
 opts, args = parser.parse_args()

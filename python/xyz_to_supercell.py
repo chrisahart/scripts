@@ -30,13 +30,22 @@ import math
 # output_filename = 'supercell_3x3-3.xyz'
 
 # Au capacitor test
+# origin_atom = 0
+# cell = [4.1712875, 4.1712875, 4.1712875]
+# supercell = [2, 2, 1]
+# coordinate_max = [math.inf, math.inf, math.inf]
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/structures'
+# input_filename = '/unit_cell.xyz'
+# output_filename = 'layer.xyz'
+
+# Au capacitor test 2
 origin_atom = 0
 cell = [4.1712875, 4.1712875, 4.1712875]
-supercell = [2, 2, 1]
+supercell = [3, 3, 1]
 coordinate_max = [math.inf, math.inf, math.inf]
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/structures'
-input_filename = '/unit_cell.xyz'
-output_filename = 'layer.xyz'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_9-8/geom_9-8/new'
+input_filename = 'unit_cell.xyz'
+output_filename = 'test.xyz'
 
 # Read number of atoms and labels from .xyz file
 cols = ['Species', 'X', 'Y', 'Z']

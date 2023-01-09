@@ -2,8 +2,8 @@ from __future__ import division, print_function
 import pandas as pd
 import numpy as np
 import glob
-from scripts.formatting import load_coordinates
-from scripts.formatting import print_xyz
+from general import load_coordinates
+from general import print_xyz
 import matplotlib.pyplot as plt
 import csv
 
@@ -19,9 +19,9 @@ import csv
 # input_filename = 'sergey-bulk-right.xyz'
 # output_filename = 'sergey-bulk-right.siesta'
 
-folder = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/structures/hollow-site/5-4_3x3-order'
-input_filename = 'em.xyz'
-output_filename = 'em.siesta'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_9-8/geom_9-8/vesta'
+input_filename = 'em-sortz.xyz'
+output_filename = 'em-sortz.siesta'
 # input_filename = 'supercell_3x3-4.xyz'
 # output_filename = 'supercell_3x3-4.siesta'
 
