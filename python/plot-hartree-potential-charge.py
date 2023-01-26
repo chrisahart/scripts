@@ -17,16 +17,16 @@ from general import parameters as param
 #     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/siesta/single-points/v-0_bottom-1']
 
 # CP2K Lithium 1D wire 3e
-# bulk_charge = 'bulk-RHO_z.dat'
-# bulk_hartree = 'bulk-VH_AV.dat'
-# em_hartree = '0V-VH_z.dat'
-# em_charge = '0V-RHO_z.dat'
-# labels_em = ['EM']
-# labels_bulk = ['Bulk']
-# ylim = [-3, 2]
-# folder = [
-#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-F_z-0-0/',
-#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-1_z-0-0']
+bulk_charge = 'bulk-RHO_z.dat'
+bulk_hartree = 'bulk-VH_AV.dat'
+em_hartree = '0V-VH_z.dat'
+em_charge = '0V-RHO_z.dat'
+labels_em = ['EM']
+labels_bulk = ['Bulk']
+ylim = [-3, 2]
+folder = [
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-F_z-0-0/',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-1_z-0-0']
 
 # CP2K Lithium 1D wire 1e
 # bulk_charge = 'bulk-RHO_z.dat'
@@ -77,15 +77,15 @@ from general import parameters as param
 #     '/Volumes/Storage/Data/delete/Work/Postdoc/Work/calculations/transport/iv/au/siesta/V-0_HLB-1_z-0-0-sdp']
 
 # CP2K Lithium 1D wire 1e
-bulk_charge = 'bulk-RHO_z.dat'
-bulk_hartree = 'bulk-VH_AV.dat'
-em_hartree = '0V-VH_z_ORIG-0001.dat'
-em_charge = 'RHO_AO-0001.txt'
-labels_em = ['EM']
-labels_bulk = ['Bulk']
-ylim = [-3, 2]
-folder = [
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor/cp2k-smeagol/single-points/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered_hartree']
+# bulk_charge = 'bulk-RHO_z.dat'
+# bulk_hartree = 'bulk-VH_AV.dat'
+# em_hartree = '0V-VH_z_ORIG-0001.dat'
+# em_charge = 'RHO_AO-0001.txt'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# folder = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_5-4/cp2k-smeagol/single-points/old/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered']
 
 data_bulk_charge = []
 data_bulk_hartree = []

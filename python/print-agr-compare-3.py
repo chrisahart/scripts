@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scripts.main import parameters as param
+from general import parameters as param
 
 """ Plotting of SMEAGOL output _TRC.agr by filename"""
 
@@ -41,14 +41,14 @@ from scripts.main import parameters as param
 # folder_2 = '/Volumes/Storage/Data/Work/Postdoc/Work/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-leem-sz-4s-3d-cutoff-lda/output'
 # folder_3 = '/Volumes/Storage/Data/Work/Postdoc/Work/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-clop-sz-4s-3d-cutoff-lda/output'
 
-xlim = [-5, 10]  # Li and Au chain
-labels = ['CP2K', 'SIESTA (8) default Rc', 'SIESTA (8) longer Rc']
-fermi_offset_1 = 0
-fermi_offset_2 = 0
-fermi_offset_3 = 0
-folder_1 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/examples/SMEAGOL_TEST/Au_chain/transport-12-AuAu-2p8/output'
-folder_2 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-clop-sz-4s-3d-def-lda/output'
-folder_3 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-clop-sz-4s-3d-cutoff-lda/output'
+# xlim = [-5, 10]  # Li and Au chain
+# labels = ['CP2K', 'SIESTA (8) default Rc', 'SIESTA (8) longer Rc']
+# fermi_offset_1 = 0
+# fermi_offset_2 = 0
+# fermi_offset_3 = 0
+# folder_1 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/examples/SMEAGOL_TEST/Au_chain/transport-12-AuAu-2p8/output'
+# folder_2 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-clop-sz-4s-3d-def-lda/output'
+# folder_3 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/smeagol/cx1/Smeagol_Tutorial_Files/DFT_NEGF_Transport/Day_1/Inputs/testing/au_chain-12-4atoms/run/Au-lda-clop-sz-4s-3d-cutoff-lda/output'
 
 # xlim = [-5, 10]  # Li and Au chain
 # ylim = [0.0, 1.0]
