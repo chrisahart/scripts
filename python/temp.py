@@ -1,28 +1,18 @@
-from __future__ import division, print_function
-import pandas as pd
-import numpy as np
-import glob
-from general import load_coordinates
-from general import print_xyz
-import matplotlib.pyplot as plt
+import ase
+from ase.spacegroup import crystal
 
 """
     Temp
 """
 
-# Ni_1 = 2
-# Pt_1 = 0
-# Pt_2 = 0
-# Ni_3 = 2
-# Pt_3 = 0
-# Pt_4 = 0
+# Create an Ag(110)-Si(110) interface with three atomic layers
+# on each side.
+a_ag = 4.09
+ag = crystal(['Ag'], basis=[(0,0,0)], spacegroup=225,
+             cellpar=[a_ag, a_ag, a_ag, 90., 90., 90.])
+ag110 = ase.build.cut(ag, (0, 0, 3), (-1.5, 1.5, 0), nlayers=3)
 
-Ni_1 = 1
-Pt_1 = 0.5  # 4/8
-Pt_2 = 0.25  # 2/8
-Ni_3 = 1
-Pt_3 = 0.5  # 4/8
-Pt_4 = 0.25  # 2/8
-
-multiplicity = (2*0.5*Ni_1*4+2*0.5*Pt_1*4+2*0.5*Pt_2*8+2*0.5*Pt_3*4+2*0.5*Ni_3*4+2*0.5*Pt_4*8)+1
-print(multiplicity)
+a_si = 5.43
+si = crystal(['Si'], basis=[(0,0,0)], spacegroup=227,
+             cellpar=[a_si, a_si, a_si, 90., 90., 90.])
+si110 = ase.build.cut(si, (0, 0, 2), (-1, 1, 0), nlayers=3)

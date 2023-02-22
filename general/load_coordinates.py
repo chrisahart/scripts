@@ -9,7 +9,7 @@ import glob
 """
 
 
-def load_file_coord(folder, filename, cols):
+def load_file_coord(folder, filename, cols, del_rows=None):
     """
         Return CP2K MD .XYZ coordinate file as Pandas database.
     """
@@ -33,17 +33,28 @@ def load_file_coord(folder, filename, cols):
 
     # Determine number of atoms
     num_atoms = int(float(file_coord['Species'][0]))
+    if del_rows: file_coord = file_coord.drop(del_rows)
+    file_coord = file_coord.reset_index(drop=True)
+
+    print(file_coord)
 
     # Save species as separate Series
     species = file_coord['Species'][1:num_atoms + 1]
-    # species = file_coord['Species'][2:num_atoms + 2]
+    if del_rows: species = file_coord['Species'][:num_atoms + 2]
+    species = species.reset_index(drop=True)
+
+    print(species)
 
     # Force database to numeric, assigning any non-numeric as NaN
+    # file_coord = file_coord.drop([0, 1])
     file_coord = file_coord.apply(pd.to_numeric, errors='coerce')
+
+    # print(file_coord)
 
     # Filter rows with two or more NaN and columns with one of more NaN, leaving only coordinate data
     file_coord = file_coord.dropna(axis='rows', thresh=2)
     file_coord = file_coord.dropna(axis='columns', thresh=1)
+    file_coord = file_coord.reset_index(drop=True)
 
     return file_coord, num_atoms, species
 

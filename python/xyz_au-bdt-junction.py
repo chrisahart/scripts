@@ -2,8 +2,8 @@ from __future__ import division, print_function
 import pandas as pd
 import numpy as np
 import glob
-from scripts.formatting import load_coordinates
-from scripts.formatting import print_xyz
+from general import load_coordinates
+from general import print_xyz
 import matplotlib.pyplot as plt
 import math
 
@@ -41,7 +41,7 @@ import math
 # molecule = 'molecule.xyz'
 # em = 'em.xyz'
 
-folder = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/structures/hollow-site/5-4_3x3-order'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/structures/hollow-site/5-4_3x3-order/manual'
 left = 'supercell_3x3-5.xyz'
 molecule = 'molecule.xyz'
 print_left = 'supercell_3x3-4.xyz'
@@ -68,11 +68,12 @@ dp_print = 3
 # dp_print = 3
 
 # left
-file_coord_1, num_atoms_1, species_1 = load_coordinates.load_file_coord(folder, left)
+cols = ['Species', 'X', 'Y', 'Z']
+file_coord_1, num_atoms_1, species_1 = load_coordinates.load_file_coord(folder, left, cols)
 file_coord_1 = file_coord_1.reset_index(drop=True)
 
 # molecule
-file_coord_2, num_atoms_2, species_2 = load_coordinates.load_file_coord(folder, molecule)
+file_coord_2, num_atoms_2, species_2 = load_coordinates.load_file_coord(folder, molecule, cols)
 file_coord_2 = file_coord_2.reset_index(drop=True)
 
 # right

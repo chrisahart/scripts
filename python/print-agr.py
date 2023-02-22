@@ -1,11 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scripts.main import parameters as param
+from general import parameters as param
 
 """ Plotting of SMEAGOL output _TRC.agr by filename"""
 
-# folder_1 = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/siesta/hollow-site/7-6/transport-siesta/bulk-4-4/new/scaling-pp8/lda-dzp-pp8-cutoff-mpiprocs-64-def/output'
-folder_1 = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/testing/cp2k-smeagol/bdt/siesta/hollow-site/7-6/transport-siesta/bulk-5-4/dzp-lda-pp8/output'
+folder_1 = '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-1-1-31-em-1-1-1/output'
 file_1_1 = np.genfromtxt('{}/G0-S0.out'.format(folder_1), skip_header=2, skip_footer=3)
 file_1_2 = np.genfromtxt('{}/G1-S0.out'.format(folder_1), skip_header=2, skip_footer=3)
 file_1_3 = np.genfromtxt('{}/G1-S2.out'.format(folder_1), skip_header=2, skip_footer=3)

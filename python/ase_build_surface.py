@@ -15,7 +15,7 @@ from ase.build import make_supercell
 
 """
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Masters/2021-2022/Yike/Pt3Ni/structures'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Masters/2021-2022/Yike/Pt3Ni/structures'
 
 a = 3.85
 Pt3Rh = Atoms('NiPt3',
@@ -32,8 +32,8 @@ supercell = make_supercell(Pt3Rh, np.diag([2, 2, 2]))
 s3 = surface(Pt3Rh, (1, 1, 1), layers=6)
 s3.center(vacuum=10, axis=2)
 
-write('{}/ase_struct_222_001_supercell.xyz'.format(folder), supercell)
-write('{}/ase_struct_111_111_slab.xyz'.format(folder), s3)
+# write('{}/ase_struct_222_001_supercell.xyz'.format(folder), supercell)
+# write('{}/ase_struct_111_111_slab.xyz'.format(folder), s3)
 
 # view(Pt3Rh)
 # view(supercell)

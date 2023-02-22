@@ -11,19 +11,9 @@ import csv
     Convert XYZ to SIESTA %block AtomicCoordinatesAndAtomicSpecies
 """
 
-# folder = '/Volumes/Storage/Data/Work/Postdoc/Work/testing/cp2k-smeagol/bdt/structures/hollow-site/7-6'
-# input_filename = 'em-slice-leads-lr.xyz'
-# output_filename = 'em-slice-leads-lr.siesta'
-
-# folder = '/Volumes/Storage/Data/Work/Postdoc/Work/calculations/transport/sergey'
-# input_filename = 'sergey-bulk-right.xyz'
-# output_filename = 'sergey-bulk-right.siesta'
-
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_9-8/geom_9-8/vesta'
-input_filename = 'em-sortz.xyz'
-output_filename = 'em-sortz.siesta'
-# input_filename = 'supercell_3x3-4.xyz'
-# output_filename = 'supercell_3x3-4.siesta'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_opt'
+input_filename = 'em.xyz'
+output_filename = 'em.siesta'
 
 filename_output = '{}/{}'.format(folder, output_filename)
 
@@ -33,10 +23,11 @@ filename_output = '{}/{}'.format(folder, output_filename)
 
 cols = ['Species', 'X', 'Y', 'Z', 'Label']
 file_coord, num_atoms, species = load_coordinates.load_file_coord(folder, input_filename, cols)
+print(file_coord)
 
 # Replace species with value
 species_val = species.copy()
-for i in range(1, num_atoms+1):
+for i in range(0, num_atoms):
     if species[i] == "Au":
         species_val[i] = 1
     elif species[i] == "S":

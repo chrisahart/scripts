@@ -6,38 +6,47 @@ from general import parameters as param
 plot_fermi = False
 fermi_dft = 0
 
-# CP2K Li chain 3e
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k/transmission/dev-chris/single-points/V-0_HLB-F_z-0-0'
+# CP2K Li chain 1e density fixed HLB=F (Chris implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/chris/V-0_HLB-F_z-0-0'
 # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_em = '0V-v_hartree-1_0.cube'
 # file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
 # file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = True
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_right
 
-# CP2K Li chain 1e
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/V-0_HLB-F_z-0-0'
+# # CP2K Li chain 1e density fixed HLB=T (Chris implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/chris/V-0_HLB-T-auto_z-0-0'
+# folder_save = '{}/output'.format(folder)
 # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_em = '0V-v_hartree-1_0.cube'
 # file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
 # file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = True
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
 
-# CP2K Li chain 1e density fixed HLB=F
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/sergey/V-0_HLB-F_z-0-0_sergey'
-file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_em = '0V-v_hartree-1_0.cube'
-file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
-file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
-file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
-file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
-use_xlim = True
-xlim_specify_left = [-0.1, 6]
-xlim_specify_right = [78, 84.1]
-xlim_specify = xlim_specify_right
+# CP2K Li chain 1e density fixed HLB=F (Sergey implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/sergey/V-0_HLB-F_z-0-0_sergey'
+# file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = True
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_right
 
-# CP2K Li chain 1e density fixed HLB=T
+# CP2K Li chain 1e density fixed HLB=T (Sergey implementation)
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/sergey/V-0_HLB-T-0.2022_z-0-0_sergey'
 # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_em = '0V-v_hartree-1_0.cube'
@@ -46,6 +55,32 @@ xlim_specify = xlim_specify_right
 # file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
 # use_xlim = True
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_right
+
+# CP2K Au chain density fixed HLB=F (Chris implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-smeagol/single-points/density-fix/chris/V-0_HLB-F_z-0-0'
+# file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_right
+
+# CP2K Au chain density fixed HLB=T (Chris implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-smeagol/single-points/density-fix/chris/V-0_HLB-F_z-0-0'
+# file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = False
 # xlim_specify_left = [-0.1, 6]
 # xlim_specify_right = [78, 84.1]
 # xlim_specify = xlim_specify_right
@@ -70,6 +105,34 @@ xlim_specify = xlim_specify_right
 # file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
 # fermi_dft = 0.20359259837197 * param.hartree_to_ev
 
+# CP2K Li chain 1e density fixed HLB=T (Chris implementation)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/single-points/density-fix/chris/V-0_HLB-T-auto_z-0-0'
+# folder_save = '{}/output'.format(folder)
+# file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = True
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+# Au-BDT 001 CP2K
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/scarf/geometry-ordered/3x3-4/bulk_layers-4/kpoints_bulk-2-2-100_em-2-2-1_hlb-10.98783_scf-1'
+folder_save = '{}/output'.format(folder)
+file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_em = '0V-v_hartree-1_0.cube'
+file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+use_xlim = False
+xlim_specify_left = [-0.1, 6]
+xlim_specify_right = [78, 84.1]
+xlim_specify = xlim_specify_left
+
 # Read .cube using ASE
 data_1, atoms_1 = read_cube_data('{}/{}'.format(folder, file_charge_em))
 data_2, atoms_2 = read_cube_data('{}/{}'.format(folder, file_hartree_em))
@@ -77,6 +140,7 @@ data_3, atoms_3 = read_cube_data('{}/{}'.format(folder, file_charge_dft))
 data_4, atoms_4 = read_cube_data('{}/{}'.format(folder, file_hartree_dft))
 data_5, atoms_5 = read_cube_data('{}/{}'.format(folder, file_charge_bulk))
 data_6, atoms_6 = read_cube_data('{}/{}'.format(folder, file_hartree_bulk))
+print('Finished reading .cube files')
 
 # Plot charge and hartree .cube x average
 axis = 0
@@ -120,6 +184,7 @@ ax_cube_x[1].set_xlabel(r'Position / Å')
 ax_cube_x[1].set_ylabel('Charge density x')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/charge_hartree_cube_x.png'.format(folder), dpi=300)
+print('Finished plotting x average')
 
 # Plot charge and hartree .cube y average
 axis = 1
@@ -163,6 +228,7 @@ ax_cube_y[1].set_xlabel(r'Position / Å')
 ax_cube_y[1].set_ylabel('Charge density y')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/charge_hartree_cube_y.png'.format(folder), dpi=300)
+print('Finished plotting y average')
 
 # Plot charge and hartree .cube z average
 axis = 2
@@ -187,12 +253,17 @@ energy_grid_z_3 = np.linspace(start=0, stop=atoms_1.get_cell()[axis][axis], num=
 energy_grid_z_4 = np.linspace(start=0, stop=atoms_1.get_cell()[axis][axis], num=data_4.shape[axis])
 energy_grid_z_5 = np.linspace(start=0, stop=atoms_5.get_cell()[axis][axis], num=data_5.shape[axis])
 energy_grid_z_6 = np.linspace(start=0, stop=atoms_5.get_cell()[axis][axis], num=data_6.shape[axis])
-print('\nMax of Hartree potential z EM .cube', np.max(z_average_2))
-print('Max of Hartree potential z DFT .cube', np.max(z_average_4))
-print('Max of Hartree potential z bulk .cube', np.max(z_average_6))
 print('\nMin of Hartree potential z EM .cube', np.min(z_average_2))
 print('Min of Hartree potential z DFT .cube', np.min(z_average_4))
 print('Min of Hartree potential z bulk .cube', np.min(z_average_6))
+
+print('\nValue(z=Min) of Hartree potential z EM .cube', z_average_2[0])
+print('Value(z=Min) of Hartree potential z DFT .cube', z_average_4[0])
+print('Value(z=Min) of Hartree potential z bulk .cube', z_average_6[0])
+
+print('\nValue(z=Max) of Hartree potential z EM .cube', z_average_2[-1])
+print('Value(z=Max) of Hartree potential z DFT .cube', z_average_4[-1])
+print('Value(z=Max) of Hartree potential z bulk .cube', z_average_6[-1])
 xlim = [0-1, atoms_1.get_cell()[axis][axis]+1]
 
 rows, cols = 2, 1
@@ -214,6 +285,7 @@ ax_cube_z[1].set_xlabel(r'Position / Å')
 ax_cube_z[1].set_ylabel('Charge density z')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/charge_hartree_cube_z.png'.format(folder), dpi=300)
+print('Finished plotting z average')
 
 # Plot Hartree .cube
 figcube_both, ax_cube_z = plt.subplots()
@@ -227,6 +299,7 @@ ax_cube_z.set_xlabel(r'Position / Å')
 ax_cube_z.set_ylabel('Hartree potential z / eV')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/hartree_cube_z.png'.format(folder), dpi=300)
+print('Finished plotting z ')
 
 # Plot Hartree .cube difference
 figcube_both, ax_cube_z = plt.subplots()
@@ -237,6 +310,7 @@ ax_cube_z.set_xlabel(r'Position / Å')
 ax_cube_z.set_ylabel('Hartree potential z / eV')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/hartree_cube_z_diff.png'.format(folder), dpi=300)
+print('Finished plotting z difference Hartree')
 
 # Plot Hartree and charge .cube difference
 figcube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
@@ -253,19 +327,19 @@ ax_cube_z[1].set_xlabel(r'Position / Å')
 ax_cube_z[1].set_ylabel('Charge density z')
 figcube_both.tight_layout()
 figcube_both.savefig('{}/charge_hartree_cube_z_diff.png'.format(folder), dpi=300)
+print('Finished plotting z difference Hartree and charge ')
 
 # Plot DFT .cube Hartree
-fig_dft_hartree, ax_dft_hartree = plt.subplots()
-if plot_fermi: ax_dft_hartree.axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
-ax_dft_hartree.plot(energy_grid_z_4, z_average_4, 'k-')
-ax_dft_hartree.set_xlim([xlim[0], xlim[1]])
-ax_dft_hartree.set_xlabel(r'Position / Å')
-ax_dft_hartree.set_ylabel('Hartree potential z / eV')
-fig_dft_hartree.tight_layout()
-fig_dft_hartree.savefig('{}/dft_hartree.png'.format(folder), dpi=300)
-
-if plot_fermi:wf_dft = np.max(z_average_4) - fermi_dft
-if plot_fermi: print('Work function DFT', wf_dft)
+# fig_dft_hartree, ax_dft_hartree = plt.subplots()
+# if plot_fermi: ax_dft_hartree.axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
+# ax_dft_hartree.plot(energy_grid_z_4, z_average_4, 'k-')
+# ax_dft_hartree.set_xlim([xlim[0], xlim[1]])
+# ax_dft_hartree.set_xlabel(r'Position / Å')
+# ax_dft_hartree.set_ylabel('Hartree potential z / eV')
+# fig_dft_hartree.tight_layout()
+# fig_dft_hartree.savefig('{}/dft_hartree.png'.format(folder), dpi=300)
+# if plot_fermi:wf_dft = np.max(z_average_4) - fermi_dft
+# if plot_fermi: print('Work function DFT', wf_dft)
 
 if __name__ == "__main__":
     print('Finished.')

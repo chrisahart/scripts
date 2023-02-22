@@ -5,22 +5,18 @@ import os
 """ Plotting of SMEAGOL output _TRC.agr from command line"""
 
 # 1D Li chain
-xlim = [-5, 10]
-ylim = [-0.1, 1.1]
-ylim_log = [0.008, 1.0]
-fermi_offset_1 = 0
-
-# Au-BDT
 # xlim = [-3, 3]
-# ylim = [0.0, 1.2]
-# ylim_log = [0.008, 1.2]
-# fermi_offset_1 = 1.347003
-
-# Au-BDT
-# xlim = [-3, 3]
-# ylim = [0.0, 1.0]
+# ylim = [-0.1, 1.1]
 # ylim_log = [0.008, 1.0]
+# ylim2 = [-0.1, 100]
 # fermi_offset_1 = 0
+
+# Au-BDT
+xlim = [-3, 3]
+ylim = [0.0, 1.0]
+ylim_log = [0.009, 1.3]
+ylim2 = [-0.1, 100]
+fermi_offset_1 = 0
 
 save_dpi = 500  # DPI to save figure
 params = {'axes.formatter.limits': [-4, 4],
@@ -127,7 +123,8 @@ fig_all_trans_dos.savefig('{}/transmission_emdos.png'.format(folder_1), dpi=save
 
 # Plot all
 rows, cols = 2, 2
-fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
+# fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
+fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', figsize=(10, 8))
 ax_plot_all[0, 0].plot(file_1_1[:, 0], file_1_1[:, 1], 'k-')
 ax_plot_all[0, 0].set_xlim([xlim[0], xlim[1]])
 ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
@@ -135,7 +132,7 @@ ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
 ax_plot_all[0, 0].set_ylabel('Transmission')
 ax_plot_all[0, 1].plot(file_1_2[:, 0], file_1_2[:, 1], 'k-')
 ax_plot_all[0, 1].set_xlim([xlim[0], xlim[1]])
-# ax_plot_all[0, 1].set_ylim([ylim[0], ylim[1]])
+# ax_plot_all[0, 1].set_ylim([ylim2[0], ylim2[1]])
 # ax_plot_all[0, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
 ax_plot_all[0, 1].set_ylabel('Number of channels')
 ax_plot_all[1, 0].plot(file_1_4[:, 0], file_1_4[:, 1], 'k-')

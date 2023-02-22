@@ -136,11 +136,27 @@ n = 1
 # xlim = [-3, 3]
 # ylim = [0.0, 1.0]
 # ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 50]
 # labels = ['1x1x31, 1x1x1', '1x1x100, 1x1x1', '2x2x100, 2x2x1', '4x4x100, 4x4x1']
 # fermi = np.zeros(len(labels))
 # folder = ['/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-1-1-31-em-1-1-1/output',
 #           '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-2-2-100-em-2-2-1/output',
 #           '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-4-4-100-em-4-4-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# # Plot Au-BDT for CP2K and SIESTA
+# xlim = [-5, 5]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 50]
+# labels = ['SIESTA 1x1x31, 1x1x1', '1x1x100, 1x1x1', '2x2x100, 2x2x1', '4x4x100, 4x4x1']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-1-1-31-em-1-1-1/output',
+#           '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-2-2-100-em-2-2-1/output',
+#           '/Volumes/Elements/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/new/au-bdt/young/au-bdt/3x3/kpoints/bulk-4-4-100-em-4-4-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
 
 # Plot Li chain PBE q1
 # xlim = [-5, 10]
@@ -183,18 +199,91 @@ n = 1
 #                     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-negf/lda-q3_atoms-28/single-points/V-0_multiple-force-eval_fermi-calc_kpoints-1-1-31_xy-12/output']
 
 # Plot Au chain LDA q11 27 atoms
+# xlim = [-3, 3]
+# ylim = [0.0, 6.1]
+# ylim_log = [0.008, 6.1]
+# ylim_dos = [0, 500]
+# labels = ['CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-smeagol/single-points/V-0_HLB-F_z-0-0_atoms-28_noprint/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/siesta/single-points/V-0_HLB-0_z-0-0/output']
+# labels_cp2k_negf = ['CP2K-NEGF']
+# fermi_cp2k_negf = [-0.22124430588176]
+# dos_norm_cp2k_negf = 28
+# folder_cp2k_negf = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-negf/single-points/V-0_multiple-force-eval_fermi-calc_kpoints-1-1-31_xy-12/output']
+
+# Plot Au-BDT for CP2K and SIESTA HLB=F
+# xlim = [-5, 5]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 610]
+# labels = ['SIESTA', 'CP2K']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-2-2-100-em-2-2-1_4/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/scarf/geometry-ordered/3x3-4/bulk_layers-4/kpoints_bulk-2-2-100_em-2-2-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# Plot Au-BDT for CP2K HLB=F and SIESTA HLB=T
+# xlim = [-5, 5]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 610]
+# labels = ['SIESTA', 'CP2K']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-2-2-100-em-2-2-1_4_hlb-15.2496/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/scarf/geometry-ordered/3x3-4/bulk_layers-4/kpoints_bulk-2-2-100_em-2-2-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# # Plot Au-BDT for SIESTA HLB=F
+# xlim = [-5, 5]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 610]
+# labels = ['SIESTA 2x2', 'SIESTA 3x3', 'SIESTA 4x4']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-2-2-100-em-2-2-1_4/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-3-3-100-em-3-3-1/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-4-4-100-em-4-4-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# Plot Au-BDT for SIESTA HLB=T
+# xlim = [-5, 5]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 610]
+# labels = ['SIESTA 2x2x1', 'SIESTA 4x4x1']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-2-2-100-em-2-2-1_4_hlb-15.2496/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/young/bulk_layers-4/bulk-4-4-100-em-4-4-1_hlb-15.2496/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# Plot Au-BDT for SIESTA experimental, optimised HLB=F
+# xlim = [-3, 3]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.009, 1.3]
+# ylim_dos = [0, 610]
+# labels = ['SIESTA experimental', 'SIESTA optimised']
+# fermi = np.zeros(len(labels))
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/exp/bulk-4-4-100-em-4-4-1/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/opt/bulk-4-4-100-em-4-4-1/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# Plot Au-BDT for SIESTA experimental, optimised HLB=T
 xlim = [-3, 3]
-ylim = [0.0, 6.1]
-ylim_log = [0.008, 6.1]
-ylim_dos = [0, 500]
-labels = ['CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
+ylim = [0.0, 1.0]
+ylim_log = [0.009, 1.3]
+ylim_dos = [0, 610]
+labels = ['SIESTA experimental', 'SIESTA optimised']
 fermi = np.zeros(len(labels))
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-smeagol/single-points/V-0_HLB-F_z-0-0_atoms-28_noprint/output',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/siesta/single-points/V-0_HLB-0_z-0-0/output']
-labels_cp2k_negf = ['CP2K-NEGF']
-fermi_cp2k_negf = [-0.22124430588176]
-dos_norm_cp2k_negf = 28
-folder_cp2k_negf = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/au-chain/cp2k-negf/single-points/V-0_multiple-force-eval_fermi-calc_kpoints-1-1-31_xy-12/output']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/exp/bulk-4-4-100-em-4-4-1_hlb-15.2496/output',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/opt/bulk-4-4-100-em-4-4-1_hlb-15.412-0-0/output']
+folder_cp2k_negf = []
+fermi_cp2k_negf = 0
 
 file_1 = []
 file_2 = []
@@ -297,38 +386,38 @@ for i in range(len(folder)):
     fig_trans_dos.savefig('{}/compare-transmission_emdos.png'.format(folder[i]), dpi=param.save_dpi)
 
 # Plot all
-# rows, cols = 2, 2
-# fig_plot_all, ax_plot_all = plt.subplots(rows, cols, figsize=(10, 8))
-# # fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
+rows, cols = 2, 2
+fig_plot_all, ax_plot_all = plt.subplots(rows, cols, figsize=(10, 8))
+# fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
+for i in range(len(folder)):
+    ax_plot_all[0, 0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
+ax_plot_all[0, 0].set_xlim([xlim[0], xlim[1]])
+ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
+ax_plot_all[0, 0].legend(frameon=False)
+# ax_plot_all[0, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+ax_plot_all[0, 0].set_ylabel('Transmission')
+for i in range(len(folder)):
+    ax_plot_all[0, 1].plot(file_2[i][:, 0]+fermi[i], file_2[i][:, 1], color=plotting_colors[i], label=labels[i])
+ax_plot_all[0, 1].set_xlim([xlim[0], xlim[1]])
+ax_plot_all[0, 1].legend(frameon=False)
+# ax_plot_all[0, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+ax_plot_all[0, 1].set_ylabel('Number of channels')
+for i in range(len(folder)):
+    ax_plot_all[1, 0].plot(file_4[i][:, 0]+fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
+ax_plot_all[1, 0].set_xlim([xlim[0], xlim[1]])
+ax_plot_all[1, 0].legend(frameon=False)
+ax_plot_all[1, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+ax_plot_all[1, 0].set_ylabel('EM DOS')
 # for i in range(len(folder)):
-#     ax_plot_all[0, 0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax_plot_all[0, 0].set_xlim([xlim[0], xlim[1]])
-# ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
-# ax_plot_all[0, 0].legend(frameon=False)
-# # ax_plot_all[0, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_all[0, 0].set_ylabel('Transmission')
-# for i in range(len(folder)):
-#     ax_plot_all[0, 1].plot(file_2[i][:, 0]+fermi[i], file_2[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax_plot_all[0, 1].set_xlim([xlim[0], xlim[1]])
-# ax_plot_all[0, 1].legend(frameon=False)
-# # ax_plot_all[0, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_all[0, 1].set_ylabel('Number of channels')
-# for i in range(len(folder)):
-#     ax_plot_all[1, 0].plot(file_4[i][:, 0]+fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax_plot_all[1, 0].set_xlim([xlim[0], xlim[1]])
-# ax_plot_all[1, 0].legend(frameon=False)
-# ax_plot_all[1, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_all[1, 0].set_ylabel('EM DOS')
-# # for i in range(len(folder)):
-# #     ax_plot_all[1, 1].plot(file_5[i][:, 0]+fermi[i], file_5[i][:, 1], color=plotting_colors[i], label=labels[i])
-# # ax_plot_all[1, 1].set_xlim([xlim[0], xlim[1]])
-# # ax_plot_all[1, 1].legend(frameon=False)
-# # ax_plot_all[1, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# # ax_plot_all[1, 1].set_ylabel('Leads DOS')
-# fig_plot_all.tight_layout()
-# # fig_plot_all.subplots_adjust(hspace=0)
-# for i in range(len(folder)):
-#     fig_plot_all.savefig('{}/compare-plot_all.png'.format(folder[i]), dpi=param.save_dpi)
+#     ax_plot_all[1, 1].plot(file_5[i][:, 0]+fermi[i], file_5[i][:, 1], color=plotting_colors[i], label=labels[i])
+# ax_plot_all[1, 1].set_xlim([xlim[0], xlim[1]])
+# ax_plot_all[1, 1].legend(frameon=False)
+# ax_plot_all[1, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+# ax_plot_all[1, 1].set_ylabel('Leads DOS')
+fig_plot_all.tight_layout()
+# fig_plot_all.subplots_adjust(hspace=0)
+for i in range(len(folder)):
+    fig_plot_all.savefig('{}/compare-plot_all.png'.format(folder[i]), dpi=param.save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

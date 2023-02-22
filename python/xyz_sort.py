@@ -10,19 +10,11 @@ import matplotlib.pyplot as plt
     Sort .xyz sequentially along desired axes (useful for transport calculations)
 """
 
-# Files
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_9-8/geom_9-8/vesta'
-# input_filename = 'em_all.xyz'
-# output_filename = 'em_all_sorted.xyz'
-
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Masters/2021-2022/Yike/Pt3Ni/yike_struct'
-# input_filename = 'input.xyz'
-# output_filename = 'input_sorted.xyz'
-
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Masters/2021-2022/Yike/Pt3Ni/chris_struct/interface_001/brute_force/scf-1e-2'
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Masters/2021-2022/Yike/Pt3Ni/delete/yike_struct/yike_struct_fm'
-input_filename = 'input.xyz'
-output_filename = 'input_sorted.xyz'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_Au-S-2.75'
+# input_filename = 'bulk.xyz'
+# output_filename = 'bulk_sorted.xyz'
+input_filename = 'em.xyz'
+output_filename = 'em_sorted.xyz'
 filename_output = '{}/{}'.format(folder, output_filename)
 
 # Read number of atoms and labels from .xyz file
