@@ -1,4 +1,3 @@
-from __future__ import division, print_function
 import time
 import numpy as np
 from matplotlib import pyplot as plt
@@ -28,6 +27,7 @@ hartree_to_ev = 27.2114  # Energy conversion
 angstrom_to_bohr = 1.8897259886  # Distance conversion
 hartree_per_bohr_to_ev_per_angstrom = hartree_to_ev / angstrom_to_bohr  # Force conversion
 bohr = 0.529  # Conversion Angstrom to Bohr
+rydberg_to_hartree = 0.5
 
 # Universal parameters
 sfc_converge = 1E-5  # Convergence target

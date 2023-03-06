@@ -88,15 +88,31 @@ from general import parameters as param
 #     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_5-4/cp2k-smeagol/single-points/old/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered']
 
 # SIESTA Au-BDT
-bulk_charge = '0.bulk-RHO_AV.dat'
-bulk_hartree = '0.bulk-VH_AV.dat'
-em_hartree = '0.transport-VH_AV.dat'
-em_charge = '0.transport-RHO_AV.dat'
+# bulk_charge = '0.bulk-RHO_AV.dat'
+# bulk_hartree = '0.bulk-VH_AV.dat'
+# em_hartree = '0.transport-VH_AV.dat'
+# em_charge = '0.transport-RHO_AV.dat'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# x = 33.834 - 8.292
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/opt-cg/bulk-4-4-100-em-4-4-1_hlb-15.412-0-0']
+# folder_save = []
+# for i in range(len(folder)):
+#     folder_save.append('{}/output'.format(folder[i]))
+# print('Saving to', folder_save)
+
+# SIESTA Au-H2-Au
+bulk_charge = '0.lead-RHO_AV.dat'
+bulk_hartree = '0.lead-VH_AV.dat'
+em_hartree = '0.mx-VH_AV.dat'
+em_charge = '0.mx-RHO_AV.dat'
 labels_em = ['EM']
 labels_bulk = ['Bulk']
 ylim = [-3, 2]
-x = 33.834 - 8.292
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/opt/bulk-4-4-100-em-4-4-1_hlb-15.412-0-0']
+x = 38.72 - 8.36
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-F']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-T-12.19948578']
 folder_save = []
 for i in range(len(folder)):
     folder_save.append('{}/output'.format(folder[i]))

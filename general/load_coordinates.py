@@ -36,14 +36,14 @@ def load_file_coord(folder, filename, cols, del_rows=None):
     if del_rows: file_coord = file_coord.drop(del_rows)
     file_coord = file_coord.reset_index(drop=True)
 
-    print(file_coord)
+    # print(file_coord)
 
     # Save species as separate Series
     species = file_coord['Species'][1:num_atoms + 1]
     if del_rows: species = file_coord['Species'][:num_atoms + 2]
     species = species.reset_index(drop=True)
 
-    print(species)
+    # print(species)
 
     # Force database to numeric, assigning any non-numeric as NaN
     # file_coord = file_coord.drop([0, 1])
