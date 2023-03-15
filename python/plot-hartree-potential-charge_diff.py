@@ -102,36 +102,17 @@ from general import parameters as param
 #     folder_save.append('{}/output'.format(folder[i]))
 # print('Saving to', folder_save)
 
-# # SIESTA Au-H2-Au
-# bulk_charge = '0.lead-RHO_AV.dat'
-# bulk_hartree = '0.lead-VH_AV.dat'
-# em_hartree = '0.mx-VH_AV.dat'
-# em_charge = '0.mx-RHO_AV.dat'
-# labels_em = ['EM']
-# labels_bulk = ['Bulk']
-# ylim = [-3, 2]
-# x = 38.72 - 8.36
-# # folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-F']
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-T-12.19948578']
-# folder_save = []
-# for i in range(len(folder)):
-#     folder_save.append('{}/output'.format(folder[i]))
-# print('Saving to', folder_save)
-
-# Au capacitor
-bulk_charge = '0.bulk-RHO_AV.dat'
-bulk_hartree = '0.bulk-VH_AV.dat'
-em_hartree = '0.transport-VH_AV.dat'
-em_charge = '0.transport-RHO_AV.dat'
+# SIESTA Au-H2-Au
+bulk_charge = '0.lead-RHO_AV.dat'
+bulk_hartree = '0.lead-VH_AV.dat'
+em_hartree = '0.mx-VH_AV.dat'
+em_charge = '0.mx-RHO_AV.dat'
 labels_em = ['EM']
 labels_bulk = ['Bulk']
 ylim = [-3, 2]
-plot_markers = True
-markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
-                    21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
-x = 33.926 - 8.336
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/V-1_bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0']
+x = 38.72 - 8.36
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-F']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-T-12.19948578']
 folder_save = []
 for i in range(len(folder)):
     folder_save.append('{}/output'.format(folder[i]))
@@ -204,14 +185,12 @@ rows, cols = 2, 1
 fig_plot_both, ax_plot_both = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
 ax_plot_both[0].plot(data_em_hartree[0][:, 0], data_em_hartree[0][:, 1], 'g-', label='EM')
 ax_plot_both[0].plot(data_bulk_hartree[0][:, 0], data_bulk_hartree[0][:, 1], 'k-', label='Bulk')
-# ax_plot_both[0].plot(x+data_bulk_hartree[0][:, 0], data_bulk_hartree[0][:, 1], 'k-')
-if plot_markers: ax_plot_both[0].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
+ax_plot_both[0].plot(x+data_bulk_hartree[0][:, 0], data_bulk_hartree[0][:, 1], 'k-')
 ax_plot_both[0].legend(frameon=False)
 ax_plot_both[0].set_ylabel('Hartree potential / eV')
 ax_plot_both[1].plot(data_em_charge[0][:, 0], data_em_charge[0][:, 1], 'g-', label='EM')
 ax_plot_both[1].plot(data_bulk_charge[0][:, 0], data_bulk_charge[0][:, 1], 'k-', label='Bulk')
-# ax_plot_both[1].plot(x+data_bulk_charge[0][:, 0], data_bulk_charge[0][:, 1], 'k-')
-if plot_markers: ax_plot_both[1].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
+ax_plot_both[1].plot(x+data_bulk_charge[0][:, 0], data_bulk_charge[0][:, 1], 'k-')
 ax_plot_both[1].legend(frameon=False)
 ax_plot_both[1].set_xlabel(r'Position / Å')
 ax_plot_both[1].set_ylabel('Charge density')
@@ -219,20 +198,6 @@ fig_plot_both.tight_layout()
 for i in range(len(folder)):
     fig_plot_both.savefig('{}/hartree_potential_charge.png'.format(folder_save[i]), dpi=param.save_dpi)
 
-# Plot Hartree potential and charge density difference
-# rows, cols = 2, 1
-# fig_plot_both_diff, ax_plot_both_diff = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
-# ax_plot_both_diff[0].plot(data_em_hartree[0][:, 0], data_em_hartree[1][:, 1]-data_em_hartree[0][:, 1], 'k-', label='EM')
-# if plot_markers: ax_plot_both_diff[0].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
-# ax_plot_both_diff[0].legend(frameon=False)
-# ax_plot_both_diff[0].set_ylabel('Hartree potential / eV')
-# ax_plot_both_diff[1].plot(data_em_charge[0][:, 0], data_em_charge[1][:, 1]-data_em_charge[0][:, 1], 'k-', label='EM')
-# if plot_markers: ax_plot_both_diff[1].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
-# ax_plot_both_diff[1].set_xlabel(r'Position / Å')
-# ax_plot_both_diff[1].set_ylabel('Charge density')
-# fig_plot_both_diff.tight_layout()
-# for i in range(len(folder)):
-#     fig_plot_both_diff.savefig('{}/hartree_potential_charge_diff.png'.format(folder_save[i]), dpi=param.save_dpi)
 
 print('Value(z=Min) of Hartree potential z EM .DAT', data_em_hartree[0][0, 1])
 print('Value(z=Min) of Hartree potential z bulk .DAT', data_bulk_hartree[0][0, 1])

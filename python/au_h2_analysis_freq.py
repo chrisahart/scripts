@@ -24,8 +24,8 @@ labels = ['[1]', 'SIESTA-SMEAGOL']
 folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive',
           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/phonon']
 folder_save = folder
-# data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.45, 1.5, 1.55, 1.6, 1.7, 1.8, 1.9]
-data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
+data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.45, 1.5, 1.55, 1.6, 1.7, 1.8, 1.9]
+# data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
 plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'y']
 trans = [0.4, 1]
 
@@ -36,7 +36,8 @@ for i in range(len(folder)):
 # Plot all
 rows, cols = 2, 2
 xlim = [0, 2]
-ylim = [0.9, 1.20]
+ylim1 = [0.9, 1.20]
+ylim2 = [0.9, 1.40]
 fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
 
 for i in range(len(folder)):
@@ -48,16 +49,16 @@ for i in range(len(folder)):
     ax_plot_all[1, 1].plot(data, phonon_modes[i, 4::6]/phonon_modes[i, 4], 'bo-', alpha=trans[i], fillstyle='none', label='{}'.format(labels[i]))
 
 ax_plot_all[0, 0].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
+ax_plot_all[0, 0].set_ylim([ylim2[0], ylim2[1]])
 ax_plot_all[0, 0].legend(frameon=False)
 ax_plot_all[1, 0].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[1, 0].set_ylim([ylim[0], ylim[1]])
+ax_plot_all[1, 0].set_ylim([ylim1[0], ylim1[1]])
 ax_plot_all[1, 0].legend(frameon=False)
 ax_plot_all[0, 1].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[0, 1].set_ylim([ylim[0], ylim[1]])
+ax_plot_all[0, 1].set_ylim([ylim2[0], ylim2[1]])
 ax_plot_all[0, 1].legend(frameon=False)
 ax_plot_all[1, 1].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[1, 1].set_ylim([ylim[0], ylim[1]])
+ax_plot_all[1, 1].set_ylim([ylim1[0], ylim1[1]])
 ax_plot_all[1, 1].legend(frameon=False)
 
 ax_plot_all[1, 0].set_xlabel('Bias / V')
