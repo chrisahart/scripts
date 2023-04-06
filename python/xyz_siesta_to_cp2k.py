@@ -30,9 +30,15 @@ def siesta_to_cp2k(filename_input, filename_output):
     print_xyz.print_from_pandas(file_coord, num_atoms, filename_output)
 
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/structures'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/structures'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/young/transmission/input'
+
 input_filename = 'em.siesta'
 output_filename = 'em.xyz'
+
+# input_filename = 'bulk.siesta'
+# output_filename = 'bulk.xyz'
+
 filename_input = '{}/{}'.format(folder, input_filename)
 filename_output = '{}/{}'.format(folder, output_filename)
 

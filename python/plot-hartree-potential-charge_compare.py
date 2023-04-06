@@ -5,6 +5,65 @@ from ase.io.cube import read_cube_data
 
 """ Plotting of SMEAGOL output _TRC.agr by filename"""
 
+# Au capacitor
+# CP2K
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/V-1_kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-31_em-1-1-1_hlb-t-11.03197_scf-500'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/V-1_kpoints_bulk-31_em-1-1-1_hlb-t-11.03197_scf-500'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-0_kpoints_bulk-2-2-100_em-2-2-1_hlb-auto'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-1_kpoints_bulk-2-2-100_em-2-2-1_hlb-auto'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-0_kpoints_bulk-4-4-100_em-4-4-1_hlb-auto'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-1_kpoints_bulk-4-4-100_em-4-4-1_hlb-auto'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-0_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-1_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
+# file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_1 = '0V-v_hartree-1_0.cube'
+# file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '0V-v_hartree-1_0.cube'
+# plot_markers = True
+# markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
+#                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+#
+# # SIESTA
+# bulk_charge = '0.bulk-RHO_AV.dat'
+# bulk_hartree = '0.bulk-VH_AV.dat'
+# em_hartree = '0.transport-VH_AV.dat'
+# em_charge = '0.transport-RHO_AV.dat'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# plot_markers = True
+# markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
+#                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
+# x = 33.926 - 8.336
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/V-1_bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0']
+# folder_save = []
+# for i in range(len(folder)):
+#     folder_save.append('{}/output'.format(folder[i]))
+# print('Saving to', folder_save)
+
+# Au chain
+# CP2K
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-smeagol/transmission/testing/chris/HLB-auto_kpoints-4-4-20'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-smeagol/transmission/testing/chris/HLB-auto_kpoints-4-4-20'
+file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_1 = '0V-v_hartree-1_0.cube'
+file_charge_2 = 'V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_2 = 'V-v_hartree-1_0.cube'
+plot_markers = True
+markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
+                    21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
+use_xlim = False
+xlim_specify_left = [-0.1, 6]
+xlim_specify_right = [78, 84.1]
+xlim_specify = xlim_specify_left
+
 # SIESTA
 bulk_charge = '0.bulk-RHO_AV.dat'
 bulk_hartree = '0.bulk-VH_AV.dat'
@@ -13,16 +72,17 @@ em_charge = '0.transport-RHO_AV.dat'
 labels_em = ['EM']
 labels_bulk = ['Bulk']
 ylim = [-3, 2]
-plot_markers = True
+plot_markers = False
 markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
 x = 33.926 - 8.336
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/V-1_bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-0_HLB-auto_kpoints-1-1-20',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-1_HLB-auto_kpoints-1-1-20']
 folder_save = []
 for i in range(len(folder)):
     folder_save.append('{}/output'.format(folder[i]))
 print('Saving to', folder_save)
+
 
 data_bulk_charge = []
 data_bulk_hartree = []
@@ -36,29 +96,6 @@ for i in range(len(folder)):
     data_em_hartree.append(np.genfromtxt('{}/{}'.format(folder[i], em_hartree), skip_header=0, skip_footer=0))
     data_em_charge.append(np.genfromtxt('{}/{}'.format(folder[i], em_charge), skip_header=0, skip_footer=0))
 
-# CP2K
-
-# Au capacitor
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500'
-# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/V-1_kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500'
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-31_em-1-1-1_hlb-t-11.03197_scf-500'
-# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/V-1_kpoints_bulk-31_em-1-1-1_hlb-t-11.03197_scf-500'
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-0_kpoints_bulk-2-2-100_em-2-2-1_hlb-auto'
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-1_kpoints_bulk-2-2-100_em-2-2-1_hlb-auto'
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-0_kpoints_bulk-4-4-100_em-4-4-1_hlb-auto'
-# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/V-1_kpoints_bulk-4-4-100_em-4-4-1_hlb-auto'
-file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_1 = '0V-v_hartree-1_0.cube'
-file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_2 = '0V-v_hartree-1_0.cube'
-plot_markers = True
-markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
-                    21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
-print(markers)
-use_xlim = False
-xlim_specify_left = [-0.1, 6]
-xlim_specify_right = [78, 84.1]
-xlim_specify = xlim_specify_left
 
 # Read .cube using ASE
 print('Start reading .cube files')
@@ -94,8 +131,8 @@ ax_plot_both_diff[0].plot(energy_grid_z_4, z_average_4-z_average_2, 'g-', label=
 if plot_markers: ax_plot_both_diff[0].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
 ax_plot_both_diff[0].legend(frameon=False)
 ax_plot_both_diff[0].set_ylabel('Hartree potential / eV')
-ax_plot_both_diff[1].plot(data_em_charge[0][:, 0], (data_em_charge[1][:, 1]-data_em_charge[0][:, 1])/np.max(abs(data_em_charge[1][:, 1]-data_em_charge[0][:, 1])), 'r-', label='SIESTA-SMEAGOL')
-ax_plot_both_diff[1].plot(energy_grid_z_3, (z_average_3-z_average_1)/np.max(abs(z_average_3-z_average_1)), 'g-', label='CP2K-SMEAGOL')
+ax_plot_both_diff[1].plot(data_em_charge[0][:, 0], (data_em_charge[1][:, 1]-data_em_charge[0][:, 1])/np.max(abs((data_em_charge[1][:, 1]-data_em_charge[0][:, 1]),)), 'r-', label='SIESTA-SMEAGOL')
+ax_plot_both_diff[1].plot(energy_grid_z_3, (z_average_3-z_average_1)/np.max(abs((z_average_3-z_average_1))), 'g-', label='CP2K-SMEAGOL')
 if plot_markers: ax_plot_both_diff[1].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
 # ax_plot_both_diff[1].legend(frameon=False)
 ax_plot_both_diff[1].set_xlabel(r'Position / Å')
