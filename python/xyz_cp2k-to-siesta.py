@@ -37,9 +37,12 @@ def cp2k_to_siesta(folder, input_filename, filename_output):
     file_coord.to_csv(filename_output, index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ")
 
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_opt-cg'
-input_filename = 'em.xyz'
-output_filename = 'em.siesta'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/forces/au-chain/paper_ruoxing/siesta-smeagol/kpoints-2-2-20/input'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001/atoms-246'
+# input_filename = 'em.xyz'
+# output_filename = 'em.siesta'
+input_filename = 'bulk.xyz'
+output_filename = 'bulk.siesta'
 filename_output = '{}/{}'.format(folder, output_filename)
 
 

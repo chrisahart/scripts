@@ -47,14 +47,29 @@ fermi_dft = 0
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-1_kpoints_bulk-2-2-20_em-2-2-1_hlb-auto'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-0_kpoints_bulk-3-3-20_em-3-3-1_hlb-auto'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-1_kpoints_bulk-3-3-20_em-3-3-1_hlb-auto'
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-0_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-1_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-0_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20/V-1_kpoints_bulk-4-4-20_em-4-4-1_hlb-auto'
+# file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_1 = '0V-v_hartree-1_0.cube'
+# file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '0V-v_hartree-1_0.cube'
+# plot_markers = True
+# draw_mirror = True
+# markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
+#                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/NEnergReal-640/layers-1-2-3-4/kpoints-4-4-20_hlb-auto'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/NEnergReal-640/layers-1-2-3-4/kpoints-4-4-20_hlb-auto'
 file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
 file_hartree_1 = '0V-v_hartree-1_0.cube'
-file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_2 = '0V-v_hartree-1_0.cube'
-plot_markers = True
-draw_mirror = True
+file_charge_2 = 'V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_2 = 'V-v_hartree-1_0.cube'
+plot_markers = False
+draw_mirror = False
 markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
 use_xlim = False

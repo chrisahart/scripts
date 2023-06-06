@@ -12,7 +12,7 @@ import math
 """
 
 # Au capacitor 111
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_9-8/geom_9-8/new'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/delete/geom'
 input_filename_1 = 'layer.xyz'
 repeats = [4.5, 1.5, 4]
 repeats_left = int(np.sum(repeats)-1)

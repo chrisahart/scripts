@@ -24,7 +24,7 @@ from pathlib import Path
 a = 4.146  # CP2K optimised with TYPE DIRECT_CELL_OPT, KEEP_SYMMETRY TRUE
 au_au_z_001 = a/2
 au_au_z_111 = 2.406
-Au_S = 2.75
+Au_S = 2.65
 
 # Files
 left = 'left.xyz'
@@ -36,8 +36,11 @@ print_em = 'em.xyz'
 dp_print = 3
 
 # Make 001
-folder_ref = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001'
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_Au-S-{}'.format(Au_S)
+# folder_ref = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_Au-S-{}'.format(Au_S)
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001/atoms-116'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001/atoms-246'
+folder_ref = folder
 Path("{}".format(folder)).mkdir(parents=True, exist_ok=True)
 au_au_z = au_au_z_001
 x1 = a
@@ -50,7 +53,7 @@ Au_cell = Atoms('Au4',
                                 (0, 0.5, 0.5)],
               cell=[a, a, a],
               pbc=True)
-supercell = make_supercell(Au_cell, np.diag([2, 2, 1]))
+supercell = make_supercell(Au_cell, np.diag([4, 4, 1]))
 surface = surface(supercell, (0, 0, 1), layers=10)
 surface_bulk = surface[[atom.index for atom in surface if atom.symbol == 'Au' and atom.position[2] < 8]]
 surface_l = surface[[atom.index for atom in surface if atom.symbol == 'Au' and atom.position[2] < 13]]
@@ -130,18 +133,22 @@ left_molecule = pd.concat([file_coord_1, file_coord_2], ignore_index=True, sort=
 left_molecule_right = pd.concat([left_molecule, file_coord_3], ignore_index=True, sort=False)
 left_molecule_right = left_molecule_right.reset_index(drop=True)
 
-# Join coordinates
+# Join species
 species_12 = pd.concat([species_1, species_2], ignore_index=True, sort=False)
 species_123 = pd.concat([species_12, species_3], ignore_index=True, sort=False)
 species_123 = species_123.reset_index(drop=True)
 
-# Print to file CP2K
+# Join coordinates and species and sort by z coordinate
 num_atoms = left_molecule_right.shape[0]
 left_molecule_right = left_molecule_right.round(dp_print)
 em_size = np.array([np.round(np.max(left_molecule_right['X'])/au_au_z),
                     np.round(np.max(left_molecule_right['Y'])/au_au_z),
                     np.max(left_molecule_right['Z'])])
 left_molecule_right.insert(loc=0, column='A', value=pd.Series(species_123).values)
+left_molecule_right.sort_values(by=['Z', 'X', 'Y'], inplace=True, ascending=[True, True, True])
+left_molecule_right = left_molecule_right.reset_index(drop=True)
+
+# Print to file CP2K
 print_xyz.print_from_pandas(left_molecule_right, num_atoms, '{}/{}'.format(folder, print_em))
 
 # Print cell information

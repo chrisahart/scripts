@@ -8,7 +8,6 @@ from general import parameters as param
 from general import print_xyz
 import matplotlib.pyplot as plt
 import csv
-import xyz_siesta_to_cp2k
 
 """
     Analysis script for au h2 as in clotilde phonon paper, to confirm SMEAGOL forces
