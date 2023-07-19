@@ -1,9 +1,8 @@
 from __future__ import division, print_function
 import pandas as pd
 import numpy as np
-import glob
-from scripts.formatting import load_coordinates
-from scripts.formatting import print_xyz
+from general import load_coordinates
+from general import print_xyz
 import matplotlib.pyplot as plt
 
 """
@@ -11,21 +10,19 @@ import matplotlib.pyplot as plt
     Reads .xyz file and translates atomic positions
 """
 
-folder = '/Volumes/Storage/Data/Work/Postdoc/Work/testing/cp2k-smeagol/bdt/structures/hollow-site/7-6'
-# input_filename = 'C6H4S2.xyz'
-# output_filename = 'C6H4S2-translated.xyz'
-input_filename = '442-6.xyz'
-output_filename = '442-6-translated.xyz'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/theory_support/hannah/structures/carbide'
+input_filename = 'hexagonal_supercell-2x2x2.xyz'
+output_filename = 'hexagonal_supercell-2x2x2_translated2.xyz'
 
 # Read number of atoms and labels from .xyz file
 cols = ['Species', 'X', 'Y', 'Z']
-file_coord, num_atoms, species = load_coordinates.load_file_coord(folder, input_filename)
+file_coord, num_atoms, species = load_coordinates.load_file_coord(folder, input_filename, cols)
+print(file_coord)
 
-# translate = np.array([8.34258,  10.42822, 13.7994])
-translate = np.array([0, 0, 21.4317])
+translate = np.array([11.03428, 18.96513, 17.05978])
 
 # Translate atoms
-for i in range(1, num_atoms+1):
+for i in range(0, num_atoms):
     file_coord['X'][i] = file_coord['X'][i] + translate[0]
     file_coord['Y'][i] = file_coord['Y'][i] + translate[1]
     file_coord['Z'][i] = file_coord['Z'][i] + translate[2]

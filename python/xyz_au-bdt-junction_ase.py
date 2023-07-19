@@ -39,7 +39,7 @@ dp_print = 3
 # folder_ref = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001'
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_Au-S-{}'.format(Au_S)
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001/atoms-116'
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001/atoms-246'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/benchmarking/structures/atoms-428'
 folder_ref = folder
 Path("{}".format(folder)).mkdir(parents=True, exist_ok=True)
 au_au_z = au_au_z_001

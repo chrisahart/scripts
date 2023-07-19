@@ -10,6 +10,7 @@ draw_mirror = False
 mirror_scale = 1
 draw_markers = False
 plot_dft_diff = True
+plot_leads = False
 fermi_dft = 0
 labels = ['V=0.cube', 'V=1.cube', 'Bulk.cube']
 print_label = 'V0_DFT'
@@ -187,7 +188,7 @@ print_label = 'V0_DFT'
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/layers-1-2-3-4/kpoints-4-4-20_hlb-auto_vacuum'
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/layers-1-2-3-4/NIMAGES/kpoints-4-4-20_hlb-auto_chris'
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/auto/kpoints-20_test/sergey_kpoints-2-2-20_hlb-auto-NIMAGES_IJ'
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/archer2/layers-1-2-3-4/kpoints-2-2-20_hlb-auto'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/archer2/layers-1-2-3-4/kpoints-2-2-20_hlb-auto'
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/archer2/layers-1-2-3-4/kpoints-4-4-20_hlb-auto-300K_CUTOFF-1500'
 # folder_save = '{}/output'.format(folder)
 # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
@@ -235,6 +236,37 @@ folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/
 # plot_dft = True
 # plot_dft_diff = True
 # draw_mirror = True
+# draw_markers = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+# Au capacitor smeagol-interface-cp2k-20220907-memory NEnergReal-80
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/' \
+#          'NEnergReal-80-memory/layers-1-2-3-4/kpoints-1-1-20_hlb-auto_cores-120'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/' \
+#          'NEnergReal-80-memory/layers-1-2-3-4/kpoints-2-2-20_hlb-auto_cores-120'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/' \
+#          'NEnergReal-80-memory/layers-1-2-3-4/kpoints-4-4-20_hlb-auto_cores-120'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/layers-1-2-3-4/NIMAGES/kpoints-4-4-20_hlb-auto_chris'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/NEnergReal-640/layers-1-2-3-4/NIMAGES/kpoints-4-4-20_hlb-auto_vacuum_chris'
+# folder_save = '{}/output'.format(folder)
+# file_charge_em = 'V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = 'V-v_hartree-1_0.cube'
+# # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# # file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = '0V-v_hartree-1_0.cube'
+# # file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# # file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = False
+# plot_dft = True
+# plot_dft_diff = True
+# draw_mirror_1 = False
+# draw_mirror_2 = True
+# mirror_scale = -1
 # draw_markers = False
 # xlim_specify_left = [-0.1, 6]
 # xlim_specify_right = [78, 84.1]
@@ -293,6 +325,29 @@ folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/
 # xlim_specify_left = [-0.1, 6]
 # xlim_specify_right = [78, 84.1]
 # xlim_specify = xlim_specify_left
+
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_cores-128_OrderN-F_high-V2/iv_curve/V_2.00'
+folder_save = '{}/output'.format(folder)
+file_charge_em = 'V-2.00-ELECTRON_DENSITY-1_0.cube'
+file_hartree_em = 'V-2.00-v_hartree-1_0.cube'
+# file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = '0V-v_hartree-1_0.cube'
+file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+use_xlim = False
+plot_dft = True
+plot_dft_diff = True
+draw_mirror_1 = False
+draw_mirror_2 = True
+mirror_scale = -1
+draw_markers = False
+xlim_specify_left = [-0.1, 6]
+xlim_specify_right = [78, 84.1]
+xlim_specify = xlim_specify_left
 
 # Read .cube using ASE
 data_1, atoms_1 = read_cube_data('{}/{}'.format(folder, file_charge_em))
@@ -439,14 +494,14 @@ figcube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', f
 if plot_fermi: ax_cube_z[0].axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
 if plot_dft: ax_cube_z[0].plot(energy_grid_z_4, z_average_4, 'r-', label=labels[0])
 ax_cube_z[0].plot(energy_grid_z_2, z_average_2, 'g-', label=labels[1])
-if draw_mirror: ax_cube_z[0].plot(energy_grid_z_2[:mid_index]+mid_pos_grid, np.flip(z_average_2[:mid_index]), 'm--')
+if draw_mirror_1: ax_cube_z[0].plot(energy_grid_z_2[:mid_index]+mid_pos_grid, np.flip(z_average_2[:mid_index]), 'm--')
 if plot_leads: ax_cube_z[0].plot(energy_grid_z_6, z_average_6, 'k-', label=labels[2])
 ax_cube_z[0].set_xlim([xlim[0], xlim[1]])
 ax_cube_z[0].legend(frameon=False)
 ax_cube_z[0].set_ylabel('Hartree potential z / eV')
 if plot_dft: ax_cube_z[1].plot(energy_grid_z_3, z_average_3, 'r-', label=labels[0])
 ax_cube_z[1].plot(energy_grid_z_1, z_average_1, 'g-', label=labels[1])
-if draw_mirror: ax_cube_z[1].plot(energy_grid_z_1[:mid_index]+mid_pos_grid, np.flip(z_average_1[:mid_index]), 'm--')
+if draw_mirror_1: ax_cube_z[1].plot(energy_grid_z_1[:mid_index]+mid_pos_grid, np.flip(z_average_1[:mid_index]), 'm--')
 if plot_leads: ax_cube_z[1].plot(energy_grid_z_5, z_average_5, 'k-', label=labels[2])
 ax_cube_z[1].set_xlim([xlim[0], xlim[1]])
 ax_cube_z[1].legend(frameon=False)
@@ -463,14 +518,14 @@ if draw_markers:
     if plot_fermi: ax_cube_z_markers[0].axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
     if plot_dft: ax_cube_z_markers[0].plot(energy_grid_z_4, z_average_4, 'r.-', label=labels[0])
     ax_cube_z_markers[0].plot(energy_grid_z_2, z_average_2, 'g.-', label=labels[1])
-    if draw_mirror: ax_cube_z_markers[0].plot(energy_grid_z_2[:mid_index]+mid_pos_grid, np.flip(z_average_2[:mid_index]), 'm.--')
+    if draw_mirror_1: ax_cube_z_markers[0].plot(energy_grid_z_2[:mid_index]+mid_pos_grid, np.flip(z_average_2[:mid_index]), 'm.--')
     ax_cube_z_markers[0].plot(energy_grid_z_6, z_average_6, 'k.-', label=labels[2])
     ax_cube_z_markers[0].set_xlim([xlim[0], xlim[1]])
     ax_cube_z_markers[0].legend(frameon=False)
     ax_cube_z_markers[0].set_ylabel('Hartree potential z / eV')
     if plot_dft: ax_cube_z_markers[1].plot(energy_grid_z_3, z_average_3, 'r.-', label=labels[0])
     ax_cube_z_markers[1].plot(energy_grid_z_1, z_average_1, 'g.-', label=labels[1])
-    if draw_mirror: ax_cube_z_markers[1].plot(energy_grid_z_1[:mid_index]+mid_pos_grid, np.flip(z_average_1[:mid_index]), 'm.--')
+    if draw_mirror_1: ax_cube_z_markers[1].plot(energy_grid_z_1[:mid_index]+mid_pos_grid, np.flip(z_average_1[:mid_index]), 'm.--')
     ax_cube_z_markers[1].plot(energy_grid_z_5, z_average_5, 'k.-', label=labels[2])
     ax_cube_z_markers[1].set_xlim([xlim[0], xlim[1]])
     ax_cube_z_markers[1].legend(frameon=False)
@@ -497,13 +552,13 @@ if plot_dft_diff:
     figcube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
     if plot_fermi: ax_cube_z[0].axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
     ax_cube_z[0].plot(energy_grid_z_2, z_average_2-z_average_4, 'k-', label=labels[0])
-    if draw_mirror: ax_cube_z[0].plot(energy_grid_z_2[:mid_index] + mid_pos_grid, (np.flip(z_average_2[:mid_index])-np.flip(z_average_4[:mid_index]))*mirror_scale, 'm--')
+    if draw_mirror_2: ax_cube_z[0].plot(energy_grid_z_2[:mid_index] + mid_pos_grid, (np.flip(z_average_2[:mid_index])-np.flip(z_average_4[:mid_index]))*mirror_scale, 'm--')
     ax_cube_z[0].set_xlim([xlim[0], xlim[1]])
     # ax_cube_z[0].legend(frameon=False)
     ax_cube_z[0].set_xlabel(r'Position / Å')
     ax_cube_z[0].set_ylabel('Hartree potential z / eV')
     ax_cube_z[1].plot(energy_grid_z_3, z_average_1-z_average_3, 'k-', label=labels[0])
-    if draw_mirror: ax_cube_z[1].plot(energy_grid_z_2[:mid_index] + mid_pos_grid, (np.flip(z_average_1[:mid_index])-np.flip(z_average_3[:mid_index]))*mirror_scale, 'm--')
+    if draw_mirror_2: ax_cube_z[1].plot(energy_grid_z_2[:mid_index] + mid_pos_grid, (np.flip(z_average_1[:mid_index])-np.flip(z_average_3[:mid_index]))*mirror_scale, 'm--')
     ax_cube_z[1].set_xlim([xlim[0], xlim[1]])
     # ax_cube_z[1].legend(frameon=False)
     ax_cube_z[1].set_xlabel(r'Position / Å')
