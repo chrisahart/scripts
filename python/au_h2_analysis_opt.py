@@ -22,21 +22,28 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 # Clotilde SIESTA, SIESTA
 # labels = ['[1]', 'SIESTA-SMEAGOL', 'CP2K-SMEAGOL']
 labels = ['SIESTA-SMEAGOL', 'CP2K-SMEAGOL']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/young/siesta-smeagol-ivan/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive']
 # folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive',
 #           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/geo_opt/bias']
 # folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/geo_opt/bias_nodes-4']
-folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/forces/AuH2/archer_lda/geo_opt/bias']
+# folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/forces/AuH2/archer_lda/geo_opt/bias']
+folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-2_ParallelOverKNum-1']
 file_cp2k_smeagol = 'V-pos-1.xyz'
-file_siesta = ['/opt/final.siesta',
-               '/final.siesta']
-file_cp2k = ['/opt/final.xyz',
-             '/final.xyz']
-data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.45, 1.5, 1.55, 1.6, 1.7, 1.8, 1.9]
+file_siesta = ['/final.siesta']
+file_cp2k = ['/final.xyz']
+# file_siesta = ['/opt/final.siesta',
+#                '/final.siesta']
+# file_cp2k = ['/opt/final.xyz',
+#              '/final.xyz']
+# data = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.45, 1.5, 1.55, 1.6, 1.7, 1.8, 1.9]
 # data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,]
 
+data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
+data =  data_cp2k
+
 # data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
-data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
+# data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
 # data_cp2k = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1]
 
 # plotting_colors = ['r', 'b', 'g', 'm', 'grey', 'orange', 'y']
