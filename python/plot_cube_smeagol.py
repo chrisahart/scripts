@@ -326,12 +326,69 @@ print_label = 'V0_DFT'
 # xlim_specify_right = [78, 84.1]
 # xlim_specify = xlim_specify_left
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_cores-128_OrderN-F_high-V2/iv_curve/V_2.00'
-folder_save = '{}/output'.format(folder)
-file_charge_em = 'V-2.00-ELECTRON_DENSITY-1_0.cube'
-file_hartree_em = 'V-2.00-v_hartree-1_0.cube'
+# Mengxuan
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_cores-128_OrderN-F_high-V2/iv_curve/V_2.00'
+# folder_save = '{}/output'.format(folder)
+# file_charge_em = 'V-2.00-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = 'V-2.00-v_hartree-1_0.cube'
 # file_charge_em = '0V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_em = '0V-v_hartree-1_0.cube'
+# file_charge_dft = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = '0V-v_hartree-1_0.cube'
+# file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = False
+# plot_dft = True
+# plot_dft_diff = True
+# draw_mirror_1 = False
+# draw_mirror_2 = True
+# mirror_scale = -1
+# draw_markers = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+# CP2K+SMEAGOL Au-H2-Au GEO_OPT
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-2_ParallelOverKNum-3_scf-1e-6_EXTRAPOLATION-USE_PREV_P'
+# folder_save = '{}/0.3'.format(folder)
+# labels = ['V=0.cube', 'V=0.3.cube', 'Bulk.cube']
+# file_charge_em = '0.3/V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = '0.3/V-v_hartree-1_0.cube'
+# file_charge_dft = '0.0/V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = '0.0/V-v_hartree-1_0.cube'
+# file_charge_bulk = '0.0/bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = '0.0/bulk-v_hartree-1_0.cube'
+# use_xlim = False
+# plot_dft = True
+# plot_dft_diff = True
+# draw_mirror_1 = False
+# draw_mirror_2 = False
+# mirror_scale = -1
+# draw_markers = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+# CP2K+SMEAGOL Au-H2-Au GEO_OPT
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho-0/kpoints-4-4-20_hlb-auto'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho-0.5/kpoints-4-4-20_hlb-auto'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho-1/kpoints-4-4-20_hlb-auto'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho-default/kpoints-4-4-20_hlb-auto'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-1-1-20_hlb-auto_NEnergReal-64_supercell-2-2-1'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-4-4-20_hlb-auto_NEnergReal-64_li_chris'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho/testing/li/kpoints-4-4-20_hlb-auto_cores-20_20220907-memory_hash-143_OrderN-T'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho/testing/li/kpoints-8-8-20_hlb-auto_cores-20_20220907-memory_hash-143_OrderN-T_TransmissionOverk_EM.TRCChannels'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/cp2k-versions/kpoints-4-4-20_hlb-auto_cores-20_20220907-memory_hash-143_OrderN-T_EM.WeightRho-0'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-6-6-20_hlb-auto_NEnergReal-64'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-1-1-20_hlb-auto_NEnergReal-64_supercell-2-2-1'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-4-4-20_hlb-auto_NEnergReal-64_pt-sz'
+print(folder)
+folder_save = '{}'.format(folder)
+labels = ['V=0.cube', 'V=1.cube', 'Bulk.cube']
+file_charge_em = '1V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_em = '1V-v_hartree-1_0.cube'
 # file_charge_dft = '0V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_dft = '0V-v_hartree-1_0.cube'
 file_charge_dft = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
@@ -340,14 +397,36 @@ file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
 file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
 use_xlim = False
 plot_dft = True
+plot_leads = True
 plot_dft_diff = True
 draw_mirror_1 = False
-draw_mirror_2 = True
+draw_mirror_2 = False
 mirror_scale = -1
 draw_markers = False
 xlim_specify_left = [-0.1, 6]
 xlim_specify_right = [78, 84.1]
 xlim_specify = xlim_specify_left
+
+# # CP2K+SMEAGOL Au-H2-Au GEO_OPT
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-2d-equal/benchmarking/NEnergReal-80-memory/layers-1-2-3-4/kpoints-4-4-20_hlb-auto_cores-40'
+# folder_save = '{}'.format(folder)
+# labels = ['V=0.cube', 'V=1.cube', 'Bulk.cube']
+# file_charge_em = 'V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_em = 'V-v_hartree-1_0.cube'
+# file_charge_dft = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_dft = '0V-v_hartree-1_0.cube'
+# file_charge_bulk = 'bulk-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_bulk = 'bulk-v_hartree-1_0.cube'
+# use_xlim = False
+# plot_dft = True
+# plot_dft_diff = True
+# draw_mirror_1 = False
+# draw_mirror_2 = False
+# mirror_scale = -1
+# draw_markers = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
 
 # Read .cube using ASE
 data_1, atoms_1 = read_cube_data('{}/{}'.format(folder, file_charge_em))
@@ -508,7 +587,7 @@ ax_cube_z[1].legend(frameon=False)
 ax_cube_z[1].set_xlabel(r'Position / Å')
 ax_cube_z[1].set_ylabel('Charge density z')
 figcube_both.tight_layout()
-figcube_both.savefig('{}/charge_hartree_cube_z_{}.png'.format(folder, print_label), dpi=300)
+figcube_both.savefig('{}/charge_hartree_cube_z_{}.png'.format(folder_save, print_label), dpi=300)
 print('Finished plotting z average')
 
 # Plot with markers
@@ -532,7 +611,7 @@ if draw_markers:
     ax_cube_z_markers[1].set_xlabel(r'Position / Å')
     ax_cube_z_markers[1].set_ylabel('Charge density z')
     figcube_both_markers.tight_layout()
-    figcube_both_markers.savefig('{}/charge_hartree_cube_z_markers_{}.png'.format(folder, print_label), dpi=300)
+    figcube_both_markers.savefig('{}/charge_hartree_cube_z_markers_{}.png'.format(folder_save, print_label), dpi=300)
 
 # Plot Hartree .cube difference
 # if plot_dft:
@@ -564,7 +643,7 @@ if plot_dft_diff:
     ax_cube_z[1].set_xlabel(r'Position / Å')
     ax_cube_z[1].set_ylabel('Charge density z')
     figcube_both.tight_layout()
-    figcube_both.savefig('{}/charge_hartree_cube_z_diff_{}.png'.format(folder, print_label), dpi=300)
+    figcube_both.savefig('{}/charge_hartree_cube_z_diff_{}.png'.format(folder_save, print_label), dpi=300)
     print('Finished plotting z difference Hartree and charge ')
 
 # Plot Hartree
@@ -579,7 +658,7 @@ ax_hartree.legend(frameon=False)
 ax_hartree.set_xlabel(r'Position / Å')
 ax_hartree.set_ylabel('Hartree potential z / eV')
 fig_hartree.tight_layout()
-fig_hartree.savefig('{}/hartree.png'.format(folder), dpi=300)
+fig_hartree.savefig('{}/hartree.png'.format(folder_save), dpi=300)
 
 # Plot charge
 fig_charge, ax_charge = plt.subplots()
@@ -593,7 +672,7 @@ ax_charge.legend(frameon=False)
 ax_charge.set_xlabel(r'Position / Å')
 ax_charge.set_ylabel('Charge density z / eV')
 fig_charge.tight_layout()
-fig_charge.savefig('{}/charge.png'.format(folder), dpi=300)
+fig_charge.savefig('{}/charge.png'.format(folder_save), dpi=300)
 
 if __name__ == "__main__":
     print(folder)

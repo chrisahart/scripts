@@ -11,12 +11,19 @@ file_1_3 = np.genfromtxt('{}/G1-S2.out'.format(folder_1), skip_header=2, skip_fo
 file_1_4 = np.genfromtxt('{}/G2-S0.out'.format(folder_1), skip_header=2, skip_footer=3)
 file_1_5 = np.genfromtxt('{}/G3-S0.out'.format(folder_1), skip_header=2, skip_footer=1)
 
-# Au-BDT
-xlim = [-3, 3]
+# Li chain
+xlim = [-6, 6]
 ylim = [0.0, 1.0]
 ylim_log = [0.008, 1.2]
 fermi_offset_1 = 0
 plotting = 'r-'
+
+# Au-BDT
+# xlim = [-3, 3]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# fermi_offset_1 = 0
+# plotting = 'r-'
 
 save_dpi = 500  # DPI to save figure
 params = {'axes.formatter.limits': [-4, 4],

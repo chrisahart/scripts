@@ -5,16 +5,23 @@ import os
 """ Plotting of SMEAGOL output _TRC.agr from command line"""
 
 # 1D Li chain
-# xlim = [-3, 3]
+# xlim = [-3, 6]
 # ylim = [-0.1, 1.1]
 # ylim_log = [0.008, 1.0]
 # ylim2 = [-0.1, 100]
 # fermi_offset_1 = 0
 
 # Au-BDT
-xlim = [-3, 3]
-ylim = [0.0, 1.0]
-ylim_log = [0.009, 1.3]
+# xlim = [-3, 3]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.009, 1.3]
+# ylim2 = [-0.1, 100]
+# fermi_offset_1 = 0
+
+# Au-C3-Au
+xlim = [-6, 6]
+ylim = [-0.1, 1.1]
+ylim_log = [0.008, 1.0]
 ylim2 = [-0.1, 100]
 fermi_offset_1 = 0
 

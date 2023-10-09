@@ -4,6 +4,7 @@ from general import parameters as param
 
 """ Plotting of SMEAGOL output _TRC.agr by filename"""
 
+# plotting_colors = ['k', 'r', 'g', 'b', 'm', 'grey', 'orange', 'y']
 plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'y']
 # plotting_colors_2 = ['orange', 'm', 'grey', 'b', 'g', 'r']
 plotting_colors_2 = ['b', 'orange', 'm', 'grey',  'g', 'r']
@@ -88,17 +89,31 @@ n = 1
 # fermi_cp2k_negf = 0
 
 # Au capacitor
+# xlim = [-4, 4]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 300]
+# labels = ['CP2K', 'SIESTA']
+# fermi = np.zeros(len(labels))
+# # fermi = [0, 0.0, 0.7]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+
+# Au capacitor
 xlim = [-4, 4]
 ylim = [0.0, 1.0]
 ylim_log = [0.008, 1.2]
 ylim_dos = [0, 300]
-labels = ['CP2K', 'SIESTA']
+labels = ['Delta 0', 'Delta 1e-4']
 fermi = np.zeros(len(labels))
 # fermi = [0, 0.0, 0.7]
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/capacitor/sergey-equal/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-10.99872_scf-500/output',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-0/output']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-0/output',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-1e-4/output']
 folder_cp2k_negf = []
 fermi_cp2k_negf = 0
+plot_lengend = True
 
 file_1 = []
 file_2 = []
@@ -138,18 +153,18 @@ for i in range(len(folder)):
     fig_plot_1.savefig('{}/compare-transmission.png'.format(folder[i]), dpi=param.save_dpi)
 
 # Transmission log
-# fig_plot_1_2, ax_plot_1_2 = plt.subplots()
-# for i in range(len(folder)):
-#     ax_plot_1_2.plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax_plot_1_2.set_xlim([xlim[0], xlim[1]])
-# ax_plot_1_2.set_ylim([ylim_log[0], ylim_log[1]])
-# ax_plot_1_2.set_yscale('log')
-# ax_plot_1_2.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_1_2.set_ylabel('Transmission')
-# ax_plot_1_2.legend(frameon=False)
-# fig_plot_1_2.tight_layout()
-# for i in range(len(folder)):
-#     fig_plot_1_2.savefig('{}/compare-transmission_log.png'.format(folder[i]), dpi=param.save_dpi)
+fig_plot_1_2, ax_plot_1_2 = plt.subplots()
+for i in range(len(folder)):
+    ax_plot_1_2.plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
+ax_plot_1_2.set_xlim([xlim[0], xlim[1]])
+ax_plot_1_2.set_ylim([ylim_log[0], ylim_log[1]])
+ax_plot_1_2.set_yscale('log')
+ax_plot_1_2.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+ax_plot_1_2.set_ylabel('Transmission')
+ax_plot_1_2.legend(frameon=False)
+fig_plot_1_2.tight_layout()
+for i in range(len(folder)):
+    fig_plot_1_2.savefig('{}/compare-transmission_log.png'.format(folder[i]), dpi=param.save_dpi)
 
 # Plot transmission and transmission log
 # rows, cols = 2, 1
@@ -199,16 +214,16 @@ for i in range(len(folder_cp2k_negf)):
 for i in range(len(folder)):
     ax_trans_dos[0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
 ax_trans_dos[0].set_xlim([xlim[0], xlim[1]])
-ax_trans_dos[0].set_ylim([ylim[0], ylim[1]])
+# ax_trans_dos[0].set_ylim([ylim[0], ylim[1]])
 ax_trans_dos[0].set_ylabel('Transmission')
-ax_trans_dos[0].legend(frameon=False)
+if plot_lengend: ax_trans_dos[0].legend(frameon=False)
 for i in range(len(folder_cp2k_negf)):
     ax_trans_dos[1].plot((file_4_negf[i][:, 0] - fermi_cp2k_negf[i]) * param.hartree_to_ev, file_4_negf[i][:, 1] / dos_norm_cp2k_negf, color=plotting_colors_2[i], label=labels_cp2k_negf[i])
 for i in range(len(folder)):
     ax_trans_dos[1].plot(file_4[i][:, 0] + fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
 ax_trans_dos[1].set_xlim([xlim[0], xlim[1]])
-ax_trans_dos[1].set_ylim([ylim_dos[0], ylim_dos[1]])
-ax_trans_dos[1].legend(frameon=False)
+# ax_trans_dos[1].set_ylim([ylim_dos[0], ylim_dos[1]])
+if plot_lengend: ax_trans_dos[1].legend(frameon=False)
 ax_trans_dos[1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
 # ax_trans_dos[1].set_ylabel('Density of states (a.u.)')
 ax_trans_dos[1].set_ylabel(r'Density of states (atom$^{-1}$ eV$^{-1}$)')

@@ -10,18 +10,22 @@ plotting_colors = [ 'b', 'r', 'k','g', 'm', 'grey']
 n = 0
 
 # Plot Li chain LDA SIESTA:q1 CP2K:q3 27 atoms
-# labels = ['CP2K-NEGF', 'CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
-# cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/cp2k-smeagol/iv/HLB-F_z-0-0'
-# cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-# # cp2k_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/iv/li/cp2k-smeagol/lda-q3_atoms-28/iv/HLB-F_z-0-0_sergey'
-# # cp2k2 = np.genfromtxt('{}/IV.log'.format(cp2k_folder2), skip_header=1, skip_footer=0)
-# cp2k_negf_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/cp2k-negf/iv/V-0_fermi-calc_xy-12'
-# cp2k_negf1 = np.genfromtxt('{}/IV.log'.format(cp2k_negf_folder1), skip_header=1, skip_footer=0)
-# siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/siesta/iv/bottom-0'
-# siesta1 = np.genfromtxt('{}/Liwire.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
-# xlim = [-1, 1]
-# ylim = [-0.75e-4, 0.75e-4]
-# factor = 1
+labels = ['CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
+cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/cp2k-smeagol/atoms-12/iv'
+cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
+siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/siesta/iv/bottom-0'
+siesta1 = np.genfromtxt('{}/Liwire.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
+print(siesta1)
+plot_cp2k1 = True
+plot_cp2k2 = False
+plot_cp2k3 = False
+plot_siesta1 = True
+plot_negf = False
+xlim = [-1, 1]
+ylim = [-0.75e-4, 0.75e-4]
+factor = 1e6
+use_xlim = False
+use_ylim = False
 
 # Plot Au chain LDA 27 atoms
 # labels = ['CP2K-NEGF', 'CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
@@ -52,26 +56,26 @@ n = 0
 # factor = 1e6
 
 # IV curve Au-BDT
-labels = ['CP2K+SMEAGOL NEnergReal 80 1x1x20', 'CP2K+SMEAGOL NEnergReal 128 1x1x100', 'CP2K NEGF Mengxuan']
-cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_NEnergReal-64_all'
-cp2k_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-100_hlb-auto_NEnergReal-128_all'
-cp2k_folder3 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/mengxuan'
-cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-cp2k1 = cp2k1[cp2k1[:, 0].argsort()]
-np.savetxt('{}/IV_print.log'.format(cp2k_folder1), cp2k1, fmt='%.3e')
-cp2k2 = np.genfromtxt('{}/IV.log'.format(cp2k_folder2), skip_header=1, skip_footer=0)
-cp2k2 = cp2k2[cp2k2[:, 0].argsort()]
-np.savetxt('{}/IV_print.log'.format(cp2k_folder2), cp2k2, fmt='%.3e')
-cp2k3 = np.genfromtxt('{}/IV.log'.format(cp2k_folder3), skip_header=1, skip_footer=0)
-plot_cp2k1 = True
-plot_cp2k2 = False
-plot_siesta1 = False
-plot_negf = False
-use_xlim = False
-use_ylim = False
-xlim = [-1.1, 1.1]
-ylim = [-100, 100]
-factor = 1e6
+# labels = ['CP2K+SMEAGOL NEnergReal 80 1x1x20', 'CP2K+SMEAGOL NEnergReal 128 1x1x100', 'CP2K NEGF Mengxuan']
+# cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_NEnergReal-64_all'
+# cp2k_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-100_hlb-auto_NEnergReal-128_all'
+# cp2k_folder3 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/mengxuan'
+# cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
+# cp2k1 = cp2k1[cp2k1[:, 0].argsort()]
+# np.savetxt('{}/IV_print.log'.format(cp2k_folder1), cp2k1, fmt='%.3e')
+# cp2k2 = np.genfromtxt('{}/IV.log'.format(cp2k_folder2), skip_header=1, skip_footer=0)
+# cp2k2 = cp2k2[cp2k2[:, 0].argsort()]
+# np.savetxt('{}/IV_print.log'.format(cp2k_folder2), cp2k2, fmt='%.3e')
+# cp2k3 = np.genfromtxt('{}/IV.log'.format(cp2k_folder3), skip_header=1, skip_footer=0)
+# plot_cp2k1 = True
+# plot_cp2k2 = False
+# plot_siesta1 = False
+# plot_negf = False
+# use_xlim = False
+# use_ylim = False
+# xlim = [-1.1, 1.1]
+# ylim = [-100, 100]
+# factor = 1e6
 
 # IV curve cp2k
 # fig_plot_1, ax_plot_1 = plt.subplots()
@@ -94,9 +98,9 @@ factor = 1e6
 # IV curve all
 fig_plot_2, ax_plot_2 = plt.subplots()
 if plot_cp2k1: ax_plot_2.plot(cp2k1[:, 0], cp2k1[:, 1]* factor, '.-', color=plotting_colors[0], label=labels[0])
-if plot_cp2k1: ax_plot_2.plot(cp2k2[:, 0], cp2k2[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
-if plot_cp2k1: ax_plot_2.plot(cp2k3[:, 0], cp2k3[:, 1]* factor, '.-', color=plotting_colors[2], label=labels[2])
-# if plot_siesta1: ax_plot_2.plot(siesta1[:, 0], siesta1[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
+if plot_cp2k2: ax_plot_2.plot(cp2k2[:, 0], cp2k2[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
+if plot_cp2k3: ax_plot_2.plot(cp2k3[:, 0], cp2k3[:, 1]* factor, '.-', color=plotting_colors[2], label=labels[2])
+if plot_siesta1: ax_plot_2.plot(siesta1[:, 0], siesta1[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
 # if plot_cp2k2: ax_plot_2.plot(cp2k2[:, 0], cp2k2[:, 1]* factor, '.-', color=plotting_colors[3], label=labels[2])
 # if plot_negf: ax_plot_2.plot(cp2k_negf1[:, 0], cp2k_negf1[:, 1], '.-', color=plotting_colors[0], label=labels[0])
 if use_xlim: ax_plot_2.set_xlim([xlim[0], xlim[1]])
