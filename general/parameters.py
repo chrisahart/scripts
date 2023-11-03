@@ -8,6 +8,7 @@ import matplotlib.cm as cm
 """
 
 # Change matplotlib defaults to large title labels and standard form
+# https://matplotlib.org/stable/users/explain/customizing.html
 params = {'axes.formatter.limits': [-4, 4],
           'axes.labelsize': 'large',
           'axes.titlesize': 'large',

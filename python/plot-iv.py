@@ -1,119 +1,58 @@
+from __future__ import division, print_function
+import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+from general import load_coordinates
 from general import parameters as param
+import matplotlib.pyplot as plt
 
-""" Plotting of SMEAGOL output _TRC.agr by filename"""
+""" Plotting of SMEAGOL IV filename"""
 
-# plotting_colors = ['r', 'g', 'b', 'm', 'grey']
-# plotting_colors = ['b', 'r', 'g', 'm', 'grey']
-plotting_colors = [ 'b', 'r', 'k','g', 'm', 'grey']
+# Change matplotlib defaults to large title labels and standard form
+params = {'axes.formatter.limits': [-4, 4],
+          'axes.labelsize': 'x-large',
+          'axes.titlesize': 'x-large',
+          'legend.fontsize': 'large',
+          'lines.markersize': '8',
+          }
+plt.rcParams.update(params)
+
+plotting_colors = ['r', 'g', 'b']
 n = 0
 
-# Plot Li chain LDA SIESTA:q1 CP2K:q3 27 atoms
-labels = ['CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
-cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/cp2k-smeagol/atoms-12/iv'
+# cp2k-smeagol-examples/examples/li-chain
+labels = ['CP2K+SMEAGOL', 'SIESTA1+SMEAGOL', 'SIESTA3+SMEAGOL']
+cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/cp2k-smeagol/iv/kpoints-1-1-20'
 cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/li-chain/siesta/iv/bottom-0'
-siesta1 = np.genfromtxt('{}/Liwire.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
-print(siesta1)
+siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/siesta1-smeagol/iv/kpoints-1-1-20'
+siesta_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/siesta3-smeagol/iv/kpoints-2-2-20'
+siesta1 = np.genfromtxt('{}/IV.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
+siesta2 = np.genfromtxt('{}/IV.CUR'.format(siesta_folder2), skip_header=0, skip_footer=0)
 plot_cp2k1 = True
 plot_cp2k2 = False
-plot_cp2k3 = False
 plot_siesta1 = True
-plot_negf = False
-xlim = [-1, 1]
-ylim = [-0.75e-4, 0.75e-4]
+plot_siesta2 = True
+xlim = [-0.5, 0.5]
+ylim = np.array([-40, 40])
 factor = 1e6
-use_xlim = False
-use_ylim = False
-
-# Plot Au chain LDA 27 atoms
-# labels = ['CP2K-NEGF', 'CP2K-SMEAGOL', 'SIESTA-SMEAGOL']
-# cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-smeagol/iv/HLB-F_z-0-0'
-# cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-# cp2k_negf_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-negf/iv/multiple-force-eval_fermi-calc_kpoints-1-1-31_xy-12'
-# cp2k_negf1 = np.genfromtxt('{}/IV.log'.format(cp2k_negf_folder1), skip_header=1, skip_footer=0)
-# siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/iv/HLB-0_z-0-0_positive'
-# siesta1 = np.genfromtxt('{}/Au.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
-# xlim = [-1, 1]
-# ylim = [-0.75e-4, 0.75e-4]
-# factor = 1
-
-# IV curve Au-BDT
-# labels = ['CP2K-SMEAGOL', 'SIESTA-SMEAGOL', 'CP2K-SMEAGOL old']
-# cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/dzvp/sergey/kpoints_bulk-2-2-100_em-2-2-1_hlb-t-auto_iv'
-# cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-# cp2k_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/iv/kpoints_bulk-2-2-100_em-2-2-1'
-# cp2k2 = np.genfromtxt('{}/IV.log'.format(cp2k_folder2), skip_header=1, skip_footer=0)
-# siesta_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/iv/exp/bulk-4-4-100-em-4-4-1_hlb-15.2496_0-25.59'
-# siesta1 = np.genfromtxt('{}/transport.CUR'.format(siesta_folder1), skip_header=0, skip_footer=0)
-# plot_cp2k1 = True
-# plot_cp2k2 = True
-# plot_siesta1 = True
-# plot_negf = False
-# xlim = [-5, 5]
-# ylim = [-100, 100]
-# factor = 1e6
-
-# IV curve Au-BDT
-# labels = ['CP2K+SMEAGOL NEnergReal 80 1x1x20', 'CP2K+SMEAGOL NEnergReal 128 1x1x100', 'CP2K NEGF Mengxuan']
-# cp2k_folder1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-20_hlb-auto_NEnergReal-64_all'
-# cp2k_folder2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/kpoints-1-1-100_hlb-auto_NEnergReal-128_all'
-# cp2k_folder3 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/mengxuan/archer/archer/ben_ant_chris/iv_parralel/mengxuan'
-# cp2k1 = np.genfromtxt('{}/IV.log'.format(cp2k_folder1), skip_header=1, skip_footer=0)
-# cp2k1 = cp2k1[cp2k1[:, 0].argsort()]
-# np.savetxt('{}/IV_print.log'.format(cp2k_folder1), cp2k1, fmt='%.3e')
-# cp2k2 = np.genfromtxt('{}/IV.log'.format(cp2k_folder2), skip_header=1, skip_footer=0)
-# cp2k2 = cp2k2[cp2k2[:, 0].argsort()]
-# np.savetxt('{}/IV_print.log'.format(cp2k_folder2), cp2k2, fmt='%.3e')
-# cp2k3 = np.genfromtxt('{}/IV.log'.format(cp2k_folder3), skip_header=1, skip_footer=0)
-# plot_cp2k1 = True
-# plot_cp2k2 = False
-# plot_siesta1 = False
-# plot_negf = False
-# use_xlim = False
-# use_ylim = False
-# xlim = [-1.1, 1.1]
-# ylim = [-100, 100]
-# factor = 1e6
-
-# IV curve cp2k
-# fig_plot_1, ax_plot_1 = plt.subplots()
-# ax_plot_1.plot(cp2k_negf1[:, 0], cp2k_negf1[:, 1], '.-', color=plotting_colors[0], label=labels[0])
-# ax_plot_1.plot(-cp2k_negf1[:, 0], -cp2k_negf1[:, 1], '.-', color=plotting_colors[0])
-# ax_plot_1.plot(cp2k1[:, 0], cp2k1[:, 1], 'k-', label=labels[1])
-# ax_plot_1.plot(-cp2k1[:, 0], -cp2k1[:, 1], 'k-')
-# ax_plot_1.plot(siesta1[:, 0], siesta1[:, 1], '.-', color=plotting_colors[2], label=labels[2])
-# ax_plot_1.plot(-siesta1[:, 0], -siesta1[:, 1], '.-', color=plotting_colors[2])
-# ax_plot_1.set_xlim([xlim[0], xlim[1]])
-# ax_plot_1.set_ylim([ylim[0], ylim[1]])
-# ax_plot_1.legend(frameon=False)
-# ax_plot_1.set_xlabel('Bias voltage / eV')
-# ax_plot_1.set_ylabel('Current / A')
-# fig_plot_1.tight_layout()
-# fig_plot_1.savefig('{}/IV_cp2k.png'.format(cp2k_folder1), dpi=param.save_dpi)
-# fig_plot_1.savefig('{}/IV.png'.format(cp2k_negf_folder1), dpi=param.save_dpi)
-# fig_plot_1.savefig('{}/IV.png'.format(siesta_folder1), dpi=param.save_dpi)
+use_xlim = True
+use_ylim = True
 
 # IV curve all
-fig_plot_2, ax_plot_2 = plt.subplots()
+fig_plot_2, ax_plot_2 = plt.subplots(figsize=(6, 4))
 if plot_cp2k1: ax_plot_2.plot(cp2k1[:, 0], cp2k1[:, 1]* factor, '.-', color=plotting_colors[0], label=labels[0])
 if plot_cp2k2: ax_plot_2.plot(cp2k2[:, 0], cp2k2[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
-if plot_cp2k3: ax_plot_2.plot(cp2k3[:, 0], cp2k3[:, 1]* factor, '.-', color=plotting_colors[2], label=labels[2])
 if plot_siesta1: ax_plot_2.plot(siesta1[:, 0], siesta1[:, 1]* factor, '.-', color=plotting_colors[1], label=labels[1])
-# if plot_cp2k2: ax_plot_2.plot(cp2k2[:, 0], cp2k2[:, 1]* factor, '.-', color=plotting_colors[3], label=labels[2])
-# if plot_negf: ax_plot_2.plot(cp2k_negf1[:, 0], cp2k_negf1[:, 1], '.-', color=plotting_colors[0], label=labels[0])
+if plot_siesta2: ax_plot_2.plot(siesta2[:, 0], siesta2[:, 1]* factor, '.-', color=plotting_colors[2], label=labels[2])
 if use_xlim: ax_plot_2.set_xlim([xlim[0], xlim[1]])
 if use_ylim: ax_plot_2.set_ylim([ylim[0], ylim[1]])
 ax_plot_2.legend(frameon=False)
 ax_plot_2.set_xlabel('Bias voltage / V')
-# ax_plot_2.set_ylabel('Current / A')
 ax_plot_2.set_ylabel('Current / μA')
 fig_plot_2.tight_layout()
 if plot_cp2k1: fig_plot_2.savefig('{}/IV.png'.format(cp2k_folder1), dpi=param.save_dpi)
-# if plot_siesta1: fig_plot_2.savefig('{}/IV.png'.format(siesta_folder1), dpi=param.save_dpi)
-# if plot_cp2k2: fig_plot_2.savefig('{}/IV.png'.format(cp2k_folder2), dpi=param.save_dpi)
-# fig_plot_2.savefig('{}/IV.png'.format(cp2k_negf_folder1), dpi=param.save_dpi)
+if plot_cp2k2: fig_plot_2.savefig('{}/IV.png'.format(cp2k_folder2), dpi=param.save_dpi)
+if plot_siesta1: fig_plot_2.savefig('{}/IV.png'.format(siesta_folder1), dpi=param.save_dpi)
+if plot_siesta2: fig_plot_2.savefig('{}/IV.png'.format(siesta_folder2), dpi=param.save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

@@ -22,13 +22,12 @@ surfaces = [(1, 0, 0),  (1, 1, 1)]
 
 # Build by specifying number of layers
 # layers = [8, 6]  # Pt 1289
-# layers = [4, 3]  # Pt 201
-layers = [2, 1]  # Pt 201
+layers = [4, 3]  # Pt 201
 atoms = ase.cluster.cubic.FaceCenteredCubic('Pt', surfaces, layers,  latticeconstant=lc)
 
 # Build by specifying surface energies
 # energies = [1, 0.866]
-# atoms = wulff_construction('Pd', surfaces, energies, size=201, structure='fcc', rounding='below')
+# atoms = wulff_construction('Pt', surfaces, energies, size=201, structure='fcc', rounding='below')
 
 num_atoms = atoms.get_global_number_of_atoms()
 print('num_atoms', num_atoms)

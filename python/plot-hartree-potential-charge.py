@@ -184,24 +184,75 @@ plot_diff = False
 #     folder_save.append('{}/output'.format(folder[i]))
 # print('Saving to', folder_save)
 
-# Au wire
+# Au capacitor bias dependence (bound states?)
 bulk_charge = '0.bulk-RHO_AV.dat'
 bulk_hartree = '0.bulk-VH_AV.dat'
 # dft_hartree = '0.dft-VH_AV.dat'
 # dft_charge = '0.dft-RHO_AV.dat'
-dft_hartree = '0.transport-VH_AV.dat'
-dft_charge = '0.transport-RHO_AV.dat'
-em_hartree = '0.V-VH_AV.dat'
-em_charge = '0.V-RHO_AV.dat'
+dft_hartree = '0.0V-VH_AV.dat'
+dft_charge = '0.0V-RHO_AV.dat'
+em_hartree = '0.4V-VH_AV.dat'
+em_charge = '0.4V-RHO_AV.dat'
 labels = ['V=0', 'V=1', 'Bulk']
 ylim = [-3, 2]
 plot_dft = True
 plot_markers = False
-plot_diff = True
+plot_diff = False
+plot_diff_multiple = True
+# diff_label = ['V=4 - V=0 delta=1e-2', 'V=4 - V=0 delta=1e-4', 'V=4 - V=0 delta=0', 'V=4 - V=0 BSCS delta=1e-1', 'V=4 - V=0 BSCS delta=1e-2', 'V=4 - V=0 BSCS delta=1e-4', 'V=4 - V=0 BSCS delta=0']
+diff_label = ['V=1 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 weighted double contour', 'V=4 - V=0 weighted double contour 1']
+# diff_label = ['V=4 - V=0 WeightRho 0', 'V=4 - V=0 WeightRho 0.5', 'V=4 - V=0 WeightRho 1', 'V=4 - V=0 double contour 1', 'V=4 - V=0 double contour 2']
+# diff_label = ['V=1 - V=0', 'V=4 - V=0', ]
+# diff_label = ['V=1 - V=0', 'V=2 - V=0', 'V=3 - V=0', 'V=4 - V=0', 'V=5 - V=0', 'V=10 - V=0']
 x = 78.4 - 11.2
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_unrestricted_delta-0']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_fe_unrestricted_InitSpinAF_BasisSizes-SZ_Tolerance-5e-3_Cutoff-600_TransmissionOverk_EM.TRCChannels']
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_fe_unrestricted_InitSpinAF_BasisSizes-SZ_Tolerance-5e-3_Cutoff-600']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-4-4-20_V-4_double-contour']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/1V/kpoints-4-4-20_hlb-auto_cores-20_li_WeightRho-0.5_delta-1e-4_ivan',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-4_ivan',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/weight/kpoints-4-4-20_hlb-auto_cores-20_li_4V_delta-1e-4_weight-3-squared']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0_delta-1e-4_ivan',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-4_ivan',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-1_delta-1e-4_ivan',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_delta-1e-4_chris2-weight',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/4V/kpoints-4-4-20_hlb-auto_cores-20_li_4V_delta-1e-4_chris2-weight2']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-4-chris',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/siesta/archer/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-4-alex']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-2-2-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels_3V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels_3V',
+#           ]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-2-2-20_hlb-auto_cores-20_li_4V_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-3-3-20_hlb-auto_cores-20_li_4V_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5',
+#           ]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-2',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-1e-4',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_delta-0',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_BS.MiddleOrbital-0_BS.Tolerance-1e-5_delta-1e-1',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_BS.MiddleOrbital-0_BS.Tolerance-1e-5_delta-1e-2',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_BS.MiddleOrbital-0_BS.Tolerance-1e-5_delta-1e-4',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5_BS.MiddleOrbital-0_BS.Tolerance-1e-5_delta-0',
+#           ]
+# folder = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels',
+#     ]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels_4V',
+#           ]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_2V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_3V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-1',
+#           ]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_2V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_3V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_4V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_5V',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-20_li_10V'
+#           ]
 folder_save = []
 for i in range(len(folder)):
     folder_save.append('{}/output'.format(folder[i]))
@@ -314,6 +365,23 @@ if plot_diff:
     for i in range(len(folder)):
         fig_plot_both_diff.savefig('{}/hartree_potential_charge_diff.png'.format(folder_save[i]), dpi=param.save_dpi)
 
+# Plot Hartree potential and charge density difference
+rows, cols = 2, 1
+fig_plot_both_diff_multiple, ax_plot_both_diff_multiple = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
+if plot_diff_multiple:
+    for i in range(len(folder)):
+        ax_plot_both_diff_multiple[0].plot(data_em_hartree[i][:, 0], data_em_hartree[i][:, 1]-data_dft_hartree[i][:, 1], '-', label=diff_label[i])
+        ax_plot_both_diff_multiple[1].plot(data_em_charge[i][:, 0], data_em_charge[i][:, 1]-data_dft_charge[i][:, 1], '-', label=diff_label[i])
+if plot_markers: ax_plot_both_diff_multiple[0].plot(markers, markers * 0, 'o', color='orange', fillstyle='none')
+if plot_markers: ax_plot_both_diff_multiple[1].plot(markers, markers*0, 'o', color='orange', fillstyle='none')
+ax_plot_both_diff_multiple[0].legend(frameon=False)
+ax_plot_both_diff_multiple[1].set_xlabel(r'Position / Å')
+ax_plot_both_diff_multiple[1].set_ylabel('Charge density')
+ax_plot_both_diff_multiple[0].set_ylabel('Hartree potential / eV')
+fig_plot_both_diff_multiple.tight_layout()
+for i in range(len(folder)):
+    fig_plot_both_diff_multiple.savefig('{}/hartree_potential_charge_diff_multiple.png'.format(folder_save[i]), dpi=param.save_dpi)
+        
 print('Value(z=Min) of Hartree potential z EM .DAT', data_em_hartree[0][0, 1])
 print('Value(z=Min) of Hartree potential z bulk .DAT', data_bulk_hartree[0][0, 1])
 

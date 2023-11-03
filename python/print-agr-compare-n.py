@@ -102,15 +102,29 @@ n = 1
 # fermi_cp2k_negf = 0
 
 # Au capacitor
-xlim = [-4, 4]
-ylim = [0.0, 1.0]
-ylim_log = [0.008, 1.2]
-ylim_dos = [0, 300]
-labels = ['Delta 0', 'Delta 1e-4']
+# xlim = [-4, 4]
+# ylim = [0.0, 1.0]
+# ylim_log = [0.008, 1.2]
+# ylim_dos = [0, 300]
+# labels = ['Delta 0', 'Delta 1e-4']
+# fermi = np.zeros(len(labels))
+# # fermi = [0, 0.0, 0.7]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-0/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-1e-4/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+# plot_lengend = True
+
+# cp2k-smeagol-examples/examples/li-chain
+xlim = [-4, 6]
+ylim = [-0.1, 1.1]
+ylim_log = [0.008, 1.1]
+ylim_dos = [0, 50]
+labels = ['CP2K+SMEAGOL', 'SIESTA1+SMEAGOL']
 fermi = np.zeros(len(labels))
 # fermi = [0, 0.0, 0.7]
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-0/output',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/au-c3/kpoints-4-4-20_hlb-auto_cores-64_restricted_delta-1e-4/output']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/cp2k-smeagol/transmission/kpoints-1-1-20_20220907-memory_hash-143/output',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/siesta1-smeagol/transmission/kpoints-1-1-20/output']
 folder_cp2k_negf = []
 fermi_cp2k_negf = 0
 plot_lengend = True

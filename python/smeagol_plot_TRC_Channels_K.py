@@ -12,15 +12,23 @@ from general import parameters as param
 """
 
 # SIESTA+SMEAGOL Au capacitor
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-2-2-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels'
-num_kpoints = 4
-reshape = [2, 2]
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-2-2-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels'
+# num_kpoints = 4
+# reshape = [2, 2]
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/other/kpoints-4-4-20_hlb-auto_cores-64_au_TransmissionOverk_EM.TRCChannels'
-folder_save = folder
-filename = '0.transport_TRC_Channels_K'
+# folder_save = folder
+# filename = '0.transport_TRC_Channels_K'
 # filename = '0.V_TRC_Channels_K'
 # num_kpoints = 12
 # reshape = [3, 4]
+
+# SIESTA+SMEAGOL Li capacitor
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/capacitor/testing/archer2/bound_states/li/kpoints-4-4-20_hlb-auto_cores-20_li_4V_WeightRho-0.5'
+folder_save = folder
+# filename = '0.transport_TRC_Channels_K'
+filename = '0.V_TRC_Channels_K'
+num_kpoints = 12
+reshape = [3, 4]
 
 # CP2K+SMEAGOL Au capacitor
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/weightrho/testing/kpoints-4-4-20_hlb-auto_NEnergReal-64_TransmissionOverk_EM.TRCChannels'

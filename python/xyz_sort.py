@@ -10,15 +10,10 @@ import matplotlib.pyplot as plt
     Sort .xyz sequentially along desired axes (useful for transport calculations)
 """
 
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/structures/001_Au-S-2.75'
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire/structures'
-folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-4-4-20_hlb-auto_NEnergReal-64/input'
-# input_filename = 'bulk.xyz'
-# output_filename = 'bulk_sorted.xyz'
-# input_filename = 'em_cut2.xyz'
-# output_filename = 'em_cut3.xyz'
-input_filename = 'em2.xyz'
-output_filename = 'em2-larger.xyz'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/layers-1-2-3-4/cp2k/weightrho/testing/kpoints-4-4-20_hlb-auto_NEnergReal-64/input'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire/jad/structures'
+input_filename = 'Au_Junc_wrapped.xyz'
+output_filename = 'Au_Junc_wrapped_sorted.xyz'
 filename_output = '{}/{}'.format(folder, output_filename)
 
 # Read number of atoms and labels from .xyz file
@@ -27,16 +22,16 @@ file_coord, num_atoms, species = load_coordinates.load_file_coord(folder, input_
 file_coord = file_coord.reset_index(drop=True)
 print(file_coord)
 
-print(file_coord.shape[0])
-for i in range(file_coord.shape[0]):
-    if file_coord['Z'][i] > 20:
-        file_coord['Z'][i] = file_coord['Z'][i]+20
+# print(file_coord.shape[0])
+# for i in range(file_coord.shape[0]):
+#     if file_coord['Z'][i] > 20:
+#         file_coord['Z'][i] = file_coord['Z'][i]+20
 
 print(file_coord)
 
 file_coord.insert(loc=0, column='A', value=pd.Series(species).values)
 # file_coord.sort_values(by=['Z'], inplace=True, ascending=[True])
-# file_coord.sort_values(by=['Z', 'X', 'Y'], inplace=True, ascending=[True, True, True])
+file_coord.sort_values(by=['Z', 'X', 'Y'], inplace=True, ascending=[True, True, True])
 # file_coord.sort_values(by=['Y', 'X', 'Z'], inplace=True, ascending=[True, True, True])
 file_coord = file_coord.reset_index(drop=True)
 print(file_coord)
