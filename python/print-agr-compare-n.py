@@ -76,17 +76,18 @@ n = 1
 # fermi_cp2k_negf = 0
 
 # Plot Au-BDT for experimental CP2K HLB=F and SIESTA HLB=T
-# xlim = [-4, 4]
-# ylim = [0.0, 1.0]
-# ylim_log = [0.008, 1.2]
-# ylim_dos = [0, 300]
-# labels = ['CP2K', 'SIESTA']
-# fermi = np.zeros(len(labels))
-# # fermi = [0, 0.0, 0.7]
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/dzvp/sergey/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-11.03197_scf-500/output',
-#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/exp/bulk-4-4-100-em-4-4-1_hlb-15.2496/output']
-# folder_cp2k_negf = []
-# fermi_cp2k_negf = 0
+xlim = [-4, 4]
+ylim = [0.0, 1.0]
+ylim_log = [0.008, 1.2]
+ylim_dos = [0, 300]
+labels = ['CP2K', 'SIESTA']
+fermi = np.zeros(len(labels))
+# fermi = [0, 0.0, 0.7]
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/cp2k-smeagol/sz/transmission/exp/dzvp/sergey/kpoints_bulk-4-4-100_em-4-4-1_hlb-t-11.03197_scf-500/output',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-bdt/siesta-smeagol/transmission/exp/bulk-4-4-100-em-4-4-1_hlb-15.2496/output']
+folder_cp2k_negf = []
+fermi_cp2k_negf = 0
+plot_lengend = True
 
 # Au capacitor
 # xlim = [-4, 4]
@@ -116,18 +117,18 @@ n = 1
 # plot_lengend = True
 
 # cp2k-smeagol-examples/examples/li-chain
-xlim = [-4, 6]
-ylim = [-0.1, 1.1]
-ylim_log = [0.008, 1.1]
-ylim_dos = [0, 50]
-labels = ['CP2K+SMEAGOL', 'SIESTA1+SMEAGOL']
-fermi = np.zeros(len(labels))
-# fermi = [0, 0.0, 0.7]
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/cp2k-smeagol/transmission/kpoints-1-1-20_20220907-memory_hash-143/output',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/siesta1-smeagol/transmission/kpoints-1-1-20/output']
-folder_cp2k_negf = []
-fermi_cp2k_negf = 0
-plot_lengend = True
+# xlim = [-4, 6]
+# ylim = [-0.1, 1.1]
+# ylim_log = [0.008, 1.1]
+# ylim_dos = [0, 50]
+# labels = ['CP2K+SMEAGOL', 'SIESTA1+SMEAGOL']
+# fermi = np.zeros(len(labels))
+# # fermi = [0, 0.0, 0.7]
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/cp2k-smeagol/transmission/kpoints-1-1-20_20220907-memory_hash-143/output',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/li-chain/siesta1-smeagol/transmission/kpoints-1-1-20/output']
+# folder_cp2k_negf = []
+# fermi_cp2k_negf = 0
+# plot_lengend = True
 
 file_1 = []
 file_2 = []

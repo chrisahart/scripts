@@ -2,39 +2,61 @@ import numpy as np
 import matplotlib.pyplot as plt
 from general import parameters as param
 
-""" Plotting of SMEAGOL output _TRC.agr by filename"""
+""" Plotting of SIESTA+SMEAGOL output VH_AV.dat and RHO_AV.dat """
 
-# Au capacitor bias dependence (bound states?)
+# cp2k-smeagol-examples/examples/au-capacitor
+# charge_1 = ['0.bulk-RHO_AV.dat'] * 3
+# hartree_1 = ['0.bulk-VH_AV.dat'] * 3
+# charge_2 = ['0.0V-RHO_AV.dat'] * 3
+# hartree_2 = ['0.0V-VH_AV.dat'] * 3
+# charge_3 = ['0.1V-RHO_AV.dat', '0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat']
+# hartree_3 = ['0.1V-VH_AV.dat', '0.4V-VH_AV.dat', '0.4V-VH_AV.dat']
+# labels = ['V=0', 'V=1', 'Bulk']
+# ylim = [-3, 2]
+# plot_dft = True
+# plot_markers = False
+# plot_diff = False
+# plot_diff_multiple = True
+# plot_mirror = True
+# diff_label = ['V=1 - V=0', 'V=4 - V=0', 'V=4 - V=0 weighted double contour']
+# x = 78.4 - 11.2
+# z_bond_length = 2.084
+# z_num = 6
+# z_right = 21.422
+# mid_pos = z_bond_length*(z_num - 1)+(z_right-z_bond_length*(z_num - 1))/2
+# markers = np.array(
+#     [z_bond_length * 0, z_bond_length * 1, z_bond_length * 2, z_bond_length * 3, z_bond_length * 4, z_bond_length * 5,
+#      z_right + z_bond_length * 0, z_right + z_bond_length * 1, z_right + z_bond_length * 2,
+#      z_right + z_bond_length * 3, z_right + z_bond_length * 4, z_right + z_bond_length * 5])
+# diff_color = ['r', 'g', 'b']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta3-smeagol/kpoints-2-2-20_V-1',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta3-smeagol/kpoints-2-2-20_V-4_cores-20']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
+
+# cp2k-smeagol-examples/examples/au-h2
 charge_1 = ['0.bulk-RHO_AV.dat'] * 3
 hartree_1 = ['0.bulk-VH_AV.dat'] * 3
 charge_2 = ['0.0V-RHO_AV.dat'] * 3
 hartree_2 = ['0.0V-VH_AV.dat'] * 3
-charge_3 = ['0.1V-RHO_AV.dat', '0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat']
-hartree_3 = ['0.1V-VH_AV.dat', '0.4V-VH_AV.dat', '0.4V-VH_AV.dat']
+charge_3 = ['0.1.9V-RHO_AV.dat'] * 3
+hartree_3 = ['0.1.9V-VH_AV.dat'] * 3
 labels = ['V=0', 'V=1', 'Bulk']
 ylim = [-3, 2]
 plot_dft = True
-plot_markers = True
+plot_markers = False
 plot_diff = False
 plot_diff_multiple = True
 plot_mirror = True
-diff_label = ['V=1 - V=0', 'V=4 - V=0', 'V=4 - V=0 weighted double contour']
-# diff_label = ['V=1 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 weighted double contour']
-x = 78.4 - 11.2
-z_bond_length = 2.084
-z_num = 6
-z_right = 21.422
-mid_pos = z_bond_length*(z_num - 1)+(z_right-z_bond_length*(z_num - 1))/2
-markers = np.array(
-    [z_bond_length * 0, z_bond_length * 1, z_bond_length * 2, z_bond_length * 3, z_bond_length * 4, z_bond_length * 5,
-     z_right + z_bond_length * 0, z_right + z_bond_length * 1, z_right + z_bond_length * 2,
-     z_right + z_bond_length * 3, z_right + z_bond_length * 4, z_right + z_bond_length * 5])
+diff_label = ['V=1.9 - V=0 EM.WeightRho 0.5', 'V=1.9 - V=0 weighted double contour']
+diff_label = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'SIESTA1+SMEAGOL weighted double contour']
+mid_pos = 19.3615
 diff_color = ['r', 'g', 'b']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta3-smeagol/kpoints-2-2-20_V-1',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta3-smeagol/kpoints-4-4-20_V-4']
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
-#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5',
-#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-single_UseSaveDM']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-single_UseSaveDM',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-double_UseSaveDM']
+
 
 folder_save = []
 for i in range(len(folder)):
@@ -71,6 +93,19 @@ mid_pos_grid = data_hartree_3[0][mid_index, 0]
 # fig_plot_1.tight_layout()
 # for i in range(len(folder)):
 #     fig_plot_1.savefig('{}/hartree_potential.png'.format(folder_save[i]), dpi=param.save_dpi)
+
+# Hartree potential difference
+fig_plot_1, ax_plot_1 = plt.subplots()
+if plot_diff_multiple:
+    for i in range(len(folder)):
+        ax_plot_1.plot(data_hartree_3[i][:, 0], data_hartree_3[i][:, 1]-data_hartree_2[i][:, 1], '-', label=diff_label[i], color=diff_color[i])
+        if plot_mirror: ax_plot_1.plot(data_hartree_3[i][:mid_index,0] + mid_pos_grid,-np.flip(data_hartree_3[i][:mid_index, 1]-data_hartree_2[i][:mid_index, 1]), '--', color=diff_color[i])
+ax_plot_1.legend(frameon=False)
+ax_plot_1.set_xlabel(r'Position / Å')
+ax_plot_1.set_ylabel('Hartree potential / eV')
+fig_plot_1.tight_layout()
+for i in range(len(folder)):
+    fig_plot_1.savefig('{}/hartree_potential.png'.format(folder_save[i]), dpi=param.save_dpi)
 
 # Plot charge density
 # fig_plot_2, ax_plot_2 = plt.subplots()
