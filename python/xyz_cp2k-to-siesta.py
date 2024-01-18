@@ -18,18 +18,48 @@ def cp2k_to_siesta(folder, input_filename, filename_output):
     file_coord, num_atoms, species = load_coordinates.load_file_coord(folder, input_filename, cols)
 
     # Replace species with value
+    # species_val = species.copy()
+    # for i in range(0, num_atoms):
+    #     if species[i] == "Cu_bulk":
+    #         species_val[i] = 1
+    #     elif species[i] == "Cu":
+    #         species_val[i] = 1
+    #     elif species[i] == "N":
+    #         species_val[i] = 2
+    #     elif species[i] == "C":
+    #         species_val[i] = 3
+    #     elif species[i] == "H":
+    #         species_val[i] = 4
+        # elif species[i] == "Au":
+        #     species_val[i] = 5
+        # elif species[i] == "Au_surf":
+        #     species_val[i] = 6
+        # elif species[i] == "Au_tip":
+        #     species_val[i] = 7
+        # elif species[i] == "N":
+        #     species_val[i] = 8
+        # else:
+        #     print('undefined element', species[i])
+
+    # Replace species with value
     species_val = species.copy()
     for i in range(0, num_atoms):
-        if species[i] == "Au":
+        if species[i] == "Au_bulk":
             species_val[i] = 1
-        elif species[i] == "S":
+        elif species[i] == "N":
             species_val[i] = 2
         elif species[i] == "C":
             species_val[i] = 3
         elif species[i] == "H":
             species_val[i] = 4
+        elif species[i] == "Au":
+            species_val[i] = 5
+        elif species[i] == "Au_surf":
+            species_val[i] = 6
+        elif species[i] == "Au_tip":
+            species_val[i] = 7
         else:
-            print('undefined element')
+            print('undefined element', species[i])
 
     # Print to file
     file_coord.insert(loc=3, column='A', value=pd.Series(species_val).values)
@@ -43,6 +73,16 @@ folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/
 # output_filename = 'em.siesta'
 input_filename = 'bulk.xyz'
 output_filename = 'bulk.siesta'
+
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/melamine/cp2k-smeagol/structures/5A-tip/from-h2/geo_opt/ts2/from-cu'
+input_filename = 'ts2.xyz'
+output_filename = 'ts2.siesta'
+
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/melamine/cp2k-smeagol/structures/5A-tip/from-h2/geo_opt-3A/geo_opt'
+input_filename = 'gs-3A.xyz'
+output_filename = 'gs-3A.siesta'
+
+
 filename_output = '{}/{}'.format(folder, output_filename)
 
 

@@ -92,26 +92,67 @@ print_label = 'V0_DFT'
 # folder1 = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/0.1']
 # file_charge_em2 = ['0.1V-ELECTRON_DENSITY-1_0.cube', '1.9V-ELECTRON_DENSITY-1_0.cube', '1.9V-ELECTRON_DENSITY-1_0.cube', '1.9V-ELECTRON_DENSITY-1_0.cube']
 # file_hartree_em2 = ['0.1V-v_hartree-1_0.cube', '1.9V-v_hartree-1_0.cube', '1.9V-v_hartree-1_0.cube', '1.9V-v_hartree-1_0.cube']
+# folder1 = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14/1.5'
+#     ]
+# file_charge_em2 = ['1.5V-ELECTRON_DENSITY-1_41.cube',  '1.7V-ELECTRON_DENSITY-1_0.cube', '1.9V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em2 = ['1.5V-v_hartree-1_41.cube', '1.7V-v_hartree-1_0.cube', '1.9V-v_hartree-1_0.cube']
+# file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube'] * 10
+# file_hartree_em1 = ['0V-v_hartree-1_0.cube'] * 10
+# # file_charge_em1 = ['0.0V-ELECTRON_DENSITY-1_0.cube'] * 10
+# # file_hartree_em1 = ['0.0V-v_hartree-1_0.cube'] * 10
+# file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube'] * 10
+# file_hartree_dft = ['dft_wfn-v_hartree-1_0.cube'] * 10
+# file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube'] * 10
+# file_hartree_bulk = ['bulk-v_hartree-1_0.cube'] * 10
+# labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=1']
+# plot_folder = 0
+# # diff_label = ['V=1.9 - V=0 EM.WeightRho 0.5', 'V=1.9 - V=0 weighted double contour']
+# # diff_label = ['CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+# diff_label = ['V=1.3 - V=0', 'V=1.5 - V=0', 'V=1.7 - V=0', 'V=1.9 - V=0']
+# plot_color = ['k', 'b', 'r', 'g', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
+# read_labels = [False, False, True, True]
+# plot_labels = read_labels
+# plot_diff = True
+# print_label = 'average_z_all'
+# axis = 2
+# diff_color = ['r', 'g', 'b', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
+# plot_diff_legend = [True, False]
+# draw_mirror = False
+# draw_mirror_diff = True
+# mirror_scale = -1
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+# draw_markers = False
+# mid_pos = 19.3615
+
+# cp2k-smeagol-examples/examples/melamine
+# folder1 = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/melamine/hx1/cu_size-6-6-6/capacitor/sz_kpoints-2-2-20_dft-rs_0V-rs'
+#     ]
+# folder1 = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/melamine/hx1/au_from-h2/capacitor/leads-sz_tip-dzvp_surf-dzvp_kpoints-1-1-20'
+#     ]
 folder1 = [
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14/1.5'
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/melamine/hx1/au_from-h2/capacitor/leads-sz_tip-dzvp_surf-dzvp_kpoints-1-1-20'
     ]
-file_charge_em2 = ['1.5V-ELECTRON_DENSITY-1_41.cube',  '1.7V-ELECTRON_DENSITY-1_0.cube', '1.9V-ELECTRON_DENSITY-1_0.cube']
-file_hartree_em2 = ['1.5V-v_hartree-1_41.cube', '1.7V-v_hartree-1_0.cube', '1.9V-v_hartree-1_0.cube']
-file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube'] * 10
-file_hartree_em1 = ['0V-v_hartree-1_0.cube'] * 10
-# file_charge_em1 = ['0.0V-ELECTRON_DENSITY-1_0.cube'] * 10
-# file_hartree_em1 = ['0.0V-v_hartree-1_0.cube'] * 10
-file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube'] * 10
-file_hartree_dft = ['dft_wfn-v_hartree-1_0.cube'] * 10
-file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube'] * 10
-file_hartree_bulk = ['bulk-v_hartree-1_0.cube'] * 10
+file_charge_em2 = ['1.0V-ELECTRON_DENSITY-1_0.cube']
+file_hartree_em2 = ['1.0V-v_hartree-1_0.cube']
+file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube']
+file_hartree_em1 = ['0V-v_hartree-1_0.cube']
+file_charge_dft = ['2_dft_wfn-ELECTRON_DENSITY-1_0.cube']
+file_hartree_dft = ['2_dft_wfn-v_hartree-1_0.cube']
+file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube']
+file_hartree_bulk = ['bulk-v_hartree-1_0.cube']
 labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=1']
 plot_folder = 0
 # diff_label = ['V=1.9 - V=0 EM.WeightRho 0.5', 'V=1.9 - V=0 weighted double contour']
 # diff_label = ['CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
 diff_label = ['V=1.3 - V=0', 'V=1.5 - V=0', 'V=1.7 - V=0', 'V=1.9 - V=0']
 plot_color = ['k', 'b', 'r', 'g', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
-read_labels = [False, False, True, True]
+read_labels = [True, False, True, True]
 plot_labels = read_labels
 plot_diff = True
 print_label = 'average_z_all'
@@ -119,7 +160,7 @@ axis = 2
 diff_color = ['r', 'g', 'b', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
 plot_diff_legend = [True, False]
 draw_mirror = False
-draw_mirror_diff = True
+draw_mirror_diff = False
 mirror_scale = -1
 use_xlim = False
 xlim_specify_left = [-0.1, 6]
@@ -127,6 +168,50 @@ xlim_specify_right = [78, 84.1]
 xlim_specify = xlim_specify_left
 draw_markers = False
 mid_pos = 19.3615
+
+# cp2k-smeagol-examples/examples/au-capacitor/cp2k-smeagol/au-111/calculations/6x6/kpoints-1-1-20_V-1_WeightRho-0.5_bulk-layers-6_leads-6s
+# folder1 = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/cp2k-smeagol/au-111/calculations/6x6/kpoints-1-1-20_V-1_WeightRho-0.5_bulk-layers-6_leads-6s'
+#     ]
+# folder1 = [
+#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/cp2k-smeagol/au-111/calculations/6x6/kpoints-1-1-20_V-1_WeightRho-0.5_bulk-layers-6_6s'
+# ]
+# folder1 = [
+# '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/basis-gth/h2o-dzvp_wire-dzvp_surface-dzvp_screening-sz_leads-6s_9layers/all_capacitor_au-sz-6s_clean'
+# ]
+# folder1 = [
+# '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/basis-gth/h2o-dzvp_wire-dzvp_surface-dzvp_screening-sz_leads-6s_9layers/all_au-sz-6s'
+# ]
+# file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em2 = ['1V-v_hartree-1_0.cube']
+# file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em1 = ['0V-v_hartree-1_0.cube']
+# file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_dft = ['dft_wfn-v_hartree-1_0.cube']
+# file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_bulk = ['bulk-v_hartree-1_0.cube']
+# labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=1']
+# plot_folder = 0
+# # diff_label = ['V=1.9 - V=0 EM.WeightRho 0.5', 'V=1.9 - V=0 weighted double contour']
+# # diff_label = ['CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+# diff_label = ['V=1.3 - V=0', 'V=1.5 - V=0', 'V=1.7 - V=0', 'V=1.9 - V=0']
+# plot_color = ['k', 'b', 'r', 'g', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
+# read_labels = [True, False, True, True]
+# plot_labels = read_labels
+# plot_diff = True
+# print_label = 'average_z_all'
+# axis = 2
+# diff_color = ['r', 'g', 'b', 'm', 'grey', 'orange', 'y', 'brown', 'cyan', 'pink']
+# plot_diff_legend = [True, False]
+# draw_mirror = False
+# draw_mirror_diff = True
+# mirror_scale = -1
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+# draw_markers = False
+# mid_pos = 65.44502/2
 
 # Read .cube using ASE
 data_charge_em2 = []
@@ -187,10 +272,10 @@ for i in range(len(folder1)):
 
 # Setup axis
 for i in range(len(folder1)):
-    print('size em1 folder', i,  data_charge_em1[i][1].get_cell()[axis][axis])
-    print('size em2 folder', i,  data_charge_em2[i][1].get_cell()[axis][axis])
-    print('size em1 folder', i, average_charge_em1[0].shape[0])
-    print('size em2 folder', i, average_charge_em2[0].shape[0])
+    if read_labels[2]: print('size em1 folder', i,  data_charge_em1[i][1].get_cell()[axis][axis])
+    if read_labels[3]: print('size em2 folder', i,  data_charge_em2[i][1].get_cell()[axis][axis])
+    if read_labels[2]: print('size em1 folder', i, average_charge_em1[0].shape[0])
+    if read_labels[3]: print('size em2 folder', i, average_charge_em2[0].shape[0])
 if read_labels[3]: energy_grid_hartree_em2 = np.linspace(start=0, stop=data_charge_em2[0][1].get_cell()[axis][axis], num=average_charge_em2[0].shape[0])
 if read_labels[2]: energy_grid_hartree_em1 = np.linspace(start=0, stop=data_charge_em1[0][1].get_cell()[axis][axis], num=average_charge_em1[0].shape[0])
 if read_labels[1]: energy_grid_hartree_dft = np.linspace(start=0, stop=data_charge_dft[0][1].get_cell()[axis][axis], num=average_charge_dft[0].shape[0])
@@ -231,6 +316,9 @@ print('Finished plotting average')
 # Plot Hartree and charge .cube difference
 if plot_diff:
     fig_cube_both, ax_cube_both = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
+    print(len(average_hartree_em2))
+    print(average_hartree_em2)
+    print(average_hartree_em1)
     for i in range(len(folder1)):
         ax_cube_both[0].plot(energy_grid_hartree_em1, average_hartree_em2[i]-average_hartree_em1[i], '-', color=diff_color[i], label=diff_label[i])
         if draw_mirror_diff: ax_cube_both[0].plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid, -1*np.flip(average_hartree_em2[i][:mid_index]-average_hartree_em1[i][:mid_index]), '--', color=diff_color[i])

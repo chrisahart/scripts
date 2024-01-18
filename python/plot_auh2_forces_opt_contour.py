@@ -22,13 +22,13 @@ params = {'axes.formatter.limits': [-4, 4],
 plt.rcParams.update(params)
 
 
-folders1 = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/0.0',
-            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/1.5',
-            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/1.9'
+folders1 = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/0.0',
+            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/1.5',
+            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single_dynamic-14/1.9'
             ]
-folders2 = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/0.0',
-            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/1.5',
-            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-single/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/1.9'
+folders2 = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/0.0',
+            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/1.5',
+            '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/transmission_all/kpoints-3-3-20_omp-2_ParallelOverKNum-9_contour-double_dynamic-14/1.9'
             ]
 files1 = ['0.0V-frc-1.xyz', '1.5V-frc-1.xyz',  '1.9V-frc-1.xyz']
 files2 = ['0.0V-frc-1.xyz', '1.5V-frc-1.xyz', '1.9V-frc-1.xyz']
@@ -73,7 +73,7 @@ for i in range(len(folders2)):
 
 plt.xticks(np.arange(len(test)), test, fontsize=13)
 # ax_plot_1.set_xlabel('Atom index')
-ax_plot_1.set_ylabel('Force (eV / Å)')
+ax_plot_1.set_ylabel('Force z (eV / Å)')
 ax_plot_1.set_xlim([xlim[0], xlim[1]])
 ax_plot_1.legend(frameon=False)
 fig_plot_1.tight_layout()

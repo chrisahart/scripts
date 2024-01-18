@@ -29,24 +29,20 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 
 
 # SIESTA+SMEAGOL
-folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive']
-file_siesta = ['/opt/final.siesta']
-file_cp2k = ['/opt/final.xyz']
-# folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/young/siesta-smeagol-ivan/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
-# folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/archer/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
-# file_siesta = ['/final.siesta']
-# file_cp2k = ['/final.xyz']
-# folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/clotilde/positive',
-#                          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/archer/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
-# file_siesta = ['/opt/final.siesta', 'final.siesta']
-# file_cp2k = ['/opt/final.xyz', 'final.xyz']
+# folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeagol-reference']
+# file_siesta = ['/opt/final.siesta']
+# file_cp2k = ['/opt/final.xyz']
+folder_siesta_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeagol/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
+file_siesta = ['/final.siesta']
+file_cp2k = ['/final.xyz']
 
 # CP2k+SMEAGOL
 # folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
 # folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-2_ParallelOverKNum-3_scf-1e-6_EXTRAPOLATION-USE_PREV_P']
 folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14',
-                       '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-double_dynamic-14']
-file_cp2k_smeagol = ['V-pos-1.xyz', 'V-pos-1.xyz']
+                       '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14_leads-6s',
+                       ]
+file_cp2k_smeagol = ['V-pos-1.xyz'] * 5
 
 
 # General
@@ -54,13 +50,16 @@ file_cp2k_smeagol = ['V-pos-1.xyz', 'V-pos-1.xyz']
 # labels = ['SIESTA+SMEAGOL', 'CP2K+SMEAGOL']
 # labels = ['Bai et al.', 'SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
 labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+labels = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
 data_cp2k_smeagol = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
 file_prefix_cp2k_smeagol = data_cp2k_smeagol
 data_siesta_smeagol = data_cp2k_smeagol
-plotting_colors = ['g', 'r', 'orange']
+plotting_colors = ['g', 'r', 'orange', 'm']
 ylim_collective = [-0.103, 0.004]
 ylim_collective = [-0.20, 0.004]
-ylim_h2 = [0.865, 0.92]
+# ylim_h2 = [0.865, 0.92]
+ylim_h2 = [0.865, 0.91]
 ylim_h2_change = [-0.0001, 0.035]
 xlim = [-0.05, 2]
 
@@ -70,7 +69,9 @@ for j in range(0, len(folder_siesta_smeagol)):
         print(j, i)
         print(folder_siesta_smeagol[j])
         print(data_siesta_smeagol[i])
-        xyz_siesta_to_cp2k.siesta_label_to_cp2k('{}/{}/{}'.format(folder_siesta_smeagol[j], data_siesta_smeagol[i], file_siesta[j]), '{}/{}/{}'.format(folder_siesta_smeagol[j], data_siesta_smeagol[i], file_cp2k[j]))
+        xyz_siesta_to_cp2k.siesta_label_to_cp2k('{}/{}/{}'.format(folder_siesta_smeagol[j], data_siesta_smeagol[i], file_siesta[j]),
+                                                '{}/{}/{}'.format(folder_siesta_smeagol[j], data_siesta_smeagol[i], file_cp2k[j]),
+                                                cols=['X', 'Y', 'Z', 'Species_num', 'Species', 'B', 'C'])
 
 # Calculate bond lengths and collective variable
 file_2 = []
@@ -167,21 +168,21 @@ fig_plot_2.savefig('{}/collective_variable_all.png'.format(folder_cp2k_smeagol[0
 
 # Plot both
 rows, cols = 2, 1
-# fig_cube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
-fig_cube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(7, 8))
-for k in range(0, len(folder_siesta_smeagol)):
-    ax_cube_z[1].plot(data_siesta_smeagol, bond_length_siesta[k, :, atom_pair], 'o-', fillstyle='none', color=plotting_colors[k], label=labels[k])
+fig_cube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
+# fig_cube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(7, 8))
 for m in range(0, len(folder_cp2k_smeagol)):
     ax_cube_z[1].plot(data_cp2k_smeagol, bond_length_cp2k[m, :, atom_pair], 'o-', fillstyle='none', color=plotting_colors[m+len(folder_siesta_smeagol)], label=labels[m+len(folder_siesta_smeagol)])
+for k in range(0, len(folder_siesta_smeagol)):
+    ax_cube_z[1].plot(data_siesta_smeagol, bond_length_siesta[k, :, atom_pair], 'o-', fillstyle='none', color=plotting_colors[k], label=labels[k])
 ax_cube_z[1].set_xlim([xlim[0], xlim[1]])
 ax_cube_z[1].set_ylim([ylim_h2[0], ylim_h2[1]])
 ax_cube_z[1].set_ylabel('H-H bond length / Å')
 ax_cube_z[1].set_xlabel('Bias / V')
-ax_cube_z[1].legend(frameon=False)
-for k in range(0, len(folder_siesta_smeagol)):
-    ax_cube_z[0].plot(data_siesta_smeagol, collective_variable_siesta[k], 'o-', fillstyle='none', color=plotting_colors[k], label=labels[k])
+# ax_cube_z[1].legend(frameon=False)
 for m in range(0, len(folder_cp2k_smeagol)):
     ax_cube_z[0].plot(data_cp2k_smeagol, collective_variable_cp2k[m, :], 'o-', fillstyle='none', color=plotting_colors[m+len(folder_siesta_smeagol)], label=labels[m+len(folder_siesta_smeagol)])
+for k in range(0, len(folder_siesta_smeagol)):
+    ax_cube_z[0].plot(data_siesta_smeagol, collective_variable_siesta[k], 'o-', fillstyle='none', color=plotting_colors[k], label=labels[k])
 ax_cube_z[0].set_xlim([xlim[0], xlim[1]])
 ax_cube_z[0].set_ylim([ylim_collective[0], ylim_collective[1]])
 ax_cube_z[0].set_ylabel('Mean displacement / Å')

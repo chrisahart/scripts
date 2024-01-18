@@ -17,6 +17,7 @@ Wrap .xyz using ASE
 """
 
 folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire/jad/structures'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/structures/chris/test'
 filename_input = "{}/Au_Junc_wrapped_sorted.xyz".format(folder)
 filename_output_lead = "{}/Au_Junc_wrapped_sorted_lead.xyz".format(folder)
 filename_output_all = "{}/Au_Junc_wrapped_sorted_all.xyz".format(folder)
