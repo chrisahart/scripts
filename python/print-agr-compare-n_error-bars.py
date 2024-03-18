@@ -166,9 +166,10 @@ ylim_dos = [0, 300]
 # labels = ['0 fs', '50 fs']
 # labels = ['0 fs no water', '50 fs no water']
 # labels = ['0 fs dummy water', '50 fs dummy water']
-labels = ['0 fs dummy water', '50 fs dummy water', '100 fs dummy water', '150 fs dummy water', '200 fs dummy water']
+# labels = ['0 fs dummy water', '50 fs dummy water', '100 fs dummy water', '150 fs dummy water', '200 fs dummy water']
 # labels = ['Solvated Au wire', 'Solvated Au wire (water removed)', 'Ideal Au wire']
-# labels = ['Au wire (solvated)', 'Au wire (vacuum)', 'Au wire (ideal)']
+# labels = ['Au wire (solvated)', 'Au wire (vacuum)', 'Water', 'Au wire (ideal)']
+labels = ['Au wire (solvated)', 'Au wire (vacuum)', 'Au wire (ideal)']
 # labels = ['Ideal Au wire DZVP 11e', 'Ideal Au wire SZ 11e', 'Ideal Au wire SZ 1e']
 fermi = np.zeros(len(labels))
 # fermi = [0, 0.0, 0.7]
@@ -202,11 +203,21 @@ fermi = np.zeros(len(labels))
 #     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-smeagol/transmission/au-sz-q1_143b/output',
 # ]
 folder = [
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P/jobs/step-2001/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P/jobs/step-2101/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P/jobs/step-2201/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P/jobs/step-2301/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P/jobs/step-2401/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2001/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2101/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2201/V-0/output',
     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2301/V-0/output',
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2301_test/V-0/output',
-    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2301_transm-2000/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_dummy/jobs/step-2401/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/restart-auto-long_au-frozen/md_dft_long_LINEAR_P_nowire/jobs/step-2001/V-0/output',
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/cp2k-smeagol/transmission/delete/V-0_HLB-F_z-0-0_atoms-28_noprint/output',
 ]
-plotting_colors = ['r', 'g', 'k', 'm', 'grey', 'orange', 'y']
+# plotting_colors = ['r', 'g', 'b', 'k']
+plotting_colors = ['r', 'g', 'k']
 folder_cp2k_negf = []
 fermi_cp2k_negf = 0
 plot_lengend = True
@@ -231,138 +242,40 @@ for i in range(len(folder_cp2k_negf)):
     file_4_negf.append(np.genfromtxt('{}/G2-S0.out'.format(folder_cp2k_negf[i]), skip_header=2, skip_footer=3) * n)
 print('number of CP2K-NEGF files', len(folder_cp2k_negf))
 
-# Transmission
-fig_plot_1, ax_plot_1 = plt.subplots()
-for i in range(len(folder_cp2k_negf)):
-    ax_plot_1.plot((file_1_negf[i][:, 0] - fermi_cp2k_negf[i]) * param.hartree_to_ev, file_1_negf[i][:, 1], color=plotting_colors_2[i], label=labels_cp2k_negf[i])
-for i in range(len(folder)):
-    ax_plot_1.plot(file_1[i][:, 0] - fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_1.set_xlim([xlim[0], xlim[1]])
-ax_plot_1.set_ylim([ylim[0], ylim[1]])
-ax_plot_1.legend(frameon=False)
-ax_plot_1.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-ax_plot_1.set_ylabel('Transmission')
-fig_plot_1.tight_layout()
-for i in range(len(folder_cp2k_negf)):
-    fig_plot_1.savefig('{}/compare-transmission.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
-for i in range(len(folder)):
-    fig_plot_1.savefig('{}/compare-transmission.png'.format(folder[i]), dpi=param.save_dpi)
+data_1 = np.array([file_1[0][:, 1], file_1[1][:, 1], file_1[2][:, 1], file_1[3][:, 1], file_1[4][:, 1]])
+data_2 = np.array([file_1[5][:, 1], file_1[6][:, 1], file_1[7][:, 1], file_1[8][:, 1], file_1[9][:, 1]])
 
-# Transmission log
-fig_plot_1_2, ax_plot_1_2 = plt.subplots()
-for i in range(len(folder)):
-    ax_plot_1_2.plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_1_2.set_xlim([xlim[0], xlim[1]])
-ax_plot_1_2.set_ylim([ylim_log[0], ylim_log[1]])
-ax_plot_1_2.set_yscale('log')
-ax_plot_1_2.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-ax_plot_1_2.set_ylabel('Transmission')
-ax_plot_1_2.legend(frameon=False)
-fig_plot_1_2.tight_layout()
-for i in range(len(folder)):
-    fig_plot_1_2.savefig('{}/compare-transmission_log.png'.format(folder[i]), dpi=param.save_dpi)
+# Transmission and error bards
+fig_plot_1_error, ax_plot_1_error = plt.subplots()
 
-# Plot transmission and transmission log
-# rows, cols = 2, 1
-# fig1_3, ax1_3 = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
-# for i in range(len(folder)):
-#     ax1_3[0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax1_3[0].set_xlim([xlim[0], xlim[1]])
-# ax1_3[0].set_ylim([ylim[0], ylim[1]])
-# ax1_3[0].legend(frameon=False)
-# ax1_3[0].set_ylabel('Transmission')
-# for i in range(len(folder)):
-#     ax1_3[1].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax1_3[1].set_xlim([xlim[0], xlim[1]])
-# ax1_3[1].set_ylim([ylim_log[0], ylim_log[1]])
-# ax1_3[1].legend(frameon=False)
-# ax1_3[1].set_yscale('log')
-# ax1_3[1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax1_3[1].set_ylabel('Log transmission')
-# fig1_3.tight_layout()
-# for i in range(len(folder)):
-#     fig1_3.savefig('{}/compare_transmission_log_all.png'.format(folder[i]), dpi=param.save_dpi)
+# Mean and standard deviation 1
+data_1_average = np.average(data_1, axis=0)
+data_1_std = np.std(data_1, axis=0)
+ax_plot_1_error.fill_between(file_1[0][:, 0], data_1_average - data_1_std, data_1_average + data_1_std, alpha=0.2, color=plotting_colors[0])
+ax_plot_1_error.plot(file_1[0][:, 0], data_1_average, color=plotting_colors[0], label=labels[0])
 
-# Plot EM DOS
-fig_plot_2, ax_plot_2 = plt.subplots()
-for i in range(len(folder_cp2k_negf)):
-    ax_plot_2.plot((file_4_negf[i][:, 0] - fermi_cp2k_negf[i]) * param.hartree_to_ev, file_4_negf[i][:, 1] / dos_norm_cp2k_negf, color=plotting_colors_2[i], label=labels_cp2k_negf[i])
-for i in range(len(folder)):
-    ax_plot_2.plot(file_4[i][:, 0] + fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_2.set_xlim([xlim[0], xlim[1]])
-ax_plot_2.set_ylim([ylim_dos[0], ylim_dos[1]])
-ax_plot_2.legend(frameon=False)
-ax_plot_2.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_2.set_ylabel('Density of states (a.u.)')
-ax_plot_2.set_ylabel(r'Density of states (atom$^{-1}$ eV$^{-1}$)')
-fig_plot_2.tight_layout()
-# fig_trans_dos.subplots_adjust(hspace=0)
-for i in range(len(folder_cp2k_negf)):
-    fig_plot_2.savefig('{}/compare-em_dos.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
-for i in range(len(folder)):
-    fig_plot_2.savefig('{}/compare-em_dos.png'.format(folder[i]), dpi=param.save_dpi)
-    
-# Plot transmission and EM DOS
-rows, cols = 2, 1
-fig_trans_dos, ax_trans_dos = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(5, 8))
-for i in range(len(folder_cp2k_negf)):
-    ax_trans_dos[0].plot((file_1_negf[i][:, 0] - fermi_cp2k_negf[i]) * param.hartree_to_ev, file_1_negf[i][:, 1], color=plotting_colors_2[i], label=labels_cp2k_negf[i])
-for i in range(len(folder)):
-    ax_trans_dos[0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_trans_dos[0].set_xlim([xlim[0], xlim[1]])
-# ax_trans_dos[0].set_ylim([ylim[0], ylim[1]])
-ax_trans_dos[0].set_ylabel('Transmission')
-if plot_lengend: ax_trans_dos[0].legend(frameon=False)
-for i in range(len(folder_cp2k_negf)):
-    ax_trans_dos[1].plot((file_4_negf[i][:, 0] - fermi_cp2k_negf[i]) * param.hartree_to_ev, file_4_negf[i][:, 1] / dos_norm_cp2k_negf, color=plotting_colors_2[i], label=labels_cp2k_negf[i])
-for i in range(len(folder)):
-    ax_trans_dos[1].plot(file_4[i][:, 0] + fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_trans_dos[1].set_xlim([xlim[0], xlim[1]])
-# ax_trans_dos[1].set_ylim([ylim_dos[0], ylim_dos[1]])
-if plot_lengend: ax_trans_dos[1].legend(frameon=False)
-ax_trans_dos[1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_trans_dos[1].set_ylabel('Density of states (a.u.)')
-ax_trans_dos[1].set_ylabel(r'Density of states (atom$^{-1}$ eV$^{-1}$)')
-fig_trans_dos.tight_layout()
-# fig_trans_dos.subplots_adjust(hspace=0)
-for i in range(len(folder_cp2k_negf)):
-    fig_trans_dos.savefig('{}/compare-transmission.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
-for i in range(len(folder)):
-    fig_trans_dos.savefig('{}/compare-transmission_emdos.png'.format(folder[i]), dpi=param.save_dpi)
+# Mean and standard deviation 2
+data_2_average = np.average(data_2, axis=0)
+data_2_std = np.std(data_2, axis=0)
+ax_plot_1_error.fill_between(file_1[0][:, 0], data_2_average - data_2_std, data_2_average + data_2_std, alpha=0.2, color=plotting_colors[1])
+ax_plot_1_error.plot(file_1[0][:, 0], data_2_average, color=plotting_colors[1], label=labels[1])
 
-# Plot all
-rows, cols = 2, 2
-fig_plot_all, ax_plot_all = plt.subplots(rows, cols, figsize=(10, 8))
-# fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(10, 8))
+# No wire
+# ax_plot_1_error.plot(file_1[-2][:, 0], file_1[-2][:, 1], color=plotting_colors[-2], label=labels[-2])
+
+# Model wire
+ax_plot_1_error.plot(file_1[-1][:, 0], file_1[-1][:, 1], color=plotting_colors[-1], label=labels[-1])
+
+ax_plot_1_error.set_xlim([xlim[0], xlim[1]])
+ax_plot_1_error.set_ylim([ylim[0], ylim[1]])
+ax_plot_1_error.legend(frameon=False)
+ax_plot_1_error.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
+ax_plot_1_error.set_ylabel('Transmission')
+fig_plot_1_error.tight_layout()
+for i in range(len(folder_cp2k_negf)):
+    fig_plot_1_error.savefig('{}/compare-transmission.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
 for i in range(len(folder)):
-    ax_plot_all[0, 0].plot(file_1[i][:, 0]+fermi[i], file_1[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_all[0, 0].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[0, 0].set_ylim([ylim[0], ylim[1]])
-ax_plot_all[0, 0].legend(frameon=False)
-# ax_plot_all[0, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-ax_plot_all[0, 0].set_ylabel('Transmission')
-for i in range(len(folder)):
-    ax_plot_all[0, 1].plot(file_2[i][:, 0]+fermi[i], file_2[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_all[0, 1].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[0, 1].legend(frameon=False)
-# ax_plot_all[0, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-ax_plot_all[0, 1].set_ylabel('Number of channels')
-for i in range(len(folder)):
-    ax_plot_all[1, 0].plot(file_4[i][:, 0]+fermi[i], file_4[i][:, 1], color=plotting_colors[i], label=labels[i])
-ax_plot_all[1, 0].set_xlim([xlim[0], xlim[1]])
-ax_plot_all[1, 0].legend(frameon=False)
-ax_plot_all[1, 0].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-ax_plot_all[1, 0].set_ylabel('EM DOS')
-# for i in range(len(folder)):
-#     ax_plot_all[1, 1].plot(file_5[i][:, 0]+fermi[i], file_5[i][:, 1], color=plotting_colors[i], label=labels[i])
-# ax_plot_all[1, 1].set_xlim([xlim[0], xlim[1]])
-# ax_plot_all[1, 1].legend(frameon=False)
-# ax_plot_all[1, 1].set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
-# ax_plot_all[1, 1].set_ylabel('Leads DOS')
-fig_plot_all.tight_layout()
-# fig_plot_all.subplots_adjust(hspace=0)
-for i in range(len(folder)):
-    fig_plot_all.savefig('{}/compare-plot_all.png'.format(folder[i]), dpi=param.save_dpi)
+    fig_plot_1_error.savefig('{}/compare-transmission.png'.format(folder[i]), dpi=param.save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

@@ -7,95 +7,89 @@ import csv
 
 """ Plotting of CP2K .cube files for Hartree potential and charge density """
 
-files_bader = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-0/bader/ACF.dat'
-filename_out_bader = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-0/bader/bader_charges.out'
-filename_save = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-0/bader/bader_charges.png'
-cols = ['#', 'X', 'Y', 'Z', 'CHARGE', 'MIN DIST', 'ATOMIC VOL']
-file_bader_1 = pd.read_csv(files_bader, names=cols, delim_whitespace=True, skiprows=2)
-file_bader_1 = file_bader_1.apply(pd.to_numeric, errors='coerce')
-file_bader_1 = file_bader_1.reset_index(drop=True)
+# Plotting variables
+plot_colorbar = False
+colorbar_limit = [0.1, -0.3]
+marker_size = 150
+plot_charge_text = True
+species_to_marker = {"Au_lead": np.NaN, "Au_screen": np.NaN, "Au_al": np.NaN, "Au_bl": np.NaN,
+                     "Au_cl": marker_size, "H": np.NaN, "O": np.NaN, "Au_wire": marker_size, "Au_br": marker_size,
+                     "Au_cr": np.NaN}
+# colorbar_limit = [1, -1]
+# marker_size = 10
+# plot_charge_text = False
+# species_to_marker = {"Au_lead": marker_size, "Au_screen": marker_size, "Au_al": marker_size, "Au_bl": marker_size,
+#                      "Au_cl": marker_size,   "H": np.NaN, "O": np.NaN, "Au_wire": marker_size,  "Au_br": marker_size,
+#                      "Au_cr": marker_size}
 
+# Structure
 files_structure = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/md/restart-auto-long_full/md_V-1.5_long'
 cols = ['Species', 'X', 'Y', 'Z']
 file_coord, num_atoms_1, species_1 = load_coordinates.load_file_coord(files_structure, 'em.xyz', cols)
 file_coord = file_coord.reset_index(drop=True)
 
-# Read number of atoms and labels from .xyz file
-filename = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/md-structure-0/dft/2_dft_wfn-charges-1.hirshfeld'
+# Bader
+step = '140'
+step = '200'
+# bias = '0V'
+# bias = '0.1V'
+bias = '1.0V'
+folder_bader = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-cube/from-md-{}/analysis/charge/{}'.format(step, bias)
+files_bader = '{}/ACF.dat'.format(folder_bader)
+filename_out_bader = '{}/bader_charges.out'.format(folder_bader)
+filename_save_bader = '{}/bader_charges_1.png'.format(folder_bader)
+cols = ['#', 'X', 'Y', 'Z', 'CHARGE', 'MIN DIST', 'ATOMIC VOL']
+file_bader_1 = pd.read_csv(files_bader, names=cols, delim_whitespace=True, skiprows=2)
+file_bader_1 = file_bader_1.apply(pd.to_numeric, errors='coerce')
+file_bader_1 = file_bader_1.reset_index(drop=True)
+print(file_bader_1)
+
+# Hirshfeld
+skip_rows = 2
+folder_hirsh = folder_bader
+files_hirsh = '{}/{}-charges-1.hirshfeld'.format(folder_hirsh, bias)
+filename_save_hirsh = '{}/hirshfeld_charges_1.png'.format(folder_hirsh)
 cols_hirsh = ['Atom', 'Element', 'Kind', 'Ref Charge', 'Population', 'Net charge']
-file_hirsh_1 = pd.read_csv(filename, names=cols_hirsh, delim_whitespace=True, skiprows=5)
+file_hirsh_1 = pd.read_csv(files_hirsh, names=cols_hirsh, delim_whitespace=True, on_bad_lines='skip', skiprows=skip_rows)
 file_hirsh_1 = file_hirsh_1.apply(pd.to_numeric, errors='coerce')
+file_hirsh_1 = file_hirsh_1[file_hirsh_1['Net charge'].notna()]
 file_hirsh_1 = file_hirsh_1.reset_index(drop=True)
 hirsh_charges = file_hirsh_1['Net charge'][0:num_atoms_1]
-print('Max Hirshfeld charge', np.max(hirsh_charges))
-print('Min Hirshfeld charge', np.min(hirsh_charges))
 
-# print(hirsh_charges)
-print('Number of atoms', num_atoms_1)
-
+# Plotting marker size
 marker_array = np.zeros(num_atoms_1)
-marker_size = 150
-for i in range(0, num_atoms_1):
-    if species_1[i] == "Au_lead":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_screen":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_al":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_bl":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_cl":
-        marker_array[i] = marker_size
-    elif species_1[i] == "H":
-        marker_array[i] = 0
-    elif species_1[i] == "O":
-        marker_array[i] = 0
-    elif species_1[i] == "Au_wire":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_br":
-        marker_array[i] = marker_size
-    elif species_1[i] == "Au_cr":
-        marker_array[i] = marker_size
+for i in range(num_atoms_1):
+    species = species_1[i]
+    if species in species_to_marker:
+        marker_array[i] = species_to_marker[species]
     else:
-        print('Error', species_1[i])
+        print('Error', species)
 
+# Bader reference charges
+species_to_charge = {"Au_lead": 1, "Au_screen": 1, "Au_al": 11, "Au_bl": 11, "Au_cl": 11,
+                     "H": 1, "O": 6, "Au_wire": 11,
+                     "Au_br": 11, "Au_cr": 11}
 ref_charge = np.zeros(num_atoms_1)
-for i in range(0, num_atoms_1):
-    if species_1[i] == "Au_lead":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "Au_screen":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "Au_al":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "Au_bl":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "Au_cl":
-        ref_charge[i] = 11
-    elif species_1[i] == "H":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "O":
-        ref_charge[i] = np.NaN
-    elif species_1[i] == "Au_wire":
-        ref_charge[i] = 11
-    elif species_1[i] == "Au_br":
-        ref_charge[i] = 11
-    elif species_1[i] == "Au_cr":
-        ref_charge[i] = np.NaN
+for i in range(num_atoms_1):
+    species = species_1[i]
+    if species in species_to_charge:
+        ref_charge[i] = species_to_charge[species]
     else:
-        print('Error', species_1[i])
+        print('Error', species)
 
 # Setup pandas dataframe
 bader_charges = ref_charge-file_bader_1['CHARGE'][0:num_atoms_1]
 bader_charges_pandas = pd.DataFrame([], columns=['Species', 'Charge'])
 bader_charges_pandas['Species'] = species_1
 bader_charges_pandas['Charge'] = bader_charges
-print('Max Bader charge', np.max(bader_charges))
-print('Min Bader charge', np.min(bader_charges))
-lims = [0.1, -0.3]
 bader_charges_pandas.to_csv(filename_out_bader, index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ")
 
-print(bader_charges)
-print(hirsh_charges)
+# Printing
+print('Number of atoms', num_atoms_1)
+print('Max Bader charge', np.max(bader_charges))
+print('Min Bader charge', np.min(bader_charges))
+print('Max Hirshfeld charge', np.max(hirsh_charges))
+print('Min Hirshfeld charge', np.min(hirsh_charges))
 
 # Create a 3D plot of Bader charges
 fig_bader = plt.figure(figsize=(4, 8))
@@ -107,10 +101,10 @@ sc = ax_bader.scatter(file_bader_1['X'][0:num_atoms_1] / param.angstrom_to_bohr,
                       cmap='viridis',
                       marker='o',
                       s=marker_array,
-                      vmin=lims[1], vmax=lims[0])
-for i in range(0, num_atoms_1):
-    if species_1[i] == "Au_wire":
-        if abs(bader_charges[i]) > 0.1:
+                      vmin=colorbar_limit[1], vmax=colorbar_limit[0])
+if plot_charge_text:
+    for i in range(0, num_atoms_1):
+        if species_1[i] == "Au_wire" and 30 < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < 44:
             ax_bader.text((file_bader_1['X'][i] / param.angstrom_to_bohr) + 0.0,
                           (file_bader_1['Y'][i] / param.angstrom_to_bohr) + -2.0,
                           (file_bader_1['Z'][i] / param.angstrom_to_bohr) + -1.1,
@@ -120,13 +114,13 @@ ax_bader.set_ylabel('Y axis')
 ax_bader.set_zlabel('Z axis')
 ax_bader.set_proj_type('ortho')
 ax_bader.axis("off")
-# cbar = fig_bader.colorbar(sc, ax=ax_bader, fraction=0.046, pad=0.04)
-# cbar.set_label('Charge |e|')
+if plot_colorbar: cbar = fig_bader.colorbar(sc, ax=ax_bader, fraction=0.046, pad=0.04)
+if plot_colorbar: cbar.set_label('Charge |e|')
 fig_bader.tight_layout()
 ax_bader.view_init(elev=0, azim=0, roll=-90)
 ax_bader.set_box_aspect((1, 1, 3))
 fig_bader.tight_layout()
-fig_bader.savefig(filename_save, dpi=600)
+fig_bader.savefig(filename_save_bader, dpi=600)
 
 # Create a 3D plot of Hirshfeld charges
 fig_hirsh = plt.figure(figsize=(4, 8))
@@ -138,10 +132,10 @@ sc = ax_hirsh.scatter(file_bader_1['X'][0:num_atoms_1] / param.angstrom_to_bohr,
                       cmap='viridis',
                       marker='o',
                       s=marker_array,
-                      vmin=lims[1], vmax=lims[0])
-for i in range(0, num_atoms_1):
-    if species_1[i] == "Au_wire":
-        if abs(bader_charges[i]) > 0.1:
+                      vmin=colorbar_limit[1], vmax=colorbar_limit[0])
+if plot_charge_text:
+    for i in range(0, num_atoms_1):
+        if species_1[i] == "Au_wire" and 30 < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < 44:
             ax_hirsh.text((file_bader_1['X'][i] / param.angstrom_to_bohr) + 0.0,
                           (file_bader_1['Y'][i] / param.angstrom_to_bohr) + -2.0,
                           (file_bader_1['Z'][i] / param.angstrom_to_bohr) + -1.1,
@@ -151,13 +145,13 @@ ax_hirsh.set_ylabel('Y axis')
 ax_hirsh.set_zlabel('Z axis')
 ax_hirsh.set_proj_type('ortho')
 ax_hirsh.axis("off")
-# cbar = fig_hirsh.colorbar(sc, ax=ax_hirsh, fraction=0.046, pad=0.04)
-# cbar.set_label('Charge |e|')
+if plot_colorbar: cbar = fig_hirsh.colorbar(sc, ax=ax_hirsh, fraction=0.046, pad=0.04)
+if plot_colorbar: cbar.set_label('Charge |e|')
 fig_hirsh.tight_layout()
 ax_hirsh.view_init(elev=0, azim=0, roll=-90)
 ax_hirsh.set_box_aspect((1, 1, 3))
 fig_hirsh.tight_layout()
-fig_hirsh.savefig(filename_save, dpi=600)
+fig_hirsh.savefig(filename_save_hirsh, dpi=600)
 
 if __name__ == "__main__":
     print('Finished.')

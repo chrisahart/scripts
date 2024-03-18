@@ -16,7 +16,7 @@ import xyz_siesta_to_cp2k
 params = {'axes.formatter.limits': [-4, 4],
           'axes.labelsize': 'x-large',
           'axes.titlesize': 'x-large',
-          'legend.fontsize': 'large',
+          'legend.fontsize': 'medium',
           'lines.markersize': '8',
           }
 plt.rcParams.update(params)
@@ -39,9 +39,10 @@ file_cp2k = ['/final.xyz']
 # CP2k+SMEAGOL
 # folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-1_ParallelOverKNum-1']
 # folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/cp2k-smeagol/archer/archer_pbe/geo_opt/NEnergReal-64_kpoints-3-3-20_omp-2_ParallelOverKNum-3_scf-1e-6_EXTRAPOLATION-USE_PREV_P']
-folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14',
-                       '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14_leads-6s',
-                       ]
+# folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14',
+#                        '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14_leads-6s',
+#                        ]
+folder_cp2k_smeagol = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/cp2k-smeagol/geo_opt/kpoints-3-3-20_omp-2_ParallelOverKNum-3_contour-single_dynamic-14']
 file_cp2k_smeagol = ['V-pos-1.xyz'] * 5
 
 
@@ -49,15 +50,17 @@ file_cp2k_smeagol = ['V-pos-1.xyz'] * 5
 # labels = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5']
 # labels = ['SIESTA+SMEAGOL', 'CP2K+SMEAGOL']
 # labels = ['Bai et al.', 'SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
-labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
-labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
-labels = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+# labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+# labels = ['SIESTA1+SMEAGOL Bai et al.', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+# labels = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL EM.WeightRho 0.5', 'CP2K+SMEAGOL weighted double contour']
+labels = ['SIESTA+SMEAGOL', 'CP2K+SMEAGOL']
 data_cp2k_smeagol = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
 file_prefix_cp2k_smeagol = data_cp2k_smeagol
 data_siesta_smeagol = data_cp2k_smeagol
-plotting_colors = ['g', 'r', 'orange', 'm']
+plotting_colors = ['b', 'r', 'orange', 'm']
 ylim_collective = [-0.103, 0.004]
 ylim_collective = [-0.20, 0.004]
+ylim_collective = [-0.18, 0.004]
 # ylim_h2 = [0.865, 0.92]
 ylim_h2 = [0.865, 0.91]
 ylim_h2_change = [-0.0001, 0.035]

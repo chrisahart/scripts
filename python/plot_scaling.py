@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scripts.main import parameters as param
+from general import parameters as param
 
 """ Scaling """
 

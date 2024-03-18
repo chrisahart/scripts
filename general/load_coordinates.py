@@ -29,7 +29,7 @@ def load_file_coord(folder, filename, cols, del_rows=None):
     # cols = ['Species', 'X', 'Y', 'Z']
 
     # Read as csv file with whitespace delimiter
-    file_coord = pd.read_csv(files[0], names=cols, delim_whitespace=True)
+    file_coord = pd.read_csv(files[0], names=cols, delim_whitespace=True, on_bad_lines='skip')
 
     # Determine number of atoms
     num_atoms = int(float(file_coord['Species'][0]))

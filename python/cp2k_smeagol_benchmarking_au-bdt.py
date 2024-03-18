@@ -43,8 +43,8 @@ filename = '/log.out'
 cols = ['Filename', 'Time']
 data_atoms = [662, 948, 1286, 1678, 2118, 2612, 3756]
 data_basis = [2774, 3940, 5318, 6908, 8710, 10724, 15388]
-# threads = np.array([1, 2, 4, 8, 16, 32, 64])
-threads = np.array([0.5, 1, 2, 4, 8, 16, 32]) * 128
+threads = np.array([1, 2, 4, 8, 16, 32, 64])
+# threads = np.array([0.5, 1, 2, 4, 8, 16, 32]) * 128
 
 diff_color = ['r', 'g', 'b', 'm', 'orange', 'y', 'brown', 'cyan', 'pink']
 
@@ -166,19 +166,22 @@ for i in range(len(folders)):
 # Speedup
 fig_plot_7, ax_plot_7 = plt.subplots()
 ax_plot_7.plot(threads[2:], threads[2:]/threads[2], 'k-', label='Ideal', alpha=0.5)
-i = 3
-ax_plot_7.plot(threads[2:], np.max(data[i]['Time'][7 + 6 * 2::6]) / data[i]['Time'][7 + 6 * 2::6], 'rx-')
-temp = np.max(data[i]['Time'][7 + 6 * 2::6]) / data[i]['Time'][7 + 6 * 2::6]
-speedup = temp / np.array([1, 2, 4, 8, 16])
-print(temp)
-print(speedup)
-# for i in range(len(folders)):
+# i = 3
+# ax_plot_7.plot(threads[2:], np.max(data[i]['Time'][7 + 6 * 2::6]) / data[i]['Time'][7 + 6 * 2::6], 'rx-')
+# temp = np.max(data[i]['Time'][7 + 6 * 2::6]) / data[i]['Time'][7 + 6 * 2::6]
+# speedup = temp / np.array([1, 2, 4, 8, 16])
+# print(temp)
+# print(speedup)
+folders_plot = range(len(folders))
+print(folders_plot)
+folders_plot = folders_plot[1:]
+for i in folders_plot:
     # ax_plot_7.plot(threads, np.max(data[i]['Time'][4::6])/data[i]['Time'][4::6], '+--', color=diff_color[i])
     # ax_plot_7.plot(threads, np.max(data[i]['Time'][7::6])/data[i]['Time'][7::6], 'x-', label=data_basis[i], color=diff_color[i])
     # ax_plot_7.plot(threads[2:], np.max(data[i]['Time'][4+6*2::6])/data[i]['Time'][4+6*2::6], '+--', color=diff_color[i])
-    # ax_plot_7.plot(threads[2:], np.max(data[i]['Time'][7+6*2::6])/data[i]['Time'][7+6*2::6], 'x-', label=data_basis[i], color=diff_color[i])
-ax_plot_7.set_xlabel('Archer2 cores')
-# ax_plot_7.set_xlabel('OMP threads')
+    ax_plot_7.plot(threads[2:], np.max(data[i]['Time'][7+6*2::6])/data[i]['Time'][7+6*2::6], 'x-', label=data_basis[i], color=diff_color[i])
+# ax_plot_7.set_xlabel('Archer2 cores')
+ax_plot_7.set_xlabel('OMP threads')
 ax_plot_7.set_ylabel('Speedup')
 # ax_plot_7.set_ylabel('Speedup for second SCF step')
 ax_plot_7.set_ylim([0.9, 3.6])

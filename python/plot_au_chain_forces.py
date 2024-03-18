@@ -11,21 +11,25 @@ import matplotlib.pyplot as plt
 
 folder_cp2k_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/cp2k-smeagol/kpoints-2-2-20_constrained_energy-density-T_contour-double'
 folder_cp2k_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/cp2k-smeagol/kpoints-2-2-20_constrained_energy-density-F_contour-double'
-folder_siesta_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/siesta1-smeagol/kpoints-2-2-20_constrained_energy-density-T_2'
-folder_siesta_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/siesta1-smeagol/kpoints-2-2-20_constrained_energy-density-F_2'
+folder_siesta_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/siesta1-smeagol/kpoints-2-2-20_energy-density-T'
+folder_siesta_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/siesta1-smeagol/kpoints-2-2-20_energy-density-F'
 # folder_siesta_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-chain/siesta3-smeagol/kpoints-2-2-20_constrained_positive_Au-2.8_alex_2'
 
-labels_cp2k_1 = ['CP2K', 'CP2K-SMEAGOL V=0']
-labels_cp2k_2 = ['CP2K', 'CP2K-SMEAGOL V=0 Ω=0']
-labels_siesta_1 = ['SIESTA1', 'SIESTA1-SMEAGOL V=0']
-labels_siesta_2 = ['SIESTA1', 'SIESTA1-SMEAGOL V=0 Ω=0']
+labels_cp2k_1 = ['CP2K', 'CP2K+SMEAGOL']
+labels_cp2k_2 = ['CP2K', 'CP2K+SMEAGOL Ω=0']
+labels_siesta_1 = ['SIESTA', 'SIESTA+SMEAGOL']
+labels_siesta_2 = ['SIESTA', 'SIESTA+SMEAGOL Ω=0']
 colors = ['k', 'r', 'b']
 # labels_siesta_1 = ['SIESTA3', 'SIESTA3-SMEAGOL V=0 Ω=0']
 # colors = ['k', 'b', 'r']
-plot_cp2k_1 = False
-plot_cp2k_2 = False
-plot_siesta_1 = True
-plot_siesta_2 = True
+plot_cp2k_1 = True
+plot_cp2k_2 = True
+plot_siesta_1 = False
+plot_siesta_2 = False
+# plot_cp2k_1 = False
+# plot_cp2k_2 = False
+# plot_siesta_1 = True
+# plot_siesta_2 = True
 use_ylim = [False, True, False]
 legend_loc='lower left'
 ylim_xyz = np.array([(-2, 2), (-1, 1), (-1, 1)])
@@ -57,7 +61,7 @@ if plot_siesta_2: siesta_2_V_2 = pd.read_csv('{}/data_3-2.out'.format(folder_sie
 # Plot component of force
 xlim = [0, 2]
 component = 'X'
-fig_plot_1, ax_plot_1 = plt.subplots()
+fig_plot_1, ax_plot_1 = plt.subplots(figsize=(6, 4))
 if plot_cp2k_1: ax_plot_1.plot(index, (cp2k_1_dft_2[component] - cp2k_1_dft_1[component]) * param.hartree_per_bohr_to_ev_per_angstrom, 'o-', color=colors[0], fillstyle='none', label=labels_cp2k_1[0])
 if plot_cp2k_1: ax_plot_1.plot(index, (cp2k_1_V0_2[component] - cp2k_1_V0_1[component]) * param.hartree_per_bohr_to_ev_per_angstrom, 'o--', color=colors[1], fillstyle='none', label=labels_cp2k_1[1])
 if plot_cp2k_2: ax_plot_1.plot(index, (cp2k_2_V0_2[component] - cp2k_2_V0_1[component]) * param.hartree_per_bohr_to_ev_per_angstrom, 'o--', color=colors[2], fillstyle='none', label=labels_cp2k_2[1])
