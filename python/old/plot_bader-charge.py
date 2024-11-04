@@ -8,6 +8,7 @@ import csv
 """ Plotting of CP2K .cube files for Hartree potential and charge density """
 
 # Plotting variables
+save_dpi = 600
 plot_colorbar = False
 colorbar_limit = [0.1, -0.3]
 marker_size = 150
@@ -29,12 +30,19 @@ file_coord, num_atoms_1, species_1 = load_coordinates.load_file_coord(files_stru
 file_coord = file_coord.reset_index(drop=True)
 
 # Bader
-step = '140'
-step = '200'
-# bias = '0V'
-# bias = '0.1V'
-bias = '1.0V'
-folder_bader = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-cube/from-md-{}/analysis/charge/{}'.format(step, bias)
+array_time = ['0', '50', '100', '180']
+plot_time = array_time[0]
+array_bias = ['2_dft_wfn', '0.0V', '0.1V', '1.0V']
+plot_bias = array_bias[1]
+plot_au_species = 'Au_wire'
+# plot_au = [30, 44]  # Au wire and first atom of tip
+plot_au = [25, 30]  # Au tip left
+# plot_au = [44, 46]  # Au tip right
+# plot_au_species = 'Au_cl'
+# plot_au = [20, 30]  # Au slab left
+# plot_au_species = 'Au_br'
+# plot_au = [40, 50]  # Au slab right
+folder_bader = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-wire-ismael/jad/calculations/single-points/snapshots/from-md-cube/md_{}-fs/charge/{}'.format(plot_time, plot_bias)
 files_bader = '{}/ACF.dat'.format(folder_bader)
 filename_out_bader = '{}/bader_charges.out'.format(folder_bader)
 filename_save_bader = '{}/bader_charges_1.png'.format(folder_bader)
@@ -45,9 +53,10 @@ file_bader_1 = file_bader_1.reset_index(drop=True)
 print(file_bader_1)
 
 # Hirshfeld
+plot_hirsh = True
 skip_rows = 2
 folder_hirsh = folder_bader
-files_hirsh = '{}/{}-charges-1.hirshfeld'.format(folder_hirsh, bias)
+files_hirsh = '{}/{}-charges-1.hirshfeld'.format(folder_hirsh, plot_bias)
 filename_save_hirsh = '{}/hirshfeld_charges_1.png'.format(folder_hirsh)
 cols_hirsh = ['Atom', 'Element', 'Kind', 'Ref Charge', 'Population', 'Net charge']
 file_hirsh_1 = pd.read_csv(files_hirsh, names=cols_hirsh, delim_whitespace=True, on_bad_lines='skip', skiprows=skip_rows)
@@ -102,13 +111,18 @@ sc = ax_bader.scatter(file_bader_1['X'][0:num_atoms_1] / param.angstrom_to_bohr,
                       marker='o',
                       s=marker_array,
                       vmin=colorbar_limit[1], vmax=colorbar_limit[0])
+store_charges = []
 if plot_charge_text:
     for i in range(0, num_atoms_1):
-        if species_1[i] == "Au_wire" and 30 < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < 44:
+        if species_1[i] == plot_au_species and plot_au[0] < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < plot_au[1]:
+            store_charges.append(bader_charges[i])
             ax_bader.text((file_bader_1['X'][i] / param.angstrom_to_bohr) + 0.0,
                           (file_bader_1['Y'][i] / param.angstrom_to_bohr) + -2.0,
                           (file_bader_1['Z'][i] / param.angstrom_to_bohr) + -1.1,
                           '{0:.2f}'.format(bader_charges[i]))
+store_charges = np.array(store_charges)
+print('Charges:', store_charges)
+print('Average charge:', np.sum(store_charges)/np.shape(store_charges)[0])
 ax_bader.set_xlabel('X axis')
 ax_bader.set_ylabel('Y axis')
 ax_bader.set_zlabel('Z axis')
@@ -120,38 +134,39 @@ fig_bader.tight_layout()
 ax_bader.view_init(elev=0, azim=0, roll=-90)
 ax_bader.set_box_aspect((1, 1, 3))
 fig_bader.tight_layout()
-fig_bader.savefig(filename_save_bader, dpi=600)
+fig_bader.savefig(filename_save_bader, dpi=save_dpi)
 
 # Create a 3D plot of Hirshfeld charges
-fig_hirsh = plt.figure(figsize=(4, 8))
-ax_hirsh = fig_hirsh.add_subplot(111, projection='3d')
-sc = ax_hirsh.scatter(file_bader_1['X'][0:num_atoms_1] / param.angstrom_to_bohr,
-                      file_bader_1['Y'][0:num_atoms_1] / param.angstrom_to_bohr,
-                      file_bader_1['Z'][0:num_atoms_1] / param.angstrom_to_bohr,
-                      c=hirsh_charges,
-                      cmap='viridis',
-                      marker='o',
-                      s=marker_array,
-                      vmin=colorbar_limit[1], vmax=colorbar_limit[0])
-if plot_charge_text:
-    for i in range(0, num_atoms_1):
-        if species_1[i] == "Au_wire" and 30 < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < 44:
-            ax_hirsh.text((file_bader_1['X'][i] / param.angstrom_to_bohr) + 0.0,
-                          (file_bader_1['Y'][i] / param.angstrom_to_bohr) + -2.0,
-                          (file_bader_1['Z'][i] / param.angstrom_to_bohr) + -1.1,
-                          '{0:.2f}'.format(hirsh_charges[i]))
-ax_hirsh.set_xlabel('X axis')
-ax_hirsh.set_ylabel('Y axis')
-ax_hirsh.set_zlabel('Z axis')
-ax_hirsh.set_proj_type('ortho')
-ax_hirsh.axis("off")
-if plot_colorbar: cbar = fig_hirsh.colorbar(sc, ax=ax_hirsh, fraction=0.046, pad=0.04)
-if plot_colorbar: cbar.set_label('Charge |e|')
-fig_hirsh.tight_layout()
-ax_hirsh.view_init(elev=0, azim=0, roll=-90)
-ax_hirsh.set_box_aspect((1, 1, 3))
-fig_hirsh.tight_layout()
-fig_hirsh.savefig(filename_save_hirsh, dpi=600)
+if plot_hirsh:
+    fig_hirsh = plt.figure(figsize=(4, 8))
+    ax_hirsh = fig_hirsh.add_subplot(111, projection='3d')
+    sc = ax_hirsh.scatter(file_bader_1['X'][0:num_atoms_1] / param.angstrom_to_bohr,
+                          file_bader_1['Y'][0:num_atoms_1] / param.angstrom_to_bohr,
+                          file_bader_1['Z'][0:num_atoms_1] / param.angstrom_to_bohr,
+                          c=hirsh_charges,
+                          cmap='viridis',
+                          marker='o',
+                          s=marker_array,
+                          vmin=colorbar_limit[1], vmax=colorbar_limit[0])
+    if plot_charge_text:
+        for i in range(0, num_atoms_1):
+            if species_1[i] == "Au_wire" and 30 < (file_bader_1['Z'][i] / param.angstrom_to_bohr) < 44:
+                ax_hirsh.text((file_bader_1['X'][i] / param.angstrom_to_bohr) + 0.0,
+                              (file_bader_1['Y'][i] / param.angstrom_to_bohr) + -2.0,
+                              (file_bader_1['Z'][i] / param.angstrom_to_bohr) + -1.1,
+                              '{0:.2f}'.format(hirsh_charges[i]))
+    ax_hirsh.set_xlabel('X axis')
+    ax_hirsh.set_ylabel('Y axis')
+    ax_hirsh.set_zlabel('Z axis')
+    ax_hirsh.set_proj_type('ortho')
+    ax_hirsh.axis("off")
+    if plot_colorbar: cbar = fig_hirsh.colorbar(sc, ax=ax_hirsh, fraction=0.046, pad=0.04)
+    if plot_colorbar: cbar.set_label('Charge |e|')
+    fig_hirsh.tight_layout()
+    ax_hirsh.view_init(elev=0, azim=0, roll=-90)
+    ax_hirsh.set_box_aspect((1, 1, 3))
+    fig_hirsh.tight_layout()
+    fig_hirsh.savefig(filename_save_hirsh, dpi=save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

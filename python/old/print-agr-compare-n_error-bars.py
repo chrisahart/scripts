@@ -268,14 +268,14 @@ ax_plot_1_error.plot(file_1[-1][:, 0], file_1[-1][:, 1], color=plotting_colors[-
 
 ax_plot_1_error.set_xlim([xlim[0], xlim[1]])
 ax_plot_1_error.set_ylim([ylim[0], ylim[1]])
-ax_plot_1_error.legend(frameon=False)
+# ax_plot_1_error.legend(frameon=False)
 ax_plot_1_error.set_xlabel(r'E-E$_{\mathrm{F}}$ (eV)')
 ax_plot_1_error.set_ylabel('Transmission')
 fig_plot_1_error.tight_layout()
 for i in range(len(folder_cp2k_negf)):
-    fig_plot_1_error.savefig('{}/compare-transmission.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
+    fig_plot_1_error.savefig('{}/compare-transmission_no_label.png'.format(folder_cp2k_negf[i]), dpi=param.save_dpi)
 for i in range(len(folder)):
-    fig_plot_1_error.savefig('{}/compare-transmission.png'.format(folder[i]), dpi=param.save_dpi)
+    fig_plot_1_error.savefig('{}/compare-transmission_no_label.png'.format(folder[i]), dpi=param.save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

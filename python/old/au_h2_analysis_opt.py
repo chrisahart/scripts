@@ -1,12 +1,8 @@
 from __future__ import division, print_function
-import pandas as pd
 import numpy as np
-import glob
 from general import load_coordinates
 from general import parameters as param
-from general import print_xyz
 import matplotlib.pyplot as plt
-import csv
 import xyz_siesta_to_cp2k
 
 """
