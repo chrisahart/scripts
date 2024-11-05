@@ -1,4 +1,3 @@
-from __future__ import division, print_function
 import pandas as pd
 import numpy as np
 import glob
@@ -13,7 +12,7 @@ from ase import Atoms
 from ase.build import bulk
 from ase.io import read, write
 from ase.build import make_supercell
-from ase.build import fcc111
+from ase.build import fcc100, fcc111
 from pathlib import Path
 
 """
@@ -25,9 +24,16 @@ a = 3.61
 Cu_Cu_z_001 = a/2
 Cu_S = 2.65
 
+# (111) surface
+slab = fcc111('Cu', size=(4, 4, 3), a=3.61, orthogonal=True)
+
+# (100) surface
+slab = fcc100('Cu', size=(4, 4, 3), a=3.61, vacuum=10)
+view(slab)
+
 # surface = ase.build.fcc100('Cu', size=(4, 4, 3), a=a)
-surface = ase.build.bulk(name='HfO', cubic=True)
-view(surface)
+# view(surface)
+
 #
 # # Files
 # left = 'left.xyz'
