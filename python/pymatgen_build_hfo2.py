@@ -1,51 +1,13 @@
+from pymatgen.core.structure import Structure
+from pymatgen.core.lattice import Lattice
+from pymatgen.core.surface import SlabGenerator
+from ase.build import bulk
 from ase import Atoms
 from ase.visualize import view
-from ase.io import read, write
-from ase.build import fcc100, fcc111
+from mp_api.client import MPRester
+from ase.io import write
 import numpy as np
-
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen'
-polymorph = 't-hfo2'
-hafnia_supercell = read("{}/{}_supercell.xyz".format(folder, polymorph), format='xyz')
-print(hafnia_supercell)
-
-cu_slab = fcc100('Cu', size=(4, 4, 3), a=3.61)
-print(cu_slab)
-
-cu_o = 5.57326 - 3.73217
-print(cu_o)
-
-cell_size = np.array([2.55000 + 7.65000, 2.60000+7.80000, 21.10218])
-z_cut = 3
-
-junction = Atoms(cell=cell_size)
-
-for atom in cu_slab:
-    atom.position[0] = atom.position[0] + 1.27500
-    atom.position[1] = atom.position[1] + ( 2.60000 -  1.27633)
-    junction.append(atom)
-
-# Move Cu slab so that x coordinate of outer Cu is same as O
-hafnia_min = 3.82500
-hafnia_max = 15.65109
-cu_max = 3.61000
-for atom in hafnia_supercell:
-    if atom.position[2] > z_cut:
-        atom.position[2] = atom.position[2] - hafnia_min + cu_max + cu_o
-        junction.append(atom)
-
-z_cut = 20
-for atom in cu_slab:
-    # atom.position[0] = atom.position[0] + 1.27500
-    atom.position[2] = atom.position[2] + hafnia_max + cu_o
-    if atom.position[2] < z_cut:
-        junction.append(atom)
-
-# Save the supercell to an XYZ file
-write("{}/{}_junction.xyz".format(folder, polymorph), junction)
-view(junction)
-
-print(cell_size)
+from pymatgen.io.ase import AseAtomsAdaptor
 
 # # Lattice constant for copper
 # a = 3.61
@@ -57,7 +19,7 @@ print(cell_size)
 #     [[0, 0, 0], [0, 0.5, 0.5],
 #      [0.5, 0, 0.5], [0.5, 0.5, 0]],
 # )
-# #
+#
 # # Use SlabGenerator to create a (100) slab
 # slabgen = SlabGenerator(
 #     initial_structure=cu_bulk,
@@ -82,39 +44,65 @@ print(cell_size)
 # # Visualize the structure using ASE
 # view(ase_atoms)
 
-# # Use Materials Project API to get HfO2 structure
-# api_key = np.loadtxt('mp_api_key', dtype=str)
-# print(api_key)
-# mpr = MPRester(api_key)
-#
-# # Retrieve the HfO2 structure
-# structure = mpr.get_structure_by_material_id("mp-1018721")  # mp-2023 is a known ID for tetragonal HfO2
-# print(structure)
-#
-# # Convert Pymatgen structure to ASE Atoms object
-# ase_atoms = Atoms(
-#     symbols=[str(s) for s in structure.species],  # Convert Element objects to strings
-#     positions=structure.cart_coords,
-#     cell=structure.lattice.matrix,
-#     pbc=True
-# )
-#
-# # Save the unit cell to an XYZ file
-# xyz_file_path = "HfO2_unit_cell.xyz"  # Specify your desired file name
-# write(xyz_file_path, ase_atoms)
-#
-# # Optionally, visualize the structure using ASE
-# view(ase_atoms)
+polymorph = 't-hfo2'
+polymorph_id = 'mp-1018721'
 
-# Define lattice parameters for tetragonal HfO2
+# # Use Materials Project API to get HfO2 structure
+# api_key = str(np.loadtxt('mp_api_key', dtype=str))
+# mpr = MPRester(api_key)
+# unit_cell = mpr.get_structure_by_material_id(polymorph_id)
+# print(unit_cell)
+
+# Primitive cell for monoclinic has 12 atoms, for tetragonal has 6 so use a sqrt(2) doubled cell
+a = 5.1
+b = a
+c = 5.2
+lattice = Lattice.from_parameters(a, b, c, 90, 90, 90)  # Tetragonal cell
+sites = [
+    ("Hf", [0.000, 0.000, 0.000]),
+    ("Hf", [0.000, 0.500, 0.500]),
+    ("Hf", [0.500, 0.000, 0.500]),
+    ("Hf", [0.500, 0.500, 0.000]),
+    ("O", [0.250, 0.250, 0.206]),
+    ("O", [0.750, 0.750, 0.206]),
+    ("O", [0.750, 0.250, 0.794]),
+    ("O", [0.250, 0.750, 0.794]),
+    ("O", [0.250, 0.250, 0.706]),
+    ("O", [0.750, 0.750, 0.706]),
+    ("O", [0.750, 0.250, 0.294]),
+    ("O", [0.250, 0.750, 0.294]),
+]
+unit_cell = Structure(lattice, [site[0] for site in sites], [site[1] for site in sites])
+
+supercell = unit_cell.copy()
+supercell.make_supercell([2, 3, 2])
+
+# Switch the y and z axes
+rotation_matrix = np.array([[1, 0, 0],  # x remains the same
+                             [0, 0, 1],  # y becomes z
+                             [0, 1, 0]])  # z becomes y
+
+# Apply rotation to all atomic coordinates in the supercell
+for site in supercell:
+    rotated_coords = rotation_matrix @ site.coords
+    site.coords = rotated_coords
+
+ase_unit_cell = AseAtomsAdaptor.get_atoms(unit_cell)
+ase_supercell = AseAtomsAdaptor.get_atoms(supercell)
+
+# Save the unit cell to an XYZ file
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen'
+write("{}/{}_unit_cell.xyz".format(folder, polymorph), ase_unit_cell)
+write("{}/{}_supercell.xyz".format(folder, polymorph), ase_supercell)
+
+view(ase_unit_cell)
+view(ase_supercell)
+
+# Define lattice parameters for tetragonal HfO2 P42/nmc
 # a = 5.1
 # b = a
 # c = 5.2
-#
-# # Create the lattice
 # lattice = Lattice.from_parameters(a, b, c, 90, 90, 90)  # Tetragonal cell
-#
-# # Define the atomic positions for HfO2 in P42/nmc
 # sites = [
 #     ("Hf", [0, 0, 0]),              # Hafnium
 #     ("O", [0.25, 0.25, 0.25]),      # Oxygen
@@ -123,22 +111,19 @@ print(cell_size)
 #     ("O", [0.75, 0.25, 0.25]),      # Equivalent position of O
 # ]
 #
-# # Create the structure
 # structure = Structure(lattice, [site[0] for site in sites], [site[1] for site in sites])
-#
-# # Convert Pymatgen structure to ASE Atoms object
 # ase_atoms = Atoms(
 #     symbols=[str(s) for s in structure.species],  # Convert Element objects to strings
 #     positions=structure.cart_coords,
 #     cell=structure.lattice.matrix,
 #     pbc=True
 # )
-#
-# # Save the unit cell to an XYZ file
-# # xyz_file_path = "HfO2_unit_cell_xyz"  # Specify your desired file name
-# # write(xyz_file_path, ase_atoms)
-#
-# # Optionally, visualize the structure using ASE
+
+# Save the unit cell to an XYZ file
+# xyz_file_path = "HfO2_unit_cell_xyz"  # Specify your desired file name
+# write(xyz_file_path, ase_atoms)
+
+# Optionally, visualize the structure using ASE
 # view(ase_atoms)
 
 
