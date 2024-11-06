@@ -77,15 +77,17 @@ from general import parameters as param
 #     '/Volumes/Storage/Data/delete/Work/Postdoc/Work/calculations/transport/iv/au/siesta/V-0_HLB-1_z-0-0-sdp']
 
 # CP2K Lithium 1D wire 1e
-# bulk_charge = 'bulk-RHO_z.dat'
-# bulk_hartree = 'bulk-VH_AV.dat'
-# em_hartree = '0V-VH_z_ORIG-0001.dat'
-# em_charge = 'RHO_AO-0001.txt'
-# labels_em = ['EM']
-# labels_bulk = ['Bulk']
-# ylim = [-3, 2]
-# folder = [
-#     '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_5-4/cp2k-smeagol/single-points/old/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered']
+bulk_charge = 'bulk-RHO_z.dat'
+bulk_hartree = 'bulk-VH_AV.dat'
+em_hartree = '0V-VH_z_ORIG-0001.dat'
+em_charge = 'RHO_AO-0001.txt'
+labels_em = ['EM']
+labels_bulk = ['Bulk']
+ylim = [-3, 2]
+folder = [
+    '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/au-capacitor-100/struct_5-4/cp2k-smeagol/single-points/old/V-0_HLB-F_z-0-0_hirshfeld-gaussian_ordered']
+
+
 
 # SIESTA Au-BDT
 # bulk_charge = '0.bulk-RHO_AV.dat'
@@ -103,20 +105,20 @@ from general import parameters as param
 # print('Saving to', folder_save)
 
 # SIESTA Au-H2-Au
-bulk_charge = '0.lead-RHO_AV.dat'
-bulk_hartree = '0.lead-VH_AV.dat'
-em_hartree = '0.mx-VH_AV.dat'
-em_charge = '0.mx-RHO_AV.dat'
-labels_em = ['EM']
-labels_bulk = ['Bulk']
-ylim = [-3, 2]
-x = 38.72 - 8.36
-# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-F']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-T-12.19948578']
-folder_save = []
-for i in range(len(folder)):
-    folder_save.append('{}/output'.format(folder[i]))
-print('Saving to', folder_save)
+# bulk_charge = '0.lead-RHO_AV.dat'
+# bulk_hartree = '0.lead-VH_AV.dat'
+# em_hartree = '0.mx-VH_AV.dat'
+# em_charge = '0.mx-RHO_AV.dat'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# x = 38.72 - 8.36
+# # folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-F']
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/AuH2/transport/siesta-smeagol/transmission/HLB-T-12.19948578']
+# folder_save = []
+# for i in range(len(folder)):
+#     folder_save.append('{}/output'.format(folder[i]))
+# print('Saving to', folder_save)
 
 data_bulk_charge = []
 data_bulk_hartree = []

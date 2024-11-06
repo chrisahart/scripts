@@ -41,17 +41,80 @@ print_label = 'V0_DFT'
 # file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube', '4V-ELECTRON_DENSITY-1_0.cube']
 # file_hartree_em2 = ['1V-v_hartree-1_0.cube', '4V-v_hartree-1_0.cube']
 # diff_label = ['CP2K+SMEAGOL 1 V - 0 V', 'CP2K+SMEAGOL 4 V - 0 V']
-folder_cp2k = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/cp2k-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5']
-file_charge_em2 = ['4V-ELECTRON_DENSITY-1_0.cube']
-file_hartree_em2 = ['4V-v_hartree-1_0.cube']
-diff_label = ['CP2K+SMEAGOL 4 V - 0 V SC']
+# folder_cp2k = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/cp2k-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5']
+# file_charge_em2 = ['4V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em2 = ['4V-v_hartree-1_0.cube']
+# diff_label = ['CP2K+SMEAGOL 4 V - 0 V SC']
+# file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube'] * 4
+# file_hartree_em1 = ['0V-v_hartree-1_0.cube'] * 4
+# file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube'] * 4
+# file_hartree_dft = ['dft_wfn-v_hartree-1_0.cube'] * 4
+# file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube'] * 4
+# file_hartree_bulk = ['bulk-v_hartree-1_0.cube'] * 4
+# labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=4']
+# plot_folder = 0
+#
+# plot_color = ['k', 'b', 'r', 'g']
+# read_labels = [True, True, True, True]
+# # diff_color = ['r', 'g', 'b']
+# # diff_color_siesta = ['b', 'm']
+# diff_color = ['g', 'b']
+# diff_color_siesta = ['m']
+# plot_labels = read_labels
+# print_label = 'average_z_all'
+# axis = 2
+# plot_diff_legend = [True, False]
+# draw_mirror = False
+# draw_mirror_diff = False
+# mirror_scale = -1
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+# SIESTA
+# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5']
+# charge_3 = ['0.1V-RHO_AV.dat']
+# hartree_3 = ['0.1V-VH_AV.dat']
+# diff_label_siesta = ['SIESTA+SMEAGOL']
+# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5',
+#                  '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
+# charge_3 = ['0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat']
+# hartree_3 = ['0.4V-VH_AV.dat', '0.4V-VH_AV.dat', '0.4V-VH_AV.dat']
+# diff_label_siesta = ['SIESTA+SMEAGOL SC', 'SIESTA+SMEAGOL DC']
+# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
+#                  '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
+# charge_3 = ['0.1V-RHO_AV.dat', '0.4V-RHO_AV.dat']
+# hartree_3 = ['0.1V-VH_AV.dat', '0.4V-VH_AV.dat']
+# diff_label_siesta = ['SIESTA+SMEAGOL 1 V - 0 V', 'SIESTA+SMEAGOL 4 V - 0 V']
+# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5']
+# charge_3 = ['0.4V-RHO_AV.dat']
+# hartree_3 = ['0.4V-VH_AV.dat']
+# diff_label_siesta = ['SIESTA+SMEAGOL 4 V - 0 V SC']
+# charge_1 = ['0.bulk-RHO_AV.dat'] * 3
+# hartree_1 = ['0.bulk-VH_AV.dat'] * 3
+# charge_2 = ['0.0V-RHO_AV.dat'] * 3
+# hartree_2 = ['0.0V-VH_AV.dat'] * 3
+# labels_siesta = ['V=0', 'V=1', 'Bulk']
+# ylim = [-3, 2]
+# plot_dft = True
+# plot_markers = False
+# plot_diff = True
+# plot_diff_multiple = True
+# plot_mirror = False
+# # diff_label_siesta = ['SIESTA1+SMEAGOL', 'SIESTA3+SMEAGOL']
+
+folder_cp2k = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-capacitor-kpoints-11-struct-au-lattice2-rounded-4-4'
+file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube']
+file_hartree_em2 = ['1V-v_hartree-1_0.cube']
+diff_label = ['CP2K+SMEAGOL 1 V - 0 V']
 file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube'] * 4
 file_hartree_em1 = ['0V-v_hartree-1_0.cube'] * 4
 file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube'] * 4
 file_hartree_dft = ['dft_wfn-v_hartree-1_0.cube'] * 4
 file_charge_bulk = ['bulk-ELECTRON_DENSITY-1_0.cube'] * 4
 file_hartree_bulk = ['bulk-v_hartree-1_0.cube'] * 4
-labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=4']
+labels = ['CP2K+SMEAGOL bulk', 'CP2K', 'CP2K+SMEAGOL V=0', 'CP2K+SMEAGOL V=1']
 plot_folder = 0
 
 plot_color = ['k', 'b', 'r', 'g']
@@ -71,38 +134,7 @@ use_xlim = False
 xlim_specify_left = [-0.1, 6]
 xlim_specify_right = [78, 84.1]
 xlim_specify = xlim_specify_left
-
-# SIESTA
-# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5']
-# charge_3 = ['0.1V-RHO_AV.dat']
-# hartree_3 = ['0.1V-VH_AV.dat']
-# diff_label_siesta = ['SIESTA+SMEAGOL']
-# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5',
-#                  '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
-# charge_3 = ['0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat', '0.4V-RHO_AV.dat']
-# hartree_3 = ['0.4V-VH_AV.dat', '0.4V-VH_AV.dat', '0.4V-VH_AV.dat']
-# diff_label_siesta = ['SIESTA+SMEAGOL SC', 'SIESTA+SMEAGOL DC']
-# folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-1_WeightRho-0.5',
-#                  '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_double-contour']
-# charge_3 = ['0.1V-RHO_AV.dat', '0.4V-RHO_AV.dat']
-# hartree_3 = ['0.1V-VH_AV.dat', '0.4V-VH_AV.dat']
-# diff_label_siesta = ['SIESTA+SMEAGOL 1 V - 0 V', 'SIESTA+SMEAGOL 4 V - 0 V']
-folder_siesta = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-capacitor/siesta1-smeagol/kpoints-2-2-20_V-4_WeightRho-0.5']
-charge_3 = ['0.4V-RHO_AV.dat']
-hartree_3 = ['0.4V-VH_AV.dat']
-diff_label_siesta = ['SIESTA+SMEAGOL 4 V - 0 V SC']
-charge_1 = ['0.bulk-RHO_AV.dat'] * 3
-hartree_1 = ['0.bulk-VH_AV.dat'] * 3
-charge_2 = ['0.0V-RHO_AV.dat'] * 3
-hartree_2 = ['0.0V-VH_AV.dat'] * 3
-labels_siesta = ['V=0', 'V=1', 'Bulk']
-ylim = [-3, 2]
-plot_dft = True
-plot_markers = False
-plot_diff = True
-plot_diff_multiple = True
-plot_mirror = False
-# diff_label_siesta = ['SIESTA1+SMEAGOL', 'SIESTA3+SMEAGOL']
+folder_siesta =[]
 
 # diff_label = ['V=1 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 EM.WeightRho 0.5', 'V=4 - V=0 weighted double contour']
 x = 78.4 - 11.2
@@ -123,13 +155,13 @@ data_hartree_2 = []
 data_charge_3 = []
 data_cp2k_hartree = []
 data_cp2k_charge = []
-for i in range(len(folder_siesta)):
-    data_charge_1.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_1[i]), skip_header=0, skip_footer=0))
-    data_hartree_1.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_1[i]), skip_header=0, skip_footer=0))
-    if plot_dft: data_hartree_2.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_2[i]), skip_header=0, skip_footer=0))
-    if plot_dft: data_charge_2.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_2[i]), skip_header=0, skip_footer=0))
-    data_hartree_3.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_3[i]), skip_header=0, skip_footer=0))
-    data_charge_3.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_3[i]), skip_header=0, skip_footer=0))
+# for i in range(len(folder_siesta)):
+#     data_charge_1.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_1[i]), skip_header=0, skip_footer=0))
+#     data_hartree_1.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_1[i]), skip_header=0, skip_footer=0))
+#     if plot_dft: data_hartree_2.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_2[i]), skip_header=0, skip_footer=0))
+#     if plot_dft: data_charge_2.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_2[i]), skip_header=0, skip_footer=0))
+#     data_hartree_3.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], hartree_3[i]), skip_header=0, skip_footer=0))
+#     data_charge_3.append(np.genfromtxt('{}/{}'.format(folder_siesta[i], charge_3[i]), skip_header=0, skip_footer=0))
 
 # Setup axis
 mid_index = np.argmin(abs(data_hartree_3[0][:, 0]-mid_pos))

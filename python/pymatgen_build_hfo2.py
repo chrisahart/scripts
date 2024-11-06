@@ -87,16 +87,33 @@ for site in supercell:
     rotated_coords = rotation_matrix @ site.coords
     site.coords = rotated_coords
 
+# Create the (111) surface cut
+# Adjust min_slab_size and min_vacuum_size as needed
+min_slab_size = 3  # in Å, thickness of the slab
+min_vacuum_size = 15  # in Å, thickness of the vacuum layer
+slabgen = SlabGenerator(unit_cell, miller_index=(1, 0, 0), min_slab_size=1,
+                        min_vacuum_size=0)
+slabs = slabgen.get_slabs()
+if slabs:
+    surface_slab = slabs[0]
+else:
+    print("Failed to generate (111) slab.")
+    exit()
+surface_slab = surface_slab * (2,2,2)
+
 ase_unit_cell = AseAtomsAdaptor.get_atoms(unit_cell)
 ase_supercell = AseAtomsAdaptor.get_atoms(supercell)
+ase_supercell_111 = AseAtomsAdaptor.get_atoms(surface_slab)
 
 # Save the unit cell to an XYZ file
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen'
 write("{}/{}_unit_cell.xyz".format(folder, polymorph), ase_unit_cell)
 write("{}/{}_supercell.xyz".format(folder, polymorph), ase_supercell)
+write("{}/{}_supercell_111.xyz".format(folder, polymorph), ase_supercell_111)
 
 view(ase_unit_cell)
 view(ase_supercell)
+view(ase_supercell_111)
 
 # Define lattice parameters for tetragonal HfO2 P42/nmc
 # a = 5.1

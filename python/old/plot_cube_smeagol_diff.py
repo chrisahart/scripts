@@ -62,18 +62,40 @@ fermi_dft = 0
 # xlim_specify = xlim_specify_left
 
 # Au capacitor
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_-1.0'
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_0.0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_-1.0'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_0.0'
+# # folder_1 = folder_2
+# # folder_2 = folder_1
+# file_charge_2 = 'V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = 'V-v_hartree-1_0.cube'
+# # file_charge_1 = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# # file_hartree_1 = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_1 = 'V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_1 = 'V-v_hartree-1_0.cube'
+# plot_markers = False
+# draw_mirror = True
+# mirror_factor = -1
+# markers = np.array(
+#     [2.08400 * 0, 2.08400 * 1, 2.08400 * 2, 2.08400 * 3, 2.08400 * 4, 2.08400 * 5, 21.42200 + 2.08400 * 0,
+#      21.42200 + 2.08400 * 1, 21.42200 + 2.08400 * 2, 21.42200 + 2.08400 * 3, 21.42200 + 2.08400 * 4,
+#      21.42200 + 2.08400 * 5])
+# use_xlim = False
+# xlim_specify_left = [-0.1, 6]
+# xlim_specify_right = [78, 84.1]
+# xlim_specify = xlim_specify_left
+
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
 # folder_1 = folder_2
 # folder_2 = folder_1
-file_charge_2 = 'V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_2 = 'V-v_hartree-1_0.cube'
+file_charge_2 = '1V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_2 = '1V-v_hartree-1_0.cube'
 # file_charge_1 = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_1 = 'dft_wfn-v_hartree-1_0.cube'
-file_charge_1 = 'V-ELECTRON_DENSITY-1_0.cube'
-file_hartree_1 = 'V-v_hartree-1_0.cube'
+file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
+file_hartree_1 = '0V-v_hartree-1_0.cube'
 plot_markers = False
-draw_mirror = True
+draw_mirror = False
 mirror_factor = -1
 markers = np.array(
     [2.08400 * 0, 2.08400 * 1, 2.08400 * 2, 2.08400 * 3, 2.08400 * 4, 2.08400 * 5, 21.42200 + 2.08400 * 0,
@@ -122,7 +144,7 @@ if plot_markers: ax_cube_z[0].plot(markers, markers*0, 'o', color='orange', fill
 if draw_mirror: ax_cube_z[0].plot(energy_grid_z_2[:mid_index] + mid_pos_grid, mirror_factor*(np.flip(z_average_4[:mid_index]) - np.flip(z_average_2[:mid_index])), 'm--', label='EM .cube mirror')
 ax_cube_z[0].set_xlim([xlim[0], xlim[1]])
 # ax_cube_z[0].legend(frameon=False)
-ax_cube_z[0].set_xlabel(r'Position / Å')
+# ax_cube_z[0].set_xlabel(r'Position / Å')
 ax_cube_z[0].set_ylabel('Hartree potential z / eV')
 ax_cube_z[1].plot(energy_grid_z_3, z_average_3-z_average_1, 'k-', label='1V - 0 V')
 if plot_markers: ax_cube_z[1].plot(markers, markers*0, 'o', color='orange', fillstyle='none')

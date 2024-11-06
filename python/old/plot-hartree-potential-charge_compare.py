@@ -64,24 +64,24 @@ xlim_specify_left = [-0.1, 6]
 xlim_specify_right = [78, 84.1]
 xlim_specify = xlim_specify_left
 
-# SIESTA
-bulk_charge = '0.bulk-RHO_AV.dat'
-bulk_hartree = '0.bulk-VH_AV.dat'
-em_hartree = '0.transport-VH_AV.dat'
-em_charge = '0.transport-RHO_AV.dat'
-labels_em = ['EM']
-labels_bulk = ['Bulk']
-ylim = [-3, 2]
-plot_markers = False
-markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
-                    21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
-x = 33.926 - 8.336
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-0_HLB-auto_kpoints-1-1-20',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-1_HLB-auto_kpoints-1-1-20']
-folder_save = []
-for i in range(len(folder)):
-    folder_save.append('{}/output'.format(folder[i]))
-print('Saving to', folder_save)
+# # SIESTA
+# bulk_charge = '0.bulk-RHO_AV.dat'
+# bulk_hartree = '0.bulk-VH_AV.dat'
+# em_hartree = '0.transport-VH_AV.dat'
+# em_charge = '0.transport-RHO_AV.dat'
+# labels_em = ['EM']
+# labels_bulk = ['Bulk']
+# ylim = [-3, 2]
+# plot_markers = False
+# markers = np.array([2.08400*0, 2.08400*1, 2.08400*2, 2.08400*3, 2.08400*4, 2.08400*5, 21.42200+2.08400*0,
+#                     21.42200+2.08400*1, 21.42200+2.08400*2, 21.42200+2.08400*3, 21.42200+2.08400*4, 21.42200+2.08400*5])
+# x = 33.926 - 8.336
+# folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-0_HLB-auto_kpoints-1-1-20',
+#           '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-chain/siesta/transmission/testing/single-points/V-1_HLB-auto_kpoints-1-1-20']
+# folder_save = []
+# for i in range(len(folder)):
+#     folder_save.append('{}/output'.format(folder[i]))
+# print('Saving to', folder_save)
 
 
 data_bulk_charge = []
