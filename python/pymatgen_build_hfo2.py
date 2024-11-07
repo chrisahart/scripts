@@ -75,7 +75,7 @@ sites = [
 unit_cell = Structure(lattice, [site[0] for site in sites], [site[1] for site in sites])
 
 supercell = unit_cell.copy()
-supercell.make_supercell([2, 3, 2])
+supercell.make_supercell([3, 3, 3])
 
 # Switch the y and z axes
 rotation_matrix = np.array([[1, 0, 0],  # x remains the same

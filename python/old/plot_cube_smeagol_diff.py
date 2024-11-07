@@ -84,9 +84,10 @@ fermi_dft = 0
 # xlim_specify_right = [78, 84.1]
 # xlim_specify = xlim_specify_left
 
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
-# folder_1 = folder_2
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-au-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu-10layers-NEnergReal-64-omp-2'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
+folder_1 = folder_2
 # folder_2 = folder_1
 file_charge_2 = '1V-ELECTRON_DENSITY-1_0.cube'
 file_hartree_2 = '1V-v_hartree-1_0.cube'
