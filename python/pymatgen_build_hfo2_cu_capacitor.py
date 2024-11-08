@@ -7,70 +7,62 @@ import pandas as pd
 from general import print_xyz
 
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen'
+folder = r'C:\Users\storm\Desktop\old'
 polymorph = 't-hfo2'
 cu_lattice = 3.61
-print(cu_lattice*np.sqrt(2))
-print(cu_lattice*np.sqrt(2)*2)
-print(5.10500000*2)
-# cu_lattice = 4.17971
+hfo2_lattice_a = 5.1
+cu_lattice_spacing_xy = cu_lattice*np.sqrt(2)/2
 cu_o = 5.57326 - 3.73217
-
-hafnia_min = 3.82500
+layers_xy = 5
+layers_z = 4
 
 hafnia_supercell = read("{}/{}_supercell.xyz".format(folder, polymorph), format='xyz')
-cu_slab = fcc100('Cu', size=(6, 6, 11), a=cu_lattice, periodic=True)
-# cu_slab = fcc111('Cu', size=(4, 4, 7), a=cu_lattice, periodic=True)
-print(cu_slab.cell)
+cu_slab = fcc100('Cu', size=(7, 7, 11), a=cu_lattice, periodic=True)
 junction = Atoms(pbc=True)
 
 cu_max = np.max(cu_slab.positions[:, 2])
+cu_xy_unique = np.unique(cu_slab.positions[:, 0])
+cu_z_unique = np.unique(cu_slab.positions[:, 2])
+
+hafnia_xy_unique = np.unique(hafnia_supercell.positions[:, 0])
+cut_index = layers_xy * 2 - len(hafnia_xy_unique)
+hafnia_z_unique = np.unique(hafnia_supercell.positions[:, 2])
+z_cut_hafnia = hafnia_z_unique[2]
 
 for atom in cu_slab:
-    junction.append(atom)
+    if (atom.position[0] < cu_xy_unique[cut_index]
+            and atom.position[1] < cu_xy_unique[cut_index]):
+        junction.append(atom)
 
 z_cut = np.max(cu_slab.positions[:, 2]) - 1
-junction_max = 30.09109
-# np.max(junction.positions[:, 2])
+junction_max = hfo2_lattice_a/2 * layers_z + np.max(cu_slab.positions[:, 2]) + cu_o
 
-# delete cu atoms with x or y above 11 A
-# delete hfo atoms  with x or y above 12 A
-
-print(junction_max)
 for atom in cu_slab:
-    if atom.position[2] < z_cut:
+    if (atom.position[2] < z_cut and
+            atom.position[0] < cu_xy_unique[cut_index]
+            and atom.position[1] < cu_xy_unique[cut_index]):
         atom.position[2] = atom.position[2] + junction_max + cu_o
         junction.append(atom)
 
-# Round all atom positions to 3 dp
-unique_z = np.unique(junction.positions[:, 2])
-
 # label au atoms
-species = []
-j = 1
-for i in range(unique_z.shape[0]):
-    for atom in junction:
-        if atom.symbol == 'Cu':
-            if atom.position[2] == unique_z[0]:
-                species.append('Cu_{}'.format(str(j)))
-            j=j+1
+unique_z = np.unique(junction.positions[:, 2])
+# species = []
+# j = 1
+# for i in range(unique_z.shape[0]):
+#     for atom in junction:
+#         if atom.symbol == 'Cu':
+#             if atom.position[2] == unique_z[0]:
+#                 species.append('Cu_{}'.format(str(j)))
+#             j=j+1
 
-z_cut = 3
 for atom in hafnia_supercell:
-    if atom.position[2] > z_cut:
-        atom.position[2] = atom.position[2] - hafnia_min + cu_max + cu_o
+    if (atom.position[2] > z_cut_hafnia
+            and atom.position[0] < hafnia_xy_unique[cut_index]
+            and atom.position[1] < hafnia_xy_unique[cut_index]):
+        atom.position[2] = atom.position[2] - hafnia_z_unique[3] + cu_max + cu_o
         atom.position[0] = atom.position[0] - 1.27500
         atom.position[1] = atom.position[1] + (2.60000 - 1.27633)
         junction.append(atom)
-
-# cell_size = np.array([2.55000 + 7.65000,
-#                       2.60000 + 7.80000,
-#                       np.max(junction.positions[:, 2]) + cu_lattice / 2])
-# cell_size = np.array([cu_lattice*3,
-#                       cu_lattice*3,
-#                       np.max(junction.positions[:, 2]) + cu_lattice / 2])
-
-
-# Label each according to z index
 
 # Remove Hf and O to form capacitor
 # mask = np.isin(junction.symbols, ['Hf', 'O'], invert=True)
@@ -78,23 +70,29 @@ for atom in hafnia_supercell:
 #                  positions=junction.positions[mask])
 
 # cell_size = np.array([10.21, 10.21, 49.982])
-cell_size = np.array([12.763, 12.763, 49.982])
-# cell_size = np.array([12.74, 12.74, 49.982])
+cell_size = np.array([cu_lattice_spacing_xy*layers_xy,
+                      cu_lattice_spacing_xy*layers_xy,
+                      np.max(junction.positions[:, 2])+cu_lattice/2])
 junction.set_cell(cell_size)
-print(cell_size)
 
 # Wrap the positions within the new cell and sort
-# junction.wrap()
-# sorted_indices = np.lexsort((junction.positions[:, 1], junction.positions[:, 0], junction.positions[:, 2]))
-# junction = junction[sorted_indices]
+junction.wrap()
+sorted_indices = np.lexsort((junction.positions[:, 1],
+                             junction.positions[:, 0],
+                             junction.positions[:, 2]))
+junction = junction[sorted_indices]
 
 # Round all atom positions to 3 dp
 for atom in junction:
     atom.position = np.round(atom.position, 3)
+print('cell_size', np.round(cell_size, 3))
 
-
-# Need copy symbols from atoms object and then change species au to au_1 etc.
-# Clean up file and
+# Adjust species to "Cu_bulk" based on z-coordinate condition
+for i, atom in enumerate(junction):
+    if atom.symbol == 'Cu' and (atom.position[2] <= 10.830 or atom.position[2] >= 39.15200):
+        junction[i].symbol = 'Au'
+    elif atom.symbol == 'Cu' and (atom.position[2] <= 14.44000 or atom.position[2] >= 35.5420):
+        junction[i].symbol = 'Li'
 
 # Convert to Pandas dataframe so we can print custom species
 species = junction.symbols
@@ -102,15 +100,9 @@ df1 = pd.DataFrame({"Species":species,
                     "X":junction.positions[:, 0],
                     "Y":junction.positions[:, 1],
                     "Z":junction.positions[:, 2]})
-# df1.insert(loc=0, column='Species', value=pd.Series(species).values)
-print(df1)
 num_atoms = len(species)
 filename_output = "{}/{}_junction.xyz".format(folder, polymorph)
-# filename_output = "{}/{}_junction_capacitor_10layers.xyz".format(folder, polymorph)
 print_xyz.print_from_pandas(df1, num_atoms, filename_output, save_dp='%.3f')
-
-# write("{}/{}_junction.xyz".format(folder, polymorph), junction)
-# write("{}/{}_junction_capacitor_10layers.xyz".format(folder, polymorph), junction)
 view(junction)
 
 

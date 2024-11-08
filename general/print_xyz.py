@@ -19,7 +19,7 @@ def print_from_pandas(coord_xyz, num_atoms, filename_output, save_dp='%.3f'):
     coord_xyz.loc[-1] = [str(num_atoms), None, None, None]  # Use string as Pandas would convert int to float
     coord_xyz.index = coord_xyz.index + 1
     coord_xyz = coord_xyz.sort_index()
-    print(coord_xyz)
+    # print(coord_xyz)
     coord_xyz.to_csv(filename_output, index=False,header=False, quoting=csv.QUOTE_NONE, sep=" ", float_format=save_dp)
 
 
