@@ -62,8 +62,8 @@ fermi_dft = 0
 # xlim_specify = xlim_specify_left
 
 # Au capacitor
-# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_-1.0'
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_0.0'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_-1.0'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/2023/au-capacitor/archer/layers-1-2-3-4/iv_parralel/kpoints-4-4-20_hlb-auto_vacuum/iv_curve/V_0.0'
 # # folder_1 = folder_2
 # # folder_2 = folder_1
 # file_charge_2 = 'V-ELECTRON_DENSITY-1_0.cube'
@@ -84,24 +84,73 @@ fermi_dft = 0
 # xlim_specify_right = [78, 84.1]
 # xlim_specify = xlim_specify_left
 
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
-# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-au-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu-10layers-NEnergReal-64-omp-2'
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au-q1-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/old/au-q1-au-capacitor-kpoints-1-1-20-bulk-4layers-lattice-cu-10layers-NEnergReal-64-omp-2'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-4-4_pbe-dft-rs-dc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-V-1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-screen-symmetric'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-screen'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6/junction/testing/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-mpi-32-omp-4-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-screen-symmetric'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-screen'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-all'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-au'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-au-symmetric'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/test/kpoints-2-2-20_V-1_double-contour-rerun'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-V-1'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-tight'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-1-1-5'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-SZV-PBE-CUSTOM-q1-f3'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric-2-2-10'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric-293K-3'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6/junction/testing/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-mpi-32-omp-4-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-V-1-293K'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-3-3-symmetric-293K-600mgrid-6layers-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-2-2_pbe-dft-rs-V-1-1hr-dc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-sc-WeightRho-0.5'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-sc-WeightRho-0.5'
+
+folder_2 = "/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-au-3pd-2-rs"
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-au'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-sc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-sc-WeightRho-1'
+
+
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-screen'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/dft/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-screen'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-2-2_pbe-dft-rs-V-1-1hr-dc-test'
 folder_1 = folder_2
-# folder_2 = folder_1
+# file_charge_2 = '4V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '4V-v_hartree-1_0.cube'
 file_charge_2 = '1V-ELECTRON_DENSITY-1_0.cube'
 file_hartree_2 = '1V-v_hartree-1_0.cube'
-# file_charge_1 = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
-# file_hartree_1 = 'dft_wfn-v_hartree-1_0.cube'
+# file_charge_2 = '0.1V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '0.1V-v_hartree-1_0.cube'
+# file_charge_2 = '-0.1V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '-0.1V-v_hartree-1_0.cube'
+# file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '0V-v_hartree-1_0.cube'
 file_charge_1 = '0V-ELECTRON_DENSITY-1_0.cube'
 file_hartree_1 = '0V-v_hartree-1_0.cube'
+# file_charge_1 = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_1 = 'dft_wfn-v_hartree-1_0.cube'
 plot_markers = False
-draw_mirror = False
+draw_mirror = True
+# draw_mirror = False
 mirror_factor = -1
-markers = np.array(
-    [2.08400 * 0, 2.08400 * 1, 2.08400 * 2, 2.08400 * 3, 2.08400 * 4, 2.08400 * 5, 21.42200 + 2.08400 * 0,
-     21.42200 + 2.08400 * 1, 21.42200 + 2.08400 * 2, 21.42200 + 2.08400 * 3, 21.42200 + 2.08400 * 4,
-     21.42200 + 2.08400 * 5])
+marker_z = 1.80500
+marker_left = np.array(
+    [marker_z * 0, marker_z * 1, marker_z * 2, marker_z * 3, marker_z * 4, marker_z * 5, marker_z * 6, marker_z * 7,
+     marker_z * 8, marker_z * 9])
+marker_right = np.array(
+    [marker_z * 0, marker_z * 1, marker_z * 2, marker_z * 3, marker_z * 4, marker_z * 5, marker_z * 6, marker_z * 7,
+     marker_z * 8, marker_z * 9]) + 47.23200
+markers = np.concatenate([marker_left, marker_right])
 use_xlim = False
 xlim_specify_left = [-0.1, 6]
 xlim_specify_right = [78, 84.1]
@@ -132,11 +181,21 @@ energy_grid_z_2 = np.linspace(start=0, stop=atoms_1.get_cell()[axis][axis], num=
 energy_grid_z_3 = np.linspace(start=0, stop=atoms_1.get_cell()[axis][axis], num=data_3.shape[axis])
 energy_grid_z_4 = np.linspace(start=0, stop=atoms_1.get_cell()[axis][axis], num=data_4.shape[axis])
 xlim = [0-1, atoms_1.get_cell()[axis][axis]+1]
-mid_pos = 2.08400*5+(21.42200-2.08400*5)/2
+# mid_pos = 18.04900  +(37.04600 -18.04900)/2
+mid_pos = 16.24500  +(47.23200 -16.24500)/2
+mid_pos = 14.43900 + (57.81600-14.43900)/2
+
+# symmetric
+# mid_pos = 19.85400 + (50.59700-19.85400)/2
+
+# non-symmetric
+mid_pos = 21.65900 + (50.59700-21.65900)/2
+
+# mid_pos = 65.282/2 # 2.08400*5+(21.42200-2.08400*5)/2
 mid_index = np.argmin(abs(energy_grid_z_2-mid_pos))
 mid_pos_grid = energy_grid_z_2[mid_index]
-print(mid_pos)
-print(mid_pos_grid)
+print('mid_pos', mid_pos)
+# print(mid_pos_grid)
 
 rows, cols = 2, 1
 figcube_both, ax_cube_z = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))

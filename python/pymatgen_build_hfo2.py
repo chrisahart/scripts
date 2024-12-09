@@ -54,9 +54,9 @@ polymorph_id = 'mp-1018721'
 # print(unit_cell)
 
 # Primitive cell for monoclinic has 12 atoms, for tetragonal has 6 so use a sqrt(2) doubled cell
-a = 5.1
+a = 5.05
 b = a
-c = 5.2
+c = 5.19
 lattice = Lattice.from_parameters(a, b, c, 90, 90, 90)  # Tetragonal cell
 sites = [
     ("Hf", [0.000, 0.000, 0.000]),
@@ -75,7 +75,8 @@ sites = [
 unit_cell = Structure(lattice, [site[0] for site in sites], [site[1] for site in sites])
 
 supercell = unit_cell.copy()
-supercell.make_supercell([3, 3, 3])
+# supercell.make_supercell([3, 4, 9])
+supercell.make_supercell([3, 10, 9])
 
 # Switch the y and z axes
 rotation_matrix = np.array([[1, 0, 0],  # x remains the same
@@ -99,18 +100,18 @@ if slabs:
 else:
     print("Failed to generate (111) slab.")
     exit()
-surface_slab = surface_slab * (2,2,2)
+surface_slab = surface_slab * (2, 2, 2)
 
 ase_unit_cell = AseAtomsAdaptor.get_atoms(unit_cell)
 ase_supercell = AseAtomsAdaptor.get_atoms(supercell)
 ase_supercell_111 = AseAtomsAdaptor.get_atoms(surface_slab)
 
 # Save the unit cell to an XYZ file
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/5-5-4-layers'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-9'
 # folder = r'C:\Users\storm\Desktop\old'
 write("{}/{}_unit_cell.xyz".format(folder, polymorph), ase_unit_cell)
 write("{}/{}_supercell.xyz".format(folder, polymorph), ase_supercell)
-write("{}/{}_supercell_111.xyz".format(folder, polymorph), ase_supercell_111)
+# write("{}/{}_supercell_111.xyz".format(folder, polymorph), ase_supercell_111)
 
 view(ase_unit_cell)
 view(ase_supercell)
