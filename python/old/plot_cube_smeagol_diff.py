@@ -102,35 +102,96 @@ folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculation
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-au-symmetric'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/test/kpoints-2-2-20_V-1_double-contour-rerun'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/delete/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-V-1'
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-tight'
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-1-1-5'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-tight'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/junction/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-2-2_pbe-dft-rs-V-1-1hr'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/2-2-10-layers/capacitor/testing/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-3-3_pbe-dft-rs-dc-symmetric-au-1-dz-cu-1-1-5'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-SZV-PBE-CUSTOM-q1-f3'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric-2-2-10'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5/capacitor/testing/NIMAGES_IJ-7-kpoints-3-3-V-0-test-symmetric-293K-3'
-folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6/junction/testing/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-mpi-32-omp-4-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6/junction/testing/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-mpi-32-omp-4-V-0'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-V-1-293K'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-3-3-symmetric-293K-600mgrid-6layers-V-0'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/au/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-2-2_pbe-dft-rs-V-1-1hr-dc'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-sc-WeightRho-0.5'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-sc-WeightRho-0.5'
 
-folder_2 = "/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-au-3pd-2-rs"
+# folder_2 = "/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-au-3pd-2-rs"
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-au'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-sc'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-sc-WeightRho-1'
 
-
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/testing/NIMAGES_IJ-7-kpoints-2-2-V-0-SZV-PBE-CUSTOM-q1-f3-screen'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/capacitor/dft/NIMAGES_IJ-7-kpoints-2-2-SZV-PBE-CUSTOM-q1-f3-screen'
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/au-s-NIMAGES_IJ-7-EPS_PGF_ORB-1E-5-omp-1-kpoints-2-2_pbe-dft-rs-V-1-1hr-dc-test'
-folder_1 = folder_2
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.1-dc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-1-dc'
+
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-dc-all-q1'
+# folder_1 = folder_2
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-all-q1'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.1-dc-all-q1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-1-dc-all-q1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-1-dc-all-q1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.01-dc'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.01-dc-all-q1'
+
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0.1'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0.1-sc-WeightRho-1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0.01'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0.01-sc-WeightRho-1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-sc-WeightRho-1'
+
+
+# cu hafnia interface
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-all-q1'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.1-dc-all-q1'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-1-dc'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-1-WeightRho-1'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.1-dc'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.1-WeightRho-1'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.01-dc'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-3-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0.01-WeightRho-1'
+
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0'
+folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-square'
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/energy/kpoints-2-2-V-0-rs-V-1-rs-mulliken'
+
+# cu wire
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/capacitor-q1-f3-6atoms'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-square-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/capacitor-q1-f3-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-square-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-sc-WeightRho-0-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-sc-WeightRho-1-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-middle-square-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-right-square-6atoms'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-left-right-sc-WeightRho-0-6atoms-cp2k2024'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-middle-sc-WeightRho-0-6atoms-cp2k2024'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-middle-sc-WeightRho-1-6atoms-cp2k2024'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-middle-q11-square-6atoms'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-broken-middle-q11-sc-WeightRho-0-6atoms-cp2k2024'
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-one-cu-removed-middle'
+folder_2 = folder_1
+
+#
+# folder_1 = folder_2
 # file_charge_2 = '4V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_2 = '4V-v_hartree-1_0.cube'
 file_charge_2 = '1V-ELECTRON_DENSITY-1_0.cube'
 file_hartree_2 = '1V-v_hartree-1_0.cube'
 # file_charge_2 = '0.1V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_2 = '0.1V-v_hartree-1_0.cube'
+# file_charge_2 = '0.01V-ELECTRON_DENSITY-1_0.cube'
+# file_hartree_2 = '0.01V-v_hartree-1_0.cube'
 # file_charge_2 = '-0.1V-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_2 = '-0.1V-v_hartree-1_0.cube'
 # file_charge_2 = '0V-ELECTRON_DENSITY-1_0.cube'
@@ -140,7 +201,7 @@ file_hartree_1 = '0V-v_hartree-1_0.cube'
 # file_charge_1 = 'dft_wfn-ELECTRON_DENSITY-1_0.cube'
 # file_hartree_1 = 'dft_wfn-v_hartree-1_0.cube'
 plot_markers = False
-draw_mirror = True
+draw_mirror = False
 # draw_mirror = False
 mirror_factor = -1
 marker_z = 1.80500
@@ -189,7 +250,10 @@ mid_pos = 14.43900 + (57.81600-14.43900)/2
 # mid_pos = 19.85400 + (50.59700-19.85400)/2
 
 # non-symmetric
-mid_pos = 21.65900 + (50.59700-21.65900)/2
+# mid_pos = 21.65900 + (50.59700-21.65900)/2
+
+# supercell-1-1-3-bulk-6-cu-1.86 non-symmetric
+mid_pos = 21.66000 + (40.49800-21.66000)/2
 
 # mid_pos = 65.282/2 # 2.08400*5+(21.42200-2.08400*5)/2
 mid_index = np.argmin(abs(energy_grid_z_2-mid_pos))

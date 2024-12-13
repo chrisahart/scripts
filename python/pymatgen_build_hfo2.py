@@ -107,7 +107,7 @@ ase_supercell = AseAtomsAdaptor.get_atoms(supercell)
 ase_supercell_111 = AseAtomsAdaptor.get_atoms(surface_slab)
 
 # Save the unit cell to an XYZ file
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-9'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-4-cu-1.86'
 # folder = r'C:\Users\storm\Desktop\old'
 write("{}/{}_unit_cell.xyz".format(folder, polymorph), ase_unit_cell)
 write("{}/{}_supercell.xyz".format(folder, polymorph), ase_supercell)
