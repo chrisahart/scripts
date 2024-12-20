@@ -54,9 +54,28 @@ diff_label = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'SIESTA1+SMEAGOL weighted doub
 mid_pos = 19.3615
 diff_color = ['r', 'g', 'b']
 # folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-single_UseSaveDM']
-folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-single_UseSaveDM',
-          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeago/transmission/kpoints-3-3-20_contour-double_UseSaveDM']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeagol/transmission/kpoints-3-3-20_contour-single_UseSaveDM',
+          '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/transport/cp2k-smeagol-examples/examples/au-h2/siesta1-smeagol/transmission/kpoints-3-3-20_contour-double_UseSaveDM']
 
+# cp2k-smeagol-examples/examples/au-h2
+charge_1 = ['0.bulk-RHO_AV.dat'] * 3
+hartree_1 = ['0.bulk-VH_AV.dat'] * 3
+charge_2 = ['0.0V-RHO_AV.dat'] * 3
+hartree_2 = ['0.0V-VH_AV.dat'] * 3
+charge_3 = ['0.1V-RHO_AV.dat'] * 3
+hartree_3 = ['0.1V-VH_AV.dat'] * 3
+labels = ['V=0', 'V=1', 'Bulk']
+ylim = [-3, 2]
+plot_dft = True
+plot_markers = False
+plot_diff = False
+plot_diff_multiple = True
+plot_mirror = False
+diff_label = ['V=1 - V=0 EM.WeightRho 0.5', 'V=1 - V=0 weighted double contour']
+diff_label = ['SIESTA1+SMEAGOL EM.WeightRho 0.5', 'SIESTA1+SMEAGOL weighted double contour']
+mid_pos = 19.3615
+diff_color = ['k', 'g', 'b']
+folder = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/siesta1-smeagol/au/capacitor/kpoints-2-2-pbe-NIMAGES_IJ-5']
 
 folder_save = []
 for i in range(len(folder)):

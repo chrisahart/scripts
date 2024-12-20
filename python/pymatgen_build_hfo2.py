@@ -76,7 +76,7 @@ unit_cell = Structure(lattice, [site[0] for site in sites], [site[1] for site in
 
 supercell = unit_cell.copy()
 # supercell.make_supercell([3, 4, 9])
-supercell.make_supercell([3, 10, 9])
+supercell.make_supercell([3, 11, 9])
 
 # Switch the y and z axes
 rotation_matrix = np.array([[1, 0, 0],  # x remains the same
@@ -107,7 +107,7 @@ ase_supercell = AseAtomsAdaptor.get_atoms(supercell)
 ase_supercell_111 = AseAtomsAdaptor.get_atoms(surface_slab)
 
 # Save the unit cell to an XYZ file
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-4-cu-1.86'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-6-cu-1.86'
 # folder = r'C:\Users\storm\Desktop\old'
 write("{}/{}_unit_cell.xyz".format(folder, polymorph), ase_unit_cell)
 write("{}/{}_supercell.xyz".format(folder, polymorph), ase_supercell)

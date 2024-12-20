@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from general import print_xyz
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-4-cu-1.86'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-6-cu-1.86'
 # folder = r'C:\Users\storm\Desktop\old'
 polymorph = 't-hfo2'
 hfo2_lattice_a = 5.105
@@ -68,7 +68,14 @@ unique_z = np.unique(junction.positions[:, 2])
 #                 species.append('Cu_{}'.format(str(j)))
 #             j=j+1
 
-z_upper_hafnia = hafnia_z_unique[-5]
+# z_upper_hafnia = hafnia_z_unique[-1] # 1x1x5
+# z_upper_hafnia = hafnia_z_unique[-5] # 1x1x4
+# z_upper_hafnia = hafnia_z_unique[-9] # 1x1x3
+# z_upper_hafnia = hafnia_z_unique[-13]  # 1x1x2
+# z_upper_hafnia = hafnia_z_unique[-17] # 1x1x1
+
+z_upper_hafnia = hafnia_z_unique[-17] # 1x1x6
+
 for atom in hafnia_supercell:
     # atom.position[2] = atom.position[2] - hafnia_z_unique[3] + cu_max + cu_o
     # atom.position[0] = atom.position[0] - 1.27500

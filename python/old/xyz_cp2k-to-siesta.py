@@ -44,20 +44,16 @@ def cp2k_to_siesta(folder, input_filename, filename_output):
     # Replace species with value
     species_val = species.copy()
     for i in range(0, num_atoms):
-        if species[i] == "Au_bulk":
+        if species[i] == "Cu_bulk":
             species_val[i] = 1
-        elif species[i] == "N":
+        elif species[i] == "Cu_1":
+            species_val[i] = 1
+        elif species[i] == "Cu_2":
+            species_val[i] = 1
+        elif species[i] == "Hf":
             species_val[i] = 2
-        elif species[i] == "C":
+        elif species[i] == "O":
             species_val[i] = 3
-        elif species[i] == "H":
-            species_val[i] = 4
-        elif species[i] == "Au":
-            species_val[i] = 5
-        elif species[i] == "Au_surf":
-            species_val[i] = 6
-        elif species[i] == "Au_tip":
-            species_val[i] = 7
         else:
             print('undefined element', species[i])
 
@@ -82,6 +78,9 @@ folder = '/Volumes/ELEMENTS/Storage/Postdoc/Data/Work/Postdoc/Work/calculations/
 input_filename = 'gs-3A.xyz'
 output_filename = 'gs-3A.siesta'
 
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/structures/pymatgen/cu/supercell-1-1-3-cu-1.86'
+input_filename = 't-hfo2_junction.xyz'
+output_filename = 't-hfo2_capacitor.siesta'
 
 filename_output = '{}/{}'.format(folder, output_filename)
 
