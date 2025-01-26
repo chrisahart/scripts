@@ -27,12 +27,13 @@ labels = ['V=0.cube', 'V=1.cube', 'Bulk.cube']
 diff_label = ['L', 'R', 'W(L, R)']
 file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube'] * 5
 file_hartree_em2 = ['1V-v_hartree-1_0.cube'] * 5
-factor = [1] * 5
+factor = [1] * 10
 diff_color = ['r', 'g', 'k']
 mid_pos = 0
 plot_vline = False
 zoom = False
 opacity = [1] * 10
+mid_offset = [0, 0]
 
 # au capacitor
 # folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/testing/delete/cp2k-smeagol/kpoints-2-2-20_V-1_double-contour-rerun'] * 5
@@ -98,15 +99,15 @@ opacity = [1] * 10
 # diff_color = ['r', 'g', 'b', 'm']
 
 # cu chain contours
-folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle'] * 5
-folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle',
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-equilibrium2',
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-equilibrium',
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-total2',
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-total']
-diff_label = [r'W($\Delta^{\mathrm{R}}_{\mathrm{neq}}$)', r'W($D^{\mathrm{L}}_{\mathrm{eq}}$)', r'W($D^{\mathrm{R}}_{\mathrm{eq}}$)',
-              r'W($D^{\mathrm{L}}_{\mathrm{eq}}+\Delta^{\mathrm{R}}_{\mathrm{neq}}$)', r'W($D^{\mathrm{R}}_{\mathrm{eq}}+\Delta^{\mathrm{L}}_{\mathrm{neq}}$)']
-diff_color = ['k', 'g', 'b', 'm', 'y']
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-equilibrium2',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-equilibrium',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-total2',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-total']
+# diff_label = [r'W($\Delta^{\mathrm{R}}_{\mathrm{neq}}$)', r'W($D^{\mathrm{L}}_{\mathrm{eq}}$)', r'W($D^{\mathrm{R}}_{\mathrm{eq}}$)',
+#               r'W($D^{\mathrm{L}}_{\mathrm{eq}}+\Delta^{\mathrm{R}}_{\mathrm{neq}}$)', r'W($D^{\mathrm{R}}_{\mathrm{eq}}+\Delta^{\mathrm{L}}_{\mathrm{neq}}$)']
+# diff_color = ['k', 'g', 'b', 'm', 'y']
 
 
 # folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/chain/centred/wire-q1-f3-two-cu-removed-middle-V-0.01'] * 5
@@ -205,6 +206,234 @@ diff_color = ['k', 'g', 'b', 'm', 'y']
 # diff_label = ['L', 'R', 'W(L, R)']
 # diff_color = ['r', 'g', 'k']
 
+# supercell-1-1-2-bulk-6-cu-1.86
+# cu_pos = [21.66000, 35.44800, 21.66000 + (35.44800-21.66000)/2]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [1] * 10
+# # opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = False
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/square/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-rs-1-bs-1-2024',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-1-2024/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['1.0V-ELECTRON_DENSITY-1_0.cube', '1V-ELECTRON_DENSITY-1_0.cube', '1.0V-ELECTRON_DENSITY-1_0.cube', '1.0V-ELECTRON_DENSITY-1_0.cube', '1.0V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em2 = ['1.0V-v_hartree-1_0.cube', '1V-v_hartree-1_0.cube', '1.0V-v_hartree-1_0.cube', '1.0V-v_hartree-1_0.cube', '1.0V-v_hartree-1_0.cube']
+# # file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['W(L, R)', 'WeightRho 0.5 BSCS 1', 'WeightRho 0 BSCS 1', 'WeightRho 0']
+# diff_color = ['r', 'g', 'b', 'm']
+
+# supercell-1-1-2-bulk-6-cu-1.86
+# cu_pos = [21.66000, 35.44800, 21.66000 + (35.44800-21.66000)/2]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-rs-bs-1-2024',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-rs-bs-1']
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/square/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0-2024-bs-1/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/square-bs/iv_curve/V_{}'.format(bias)]
+# # file_charge_em2 = ['1.0V-ELECTRON_DENSITY-1_0.cube', '1V-ELECTRON_DENSITY-1_0.cube', '1V-ELECTRON_DENSITY-1_0.cube']
+# # file_hartree_em2 = ['1.0V-v_hartree-1_0.cube', '1V-v_hartree-1_0.cube', '1V-v_hartree-1_0.cube']
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['W(L, R)', 'WeightRho 0.5 BSCS 1', 'WeightRho 0.5 BSCS 1 2']
+# diff_color = ['r', 'g', 'k']
+
+# capacitor
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-sc-WeightRho-0.0',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-sc-WeightRho-1.0',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-sc-WeightRho-0.5',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-bs-1-rs-1-2-parralel4-nobs-conv-dftrs-cores128',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-bs-1-rs-1-2-parralel4-conv-dftrs-cores128-psmp']
+# bias = 1
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', '1/2(L, R)', 'W(L, R)', 'test']
+# diff_color = ['r', 'g', 'b', 'm', 'k']
+
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-V-1-bs-1-rs-1-2-parralel4-conv-dftrs-cores128-psmp',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/kpoints-2-2-sc-WeightRho-0.5-2024-bs-1']
+# bias = 1
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', '1/2(L, R)', 'W(L, R)', 'test']
+# diff_color = ['r', 'g', 'b', 'm', 'k']
+#
+#
+# supercell-1-1-2-bulk-6-cu-1.86
+# cu_pos = [19.85500, 35.44800, 19.85500 + (35.44800-19.85500)/2]
+# mid_offset = 27.66073-27.65151
+# mid_offset = 34.609 - 34.477 - 35.608 - 35.584
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-dc',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-V-1-dc-square',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square-eig/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube', '1V-ELECTRON_DENSITY-1_0.cube', '1.0V-ELECTRON_DENSITY-1_0.cube']
+# file_hartree_em2 = ['1V-v_hartree-1_0.cube', '1V-v_hartree-1_0.cube', '1.0V-v_hartree-1_0.cube']
+# # file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# # file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['1', '2', '3']
+# diff_color = ['r', 'g', 'b']
+
+# supercell-1-1-2-bulk-6-cu-1.86 symmetric capacitor bound states array 1
+# cu_pos = [19.85500, 35.44800, 19.85500 + (35.44800-19.85500)/2]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [1] * 10
+# plot_vline = True
+# zoom = False
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/WeightRho-0-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/WeightRho-1-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/WeightRho-0.5-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square/iv_curve/V_{}'.format(bias)]
+# # file_charge_em2 = ['1V-ELECTRON_DENSITY-1_0.cube', '1V-ELECTRON_DENSITY-1_0.cube', '1.0V-ELECTRON_DENSITY-1_0.cube']
+# # file_hartree_em2 = ['1V-v_hartree-1_0.cube', '1V-v_hartree-1_0.cube', '1.0V-v_hartree-1_0.cube']
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', '1/2(L, R)',  'W(L, R)']
+# diff_color = ['r', 'g', 'b', 'k']
+
+# supercell-1-1-2-bulk-6-cu-1.86 symmetric capacitor bound states array 2
+# cu_pos = [19.85500, 35.44800, 19.85500 + (35.44800-19.85500)/2]
+# vline_pos = cu_pos
+# xlim2 = [19, 20.6]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [1] * 10
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/WeightRho-0.5-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/WeightRho-0.5-2024-bs/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['1/2(L, R)', '1/2(L, R) + BSCS',  'W(L, R)']
+# diff_color = ['b', 'm', 'k']
+
+# supercell-1-1-2-bulk-6-cu-1.86 symmetric capacitor bound states array 3
+# cu_pos = [19.85500, 35.44800, 19.85500 + (35.44800-19.85500)/2]
+# mid_offset = 27.66073-27.65151
+# mid_offset = [0, (34.609 - 34.477) - (35.608 - 35.584)]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = False
+# bias_array = [0.1, 0.5, 1.0]
+# # bias_array = [0.1, 0.2, 0.3]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/bias/symm/kpoints-2-2-dc'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square-bs-eig/iv_curve/V_{}'.format(bias_array[0]),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square-bs-eig/iv_curve/V_{}'.format(bias_array[1]),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/capacitor/iv-curve/sym/mpi-128/square-bs-eig/iv_curve/V_{}'.format(bias_array[2])]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias_array[0]), '{}V-ELECTRON_DENSITY-1_0.cube'.format(bias_array[1]), '{}V-ELECTRON_DENSITY-1_0.cube'.format(bias_array[2])]
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias_array[0]), '{}V-v_hartree-1_0.cube'.format(bias_array[1]), '{}V-v_hartree-1_0.cube'.format(bias_array[2])]
+# diff_label = ['L', 'R', '1/2(L, R)']
+# diff_color = ['r', 'g', 'b']
+
+# junction
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0-rs-1-dc',
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/bound-states/delete/kpoints-2-2-V-0-rs-1-bs-1-2-short2_scf-2-6hrs']
+# bias = 1
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+
+# supercell-1-1-1-bulk-6-cu-1.86 iv curve
+# cu_pos = [21.66000, 30.39800]
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# vline_pos = cu_pos
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 0.1
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-1-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-1-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-1-bulk-6-cu-1.86/junction/iv-curve/WeightRho-1/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-1-bulk-6-cu-1.86/junction/iv-curve/square/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', 'W(L, R)']
+# diff_color = ['r', 'g', 'k']
+
+# # supercell-1-1-2-bulk-6-cu-1.86 iv curve
+# cu_pos = [21.66000, 35.44800, 21.66000 + (35.44800-21.66000)/2]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-1/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/square/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', 'W(L, R)']
+# diff_color = ['r', 'g', 'k']
+
+# supercell-1-1-2-bulk-6-cu-1.86 iv curve bound state
+# cu_pos = [21.66000, 35.44800, 21.66000 + (35.44800-21.66000)/2]
+# vline_pos = cu_pos
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 1.0
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0-2024/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-2-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0-2024-bs-1/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', 'W(L, R)']
+# diff_color = ['r', 'g', 'k']
+
 # supercell-1-1-3-bulk-6-cu-1.86 iv curve
 # cu_pos = [21.66000, 40.49800]
 # xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
@@ -264,6 +493,26 @@ diff_color = ['k', 'g', 'b', 'm', 'y']
 # diff_label = ['L', 'R', 'W(L, R)']
 # diff_color = ['r', 'g', 'k']
 
+# supercell-1-1-6-bulk-6-cu-1.86 iv curve
+# cu_pos = [21.66000, 55.64799]
+# xlim2 = [cu_pos[0]-3, cu_pos[1]+3]
+# vline_pos = cu_pos
+# mid_pos = cu_pos[0] + (cu_pos[1] - cu_pos[0]) / 2
+# opacity = [0.5, 0.5, 1]
+# plot_vline = True
+# zoom = True
+# bias_array = [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+# bias = bias_array[0]
+# bias = 0.1
+# folder_em1 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-6-bulk-6-cu-1.86/junction/bias/kpoints-2-2-V-0'] * 5
+# folder_em2 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-6-bulk-6-cu-1.86/junction/iv-curve/WeightRho-0/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-6-bulk-6-cu-1.86/junction/iv-curve/WeightRho-1/iv_curve/V_{}'.format(bias),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-6-bulk-6-cu-1.86/junction/iv-curve/square/iv_curve/V_{}'.format(bias)]
+# file_charge_em2 = ['{}V-ELECTRON_DENSITY-1_0.cube'.format(bias)] * 5
+# file_hartree_em2 = ['{}V-v_hartree-1_0.cube'.format(bias)] * 5
+# diff_label = ['L', 'R', 'W(L, R)']
+# diff_color = ['r', 'g', 'k']
+
 file_charge_em1 = ['0V-ELECTRON_DENSITY-1_0.cube'] * 5
 file_hartree_em1 = ['0V-v_hartree-1_0.cube'] * 5
 file_charge_dft = ['dft_wfn-ELECTRON_DENSITY-1_0.cube'] * 4
@@ -277,8 +526,10 @@ plot_labels = read_labels
 print_label = 'average_z_all'
 axis = 2
 plot_diff_legend = [True, False]
-draw_mirror = False
+draw_mirror = True
 draw_mirror_diff = False
+# draw_mirror = False
+# draw_mirror_diff = False
 mirror_scale = -1
 use_xlim = False
 xlim_specify_left = [-0.1, 6]
@@ -385,21 +636,25 @@ xlim = [0-1, data_charge_em1[0][1].get_cell()[axis][axis]+1]
 # Plot Hartree and charge .cube difference
 if plot_diff:
     fig_cube_both, ax_cube_both = plt.subplots(rows, cols, sharex='col', sharey='row', figsize=(6, 8))
+    if plot_vline: ax_cube_both[0].axhline(0.0, color='k', linewidth=0.5, linestyle='--')
     if plot_vline: ax_cube_both[0].axvline(vline_pos[0], color='k', linewidth=0.5, linestyle='--')
     if plot_vline: ax_cube_both[0].axvline(vline_pos[1], color='k', linewidth=0.5, linestyle='--')
+    if plot_vline: ax_cube_both[0].axvline(vline_pos[2], color='k', linewidth=0.5, linestyle='--')
     for i in range(len(folder_em2)):
         ax_cube_both[0].plot(energy_grid_hartree_em1, (average_hartree_em2[i]-average_hartree_em1[i])/factor[i], '-', color=diff_color[i], alpha=opacity[i], label=diff_label[i])
-        if draw_mirror_diff: ax_cube_both[0].plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid, -1*np.flip(average_hartree_em2[i][:mid_index]-average_hartree_em1[i][:mid_index]),
+        if draw_mirror_diff: ax_cube_both[0].plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid + mid_offset[0], -1*np.flip(average_hartree_em2[i][:mid_index]-average_hartree_em1[i][:mid_index]),
                                                   '--', alpha=opacity[i], color=diff_color[i])
     if plot_diff_legend[0]: ax_cube_both[0].legend(frameon=False)
     ax_cube_both[0].set_xlim([xlim[0], xlim[1]])
     # ax_cube_both[0].set_xlabel(r'Position / Å')
     ax_cube_both[0].set_ylabel('Hartree potential z / eV')
+    if plot_vline: ax_cube_both[1].axhline(0.0, color='k', linewidth=0.5, linestyle='--')
     if plot_vline: ax_cube_both[1].axvline(vline_pos[0], color='k', linewidth=0.5, linestyle='--')
     if plot_vline: ax_cube_both[1].axvline(vline_pos[1], color='k', linewidth=0.5, linestyle='--')
+    if plot_vline: ax_cube_both[1].axvline(vline_pos[2], color='k', linewidth=0.5, linestyle='--')
     for i in range(len(folder_em2)):
         ax_cube_both[1].plot(energy_grid_hartree_em1, (average_charge_em2[i]-average_charge_em1[i])/factor[i], '-', color=diff_color[i], alpha=opacity[i], label=diff_label[i])
-        if draw_mirror_diff: ax_cube_both[1].plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid, -1*np.flip(average_charge_em2[i][:mid_index]-average_charge_em1[i][:mid_index]),
+        if draw_mirror_diff: ax_cube_both[1].plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid + mid_offset[1], -1*np.flip(average_charge_em2[i][:mid_index]-average_charge_em1[i][:mid_index]),
                                                   '--', alpha=opacity[i], color=diff_color[i])
     if plot_diff_legend[1]: ax_cube_both[1].legend(frameon=False)
     ax_cube_both[1].set_xlim([xlim[0], xlim[1]])
@@ -444,18 +699,28 @@ if plot_diff:
 #     fig_hartree.savefig('{}/hartree_cube_diff_{}.png'.format(folder_em2[i], print_label), dpi=300)
 
 # Plot charge
-# fig_charge, ax_charge = plt.subplots()
-# if plot_fermi: ax_charge.axhline(y=fermi_dft, color='grey', linestyle='--', label='DFT Fermi energy', alpha=0.5)
-# if plot_dft: ax_charge.plot(energy_grid_charge_dft, average_charge_dft, 'r-', label=labels[0])
-# ax_charge.plot(energy_grid_charge_em1, average_charge_em1, 'g-', label=labels[1])
-# if draw_mirror: ax_charge.plot(energy_grid_charge_em1[:mid_index]+mid_pos_grid, np.flip(average_charge_em1[:mid_index]), 'm--')
-# if plot_leads: ax_charge.plot(energy_grid_charge_bulk, average_charge_bulk, 'k-', label=labels[2])
-# ax_charge.set_xlim([xlim[0], xlim[1]])
-# ax_charge.legend(frameon=False)
-# ax_charge.set_xlabel(r'Position / Å')
-# ax_charge.set_ylabel('Charge density z / eV')
-# fig_charge.tight_layout()
-# fig_charge.savefig('{}/charge.png'.format(folder_save), dpi=300)
+fig_charge, ax_charge = plt.subplots()
+if plot_vline: ax_charge.axhline(0.0, color='k', linewidth=0.5, linestyle='--')
+if plot_vline: ax_charge.axvline(vline_pos[0], color='k', linewidth=0.5, linestyle='--')
+if plot_vline: ax_charge.axvline(vline_pos[1], color='k', linewidth=0.5, linestyle='--')
+if plot_vline: ax_charge.axvline(vline_pos[2], color='k', linewidth=0.5, linestyle='--')
+for i in range(len(folder_em2)):
+    ax_charge.plot(energy_grid_hartree_em1, (average_charge_em2[i] - average_charge_em1[i]) / factor[i], '-',
+                         color=diff_color[i], alpha=opacity[i], label=diff_label[i])
+    if draw_mirror_diff: ax_charge.plot(energy_grid_hartree_em1[:mid_index] + mid_pos_grid + mid_offset[1],
+                                              -1 * np.flip(average_charge_em2[i][:mid_index] - average_charge_em1[i][
+                                                                                               :mid_index]),
+                                              '--', alpha=opacity[i], color=diff_color[i])
+ax_charge.set_xlim([xlim[0], xlim[1]])
+ax_charge.legend(frameon=False)
+ax_charge.set_xlabel(r'Position / Å')
+ax_charge.set_ylabel('Charge density z / eV')
+fig_charge.tight_layout()
+if zoom:
+    ax_charge.set_xlim([xlim2[0], xlim2[1]])
+    fig_charge.tight_layout()
+for i in range(len(folder_em2)):
+    fig_charge.savefig('{}/charge.png'.format(folder_em2[i]), dpi=300)
 
 if __name__ == "__main__":
     print(folder_em2)
