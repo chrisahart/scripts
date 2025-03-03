@@ -13,7 +13,8 @@ import csv
     Analysis script for au h2 as in clotilde phonon paper, to confirm SMEAGOL forces
 """
 
-folder_dft = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/force/kpoints-2-2-V-0'
+# folder_dft = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/force/kpoints-2-2-V-0'
+folder_dft = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/force/kpoints-2-2-V-0-mpi-128-rs-dft-alpha-0.1'
 # folder_dft = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hfo2/archer/interface/cu/tetragonal/transport/cu/supercell-1-1-5-bulk-6-cu-1.86/junction/bias/force/kpoints-3-3-V-0'
 folder_V0 = folder_dft
 file_dft = 'dft_wfn-frc-1.xyz'
@@ -31,7 +32,7 @@ V0_time = np.arange(start=1, stop=coord_V0.shape[0] + 1)
 diff = 0.2
 step = 0
 dimensions = ['x', 'y', 'z']
-dimension = 1
+dimension = 0
 dimension_string = dimensions[dimension]
 save = False
 xlim = [48 - diff, 122 + diff]
