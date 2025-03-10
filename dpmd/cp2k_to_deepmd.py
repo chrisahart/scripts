@@ -14,11 +14,13 @@ from hirshfeld_to_raw import read_hirsh
 # polaron_atom = 2
 # num_atoms = 77
 
+# 400k-f
 directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-f'
 polaron_atom = 0
 
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-b'
-polaron_atom = 13
+# 400k-b
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-b'
+# polaron_atom = 13
 
 num_fe = 47
 num_atoms = 120
@@ -40,8 +42,8 @@ num_timesteps = int(len(test)/num_atoms)
 data = np.zeros((num_timesteps, num_atoms))
 for i in range(num_timesteps):
     for j in range(num_atoms):
-        data[i, j] = np.abs(test['Spin moment'][(i*num_atoms) + j])
-        # data[i, j] = test['Spin moment'][(i*num_atoms) + j]
+        # data[i, j] = np.abs(test['Spin moment'][(i*num_atoms) + j])
+        data[i, j] = test['Spin moment'][(i*num_atoms) + j]
 
 # Remove data
 # start_timestep = 0
@@ -62,17 +64,19 @@ np.save('{}/{}/set.000/atom_ener.npy'.format(directory, directory_out), data_fla
 
 aparam = np.zeros((data.shape[0], num_atoms))
 aparam[0, polaron_atom] = 1.0
-aparam[1, polaron_atom] = 1.0
-aparam[2, polaron_atom] = 1.0
-timestep_start = 3
+# aparam[1, polaron_atom] = 1.0
+# aparam[2, polaron_atom] = 1.0
+timestep_start = 0
 for i in range(timestep_start, data.shape[0]-1):
         value = np.min(np.abs(data[i, 0:num_fe+1]))
         index = np.argmin(np.abs(data[i, 0:num_fe+1]))
         print(i, index, value)
         aparam[i+1, index] = 1.0
 
+print(aparam[:10, polaron_atom])
+print(aparam[-10:, index])
 aparam_flat = aparam.flatten()
 np.savetxt('{}/{}/aparam.raw'.format(directory, directory_out), aparam_flat, delimiter=' ')
 np.save('{}/{}/set.000/aparam.npy'.format(directory, directory_out), aparam_flat)
 test = np.load('{}/{}/set.000/aparam.npy'.format(directory, directory_out))
-print(test)
+# print(test)

@@ -76,9 +76,9 @@ run = '400K'
 value = 'Spin'
 folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k'
 # folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-b'
-folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-f'
+# folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/400k-f'
 # folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/hops-0'
-folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/330k'
+# folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/330k'
 folder_save = folder_4
 
 polaron_index_fe = {'330K': [13-1, 27-1, 46-1, 5-1],
@@ -91,7 +91,14 @@ file_spec1_4 = read_hirsh(folder_4, '/hematite-charges-1-clean.hirshfeld')
 num_data1_4 = energy_kinetic1_4.shape[0]
 topology_file = '{}/topology.xyz'.format(folder_4)
 trajectory_file = '{}/hematite-pos-1.xyz'.format(folder_4)
-time_val1_4 = time_val1_4 * 2
+timestep = 0.5
+time_array = np.linspace(0, int(time_val1_4.shape[0]*timestep), num=time_val1_4.shape[0])
+# time_val1_4 = time_val1_4 / timestep
+
+transition_time = np.array([460, 117.5, 315, 656, 721, 1283])
+zoom = False
+transition_time_plot = 0
+axis_lim_x_zoom = np.array([transition_time[transition_time_plot]-40, transition_time[transition_time_plot]+40])
 
 # check sizes are consistent
 print(int(file_spec1_4.shape[0]/atoms))
@@ -116,17 +123,20 @@ strength_limit = -31.0
 
 # System
 box_size = [10.071, 10.071, 13.747, 90, 90, 120]
-timestep = 0.5
 h_all = np.NaN
 water = np.NaN
 fe_beta = np.array([1, 2, 3, 4, 5, 6, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30, 37, 38, 41, 42, 45, 46]) - 1
 fe_alpha = np.array([7, 8, 9, 10, 11, 12, 19, 20, 21, 22, 23, 24, 31, 32, 33, 34, 35, 36, 39, 40, 43, 44, 47, 48]) - 1
-fe_b = np.array([14, 16, 18, 42, 27, 45, 25, 29]) - 1
-fe_d = np.array([6, 2, 13, 17, 38, 4, 15, 41]) - 1
-fe_f = np.array([46, 28, 5, 1, 30, 26, 37, 3]) - 1
+# fe_b = np.array([14, 16, 18, 42, 27, 45, 25, 29]) - 1
+fe_b = np.array([27, 45, 18, 14, 25, 29, 42, 16]) - 1
+# fe_d = np.array([6, 2, 13, 17, 38, 4, 15, 41]) - 1
+fe_d = np.array([2, 6, 17, 13, 4, 38, 41, 15]) - 1
+# fe_f = np.array([46, 28, 5, 1, 30, 26, 37, 3]) - 1
+fe_f = np.array([28, 46, 1, 5, 26, 30, 3, 37]) - 1
 o_neighbours = np.array([116, 76, 55, 89, 49, 102]) - 1
 o_all = np.linspace(start=49, stop=120, num=120-49+1, dtype=int) - 1
 num_species = np.array([len(o_all), len(fe_alpha), len(fe_beta)])
+plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
 
 # Plot all iron spin 1
 fig_spin2, ax_spin2 = plt.subplots()
@@ -160,14 +170,37 @@ ax_spin2.plot(time_val1_4[0] - time_val1_4[0], temp3[0, 0], 'b-', label='Fe, F')
 # ax_spin2.plot(time_val1_4 - time_val1_4[0], np.sum(temp3, axis=0)/8, 'b--')
 if draw_legend: ax_spin2.legend(frameon=True)
 # ax_spin2.plot([0, x_end], [-3.29, -3.29], '--', label='Bulk', color='grey')
-ax_spin2.set_xlabel('Timestep')
-# ax_spin2.set_xlabel('Time / fs')
+# ax_spin2.set_xlabel('Timestep')
+ax_spin2.set_xlabel('Time / fs')
 ax_spin2.set_ylabel('Spin moment')
 ax_spin2.set_ylim(ylim_1)
 ax_spin2.set_xlim([0, x_end])
 # ax_spin2.set_xlim([1500, 1600])
 fig_spin2.tight_layout()
-fig_spin2.savefig('{}/spin_{}.png'.format(folder_save, run), dpi=300)
+fig_spin2.savefig('{}/spin_all_{}.png'.format(folder_save, run), dpi=300)
+
+# Plot all iron spin layer
+# fig_spin3, ax_spin3 = plt.subplots(figsize=(12, 6))
+fig_spin3, ax_spin3 = plt.subplots()
+x_end = time_val1_4[-1]-time_val1_4[0]
+for j in range(len(fe_b)):
+    # ax_spin3.plot(time_array - time_array[0], temp1[j, :], '-', color=plotting_colors[j], label='Fe {}'.format(j+1))
+    # ax_spin3.plot(time_array - time_array[0], temp2[j, :], '-', color=plotting_colors[j], label='Fe {}'.format(j+1))
+    ax_spin3.plot(time_array - time_array[0], temp3[j, :], '-', color=plotting_colors[j], label='Fe {}'.format(j+1))
+ax_spin3.legend(frameon=True)
+# ax_spin3.set_xlabel('Timestep')
+ax_spin3.set_xlabel('Time / fs')
+ax_spin3.set_ylabel('Spin moment')
+ax_spin3.set_ylim(ylim_1)
+ax_spin3.set_xlim([0, x_end/2])
+# ax_spin3.set_xlim([1500, 1600])
+fig_spin3.tight_layout()
+fig_spin3.savefig('{}/spin_layer_{}.png'.format(folder_save, run), dpi=300)
+fig_spin3.tight_layout()
+if zoom:
+    ax_spin3.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+fig_spin3.tight_layout()
+fig_spin3.savefig('{}/spin_layer_zoom_{}.png'.format(folder_save, run), dpi=300)
 
 # Plot energy
 # fig_energy, ax_energy = plt.subplots()
@@ -307,28 +340,53 @@ bond_lengths_mean_2 = np.zeros((len(universe.trajectory)))
 for ts in universe.trajectory:
     frame = universe.trajectory.frame
     bond_lengths_time[frame] = distances.distance_array(atoms_fe.positions, atoms_o.positions, box=box_size)
-    bond_lengths_mean_1[frame] = np.average(np.sort(bond_lengths_time[frame])[:, 0:3])
-    bond_lengths_mean_2[frame] = np.average(np.sort(bond_lengths_time[frame])[:, 3:6])
-#
-# # Plot  metric (all)
-time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
-metric = np.zeros((len(universe.trajectory)))
-fig_4, ax_4 = plt.subplots()
+bond_lengths_time_sorted = np.zeros((len(universe.trajectory), len(atoms_fe), len(atoms_o)))
+bond_lengths_time_sorted_mean = np.zeros((len(universe.trajectory), len(atoms_fe)))
 for i in range(len(atoms_fe)):
     for j in range(len(universe.trajectory)):
-        sorted = np.sort(bond_lengths_time[j, i])[0:6]
-        metric[j] = func_metric(sorted, bond_lengths_mean_1[j], bond_lengths_mean_2[j])
-    # ax_4.plot(time_plot, metric, 'k')
-    ax_4.plot(time_val1_4 - time_val1_4[0], metric, 'k')
-# ax_4.set_xlabel('Time / s')
-ax_4.set_xlabel('Timestep')
+        bond_lengths_time_sorted_mean[j, i] = np.mean(np.sort(bond_lengths_time[j, i])[0:6])
+
+# # Plot  metric (all)
+time_plot = np.linspace(start=0, stop=len(universe.trajectory) * timestep, num=len(universe.trajectory))
+metric = np.zeros((len(atoms_fe), len(universe.trajectory)))
+fig_4, ax_4 = plt.subplots()
+for i in range(len(fe_b)):
+    # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+    # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+    ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+ax_4.set_xlabel('Time / fs')
+# ax_4.set_xlabel('Timestep')
 ax_4.set_ylabel('Average Fe-O bond length / A')
-ax_4.set_xlim([0, len(universe.trajectory)])
-# ax_4.set_xlim([0, len(universe.trajectory)*timestep])
+# ax_4.set_xlim([0, len(universe.trajectory)])
+ax_4.set_xlim([0, len(universe.trajectory) * timestep])
 ax_4.set_ylim(ylim_2)
 if draw_legend: ax_4.legend(frameon=False)
+fig_4.savefig('{}/bond_lengths_fe_o_{}.png'.format(folder_save, run), dpi=300)
 fig_4.tight_layout()
-fig_4.savefig('{}/metric_all_{}.png'.format(folder_save, run), dpi=300)
+if zoom:
+    ax_4.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+fig_4.tight_layout()
+fig_4.savefig('{}/bond_lengths_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
+
+# # Plot  metric (all)
+fig_5, ax_5 = plt.subplots()
+for i in range(len(fe_b)):
+    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]], 'r-', label='Fe b')
+    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], 'g-', label='Fe d')
+    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], 'b-', label='Fe f')
+ax_5.set_xlabel('Time / fs')
+# ax_5.set_xlabel('Timestep')
+ax_5.set_ylabel('Average Fe-O bond length / A')
+# ax_5.set_xlim([0, len(universe.trajectory)])
+ax_5.set_xlim([0, len(universe.trajectory)*timestep])
+ax_5.set_ylim(ylim_2)
+if draw_legend: ax_5.legend(frameon=False)
+fig_5.savefig('{}/bond_lengths_all_fe_o_{}.png'.format(folder_save, run), dpi=300)
+fig_5.tight_layout()
+if zoom:
+    ax_5.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+fig_5.tight_layout()
+fig_5.savefig('{}/bond_lengths_all_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
 
 # Plot  metric (color coded by layer)
 # time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
@@ -351,7 +409,7 @@ fig_4.savefig('{}/metric_all_{}.png'.format(folder_save, run), dpi=300)
 # ax_6.plot(time_plot[0], temp1[0, 0], 'r-', label='Fe B')
 # ax_6.plot(time_plot[0], temp2[0, 0], 'g-', label='Fe D')
 # ax_6.plot(time_plot[0], temp3[0, 0], 'b-', label='Fe F')
-# ax_6.set_xlabel('Time / s')
+# ax_6.set_xlabel('Time / fs')
 # ax_6.set_ylabel('Average Fe-O bond length / A')
 # ax_6.set_xlim([0, len(universe.trajectory)*timestep])
 # ax_6.set_ylim(ylim_2)
@@ -369,7 +427,7 @@ fig_4.savefig('{}/metric_all_{}.png'.format(folder_save, run), dpi=300)
 #         sorted3 = np.sort(bond_lengths_time[j, int(fe_only_f[i])])[0:6]
 #         temp3[i, j] = func_metric(sorted3, bond_lengths_mean_1[j], bond_lengths_mean_2[j])
 #     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :], '-', color=plot_color[i], label='Fe {}'.format(i + 1))
-# ax_6.set_xlabel('Time / s')
+# ax_6.set_xlabel('Time / fs')
 # ax_6.set_ylabel('Average Fe-O bond length / A')
 # ax_6.set_xlim([0, len(universe.trajectory)*timestep])
 # ax_6.set_ylim(ylim_2)
@@ -394,7 +452,7 @@ fig_4.savefig('{}/metric_all_{}.png'.format(folder_save, run), dpi=300)
 #     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3], '-', color=plot_color[i], label='Fe {}'.format(i + 1))
 #     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4], '-', color=plot_color[i], label='Fe {}'.format(i + 1))
 #     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5], '-', color=plot_color[i], label='Fe {}'.format(i + 1))
-# ax_6.set_xlabel('Time / s')
+# ax_6.set_xlabel('Time / fs')
 # ax_6.set_ylabel('Average Fe-O bond length / A')
 # ax_6.set_xlim([0, len(universe.trajectory)*timestep])
 # ax_6.set_ylim(ylim_2)
