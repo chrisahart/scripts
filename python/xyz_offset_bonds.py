@@ -31,28 +31,11 @@ folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite
 # folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/hole/221_supercell/reftraj/geo_opt/atom-1/atom-1-c-print'
 folder_in = folder_out
 filename_in = 'input.xyz'
-filename_out = 'input-offset-1-c.xyz'
+filename_out = 'input-offset-3-c.xyz'
 cols = ['Species', 'X', 'Y', 'Z']
 
 coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_coordinates.load_values_coord(
     folder_in, filename_in, cols)
-
-# Atom number and bond target (hole)
-# labels = np.array([156, 166, 167, 168, 170, 169, 171]) - 1
-# bond_target = np.array([1.85, 1.85, 1.95, 2.15, 1.98, 1.98])
-# bond_target = np.array([1.86, 1.96, 1.85, 2.00, 2.15, 1.97])
-# bond_target = np.ones(np.shape(labels)[0]-1) * 2.4  # Hole
-
-# Atom number and bond target (electron)
-# labels = np.array([29, 118, 44, 55, 49, 47, 107]) - 1
-# labels = np.array([133, 118, 44, 82, 146, 154, 140]) - 1
-
-# labels = np.array([36, 90, 46, 51, 54, 73, 43]) - 1
-# labels = np.array([127, 90, 46, 153, 117, 142, 139]) - 1
-
-# labels = np.array([35, 122, 93, 53, 50, 26, 25]) - 1
-# labels = np.array([96, 122, 93, 116, 152, 91, 125]) - 1
-
 
 # atom 0
 # labels = np.array([13, 50, 88, 108, 67, 61, 95]) - 1
@@ -63,15 +46,22 @@ coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load
 
 # atom 1
 # labels = np.array([38, 108, 104, 106, 95, 86, 109]) - 1
-labels = np.array([38, 108, 104, 106, 95, 63, 109]) - 1
+# labels = np.array([38, 108, 104, 106, 95, 63, 109]) - 1
+# neutral = np.array([2.12, 2.12, 2.12, 1.94, 94, 1.94])
+# a = np.array([2.00392, 2.14936, 1.96812, 1.84155, 1.95954, 1.84966])
+# b = np.array([1.96812, 2.00392, 2.14936, 1.95954, 1.84966, 1.84155])
+# c = np.array([2.14936, 1.96812, 2.00392, 1.84155, 1.95954, 1.84966])
+
+# atom 1
+# labels = np.array([38, 108, 104, 106, 95, 86, 109]) - 1
+labels = np.array([6, 54, 58, 88, 71, 67, 69]) - 1
 neutral = np.array([2.12, 2.12, 2.12, 1.94, 94, 1.94])
 a = np.array([2.00392, 2.14936, 1.96812, 1.84155, 1.95954, 1.84966])
 b = np.array([1.96812, 2.00392, 2.14936, 1.95954, 1.84966, 1.84155])
 c = np.array([2.14936, 1.96812, 2.00392, 1.84155, 1.95954, 1.84966])
 
-
 # bond_target = np.array([2.3]*6)
-bond_target = np.array([1.8]*6)
+# bond_target = np.array([1.8]*6)
 bond_target = c
 
 Fe_O = np.zeros(np.shape(labels)[0] - 1)

@@ -13,10 +13,10 @@ import pandas as pd
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/shared/denan_li/testing/multi-task-copy'
 
 # HF with frozen Fe, H2O flies away
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hf/frozen-fe/multi-task'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hf/frozen-fe/multi-task'
 
 # HF with frozen Fe and H2O
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hf/frozen-fe-h2o/multi-task'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hf/frozen-fe-h2o/multi-task'
 
 # HSE06(35%) with frozen Fe and H2O, single polaron hop
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hse/frozen-fe-h2o/multi-task'
@@ -24,9 +24,29 @@ folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu
 # Bulk hematite
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/hops-0-species/multi-task'
 
-legends = ["rmse_trn_ener_force", "rmse_e_trn_ener_force", "rmse_f_trn_ener_force", "rmse_trn_spin", "rmse_ae_trn_spin"]
-set_ylim = [1e-6, 1e2]
-set_xlim = [1e0, 1e6]
+# Bulk hematite DFT-MD
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b/multi-task-dpa2'
+
+# Bulk hematite 0K NEB
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/geo-opt-all/multi-task-dpa2'
+
+# Bulk hematite 0K NEB + DFT-MD
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all/multi-task-dpa2'
+# legends = ["rmse_trn_ener_force", "rmse_e_trn_ener_force", "rmse_f_trn_ener_force", "rmse_trn_spin", "rmse_ae_trn_spin"]
+
+# Bulk hematite DFT-MD single-fit neutral
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral/single-fit-ener-se_e2_a-2-pt-train'
+legends = ["rmse_trn", "rmse_e_trn", "rmse_f_trn"]
+
+# set_ylim = [1e-6, 1e2]
+# set_xlim = [1e0, 1e6]
+#
+# set_ylim = [0.02, 4]
+# set_ylim = [1e-5, 1]
+# set_xlim = [1e4, 5e5]
+
+set_ylim = [1e-5, 50]
+set_xlim = [1e3, 5e5]
 
 fig_lc, ax_lc = plt.subplots()
 with open("{}/lcurve.out".format(folder)) as f:
@@ -42,6 +62,7 @@ ax_lc.set_ylabel("Loss")
 ax_lc.set_xlim([set_xlim[0], set_xlim[1]])
 ax_lc.set_ylim([set_ylim[0], set_ylim[1]])
 fig_lc.tight_layout()
+plt.savefig("{}/loss.png".format(folder), dpi=600)
 
 # raw = np.loadtxt("{}/lcurve.out".format(folder), skiprows=2)
 # step, ener_force_rmse, ener_force_e_rmse, ener_force_f_rmse, spin_ae_rmse, learning_rate = raw[:, 0], raw[:, 1], raw[:, 2], raw[:, 3], raw[:, 5], raw[:, 6]
