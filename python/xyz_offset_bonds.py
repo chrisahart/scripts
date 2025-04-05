@@ -27,15 +27,40 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 # filename_in = 'input.xyz'
 # filename_out = 'input.xyz'
 
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/paper-2-jacs/221_supercell_cdft/hole/dft/neutral/m600_neutral-cubes2'
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/paper-2-jacs/221_supercell_cdft/hole/dft/neutral/m600_neutral-cubes2'
+folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
+
 # folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/hole/221_supercell/reftraj/geo_opt/atom-1/atom-1-c-print'
 folder_in = folder_out
-filename_in = 'input.xyz'
-filename_out = 'input-offset-3-c.xyz'
+# filename_in = 'input.xyz'
+filename_in = 'topology-label-all.xyz'
+# filename_out = 'input-offset-3-c.xyz'
+filename_out = 'topology-label-all2.xyz'
 cols = ['Species', 'X', 'Y', 'Z']
 
 coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_coordinates.load_values_coord(
     folder_in, filename_in, cols)
+
+
+species_print = list(species)
+my_string = "\n".join(species_print)
+with open('{}/species.txt'.format(folder_out), 'w') as file:
+    file.write(my_string)
+
+mapping = {
+    'Fe_A': 0,
+    'Fe_B': 1,
+    'Fe_C': 2,
+    'Fe_D': 3,
+    'Fe_E': 4,
+    'Fe_F': 5,
+    'O': 6
+}
+converted_list = [mapping[item] for item in species_print]
+converted_string = "\n".join(map(str, converted_list))
+with open('{}/species_map.txt'.format(folder_out), 'w') as file:
+    file.write(converted_string)
+
 
 # atom 0
 # labels = np.array([13, 50, 88, 108, 67, 61, 95]) - 1

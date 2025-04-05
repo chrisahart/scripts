@@ -25,8 +25,8 @@ def plot_ener(dft, dp, ax, color_plot, pos, text, title=None):
     ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
     ax.set_xlabel("DFT energy (eV)")
     ax.set_ylabel("DP energy (eV)")
-    mae = mean_absolute_error(dft.flatten(), dp.flatten()) / 77 * 1000  # unit: meV/atom
-    rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) / 77 * 1000  # unit: meV/atom
+    mae = mean_absolute_error(dft.flatten(), dp.flatten()) / 120 * 1000  # unit: meV/atom
+    rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) / 120 * 1000  # unit: meV/atom
     print('plot_ener')
     print('mean_absolute_error', mae)
     print('root_mean_squared_error', rmse)

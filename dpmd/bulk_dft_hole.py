@@ -82,6 +82,7 @@ folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/c
 # folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/hops-0'
 # folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/hole/hse/330k'
 folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/400K/input-file-EPS_SCHWARZ_FORCES-neutral'
+folder_4 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
 
 folder_save = folder_4
 
@@ -362,47 +363,47 @@ for i in range(len(atoms_fe)):
     for j in range(len(universe.trajectory)):
         bond_lengths_time_sorted_mean[j, i] = np.mean(np.sort(bond_lengths_time[j, i])[0:6])
 
-# # Plot  metric (all)
-time_plot = np.linspace(start=0, stop=len(universe.trajectory) * timestep, num=len(universe.trajectory))
-metric = np.zeros((len(atoms_fe), len(universe.trajectory)))
-fig_4, ax_4 = plt.subplots()
-for i in range(len(fe_b)):
-    ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]]-bond_lengths_time_sorted_mean[0, fe_b[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-ax_4.set_xlabel('Time / fs')
-# ax_4.set_xlabel('Timestep')
-ax_4.set_ylabel('Average Fe-O bond length / A')
-# ax_4.set_xlim([0, len(universe.trajectory)])
-ax_4.set_xlim([0, len(universe.trajectory) * timestep])
-ax_4.set_ylim([0.06, -0.10])
-if draw_legend: ax_4.legend(frameon=False)
-fig_4.savefig('{}/bond_lengths_average_layer_fe_o{}.png'.format(folder_save, run), dpi=300)
-fig_4.tight_layout()
-if zoom:
-    ax_4.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-fig_4.tight_layout()
-fig_4.savefig('{}/bond_lengths_average_layer_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
-
-# # Plot  metric (all)
-fig_5, ax_5 = plt.subplots()
-for i in range(len(fe_b)):
-    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]], 'r-', label='Fe b')
-    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], 'g-', label='Fe d')
-    ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], 'b-', label='Fe f')
-ax_5.set_xlabel('Time / fs')
-# ax_5.set_xlabel('Timestep')
-ax_5.set_ylabel('Average Fe-O bond length / A')
-# ax_5.set_xlim([0, len(universe.trajectory)])
-ax_5.set_xlim([0, len(universe.trajectory)*timestep])
-ax_5.set_ylim(ylim_2)
-if draw_legend: ax_5.legend(frameon=False)
-fig_5.savefig('{}/bond_lengths_average_all_fe_o{}.png'.format(folder_save, run), dpi=300)
-fig_5.tight_layout()
-if zoom:
-    ax_5.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-fig_5.tight_layout()
-fig_5.savefig('{}/bond_lengths_average_all_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
+# # # Plot  metric (all)
+# time_plot = np.linspace(start=0, stop=len(universe.trajectory) * timestep, num=len(universe.trajectory))
+# metric = np.zeros((len(atoms_fe), len(universe.trajectory)))
+# fig_4, ax_4 = plt.subplots()
+# for i in range(len(fe_b)):
+#     ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]]-bond_lengths_time_sorted_mean[0, fe_b[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_4.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+# ax_4.set_xlabel('Time / fs')
+# # ax_4.set_xlabel('Timestep')
+# ax_4.set_ylabel('Average Fe-O bond length / A')
+# # ax_4.set_xlim([0, len(universe.trajectory)])
+# ax_4.set_xlim([0, len(universe.trajectory) * timestep])
+# ax_4.set_ylim([0.06, -0.10])
+# if draw_legend: ax_4.legend(frameon=False)
+# fig_4.savefig('{}/bond_lengths_average_layer_fe_o{}.png'.format(folder_save, run), dpi=300)
+# fig_4.tight_layout()
+# if zoom:
+#     ax_4.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+# fig_4.tight_layout()
+# fig_4.savefig('{}/bond_lengths_average_layer_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
+#
+# # # Plot  metric (all)
+# fig_5, ax_5 = plt.subplots()
+# for i in range(len(fe_b)):
+#     ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_b[i]], 'r-', label='Fe b')
+#     ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_d[i]], 'g-', label='Fe d')
+#     ax_5.plot(time_array - time_array[0], bond_lengths_time_sorted_mean[:, fe_f[i]], 'b-', label='Fe f')
+# ax_5.set_xlabel('Time / fs')
+# # ax_5.set_xlabel('Timestep')
+# ax_5.set_ylabel('Average Fe-O bond length / A')
+# # ax_5.set_xlim([0, len(universe.trajectory)])
+# ax_5.set_xlim([0, len(universe.trajectory)*timestep])
+# ax_5.set_ylim(ylim_2)
+# if draw_legend: ax_5.legend(frameon=False)
+# fig_5.savefig('{}/bond_lengths_average_all_fe_o{}.png'.format(folder_save, run), dpi=300)
+# fig_5.tight_layout()
+# if zoom:
+#     ax_5.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+# fig_5.tight_layout()
+# fig_5.savefig('{}/bond_lengths_average_all_fe_o_zoom_{}_{}.png'.format(folder_save, transition_time_plot, run), dpi=300)
 
 # # Plot  metric (color coded by layer)
 # # time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
@@ -454,83 +455,83 @@ fig_5.savefig('{}/bond_lengths_average_all_fe_o_zoom_{}_{}.png'.format(folder_sa
 # # fig_6.savefig('{}/metric_color_atom_{}.png'.format(folder_save, run), dpi=300)
 #
 # Plot all Fe-O (color coded by layer)
-time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
-metric = np.zeros((len(universe.trajectory)))
-fig_6, ax_6 = plt.subplots()
-temp3 = np.zeros((len(fe_b), len(universe.trajectory), 6))
-# for i in range(len(fe_b)):
-for i in [3, 5]:
-    for j in range(len(universe.trajectory)):
-        sorted3 = np.sort(bond_lengths_time[j, int(fe_b[i])])[0:6]
-        temp3[i, j, :] = sorted3
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-ax_6.set_xlabel('Time / fs')
-ax_6.set_ylabel('Fe-O bond length / A')
-ax_6.set_xlim([0, len(universe.trajectory) * timestep])
-ylim_2 = [1.7, 2.3]
-ax_6.set_ylim(ylim_2)
-if draw_legend: ax_6.legend(frameon=False)
-fig_6.savefig('{}/bond_lengths_fe_o_{}.png'.format(folder_save, run), dpi=300)
-fig_6.tight_layout()
-if zoom:
-    ax_6.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-fig_6.tight_layout()
-fig_6.savefig('{}/bond_lengths_fe_o_zoom_{}.png'.format(folder_save, run), dpi=300)
-
-# Plot all Fe-O (color coded by layer)
-time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
-metric = np.zeros((len(universe.trajectory)))
-fig_7, ax_7 = plt.subplots()
-temp3 = np.zeros((len(fe_b), len(universe.trajectory), 6))
-# for i in range(len(fe_b)):
-for i in [3, 5]:
-    for j in range(len(universe.trajectory)):
-        sorted3 = np.sort(bond_lengths_time[j, int(fe_b[i])])[0:6]
-        temp3[i, j, :] = sorted3
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0] - (temp3[i, 0, 0]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1] - (temp3[i, 0, 1]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2] - (temp3[i, 0, 2]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3] - (temp3[i, 0, 3]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4] - (temp3[i, 0, 4]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5] - (temp3[i, 0, 5]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0] - np.mean(temp3[i, :, 0]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1] - np.mean(temp3[i, :, 1]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2] - np.mean(temp3[i, :, 2]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3] - np.mean(temp3[i, :, 3]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4] - np.mean(temp3[i, :, 4]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-    # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5] - np.mean(temp3[i, :, 5]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
-ax_7.set_xlabel('Time / fs')
-ax_7.set_ylabel('Fe-O bond length / A')
-ax_7.set_xlim([0, len(universe.trajectory) * timestep])
-ylim_2 = [0.10, -0.25]
-ax_7.set_ylim(ylim_2)
-if draw_legend: ax_7.legend(frameon=False)
-fig_7.savefig('{}/bond_lengths_fe_o_{}.png'.format(folder_save, run), dpi=300)
-fig_7.tight_layout()
-if zoom:
-    ax_7.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-fig_7.tight_layout()
-fig_7.savefig('{}/bond_lengths_fe_o_zoom_{}.png'.format(folder_save, run), dpi=300)
-
-print('Value t=0')
-print((temp3[i, 0, 0]))
-print((temp3[i, 0, 1]))
-print((temp3[i, 0, 2]))
-print((temp3[i, 0, 3]))
-print((temp3[i, 0, 4]))
-print((temp3[i, 0, 5]))
-print('Mean value')
-print(np.mean(temp3[i, :, 0]))
-print(np.mean(temp3[i, :, 1]))
-print(np.mean(temp3[i, :, 2]))
-print(np.mean(temp3[i, :, 3]))
-print(np.mean(temp3[i, :, 4]))
-print(np.mean(temp3[i, :, 5]))
+# time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
+# metric = np.zeros((len(universe.trajectory)))
+# fig_6, ax_6 = plt.subplots()
+# temp3 = np.zeros((len(fe_b), len(universe.trajectory), 6))
+# # for i in range(len(fe_b)):
+# for i in [3, 5]:
+#     for j in range(len(universe.trajectory)):
+#         sorted3 = np.sort(bond_lengths_time[j, int(fe_b[i])])[0:6]
+#         temp3[i, j, :] = sorted3
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_6.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5], '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+# ax_6.set_xlabel('Time / fs')
+# ax_6.set_ylabel('Fe-O bond length / A')
+# ax_6.set_xlim([0, len(universe.trajectory) * timestep])
+# ylim_2 = [1.7, 2.3]
+# ax_6.set_ylim(ylim_2)
+# if draw_legend: ax_6.legend(frameon=False)
+# fig_6.savefig('{}/bond_lengths_fe_o_{}.png'.format(folder_save, run), dpi=300)
+# fig_6.tight_layout()
+# if zoom:
+#     ax_6.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+# fig_6.tight_layout()
+# fig_6.savefig('{}/bond_lengths_fe_o_zoom_{}.png'.format(folder_save, run), dpi=300)
+#
+# # Plot all Fe-O (color coded by layer)
+# time_plot = np.linspace(start=0, stop=len(universe.trajectory)*timestep, num=len(universe.trajectory))
+# metric = np.zeros((len(universe.trajectory)))
+# fig_7, ax_7 = plt.subplots()
+# temp3 = np.zeros((len(fe_b), len(universe.trajectory), 6))
+# # for i in range(len(fe_b)):
+# for i in [3, 5]:
+#     for j in range(len(universe.trajectory)):
+#         sorted3 = np.sort(bond_lengths_time[j, int(fe_b[i])])[0:6]
+#         temp3[i, j, :] = sorted3
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0] - (temp3[i, 0, 0]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1] - (temp3[i, 0, 1]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2] - (temp3[i, 0, 2]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3] - (temp3[i, 0, 3]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4] - (temp3[i, 0, 4]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5] - (temp3[i, 0, 5]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 0] - np.mean(temp3[i, :, 0]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 1] - np.mean(temp3[i, :, 1]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 2] - np.mean(temp3[i, :, 2]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 3] - np.mean(temp3[i, :, 3]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 4] - np.mean(temp3[i, :, 4]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+#     # ax_7.plot(time_val1_4 - time_val1_4[0], temp3[i, :, 5] - np.mean(temp3[i, :, 5]), '-', color=plotting_colors[i], label='Fe {}'.format(i + 1))
+# ax_7.set_xlabel('Time / fs')
+# ax_7.set_ylabel('Fe-O bond length / A')
+# ax_7.set_xlim([0, len(universe.trajectory) * timestep])
+# ylim_2 = [0.10, -0.25]
+# ax_7.set_ylim(ylim_2)
+# if draw_legend: ax_7.legend(frameon=False)
+# fig_7.savefig('{}/bond_lengths_fe_o_{}.png'.format(folder_save, run), dpi=300)
+# fig_7.tight_layout()
+# if zoom:
+#     ax_7.set_xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+# fig_7.tight_layout()
+# fig_7.savefig('{}/bond_lengths_fe_o_zoom_{}.png'.format(folder_save, run), dpi=300)
+#
+# print('Value t=0')
+# print((temp3[i, 0, 0]))
+# print((temp3[i, 0, 1]))
+# print((temp3[i, 0, 2]))
+# print((temp3[i, 0, 3]))
+# print((temp3[i, 0, 4]))
+# print((temp3[i, 0, 5]))
+# print('Mean value')
+# print(np.mean(temp3[i, :, 0]))
+# print(np.mean(temp3[i, :, 1]))
+# print(np.mean(temp3[i, :, 2]))
+# print(np.mean(temp3[i, :, 3]))
+# print(np.mean(temp3[i, :, 4]))
+# print(np.mean(temp3[i, :, 5]))
 
 if __name__ == "__main__":
     print('Finished.')
