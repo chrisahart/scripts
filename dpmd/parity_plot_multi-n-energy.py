@@ -11,7 +11,8 @@ from sklearn.metrics import root_mean_squared_error
 # model = ['single-fit-ener-dpa1-se_atten_v2-attn_layer-2', 'single-fit-m-dpa1-se_atten_v2-attn_layer-2']
 # model = ['single-fit-ener-dpa1-se_atten_v2-attn_layer-3', 'single-fit-m-dpa1-se_atten_v2-attn_layer-3']
 # model = ['single-fit-ener-dpa2-nlayers-6', 'single-fit-m-dpa2-nlayers-6']
-# model = ['single-task-finetune-fe-o-only-rcut-6-rs']
+# model = ['single-task-finetune-fe-o-only-rcut-6']
+model = ['single-task-finetune-fe-o-only']
 # model = ['single-task-finetune-branch-H2O_H2O-PD-fe-o-only-use-pretrain-script']
 # model = ['single-task-finetune-branch-H2O_H2O-PD-fe-o-only-rcut-6']
 # model = ['single-task-finetune-branch-H2O_H2O-PD-fe-o-only']
@@ -19,19 +20,23 @@ from sklearn.metrics import root_mean_squared_error
 # model = ['single-task-finetune-branch-Domains_Anode-fe-o-only-rcut-6']
 # model = ['single-task-finetune-branch-Domains_Anode-fe-o-only']
 # model = ['multi-task-finetune-branch-Domains_Anode-fe-o-only']
-model = ['multi-task-finetune-branch-H2O_H2O-PD-fe-o-only']
-model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/{}'.format(model[0]),
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/{}'.format(model[0])]
-database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/database_ener_force_test',
-            '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/database_ener_force_train']
-val = ['_1_', '_0_']
-# axis_lim_y = np.array([-4.05, -3.05])
-# pos_array = np.array(([0.45, 0.1], [0.45, 0.2]))
-text_array = ['400 K test', '400 K train', 'Test 441']
+# model = ['multi-task-finetune-branch-H2O_H2O-PD-fe-o-only']
+# model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/{}'.format(model[0]),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/{}'.format(model[0])]
+# database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/database_ener_force_train',
+#             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5/database_ener_force_test']
+model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/{}'.format(model[0]),
+              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/{}'.format(model[0]),
+              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/{}'.format(model[0])]
+database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/database_ener_force_train',
+            '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/database_ener_force_test/1',
+            '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-neutral-rcut-5-new/database_ener_force_test/2']
+val = ['_0_', '_1_', '_2_']
 axis_lim_y = np.array([-4.05, -3.05])
-pos_array_energy = np.array(([0.38, 0.05], [0.38, 0.15]))
-pos_array_force = np.array(([0.6, 0.05], [0.6, 0.15]))
-pos_array_spin = np.array(([0.78, 0.05], [0.78, 0.15]))
+pos_array_energy = np.array(([0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
+pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+pos_array_spin = np.array(([0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
+text_array = ['400 K train', '400 K valid', '400 K test']
 
 color_plot_array = ['r', 'g', 'b', 'm']
 print('model', model)
