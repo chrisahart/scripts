@@ -11,12 +11,18 @@ from cp2kdata import Cp2kOutput
 # load data of cp2k/md format
 # directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/400K/input-file-EPS_SCHWARZ_FORCES-neutral'
 # directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral'
 
-size_exclude_start = 400
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral'
+# size_exclude_start = 400
+# size_exclude_end = 0
+# size_test = 200
+# size_validation = 800
+
+directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
+size_exclude_start = int(10e3*2)
 size_exclude_end = 0
-size_test = 200
-size_validation = 800
+size_test = int(2e3*2)
+size_validation = int(15e3*2)
 
 # Load the data from the specified directory
 data = dpdata.LabeledSystem(directory, cp2k_output_name='cp2k_log.log', fmt="cp2kdata/md", type_map=['Fe_a', 'Fe_b', 'O'])

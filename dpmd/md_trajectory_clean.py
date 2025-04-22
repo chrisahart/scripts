@@ -193,6 +193,7 @@ def write_xyz(filename, coordinates, species, num_atoms, index, energy_clean):
             f.write(f"{num_atoms}\n")
 
             # Write a comment line (optional, here using timestep index)
+            # f.write(f"i = {index[timestep]}, time = {index[timestep]/2}, E = 0\n")
             f.write(f"i = {index[timestep]}, time = {index[timestep]/2}, E = {energy_clean['E_pot'].values[timestep]}\n")
 
             # Write each atom's species and coordinates
@@ -235,141 +236,176 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-charged'
 # files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
 
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/330k-charged-philipp'
-files = ['hematite-1.ener', 'hirshfeld.xyz', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/330k-charged-philipp'
+# files = ['hematite-1.ener', 'hirshfeld.xyz', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
+
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
+files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1-wrapped.xyz', 'hematite-frc-1.xyz']
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/group/huobei'
+# files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
+# folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/330k-charged-philipp'
+# files2 = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'input.xyz', 'hematite-frc-1.xyz']
+
+# Energy Hirshfeld Position Force
+files_do = [True, True, True, True]
+# files_do = [False, False, True, False]
+# energy_step_1_missing = []
+# hirshfeld_step_1_missing = []
+# pos_step_1_missing = []
+# frc_step_1_missing = []
 
 # Energy
-file_energy_1, energy_kinetic_1, energy_potential_1, energy_total_1, temperature_1, time_val_1, time_per_step_1, step_1 = read_energy(folder_1, files[0])
-file_energy_1_no_duplicates = file_energy_1.drop_duplicates(subset=['Step'], keep='first')
-energy_unique_frames, energy_unique_indices = remove_duplicates(step_1)
-energy_step_1_missing = detect_missing_values(energy_unique_frames)
-print('Energy step last value', energy_unique_frames[-1])
-print('Energy total number steps', energy_unique_frames[-1] + 1)
-print('Energy length', len(energy_unique_frames))
-print('Energy missing values', energy_step_1_missing)
-print('Energy length + missing values', len(energy_unique_frames)+len(energy_step_1_missing))
-# plt.plot(energy_step_1_no_duplicates, 'k.', markersize=1)
+if files_do[0] is True:
+    file_energy_1, energy_kinetic_1, energy_potential_1, energy_total_1, temperature_1, time_val_1, time_per_step_1, step_1 = read_energy(folder_1, files[0])
+    file_energy_1_no_duplicates = file_energy_1.drop_duplicates(subset=['Step'], keep='first')
+    energy_unique_frames, energy_unique_indices = remove_duplicates(step_1)
+    energy_step_1_missing = detect_missing_values(energy_unique_frames)
+    print('Energy step last value', energy_unique_frames[-1])
+    print('Energy total number steps', energy_unique_frames[-1] + 1)
+    print('Energy length', len(energy_unique_frames))
+    print('Energy missing values', energy_step_1_missing)
+    print('Energy length + missing values', len(energy_unique_frames)+len(energy_step_1_missing))
+    # plt.plot(energy_step_1_no_duplicates, 'k.', markersize=1)
 
 # Hirshfeld
-hirshfeld_1_df, hirshfeld_1_np, _ = read_hirsh(folder_1, files[1])
-hirshfeld_index = list(np.loadtxt('{}/index.hirshfeld'.format(folder_1), dtype=int))
-# plt.plot(hirshfeld_index, 'k.', markersize=1)
-hirshfeld_index_unique_frames, hirshfeld_index_unique_indices = remove_duplicates(list(hirshfeld_index))
-hirshfeld_1_np_no_duplicates = hirshfeld_1_np[hirshfeld_index_unique_indices]
-hirshfeld_step_1_missing = detect_missing_values(hirshfeld_index_unique_frames)
-print('\nHirshfeld step last value', hirshfeld_index_unique_frames[-1])
-print('Hirshfeld total number steps', hirshfeld_index_unique_frames[-1] + 1)
-print('Hirshfeld length', len(hirshfeld_index_unique_frames))
-print('Hirshfeld missing values', hirshfeld_step_1_missing)
-print('Hirshfeld length + missing values', len(hirshfeld_index_unique_frames)+len(hirshfeld_step_1_missing))
-print('Hirshfeld df total number steps', np.shape(hirshfeld_1_np_no_duplicates))
-# plt.plot(hirshfeld_step_1_no_duplicates, 'k.', markersize=1)
+if files_do[1] is True:
+    hirshfeld_1_df, hirshfeld_1_np, _ = read_hirsh(folder_1, files[1])
+    print(hirshfeld_1_np.shape)
+    hirshfeld_index = list(np.loadtxt('{}/index.hirshfeld'.format(folder_1), dtype=int))
+    # plt.plot(hirshfeld_index, 'k.', markersize=1)
+    hirshfeld_index_unique_frames, hirshfeld_index_unique_indices = remove_duplicates(list(hirshfeld_index))
+    print(hirshfeld_index_unique_indices)
+    hirshfeld_1_np_no_duplicates = hirshfeld_1_np[hirshfeld_index_unique_indices]
+    hirshfeld_step_1_missing = detect_missing_values(hirshfeld_index_unique_frames)
+    print('\nHirshfeld step last value', hirshfeld_index_unique_frames[-1])
+    print('Hirshfeld total number steps', hirshfeld_index_unique_frames[-1] + 1)
+    print('Hirshfeld length', len(hirshfeld_index_unique_frames))
+    print('Hirshfeld missing values', hirshfeld_step_1_missing)
+    print('Hirshfeld length + missing values', len(hirshfeld_index_unique_frames)+len(hirshfeld_step_1_missing))
+    print('Hirshfeld df total number steps', np.shape(hirshfeld_1_np_no_duplicates))
+    # plt.plot(hirshfeld_step_1_no_duplicates, 'k.', markersize=1)
 
 # Position
-coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_values_coord(folder_1, files[2], ['Species', 'X', 'Y', 'Z'])
-pos_index = np.loadtxt('{}/index_pos.txt'.format(folder_1), dtype='str')
-pos_index = [s.replace(',', '') for s in pos_index]
-pos_index = [int(s) for s in pos_index]
-pos_index_unique_frames, pos_index_unique_indices = remove_duplicates(list(pos_index))
-coordinates_no_duplicates = coordinates[pos_index_unique_indices]
-pos_step_1_missing = detect_missing_values(pos_index_unique_frames)
-print('\nPosition step last value', pos_index_unique_frames[-1])
-print('Position total number steps', pos_index_unique_frames[-1] + 1)
-print('Position length', len(pos_index_unique_frames))
-print('Position missing values', pos_step_1_missing)
-print('Position length + missing values', len(pos_index_unique_frames)+len(pos_step_1_missing))
-print('Position df total number steps', np.shape(coordinates_no_duplicates))
-# plt.plot(coordinates_no_duplicates, 'k.', markersize=1)
+if files_do[2] is True:
+    # coordinates2, coord_x2, coord_y2, coord_z2, species2, num_atoms2, num_timesteps2 = load_values_coord(folder_2, files2[2], ['Species', 'X', 'Y', 'Z'])
+    coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_values_coord(folder_1, files[2], ['Species', 'X', 'Y', 'Z'])
+    # species = species2
+    # pos_index = np.linspace(start=1, stop=50, num=50, dtype=int)
+    # print(pos_index)
+    pos_index = np.loadtxt('{}/index_pos.txt'.format(folder_1), dtype='str')
+    pos_index = [s.replace(',', '') for s in pos_index]
+    pos_index = [int(s) for s in pos_index]
+    pos_index_unique_frames, pos_index_unique_indices = remove_duplicates(list(pos_index))
+    coordinates_no_duplicates = coordinates[pos_index_unique_indices]
+    pos_step_1_missing = detect_missing_values(pos_index_unique_frames)
+    print('\nPosition step last value', pos_index_unique_frames[-1])
+    print('Position total number steps', pos_index_unique_frames[-1] + 1)
+    print('Position length', len(pos_index_unique_frames))
+    print('Position missing values', pos_step_1_missing)
+    print('Position length + missing values', len(pos_index_unique_frames)+len(pos_step_1_missing))
+    print('Position df total number steps', np.shape(coordinates_no_duplicates))
+    # plt.plot(coordinates_no_duplicates, 'k.', markersize=1)
 
 # Force
-forces, force_x, force_y, force_z, _, _, _ = load_values_coord(folder_1, files[3], ['Species', 'X', 'Y', 'Z'])
-frc_index = np.loadtxt('{}/index_frc.txt'.format(folder_1), dtype='str')
-frc_index = [s.replace(',', '') for s in frc_index]
-frc_index = [int(s) for s in frc_index]
-frc_index_unique_frames, frc_index_unique_indices = remove_duplicates(list(frc_index))
-frc_no_duplicates = forces[frc_index_unique_indices]
-frc_step_1_missing = detect_missing_values(frc_index_unique_frames)
-print('\nForce step last value', frc_index_unique_frames[-1])
-print('Force total number steps', frc_index_unique_frames[-1] + 1)
-print('Force length', len(frc_index_unique_frames))
-print('Force missing values', frc_step_1_missing)
-print('Force length + missing values', len(frc_index_unique_frames)+len(frc_step_1_missing))
-# plt.plot(frc_step_1_no_duplicates, 'k.', markersize=1)
+if files_do[3] is True:
+    forces, force_x, force_y, force_z, _, _, _ = load_values_coord(folder_1, files[3], ['Species', 'X', 'Y', 'Z'])
+    frc_index = np.loadtxt('{}/index_frc.txt'.format(folder_1), dtype='str')
+    frc_index = [s.replace(',', '') for s in frc_index]
+    frc_index = [int(s) for s in frc_index]
+    frc_index_unique_frames, frc_index_unique_indices = remove_duplicates(list(frc_index))
+    frc_no_duplicates = forces[frc_index_unique_indices]
+    frc_step_1_missing = detect_missing_values(frc_index_unique_frames)
+    print('\nForce step last value', frc_index_unique_frames[-1])
+    print('Force total number steps', frc_index_unique_frames[-1] + 1)
+    print('Force length', len(frc_index_unique_frames))
+    print('Force missing values', frc_step_1_missing)
+    print('Force length + missing values', len(frc_index_unique_frames)+len(frc_step_1_missing))
+    # plt.plot(frc_step_1_no_duplicates, 'k.', markersize=1)
 
-print('\nEnergy missing values', energy_step_1_missing)
-print('Hirshfeld missing values', hirshfeld_step_1_missing)
-print('Position missing values', pos_step_1_missing)
-print('Force missing values', frc_step_1_missing)
+if files_do[0] is True: print('\nEnergy missing values', energy_step_1_missing)
+if files_do[1] is True: print('Hirshfeld missing values', hirshfeld_step_1_missing)
+if files_do[2] is True: print('Position missing values', pos_step_1_missing)
+if files_do[3] is True: print('Force missing values', frc_step_1_missing)
 
 missing_all = energy_step_1_missing + hirshfeld_step_1_missing + pos_step_1_missing + frc_step_1_missing
 missing_all = (list(OrderedDict.fromkeys(missing_all)))
 print('All missing values', missing_all)
-print('\nWe will have this many values:',  frc_index_unique_frames[-1] + 1 - len(missing_all))
+# print('\nWe will have this many values:',  frc_index_unique_frames[-1] + 1 - len(missing_all))
 
 # Clean energy
-energy_step_1_no_duplicates = [x for x in energy_unique_frames if x not in missing_all]
-energy_clean = file_energy_1_no_duplicates[file_energy_1_no_duplicates['Step'].isin(energy_step_1_no_duplicates)]
-print('Energy dataframe has this many values: ', np.shape(energy_clean))
+if files_do[0] is True:
+    energy_step_1_no_duplicates = [x for x in energy_unique_frames if x not in missing_all]
+    energy_clean = file_energy_1_no_duplicates[file_energy_1_no_duplicates['Step'].isin(energy_step_1_no_duplicates)]
+    print('Energy dataframe has this many values: ', np.shape(energy_clean))
 
 # Clean hirshfeld
-hirshfeld_index_no_duplicates = [x for x in hirshfeld_index_unique_frames if x not in missing_all]
-missing_set = set(hirshfeld_step_1_missing)
-adjusted_index_map = []
-adjusted_index = 0
-for original_index in range(max(hirshfeld_index_no_duplicates) + 1):
-    if original_index not in missing_set:
-        adjusted_index_map.append(adjusted_index)
-        adjusted_index += 1
-    else:
-        adjusted_index_map.append(None)
-adjusted_indices = [adjusted_index_map[idx] for idx in hirshfeld_index_no_duplicates if adjusted_index_map[idx] is not None]
-hirshfeld_1_np_no_duplicates = hirshfeld_1_np_no_duplicates[adjusted_indices]
-print('Hirshfeld index has this many values: ', len(hirshfeld_index_no_duplicates))
-print('Hirshfeld has this many values: ', hirshfeld_1_np_no_duplicates.shape)
+if files_do[1] is True:
+    hirshfeld_index_no_duplicates = [x for x in hirshfeld_index_unique_frames if x not in missing_all]
+    missing_set = set(hirshfeld_step_1_missing)
+    adjusted_index_map = []
+    adjusted_index = 0
+    for original_index in range(max(hirshfeld_index_no_duplicates) + 1):
+        if original_index not in missing_set:
+            adjusted_index_map.append(adjusted_index)
+            adjusted_index += 1
+        else:
+            adjusted_index_map.append(None)
+    adjusted_indices = [adjusted_index_map[idx] for idx in hirshfeld_index_no_duplicates if adjusted_index_map[idx] is not None]
+    hirshfeld_1_np_no_duplicates = hirshfeld_1_np_no_duplicates[adjusted_indices]
+    print('Hirshfeld index has this many values: ', len(hirshfeld_index_no_duplicates))
+    print('Hirshfeld has this many values: ', hirshfeld_1_np_no_duplicates.shape)
 
 # Clean position
-pos_index_no_duplicates = [x for x in pos_index_unique_frames if x not in missing_all]
-missing_set = set(pos_step_1_missing)
-adjusted_index_map = []
-adjusted_index = 0
-for original_index in range(max(pos_index_no_duplicates) + 1):
-    if original_index not in missing_set:
-        adjusted_index_map.append(adjusted_index)
-        adjusted_index += 1
-    else:
-        adjusted_index_map.append(None)
-adjusted_indices = [adjusted_index_map[idx] for idx in pos_index_no_duplicates if adjusted_index_map[idx] is not None]
-coordinates_no_duplicates = coordinates_no_duplicates[adjusted_indices]
-print('Coordinates index has this many values: ', len(pos_index_no_duplicates))
-print('Coordinates has this many values: ', coordinates_no_duplicates.shape)
+if files_do[2] is True:
+    pos_index_no_duplicates = [x for x in pos_index_unique_frames if x not in missing_all]
+    missing_set = set(pos_step_1_missing)
+    adjusted_index_map = []
+    adjusted_index = 0
+    for original_index in range(max(pos_index_no_duplicates) + 1):
+        if original_index not in missing_set:
+            adjusted_index_map.append(adjusted_index)
+            adjusted_index += 1
+        else:
+            adjusted_index_map.append(None)
+    adjusted_indices = [adjusted_index_map[idx] for idx in pos_index_no_duplicates if adjusted_index_map[idx] is not None]
+    coordinates_no_duplicates = coordinates_no_duplicates[adjusted_indices]
+    print('Coordinates index has this many values: ', len(pos_index_no_duplicates))
+    print('Coordinates has this many values: ', coordinates_no_duplicates.shape)
 
 # Clean forces
-frc_index_no_duplicates = [x for x in frc_index_unique_frames if x not in missing_all]
-missing_set = set(frc_step_1_missing)
-adjusted_index_map = []
-adjusted_index = 0
-for original_index in range(max(frc_index_no_duplicates) + 1):
-    if original_index not in missing_set:
-        adjusted_index_map.append(adjusted_index)
-        adjusted_index += 1
-    else:
-        adjusted_index_map.append(None)
-adjusted_indices = [adjusted_index_map[idx] for idx in frc_index_no_duplicates if adjusted_index_map[idx] is not None]
-frc_no_duplicates = frc_no_duplicates[adjusted_indices]
-print('Forces index has this many values: ', len(frc_index_no_duplicates))
-print('Forces has this many values: ', frc_no_duplicates.shape)
+if files_do[3] is True:
+    frc_index_no_duplicates = [x for x in frc_index_unique_frames if x not in missing_all]
+    missing_set = set(frc_step_1_missing)
+    adjusted_index_map = []
+    adjusted_index = 0
+    for original_index in range(max(frc_index_no_duplicates) + 1):
+        if original_index not in missing_set:
+            adjusted_index_map.append(adjusted_index)
+            adjusted_index += 1
+        else:
+            adjusted_index_map.append(None)
+    adjusted_indices = [adjusted_index_map[idx] for idx in frc_index_no_duplicates if adjusted_index_map[idx] is not None]
+    frc_no_duplicates = frc_no_duplicates[adjusted_indices]
+    print('Forces index has this many values: ', len(frc_index_no_duplicates))
+    print('Forces has this many values: ', frc_no_duplicates.shape)
 
 # Save energy
-energy_clean.to_csv('{}/hematite-1-cleaned.ener'.format(folder_1), index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ",)
-
-# Save position
-write_xyz('{}/hematite-pos-1-cleaned.xyz'.format(folder_1), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
-
-# Save force
-write_xyz('{}/hematite-frc-1-cleaned.xyz'.format(folder_1), frc_no_duplicates, species, num_atoms, frc_index_no_duplicates, energy_clean)
+if files_do[0] is True:
+    energy_clean.to_csv('{}/hematite-1-cleaned.ener'.format(folder_1), index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ",)
 
 # Save Hirshfeld
-write_hirshfeld('{}/hematite-charges-1-clean-cleaned.hirshfeld'.format(folder_1), species, hirshfeld_1_np_no_duplicates, hirshfeld_index_no_duplicates)
+if files_do[1] is True:
+    write_hirshfeld('{}/hematite-charges-1-clean-cleaned.hirshfeld'.format(folder_1), species, hirshfeld_1_np_no_duplicates, hirshfeld_index_no_duplicates)
+
+# Save position
+if files_do[2] is True:
+    # energy_clean = np.NaN
+    write_xyz('{}/hematite-pos-1-cleaned.xyz'.format(folder_1), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
+
+# Save force
+if files_do[3] is True:
+    write_xyz('{}/hematite-frc-1-cleaned.xyz'.format(folder_1), frc_no_duplicates, species, num_atoms, frc_index_no_duplicates, energy_clean)
 
 if __name__ == "__main__":
     print('Finished.')
