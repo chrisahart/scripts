@@ -123,7 +123,7 @@ def read_energy(folder, filename):
     return file_energy, energy_kinetic, energy_potential, energy_total, temperature, time, time_per_step, step
 
 
-def read_hirsh(folder, filename):
+def read_hirsh(folder, filename, num_atoms):
     """
     Read Hirshfeld analysis from CP2K output file
     """
@@ -146,7 +146,6 @@ def read_hirsh(folder, filename):
     cols_new = list(file_spec1.columns)
 
     # Loop over each timestep and atoms
-    num_atoms = int(120)
     num_timesteps = int(file_spec1.shape[0]/num_atoms)
     hirsh_data = np.zeros((num_timesteps, len(cols_new), num_atoms))
 
@@ -239,13 +238,36 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/330k-charged-philipp'
 # files = ['hematite-1.ener', 'hirshfeld.xyz', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
 
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
-files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1-wrapped.xyz', 'hematite-frc-1.xyz']
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
+# files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1-wrapped.xyz', 'hematite-frc-1.xyz']
 
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/group/huobei'
 # files = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'hematite-pos-1.xyz', 'hematite-frc-1.xyz']
 # folder_2 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/330k-charged-philipp'
 # files2 = ['hematite-1.ener', '/hematite-charges-1-clean.hirshfeld', 'input.xyz', 'hematite-frc-1.xyz']
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-csvr-timecon-1-COMVEL_TO-1e-10'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3-csvr-timecon-1-COMVEL_TO-1e-10'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 72
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-6'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8-rs'
+# files = ['mgo-1.ener', 'mgo-charges-1-clean.hirshfeld', 'mgo-pos-1.xyz', 'mgo-frc-1.xyz']
+# name = 'mgo'
+# num_atoms = 64
+
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-333/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
+files = ['mgo-1.ener', 'mgo-charges-1-clean.hirshfeld', 'mgo-pos-1.xyz', 'mgo-frc-1.xyz']
+name = 'mgo'
+num_atoms = 216
 
 # Energy Hirshfeld Position Force
 files_do = [True, True, True, True]
@@ -264,24 +286,25 @@ if files_do[0] is True:
     print('Energy step last value', energy_unique_frames[-1])
     print('Energy total number steps', energy_unique_frames[-1] + 1)
     print('Energy length', len(energy_unique_frames))
-    print('Energy missing values', energy_step_1_missing)
+    # print('Energy missing values', energy_step_1_missing)
     print('Energy length + missing values', len(energy_unique_frames)+len(energy_step_1_missing))
     # plt.plot(energy_step_1_no_duplicates, 'k.', markersize=1)
 
 # Hirshfeld
 if files_do[1] is True:
-    hirshfeld_1_df, hirshfeld_1_np, _ = read_hirsh(folder_1, files[1])
-    print(hirshfeld_1_np.shape)
+    # will break if Hirshfeld has printed but energy has not, be careful
+    hirshfeld_1_df, hirshfeld_1_np, _ = read_hirsh(folder_1, files[1], num_atoms)
     hirshfeld_index = list(np.loadtxt('{}/index.hirshfeld'.format(folder_1), dtype=int))
+    print(hirshfeld_1_np.shape)
+    print(len(hirshfeld_index))
     # plt.plot(hirshfeld_index, 'k.', markersize=1)
     hirshfeld_index_unique_frames, hirshfeld_index_unique_indices = remove_duplicates(list(hirshfeld_index))
-    print(hirshfeld_index_unique_indices)
     hirshfeld_1_np_no_duplicates = hirshfeld_1_np[hirshfeld_index_unique_indices]
     hirshfeld_step_1_missing = detect_missing_values(hirshfeld_index_unique_frames)
     print('\nHirshfeld step last value', hirshfeld_index_unique_frames[-1])
     print('Hirshfeld total number steps', hirshfeld_index_unique_frames[-1] + 1)
     print('Hirshfeld length', len(hirshfeld_index_unique_frames))
-    print('Hirshfeld missing values', hirshfeld_step_1_missing)
+    # print('Hirshfeld missing values', hirshfeld_step_1_missing)
     print('Hirshfeld length + missing values', len(hirshfeld_index_unique_frames)+len(hirshfeld_step_1_missing))
     print('Hirshfeld df total number steps', np.shape(hirshfeld_1_np_no_duplicates))
     # plt.plot(hirshfeld_step_1_no_duplicates, 'k.', markersize=1)
@@ -302,7 +325,7 @@ if files_do[2] is True:
     print('\nPosition step last value', pos_index_unique_frames[-1])
     print('Position total number steps', pos_index_unique_frames[-1] + 1)
     print('Position length', len(pos_index_unique_frames))
-    print('Position missing values', pos_step_1_missing)
+    # print('Position missing values', pos_step_1_missing)
     print('Position length + missing values', len(pos_index_unique_frames)+len(pos_step_1_missing))
     print('Position df total number steps', np.shape(coordinates_no_duplicates))
     # plt.plot(coordinates_no_duplicates, 'k.', markersize=1)
@@ -319,18 +342,18 @@ if files_do[3] is True:
     print('\nForce step last value', frc_index_unique_frames[-1])
     print('Force total number steps', frc_index_unique_frames[-1] + 1)
     print('Force length', len(frc_index_unique_frames))
-    print('Force missing values', frc_step_1_missing)
+    # print('Force missing values', frc_step_1_missing)
     print('Force length + missing values', len(frc_index_unique_frames)+len(frc_step_1_missing))
     # plt.plot(frc_step_1_no_duplicates, 'k.', markersize=1)
 
-if files_do[0] is True: print('\nEnergy missing values', energy_step_1_missing)
-if files_do[1] is True: print('Hirshfeld missing values', hirshfeld_step_1_missing)
-if files_do[2] is True: print('Position missing values', pos_step_1_missing)
-if files_do[3] is True: print('Force missing values', frc_step_1_missing)
+# if files_do[0] is True: print('\nEnergy missing values', energy_step_1_missing)
+# if files_do[1] is True: print('Hirshfeld missing values', hirshfeld_step_1_missing)
+# if files_do[2] is True: print('Position missing values', pos_step_1_missing)
+# if files_do[3] is True: print('Force missing values', frc_step_1_missing)
 
 missing_all = energy_step_1_missing + hirshfeld_step_1_missing + pos_step_1_missing + frc_step_1_missing
 missing_all = (list(OrderedDict.fromkeys(missing_all)))
-print('All missing values', missing_all)
+# print('All missing values', missing_all)
 # print('\nWe will have this many values:',  frc_index_unique_frames[-1] + 1 - len(missing_all))
 
 # Clean energy
@@ -390,22 +413,45 @@ if files_do[3] is True:
     print('Forces index has this many values: ', len(frc_index_no_duplicates))
     print('Forces has this many values: ', frc_no_duplicates.shape)
 
+
+# Truncate to min length
+index_array = np.array([np.shape(energy_clean)[0], len(hirshfeld_index_no_duplicates), len(pos_index_no_duplicates), len(frc_index_no_duplicates)])
+truncate_length = np.min(index_array)
+print('Truncate to min length', truncate_length)
+energy_clean = energy_clean[:truncate_length]
+hirshfeld_1_np_no_duplicates = hirshfeld_1_np_no_duplicates[:truncate_length]
+hirshfeld_index_no_duplicates = hirshfeld_index_no_duplicates[:truncate_length]
+pos_index_no_duplicates = pos_index_no_duplicates[:truncate_length]
+coordinates_no_duplicates = coordinates_no_duplicates[:truncate_length]
+frc_no_duplicates = frc_no_duplicates[:truncate_length]
+frc_index_no_duplicates = frc_index_no_duplicates[:truncate_length]
+print('\nEnergy dataframe has this many values: ', np.shape(energy_clean))
+
+print('Hirshfeld index has this many values: ', len(hirshfeld_index_no_duplicates))
+print('Hirshfeld has this many values: ', hirshfeld_1_np_no_duplicates.shape)
+
+print('Coordinates index has this many values: ', len(pos_index_no_duplicates))
+print('Coordinates has this many values: ', coordinates_no_duplicates.shape)
+
+print('Forces index has this many values: ', len(frc_index_no_duplicates))
+print('Forces has this many values: ', frc_no_duplicates.shape)
+
 # Save energy
 if files_do[0] is True:
-    energy_clean.to_csv('{}/hematite-1-cleaned.ener'.format(folder_1), index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ",)
+    energy_clean.to_csv('{}/{}-1-cleaned.ener'.format(folder_1, name), index=False, header=False, quoting=csv.QUOTE_NONE, sep=" ",)
 
 # Save Hirshfeld
 if files_do[1] is True:
-    write_hirshfeld('{}/hematite-charges-1-clean-cleaned.hirshfeld'.format(folder_1), species, hirshfeld_1_np_no_duplicates, hirshfeld_index_no_duplicates)
+    write_hirshfeld('{}/{}-charges-1-clean-cleaned.hirshfeld'.format(folder_1, name), species, hirshfeld_1_np_no_duplicates, hirshfeld_index_no_duplicates)
 
 # Save position
 if files_do[2] is True:
     # energy_clean = np.NaN
-    write_xyz('{}/hematite-pos-1-cleaned.xyz'.format(folder_1), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
+    write_xyz('{}/{}-pos-1-cleaned.xyz'.format(folder_1, name), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
 
 # Save force
 if files_do[3] is True:
-    write_xyz('{}/hematite-frc-1-cleaned.xyz'.format(folder_1), frc_no_duplicates, species, num_atoms, frc_index_no_duplicates, energy_clean)
+    write_xyz('{}/{}-frc-1-cleaned.xyz'.format(folder_1, name), frc_no_duplicates, species, num_atoms, frc_index_no_duplicates, energy_clean)
 
 if __name__ == "__main__":
     print('Finished.')

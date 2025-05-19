@@ -27,16 +27,42 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 # filename_in = 'input.xyz'
 # filename_out = 'input.xyz'
 
-# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/chris_phd/bulk/paper-2-jacs/221_supercell_cdft/hole/dft/neutral/m600_neutral-cubes2'
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
+# folder_in = folder_out
+# filename_in = 'topology-label-all.xyz'
+# filename_out = 'topology-label-all2.xyz'
+# cols = ['Species', 'X', 'Y', 'Z']
+# mapping = {
+#     'Fe_A': 0,
+#     'Fe_B': 1,
+#     'Fe_C': 2,
+#     'Fe_D': 3,
+#     'Fe_E': 4,
+#     'Fe_F': 5,
+#     'O': 6
+# }
 
-# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/hole/221_supercell/reftraj/geo_opt/atom-1/atom-1-c-print'
+folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/structures'
 folder_in = folder_out
-# filename_in = 'input.xyz'
-filename_in = 'topology-label-all.xyz'
-# filename_out = 'input-offset-3-c.xyz'
-filename_out = 'topology-label-all2.xyz'
+filename_in = 'rutile_335.xyz'
+filename_out = 'rutile_335-offset.xyz'
 cols = ['Species', 'X', 'Y', 'Z']
+mapping = {
+    'Ti': 0,
+    'O': 1
+}
+
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/structures'
+# folder_in = folder_out
+# filename_in = 'rocksalt_222.xyz'
+# filename_out = 'rocksalt_222-offset.xyz'
+# # filename_in = 'rocksalt_333.xyz'
+# # filename_out = 'rocksalt_333-offset.xyz'
+# cols = ['Species', 'X', 'Y', 'Z']
+# mapping = {
+#     'Mg': 0,
+#     'O': 1
+# }
 
 coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_coordinates.load_values_coord(
     folder_in, filename_in, cols)
@@ -47,15 +73,7 @@ my_string = "\n".join(species_print)
 with open('{}/species.txt'.format(folder_out), 'w') as file:
     file.write(my_string)
 
-mapping = {
-    'Fe_A': 0,
-    'Fe_B': 1,
-    'Fe_C': 2,
-    'Fe_D': 3,
-    'Fe_E': 4,
-    'Fe_F': 5,
-    'O': 6
-}
+
 converted_list = [mapping[item] for item in species_print]
 converted_string = "\n".join(map(str, converted_list))
 with open('{}/species_map.txt'.format(folder_out), 'w') as file:
@@ -84,10 +102,44 @@ neutral = np.array([2.12, 2.12, 2.12, 1.94, 94, 1.94])
 a = np.array([2.00392, 2.14936, 1.96812, 1.84155, 1.95954, 1.84966])
 b = np.array([1.96812, 2.00392, 2.14936, 1.95954, 1.84966, 1.84155])
 c = np.array([2.14936, 1.96812, 2.00392, 1.84155, 1.95954, 1.84966])
-
 # bond_target = np.array([2.3]*6)
 # bond_target = np.array([1.8]*6)
 bond_target = c
+
+# atom tio2 334 supercell
+# labels = np.array([69, 211, 197, 193, 216, 198, 199]) - 1
+# neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 335 supercell
+labels = np.array([83, 243, 239, 247, 261, 269, 245]) - 1
+neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 336 supercell
+# labels = np.array([105, 297, 293, 105, 299, 319, 298]) - 1
+# neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 445 supercell
+# labels = np.array([159, 455, 459, 454, 456, 397, 453]) - 1
+# neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 446 supercell
+# labels = np.array([189, 543, 547, 550, 541, 473, 549]) - 1
+# neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom mgo 222 supercell
+# labels = np.array([39, 8, 15, 19, 23, 13, 7]) - 1
+# neutral = np.array([2.09700, 2.09700, 2.09700, 2.09700, 2.09700, 2.09700])
+# bond_target = np.array([1.8, 1.8, 1.8, 1.8, 1.8, 1.8])
+
+# atom mgo 333 supercell
+# labels = np.array([150, 41, 18, 96, 87, 15, 42]) - 1
+# neutral = np.array([2.09700, 2.09700, 2.09700, 2.09700, 2.09700, 2.09700])
+# bond_target = np.array([1.8, 1.8, 1.8, 1.8, 1.8, 1.8])
 
 Fe_O = np.zeros(np.shape(labels)[0] - 1)
 Fe_O_x = np.zeros(np.shape(labels)[0] - 1)

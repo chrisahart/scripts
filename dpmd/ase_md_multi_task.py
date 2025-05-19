@@ -1,4 +1,4 @@
-from DPCharge import DP
+from DPCharge_multi_task import DP
 from ase.io import read
 import numpy as np
 from ase import Atoms
@@ -24,21 +24,15 @@ def identify_polaron_site(atoms: Atoms, spin: np.ndarray) -> np.ndarray:
     return charge_state
 
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/chain/hse/frozen-fe-h2o/hops-1/ase_md/chris'
-atoms = read("{}/POSCAR".format(folder))
+atoms = read("/POSCAR")
 
 dt = 0.5*units.fs
-nstep = int(1e4)
+nstep = int(1e6)
 thermo_freq = 10
-T = 300
+T = 500
 md_type = 'nvt'
-fixed_idx = list(range(7)) + list(range(35, 77))
-c2 = FixAtoms(
-    indices=fixed_idx
-)
-atoms.set_constraint(c2)
 charge_state = np.zeros(len(atoms))
-charge_state[2] = 1
+charge_state[61] = 1
 
 
 calc = DP(

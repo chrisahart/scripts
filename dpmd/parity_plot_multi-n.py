@@ -213,41 +213,51 @@ from sklearn.metrics import root_mean_squared_error
 # model = 'multi-task-dpa2-nlayers-3'
 # model = 'multi-task-dpa2-nlayers-3-update_g2_has_attn-f'
 # model = 'multi-task-dpa2-nlayers-3-use_three_body-f'
-model = 'multi-task-dpa2-nlayers-6'
+# model = 'multi-task-dpa2-nlayers-6'
 # model = 'multi-task-dpa2-nlayers-6-fe-o-only'
 # model = 'multi-task-dpa2-nlayers-6-no-atomener'
 # model = 'multi-task-dpa2-nlayers-6-rcut-6'
 # model = 'multi-task-dpa2-nlayers-6-rcut-10'
 # model = 'multi-task-dpa2-nlayers-6-rcut-20'
-model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/{}'.format(model),
-              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/{}'.format(model)]
-model_spin = model_ener
-database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/database_spin_test/1',
-            '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/database_spin_train']
-val = ['_1_', '_0_']
-text_array = ['400 K test', '400 K train', 'Test 441']
-axis_lim_y = np.array([-4.05, -3.05])
-pos_array_energy = np.array(([0.38, 0.05], [0.38, 0.15]))
-pos_array_force = np.array(([0.6, 0.05], [0.6, 0.15]))
-pos_array_spin = np.array(([0.78, 0.05], [0.78, 0.15]))
-
-# Bulk hematite 400k-b geo-opt-all seperate rcut 5 A single-fit
-# model = ['single-fit-ener-se_e2_a-prob_sys_size', 'single-fit-m-se_e2_a-prob_sys_size']
-# model = ['single-fit-ener-se_e2_a-prob_sys_size-v1', 'single-fit-m-se_e2_a-prob_sys_size-v1']
-# model = ['single-fit-ener-se_e2_a-prob_uniform', 'single-fit-m-se_e2_a-prob_uniform']
-# model = ['single-fit-ener-se_e2_a-sys_probs-neb-0.2', 'single-fit-m-se_e2_a-sys_probs-neb-0.2']
-# model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/{}'.format(model[0])] * 4
-# model_spin = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/{}'.format(model[1])] * 4
-# database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/database_spin_train/database_spin_train_0K',
-#             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/database_spin_train/database_spin_train_400k-b',
-#             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/database_spin_test/1',
-#             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-geo-opt-all-seperate-rcut-5/database_spin_test/2']
-# val = ['_0_', '_1_', '_2_', '_3_']
+# model_ener = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/{}'.format(model),
+#               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/{}'.format(model)]
+# model_spin = model_ener
+# database = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/database_spin_test/1',
+#             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/liushiLab/bulk/hole/400k-b-rcut-5/database_spin_train']
+# val = ['_1_', '_0_']
+# text_array = ['400 K test', '400 K train', 'Test 441']
 # axis_lim_y = np.array([-4.05, -3.05])
-# pos_array_energy = np.array(([0.38, 0.35], [0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
-# pos_array_force = np.array(([0.6, 0.35], [0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
-# pos_array_spin = np.array(([0.78, 0.35], [0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
-# text_array = ['0 K train', '400 K train', '0 K test', '400 K test']
+# pos_array_energy = np.array(([0.38, 0.05], [0.38, 0.15]))
+# pos_array_force = np.array(([0.6, 0.05], [0.6, 0.15]))
+# pos_array_spin = np.array(([0.78, 0.05], [0.78, 0.15]))
+
+# Bulk MgO 222
+model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+# model = ['single-fit-ener-se_e3', 'single-fit-m-se_e3']
+# model = ['single-fit-ener-dpa1-se_atten_v2-attn_layer-2', 'single-fit-m-dpa1-se_atten_v2-attn_layer-2']
+# model = ['single-fit-ener-dpa1-se_atten_v2-attn_layer-3', 'single-fit-m-dpa1-se_atten_v2-attn_layer-3']
+# model = ['single-fit-ener-dpa2-nlayers-6', 'single-fit-m-dpa2-nlayers-6']
+# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# model = ['single-fit-ener-dpa3-prefactor-20-60', 'single-fit-m-dpa3-prefactor-20-60']
+# model = ['single-fit-ener-dpa3-prefactor-20-60-asel-48', 'single-fit-m-dpa3-prefactor-20-60-asel-48']
+# model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
+# model = ['multi-task-dpa1-se_atten_v2-attn_layer-2', 'multi-task-dpa1-se_atten_v2-attn_layer-2']
+# model = ['multi-task-dpa2-nlayers-6', 'multi-task-dpa2-nlayers-6']
+# model = ['multi-task-dpa3', 'multi-task-dpa3']
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-6'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-8-2'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-8-rs'
+model_ener = ['{}/{}'.format(folder, model[0])] * 4
+model_spin = ['{}/{}'.format(folder, model[1])] * 4
+database = ['{}/database_spin_train/'.format(folder),
+            '{}/database_spin_test/1'.format(folder),
+            '{}/database_spin_test/2'.format(folder)]
+val = ['_0_', '_1_', '_2_']
+axis_lim_y = np.array([0, 1])
+pos_array_energy = np.array(([0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
+pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+pos_array_spin = np.array(([0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
+text_array = ['400 K train', '400 K valid', '400 K test']
 
 print('model', model)
 color_plot_array = ['r', 'g', 'b', 'm']
@@ -294,8 +304,8 @@ def plot_ener(dft, dp, ax, color_plot, pos, text, title=None):
     ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/atom", transform=ax.transAxes, color=color_plot)
     if title is not None:
         ax.set_title(title)
-    else:
-        ax.set_title("Energy")
+    # else:
+    #     ax.set_title("Energy")
 
 
 def plot_force(dft, dp, ax, color_plot, pos, text, title=None):
@@ -314,8 +324,8 @@ def plot_force(dft, dp, ax, color_plot, pos, text, title=None):
     ax.plot([min_val, max_val], [min_val, max_val], 'k--')
     if title is not None:
         ax.set_title(title)
-    else:
-        ax.set_title("Force")
+    # else:
+    #     ax.set_title("Force")
 
 
 def plot_spin(dft, dp, ax, color_plot, pos, text, title=None):
@@ -338,8 +348,8 @@ def plot_spin(dft, dp, ax, color_plot, pos, text, title=None):
 
     if title is not None:
         ax.set_title(title)
-    else:
-        ax.set_title("Spin")
+    # else:
+    #     ax.set_title("Spin")
 
 
 def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
@@ -348,24 +358,25 @@ def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
     time_array = np.linspace(0, int(num_timesteps / 2), num=num_timesteps)
     # num_atoms_plot_spin = 7
     num_atoms_plot_spin = 120
+    num_atoms_plot_spin = 32
     plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
     dft = np.reshape(dft, (num_timesteps, num_atoms))
 
-    fe_b = np.array([27, 45, 18, 14, 25, 29, 42, 16]) - 1
-    fe_d = np.array([2, 6, 17, 13, 4, 38, 41, 15]) - 1
-    fe_f = np.array([28, 46, 1, 5, 26, 30, 3, 37]) - 1
-    fe_plot = np.arange(0, 120)
-    print(fe_plot)
-
-    for i in range(fe_plot.shape[0]):
+    # fe_b = np.array([27, 45, 18, 14, 25, 29, 42, 16]) - 1
+    # fe_d = np.array([2, 6, 17, 13, 4, 38, 41, 15]) - 1
+    # fe_f = np.array([28, 46, 1, 5, 26, 30, 3, 37]) - 1
+    # fe_plot = np.arange(0, 120)
+    # print(fe_plot)
+    # for i in range(fe_plot.shape[0]):
         # ax.plot(time_array, dft[:, fe_plot[i]], 'x-', color=plotting_colors[i], label='Fe {}'.format(i+1))
         # ax.plot(time_array, dp[:, fe_plot[i]], 'x--', color=plotting_colors[i])
-        ax.plot(time_array, dft[:, fe_plot[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i+1))
-        ax.plot(time_array, dp[:, fe_plot[i]], '--', color=plotting_colors[i])
+        # ax.plot(time_array, dft[:, fe_plot[i]], '-', color=plotting_colors[i], label='Fe {}'.format(i+1))
+        # ax.plot(time_array, dp[:, fe_plot[i]], '--', color=plotting_colors[i])
 
     # for i in range(num_atoms_plot_spin):
-    #     ax.plot(time_array, dft[:, i], '-', color=plotting_colors[i], label='Fe {}'.format(i))
-    #     ax.plot(time_array, dp[:, i], '--', color=plotting_colors[i])
+    for i in range(32, 64):
+        ax.plot(time_array, dft[:, i], '-', color=plotting_colors[i], label='Fe {}'.format(i))
+        ax.plot(time_array, dp[:, i], '--', color=plotting_colors[i])
 
     ax.set_xlim(0, time_array.shape[0]/2)
     ax.set_ylim([axis_lim_y[0], axis_lim_y[1]])
@@ -391,9 +402,9 @@ for i in range(len(database)):
 # 2. Plot parity
 fig2, axes2 = plt.subplots(1, 3, figsize=(15, 3))
 for i in range(len(database)):
-    plot_ener(dft_e[i], ener_1[i], axes2[0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, Yes-aparam")
-    plot_force(dft_f[i], force_1[i], axes2[1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i], title="Force, Yes-aparam")
-    plot_spin(dft_s[i], spin_1[i], axes2[2], color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i], title="Spin, Yes-aparam")
+    plot_ener(dft_e[i], ener_1[i], axes2[0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i])
+    plot_force(dft_f[i], force_1[i], axes2[1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i])
+    plot_spin(dft_s[i], spin_1[i], axes2[2], color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i])
 plt.tight_layout()
 for i in range(len(database)):
     plt.savefig("{}/fit_1x3_folders_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
@@ -416,6 +427,31 @@ plt.savefig("{}/spin_2_time.png".format(model_spin[1]), dpi=600)
 if zoom:
     plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
 plt.savefig("{}/spin_2_time_zoom_{}.png".format(model_spin[1], transition_time_plot), dpi=600)
+
+# 4. Plot spin 3
+fig5, axes5 = plt.subplots()
+plot_spin_time1(dft_s[2], spin_1[2], axes5, axis_lim_y, title="Energy, No-aparam")
+plt.tight_layout()
+plt.savefig("{}/spin_3_time.png".format(model_spin[1]), dpi=600)
+if zoom:
+    plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
+plt.savefig("{}/spin_3_time_zoom_{}.png".format(model_spin[1], transition_time_plot), dpi=600)
+
+# Concatonate training and validation data using index
+index_training = np.loadtxt('{}/index_training.raw'.format(database[0]))
+index_validation = np.loadtxt('{}/index_validation.raw'.format(database[1]))
+
+print(index_training.shape)
+print(index_validation.shape)
+
+length_total = index_training.shape[0] + index_validation.shape[0]
+print(length_total)
+
+print(dft_s[0].shape)
+print(dft_s[1].shape)
+
+# spin_all = np.copy(spin_0)
+# for i in range(length_total):
 
 if __name__ == "__main__":
     print('Finished.')

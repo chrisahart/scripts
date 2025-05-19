@@ -1,24 +1,30 @@
+from ase.io import read
 import numpy as np
+from ase import Atoms
+from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
+from ase.md.npt import NPT
+from ase.md.verlet import VelocityVerlet
+from ase.md.langevin import Langevin
+from ase import units
 
-# Example initialization (replace with your actual data)
-coordinates = np.random.rand(2700, 3, 120)  # Example array
+data = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-6/database_spin_train/set.000'
+coord = np.load('{}/coord.npy'.format(data))
+box = np.load('{}/box.npy'.format(data))
+aparam = np.load('{}/aparam.npy'.format(data))
+vel = np.loadtxt('{}/vel-test.xyz'.format(data))
 
-pos_index = [0, 1, 1, 3, 4, 5, 6, 6, 7]  # Example indices with duplicates
+coord_use = np.reshape(coord[0].flatten(), (64, 3))
+symbols = ['Mg'] * 32 + ['O'] * 32
 
-# Step 1: Identify Unique Indices while maintaining order
+test = Atoms(symbols=symbols, positions=coord_use)
+cell = np.reshape(box[0], (3, 3))
+test.set_cell(cell)
+test.set_pbc(True)
 
-unique_indices = []
-seen = set()
+print(test)
+print(test.get_number_of_atoms)
+test.set_velocities(np.reshape(vel.flatten(), (64, 3)))
+print(test)
 
-for idx in pos_index:
-    if idx not in seen:
-        unique_indices.append(idx)
-        seen.add(idx)
-
-# Step 2: Use these unique indices to filter the coordinates array
-print(unique_indices)
-coordinates_no_duplicates = coordinates[unique_indices]
-
-# Output the shape of the filtered array to verify
-
-print(coordinates_no_duplicates.shape)
+print(aparam[:64])
+print(np.argmax(aparam[:64]))

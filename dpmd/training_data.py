@@ -7,25 +7,42 @@ from matplotlib.colors import LogNorm
 import dpdata
 import cp2kdata
 from cp2kdata import Cp2kOutput
+from scipy.constants import physical_constants
 
 # load data of cp2k/md format
 # directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/400K/input-file-EPS_SCHWARZ_FORCES-neutral'
 # directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned/400k-neutral'
 
-# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral'
-# size_exclude_start = 400
-# size_exclude_end = 0
-# size_test = 200
-# size_validation = 800
-
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
-size_exclude_start = int(10e3*2)
+directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral'
+size_exclude_start = 400
 size_exclude_end = 0
-size_test = int(2e3*2)
-size_validation = int(15e3*2)
+size_test = 200
+size_validation = 800
+
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/hematite/liu_group/archer/bulk/221_supercell/md/hole/cleaned-checked/400k-neutral-pbe'
+# size_exclude_start = int(10e3*2)
+# size_exclude_end = 0
+# size_test = int(2e3*2)
+# size_validation = int(15e3*2)
 
 # Load the data from the specified directory
 data = dpdata.LabeledSystem(directory, cp2k_output_name='cp2k_log.log', fmt="cp2kdata/md", type_map=['Fe_a', 'Fe_b', 'O'])
+print(data)
+
+cell = data["cells"]
+coord = data["coords"]
+energy = data["energies"]
+force = data["forces"]
+
+# hartree_to_eV = 27.211386245988
+# hartree_to_ev = physical_constants["Hartree energy in eV"][0]
+# bohr_to_angstrom = physical_constants["Bohr radius"][0] * 1e10
+# hartree_per_bohr_to_ev_per_angstrom = hartree_to_ev/bohr_to_angstrom
+
+# print(cell)
+# print(coord)
+print(energy/param.hartree_to_ev)
+print(force/param.hartree_per_bohr_to_ev_per_angstrom)
 
 # Print the total number of frames in the data
 print("# the data contains %d frames" % len(data))

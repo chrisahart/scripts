@@ -36,8 +36,8 @@ def plot_ener(dft, dp, ax, color_plot, pos, text, title=None):
     ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/atom", transform=ax.transAxes)
     if title is not None:
         ax.set_title(title)
-    else:
-        ax.set_title("Energy")
+    # else:
+    #     ax.set_title("Energy")
 
 
 def plot_force(dft, dp, ax, color_plot, pos, text, title=None):
@@ -55,8 +55,8 @@ def plot_force(dft, dp, ax, color_plot, pos, text, title=None):
     ax.plot([min_val, max_val], [min_val, max_val], 'k--')
     if title is not None:
         ax.set_title(title)
-    else:
-        ax.set_title("Force")
+    # else:
+    #     ax.set_title("Force")
 
 # 2. Plot 1x3
 text_array = ['Test', 'Train']
