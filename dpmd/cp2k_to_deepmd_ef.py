@@ -324,15 +324,15 @@ num_atoms = 64
 # the training data contains 1483 frames
 # the validation data contains 600 frames
 
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8-rs'
-charged = True
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8-rs'
+# charged = True
 # 0 to 1800 fs
 # Discard first 100 frames and last 1800-1250*2 frames
 
-size_exclude_start = int(0.05e3*2)
-size_exclude_end = int((1800-1250)*2)
-size_test = int(0.1e3*2)
-size_validation = int(0.3e3*2)
+# size_exclude_start = int(0.05e3*2)
+# size_exclude_end = int((1800-1250)*2)
+# size_test = int(0.1e3*2)
+# size_validation = int(0.3e3*2)
 
 # the data contains 3904 frames
 # the data contains 2704 frames after excluding the first and last frames
@@ -345,19 +345,19 @@ size_validation = int(0.3e3*2)
 # mgo 333
 # pbc set {9.2 9.2 8.88 90 90 90} -all ; pbc box
 # pbc wrap -all
-files = ['mgo-1-cleaned.ener', 'mgo-charges-1-clean-cleaned.hirshfeld', 'mgo-pos-1-cleaned.xyz', 'mgo-frc-1-cleaned.xyz']
-box = np.array([[12.57, 0, 0, 0, 12.57, 0, 0, 0, 12.57]])
-num_atoms = 216
+# files = ['mgo-1-cleaned.ener', 'mgo-charges-1-clean-cleaned.hirshfeld', 'mgo-pos-1-cleaned.xyz', 'mgo-frc-1-cleaned.xyz']
+# box = np.array([[12.57, 0, 0, 0, 12.57, 0, 0, 0, 12.57]])
+# num_atoms = 216
 
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-333/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
-charged = True
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-333/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
+# charged = True
 # 0 to 1400 fs
 # Discard first 100 frames and last 1400-1300*2 frames
 
-size_exclude_start = int(0.05e3*2)
-size_exclude_end = int((1400-1300)*2)
-size_test = int(0.1e3*2)
-size_validation = int(0.3e3*2)
+# size_exclude_start = int(0.05e3*2)
+# size_exclude_end = int((1400-1300)*2)
+# size_test = int(0.1e3*2)
+# size_validation = int(0.3e3*2)
 
 # the data contains 2800 frames
 # the data contains 2500 frames after excluding the first and last frames
@@ -365,6 +365,33 @@ size_validation = int(0.3e3*2)
 # the data contains 2300 frames after excluding the first and last frames and test set
 # the training data contains 1700 frames
 # the validation data contains 600 frames
+
+
+# tio2 336
+# pbc set {13.8 13.8 17.76 90 90 90} -all ; pbc box
+# pbc wrap -all
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+box = np.array([[13.8, 0, 0, 0, 13.8, 0, 0, 0, 17.76]])
+num_atoms = 324
+
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+directory = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)
+charged = True
+# 0 to 480 fs
+# Discard first 390 fs
+
+size_exclude_start = int(390*2)
+size_exclude_end = int(0*2)
+size_test = int(30*2)
+size_validation = int(50)
+
+# the data contains 975 frames
+# the data contains 195 frames after excluding the first and last frames
+# the test data contains 60 frames
+# the data contains 135 frames after excluding the first and last frames and test set
+# the training data contains 85 frames
+# the validation data contains 50 frames
 
 
 
@@ -383,6 +410,8 @@ energy = np.reshape(energy, (num_timesteps, 1)) * param.hartree_to_ev
 # Spin moment as atom_ener and charge state as aparam
 print('Loading Hirshfeld')
 _, hirshfeld, _ = read_hirsh(directory, files[1], num_atoms)
+population_alpha = hirshfeld[:, 3]
+population_beta = hirshfeld[:, 4]
 hirshfeld = hirshfeld[:, 5]
 aparam = np.zeros((num_timesteps, num_atoms))
 if charged:
@@ -435,6 +464,8 @@ for i in range(box_array.shape[0]):
 print("# the data contains %d frames" % energy.shape[0])
 
 energy = energy[range(size_exclude_start, num_timesteps - size_exclude_end)]
+population_alpha = population_alpha[range(size_exclude_start, num_timesteps - size_exclude_end)]
+population_beta = population_beta[range(size_exclude_start, num_timesteps - size_exclude_end)]
 hirshfeld = hirshfeld[range(size_exclude_start, num_timesteps - size_exclude_end)]
 aparam = aparam[range(size_exclude_start, num_timesteps - size_exclude_end)]
 coordinates = coordinates[range(size_exclude_start, num_timesteps - size_exclude_end)]
@@ -443,6 +474,8 @@ box_array = box_array[range(size_exclude_start, num_timesteps - size_exclude_end
 print("# the data contains %d frames after excluding the first and last frames" % energy.shape[0])
 
 energy_test = energy[-size_test:]
+population_alpha_test = population_alpha[-size_test:]
+population_beta_test = population_beta[-size_test:]
 hirshfeld_test = hirshfeld[-size_test:]
 aparam_test = aparam[-size_test:]
 coordinates_test = coordinates[-size_test:]
@@ -451,6 +484,8 @@ box_array_test = box_array[-size_test:]
 print("# the test data contains %d frames" % energy_test.shape[0])
 
 energy = energy[:-size_test]
+population_alpha = population_alpha[:-size_test]
+population_beta = population_beta[:-size_test]
 hirshfeld = hirshfeld[:-size_test]
 aparam = aparam[:-size_test]
 coordinates = coordinates[:-size_test]
@@ -459,15 +494,19 @@ box_array = box_array[:-size_test]
 
 print("# the data contains %d frames after excluding the first and last frames and test set" % energy.shape[0])
 
+# Load index from file
+# index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
+# index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
+
+# Set random index
 rng = np.random.default_rng()
 index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
 index_validation = np.sort(index_validation)
 index_training = list(set(range(energy.shape[0])) - set(index_validation))
-# print('index_validation', index_validation)
-# print('index_training', index_training)
-
 
 energy_train = energy[index_training]
+population_alpha_train = population_alpha[index_training]
+population_beta_train = population_beta[index_training]
 hirshfeld_train = hirshfeld[index_training]
 aparam_train = aparam[index_training]
 coordinates_train = coordinates[index_training]
@@ -475,6 +514,8 @@ forces_train = forces[index_training]
 box_array_train = box_array[index_training]
 
 energy_valid = energy[index_validation]
+population_alpha_valid = hirshfeld[index_validation]
+population_beta_valid = population_beta[index_validation]
 hirshfeld_valid = hirshfeld[index_validation]
 aparam_valid = aparam[index_validation]
 coordinates_valid = coordinates[index_validation]
@@ -489,6 +530,8 @@ np.savetxt('{}/database_ener_force_train/index_training.raw'.format(directory), 
 np.savetxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory), index_validation)
 np.savetxt('{}/database_spin_train/index_training.raw'.format(directory), index_training)
 np.savetxt('{}/database_spin_test/1/index_validation.raw'.format(directory), index_validation)
+np.savetxt('{}/database_population_train/index_training.raw'.format(directory), index_training)
+np.savetxt('{}/database_population_test/1/index_validation.raw'.format(directory), index_validation)
 
 # Energy
 np.save('{}/database_ener_force_train/set.000/energy.npy'.format(directory), energy_train)
@@ -497,6 +540,9 @@ np.save('{}/database_ener_force_test/2/set.000/energy.npy'.format(directory), en
 np.save('{}/database_spin_train/set.000/energy.npy'.format(directory), energy_train)
 np.save('{}/database_spin_test/1/set.000/energy.npy'.format(directory), energy_valid)
 np.save('{}/database_spin_test/2/set.000/energy.npy'.format(directory), energy_test)
+np.save('{}/database_population_train/set.000/energy.npy'.format(directory), energy_train)
+np.save('{}/database_population_test/1/set.000/energy.npy'.format(directory), energy_valid)
+np.save('{}/database_population_test/2/set.000/energy.npy'.format(directory), energy_test)
 
 # Hirshfeld
 np.savetxt('{}/database_spin_train/atom_ener.raw'.format(directory), hirshfeld_train.flatten(), delimiter=' ')
@@ -505,6 +551,26 @@ np.savetxt('{}/database_spin_test/1/atom_ener.raw'.format(directory), hirshfeld_
 np.save('{}/database_spin_test/1/set.000/atom_ener.npy'.format(directory), hirshfeld_valid.flatten())
 np.savetxt('{}/database_spin_test/2/atom_ener.raw'.format(directory), hirshfeld_test.flatten(), delimiter=' ')
 np.save('{}/database_spin_test/2/set.000/atom_ener.npy'.format(directory), hirshfeld_test.flatten())
+
+# Population
+population_train = np.zeros((np.shape(population_alpha_train)[0], num_atoms, 2))
+for i in range(np.shape(population_alpha_train)[0]):
+    for j in range(num_atoms):
+        population_train[i, j, 0] = population_alpha_train[i, j]
+        population_train[i, j, 1] = population_beta_train[i, j]
+population_valid = np.zeros((np.shape(population_alpha_valid)[0], num_atoms, 2))
+for i in range(np.shape(population_alpha_valid)[0]):
+    for j in range(num_atoms):
+        population_valid[i, j, 0] = population_alpha_valid[i, j]
+        population_valid[i, j, 1] = population_beta_valid[i, j]
+population_test = np.zeros((np.shape(population_alpha_test)[0], num_atoms, 2))
+for i in range(np.shape(population_alpha_test)[0]):
+    for j in range(num_atoms):
+        population_test[i, j, 0] = population_alpha_test[i, j]
+        population_test[i, j, 1] = population_beta_test[i, j]
+np.save('{}/database_population_train/set.000/atomic_spin.npy'.format(directory), population_train)
+np.save('{}/database_population_test/1/set.000/atomic_spin.npy'.format(directory), population_valid)
+np.save('{}/database_population_test/2/set.000/atomic_spin.npy'.format(directory), population_test)
 
 # Aparam
 np.savetxt('{}/database_ener_force_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
@@ -519,6 +585,12 @@ np.savetxt('{}/database_spin_test/1/aparam.raw'.format(directory), aparam_valid.
 np.save('{}/database_spin_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
 np.savetxt('{}/database_spin_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
 np.save('{}/database_spin_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
+np.savetxt('{}/database_population_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
+np.save('{}/database_population_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
+np.savetxt('{}/database_population_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
+np.save('{}/database_population_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
+np.savetxt('{}/database_population_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
+np.save('{}/database_population_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
 
 # Coordinates
 np.save('{}/database_ener_force_train/set.000/coord.npy'.format(directory), coordinates_train)
@@ -527,6 +599,9 @@ np.save('{}/database_ener_force_test/2/set.000/coord.npy'.format(directory), coo
 np.save('{}/database_spin_train/set.000/coord.npy'.format(directory), coordinates_train)
 np.save('{}/database_spin_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
 np.save('{}/database_spin_test/2/set.000/coord.npy'.format(directory), coordinates_test)
+np.save('{}/database_population_train/set.000/coord.npy'.format(directory), coordinates_train)
+np.save('{}/database_population_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
+np.save('{}/database_population_test/2/set.000/coord.npy'.format(directory), coordinates_test)
 
 # Forces
 np.save('{}/database_ener_force_train/set.000/force.npy'.format(directory), forces_train)
@@ -535,6 +610,9 @@ np.save('{}/database_ener_force_test/2/set.000/force.npy'.format(directory), for
 np.save('{}/database_spin_train/set.000/force.npy'.format(directory), forces_train)
 np.save('{}/database_spin_test/1/set.000/force.npy'.format(directory), forces_valid)
 np.save('{}/database_spin_test/2/set.000/force.npy'.format(directory), forces_test)
+np.save('{}/database_population_train/set.000/force.npy'.format(directory), forces_train)
+np.save('{}/database_population_test/1/set.000/force.npy'.format(directory), forces_valid)
+np.save('{}/database_population_test/2/set.000/force.npy'.format(directory), forces_test)
 
 # Box
 np.save('{}/database_ener_force_train/set.000/box.npy'.format(directory), box_array_train)
@@ -543,5 +621,8 @@ np.save('{}/database_ener_force_test/2/set.000/box.npy'.format(directory), box_a
 np.save('{}/database_spin_train/set.000/box.npy'.format(directory), box_array_train)
 np.save('{}/database_spin_test/1/set.000/box.npy'.format(directory), box_array_valid)
 np.save('{}/database_spin_test/2/set.000/box.npy'.format(directory), box_array_test)
+np.save('{}/database_population_train/set.000/box.npy'.format(directory), box_array_train)
+np.save('{}/database_population_test/1/set.000/box.npy'.format(directory), box_array_valid)
+np.save('{}/database_population_test/2/set.000/box.npy'.format(directory), box_array_test)
 
 print('Finished')

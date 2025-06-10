@@ -264,10 +264,16 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # name = 'mgo'
 # num_atoms = 64
 
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-333/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
-files = ['mgo-1.ener', 'mgo-charges-1-clean.hirshfeld', 'mgo-pos-1.xyz', 'mgo-frc-1.xyz']
-name = 'mgo'
-num_atoms = 216
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-333/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-8'
+# files = ['mgo-1.ener', 'mgo-charges-1-clean.hirshfeld', 'mgo-pos-1.xyz', 'mgo-frc-1.xyz']
+# name = 'mgo'
+# num_atoms = 216
+
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)  # Polaron
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+name = 'tio2'
+num_atoms = 324
 
 # Energy Hirshfeld Position Force
 files_do = [True, True, True, True]

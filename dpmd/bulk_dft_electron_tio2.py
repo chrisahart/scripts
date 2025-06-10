@@ -157,7 +157,7 @@ def read_hirsh(folder, filename, num_atoms):
     return file_spec1, hirsh_data, species
                 
 
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-4.0-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3.9-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3.8-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
@@ -165,9 +165,9 @@ folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutil
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3.6-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3.5-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
-num_atoms = 72
-box_size = [9.30263, 9.30263, 9.027579, 90, 90, 90]
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# num_atoms = 72
+# box_size = [9.30263, 9.30263, 9.027579, 90, 90, 90]
 # u_values = np.array([4.1, 4.0, 3.9, 3.8, 3.7, 3.6, 3.5, 3.0])
 # No correct hopping for any value of U from 3.0 to 4.1
 
@@ -211,11 +211,88 @@ box_size = [9.30263, 9.30263, 9.027579, 90, 90, 90]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz'
 # polaron_atoms [31]
 # polaron_distance []
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz-u-3.0'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2'
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz-lowdin'
-# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
-# num_atoms = 324
-# box_size = [13.8, 13.8, 17.76, 90, 90, 90]
 
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-1.5'.format(folder)  # Immediate delocalise (cancelled)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.0'.format(folder)  # Immediate delocalise (cancelled)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.5'.format(folder)  # Unstable polaron (failed  DFT+U energy contibution is negative)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.6'.format(folder)  # Unstable polaron (failed  DFT+U energy contibution is negative)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.7'.format(folder)  # Unstable polaron (failed  DFT+U energy contibution is negative)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.8'.format(folder)  # Unstable polaron hopping (cancelled)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-2.9'.format(folder)  # Unstable polaron hopping (failed  DFT+U energy contibution is negative)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0'.format(folder)  # Unstable polaron hopping initially, then never hops for 4 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.1'.format(folder)  # No hopping (cancel) 2.5 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.2'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.3'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.4'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.5'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.8'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-4.0'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-4.2'.format(folder)  # No hopping (cancel)
+# folder_1 = '{}//neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2'.format(folder)  # No hopping for 10 ps except for one possible attempted hop at 6 ps, used as restart for others
+
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print'.format(folder)  # No hopping 2 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-o-u-3'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-o-u-4'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-o-u-5'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-o-u-6'.format(folder)  # No hopping 1 ps
+
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k'.format(folder)  # Tries to hop 800 fs but fails SCF, hop seems to look good though
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-atomic'.format(folder)   # No hopping 175 fs
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-atomic-timestep-1.0'.format(folder)   # No hopping 1500 fs
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-atomic-timestep-1.0-o-u-3.0'.format(folder)   # Tries to hop 400 fs but fails SCF, delocalises
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-ti-tz'.format(folder)  # Fails SCF
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-ti-tz2p'.format(folder)  # Immediate delocalise
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.1'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.2'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.3'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.4'.format(folder)  # No hopping 1 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.5'.format(folder)  # No hopping 2 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-600k-u-3.5-rs-3.0'.format(folder)  # No hopping 2 ps
+
+folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-700k'.format(folder)  # Tries to hop 175 fs but fails SCF, hop seems to be a partial delocalise
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-700k-u-3.5'.format(folder)  # No hopping 2 ps
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-700k-u-3.5-rs-800k'.format(folder)  # Tries to hop 1600 fs but fails SCF
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-700k-u-3.5-rs-900k'.format(folder)  # No hopping 2 ps
+
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-cell-mckenna-100k'.format(folder)  # Polaron delocalises, too high temperature?
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-cell-mckenna-100k-nve'.format(folder)  # Polaron delocalises, too high temperature?
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-cell-mckenna-200k'.format(folder)  # Polaron delocalises, too high temperature?
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-cell-mckenna-300k'.format(folder)  # Polaron delocalises, too high temperature?
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-cell-mckenna-500k'.format(folder)  # Polaron delocalises, too high temperature?
+
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-22-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)  # Polaron unstable, too low HFX? 480 fs
+folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)  # Polaron stable and hops well, perhaps too high temperature? 4 hops in 550 fs
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-22-schwarz-e-1e-6-f-1e-6-fit9-pfit3'.format(folder)  # Identical to cFIT11 for first 300 fs or so but cheaper
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-opt/u-2.0'
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-from-neutral-from-electron-opt/u-2.5'
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+num_atoms = 324
+box_size = [13.8, 13.8, 17.76, 90, 90, 90]
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-221/md'
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0'.format(folder)  # Polaron hop twice, but badly. Instantaneous hop
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0-o-3.5'.format(folder)  # Similar to above, polaron hops but badly
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0'.format(folder)  # No polaron, fully delocalised
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0-o-3.5'.format(folder)  # Polaron hops three times, but badly
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0-o-3.5-ti-0'.format(folder)  # Polaron
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# num_atoms = 48
+# box_size = [7.56, 7.56, 9.62, 90, 90, 90]
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-331/md'
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0'.format(folder)  # No polaron hopping
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0-o-3.5'.format(folder)  # No polaron hopping 400 fs, then tries to hop and fails SCF
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0'.format(folder)  # No polaron
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0-o-3.5'.format(folder)  # No polaron hopping
+# # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-hole-timestep-1.0-o-3.5-ti-0'.format(folder)  # No
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# num_atoms = 108
+# box_size = [11.34, 11.34, 9.62, 90, 90, 90]
 
 
 print('folder_1', folder_1)
@@ -224,14 +301,20 @@ hirshfeld_1_df, hirshfeld_1_np, _ = read_hirsh(folder_1, files[1], num_atoms)
 topology_file = '{}/system.xyz'.format(folder_1)
 trajectory_file = '{}/tio2-pos-1.xyz'.format(folder_1)
 
+local_bonds = 6
 timestep = 0.5
 frames_skip = 100
 frames_skip = 0
+
 num_timesteps = np.shape(hirshfeld_1_np)[0]
 time_array = np.linspace(start=0, stop=num_timesteps/2,num=num_timesteps)
+num_timesteps2 = np.shape(time_per_step_1)[0]
+time_array2 = np.linspace(start=0, stop=num_timesteps/2,num=num_timesteps2)
+
 # xlim_1 = [0, 10e3]
-xlim_1 = [0, 1e3]
-# xlim_1 = [0, time_array[-1]]
+# xlim_1 = [0, 60]
+# xlim_1 = [0, 1e3]
+xlim_1 = [0, time_array[-1]]
 ylim_1 = [0, 1.0]
 draw_legend = False
 folder_save = folder_1
@@ -241,12 +324,15 @@ polaron_atom = np.argmax(hirshfeld_1_np[-1, 5, :])
 
 # Plot time taken
 # fig_time_md, ax_time_md = plt.subplots()
-# ax_time_md.plot(time_array, time_val_1, 'k-')
-# ax_time_md.set_xlabel('Time / fs')
-# ax_time_md.set_ylabel('Time per MD step')
-# ax_time_md.set_xlim(xlim_1)
-# fig_time_md.tight_layout()
-# fig_time_md.savefig('{}/time_taken_md_step.png'.format(folder_save), dpi=300)
+ylim_1_time = [10, 500]
+fig_time_md, ax_time_md = plt.subplots(figsize=(10, 4))
+ax_time_md.plot(time_array2, time_per_step_1, 'k-')
+ax_time_md.set_xlabel('Time / fs')
+ax_time_md.set_ylabel('Time per MD step')
+ax_time_md.set_xlim(xlim_1)
+ax_time_md.set_ylim(ylim_1_time)
+fig_time_md.tight_layout()
+fig_time_md.savefig('{}/time_taken_md_step.png'.format(folder_save), dpi=300)
 
 # Plot spin of all atoms
 fig_spin1, ax_spin1 = plt.subplots()
@@ -280,7 +366,6 @@ fig_spin1.savefig('{}/spin_all.png'.format(folder_save), dpi=300)
 # fig_spin2.savefig('{}/spin_atoms.png'.format(folder_save), dpi=300)
 
 # Setup md analysis environment
-local_bonds = 6
 universe = mda.Universe(topology_file, trajectory_file)
 num_timesteps2 = len(universe.trajectory)
 time_val_1 = np.linspace(start=0, stop=len(universe.trajectory) * timestep, num=len(universe.trajectory))
@@ -309,7 +394,7 @@ for i in range(num_atoms_ti):
 # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, polaron_atom], 'k-', label='Fe {}'.format(polaron_atom + 1))
 ax_bonds_1.set_xlabel('Time / fs')
 # ax_bonds_1.set_xlabel('Timestep')
-ax_bonds_1.set_ylabel('Average of 6 Ti-O bond lengths / A')
+ax_bonds_1.set_ylabel('Average of {} Ti-O bond lengths / A'.format(local_bonds))
 # # ax_bonds_1.set_xlim([0, len(universe.trajectory)])
 ax_bonds_1.set_xlim(xlim_1)
 # ax_bonds_1.set_xlim([0, len(universe.trajectory) * timestep])
