@@ -290,15 +290,15 @@ num_atoms = 64
 # the training data contains 2030 frames
 # the validation data contains 600 frames
 
-# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-6'
-# charged = True
+directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-6'
+charged = True
 # 1500 to 4000 fs
 # Discard first 3000 frames
 
-# size_exclude_start = int(1.5e3 * 2)
-# size_exclude_end = int(0e3 * 2)
-# size_test = int(0.1e3 * 2)
-# size_validation = int(0.3e3 * 2)
+size_exclude_start = int(1.5e3 * 2)
+size_exclude_end = int(0e3 * 2)
+size_test = int(0.1e3 * 2)
+size_validation = int(0.3e3 * 2)
 
 # the data contains 8103 frames
 # the data contains 5103 frames after excluding the first and last frames
@@ -371,20 +371,20 @@ num_atoms = 64
 # pbc set {13.8 13.8 17.76 90 90 90} -all ; pbc box
 # pbc wrap -all
 # files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
-files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
-box = np.array([[13.8, 0, 0, 0, 13.8, 0, 0, 0, 17.76]])
-num_atoms = 324
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+# box = np.array([[13.8, 0, 0, 0, 13.8, 0, 0, 0, 17.76]])
+# num_atoms = 324
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
-directory = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)
-charged = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+# directory = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)
+# charged = True
 # 0 to 480 fs
 # Discard first 390 fs
 
-size_exclude_start = int(390*2)
-size_exclude_end = int(0*2)
-size_test = int(30*2)
-size_validation = int(50)
+# size_exclude_start = int(390*2)
+# size_exclude_end = int(0*2)
+# size_test = int(30*2)
+# size_validation = int(50)
 
 # the data contains 975 frames
 # the data contains 195 frames after excluding the first and last frames
@@ -392,9 +392,6 @@ size_validation = int(50)
 # the data contains 135 frames after excluding the first and last frames and test set
 # the training data contains 85 frames
 # the validation data contains 50 frames
-
-
-
 
 # For energy just .flatten() potential energy column converted to eV Shape (200,1) -> (timesteps, 1)
 print('Loading energy')
@@ -495,14 +492,14 @@ box_array = box_array[:-size_test]
 print("# the data contains %d frames after excluding the first and last frames and test set" % energy.shape[0])
 
 # Load index from file
-# index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
-# index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
+index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
+index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
 
 # Set random index
-rng = np.random.default_rng()
-index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
-index_validation = np.sort(index_validation)
-index_training = list(set(range(energy.shape[0])) - set(index_validation))
+# rng = np.random.default_rng()
+# index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
+# index_validation = np.sort(index_validation)
+# index_training = list(set(range(energy.shape[0])) - set(index_validation))
 
 energy_train = energy[index_training]
 population_alpha_train = population_alpha[index_training]
@@ -514,7 +511,7 @@ forces_train = forces[index_training]
 box_array_train = box_array[index_training]
 
 energy_valid = energy[index_validation]
-population_alpha_valid = hirshfeld[index_validation]
+population_alpha_valid = population_alpha[index_validation]
 population_beta_valid = population_beta[index_validation]
 hirshfeld_valid = hirshfeld[index_validation]
 aparam_valid = aparam[index_validation]
