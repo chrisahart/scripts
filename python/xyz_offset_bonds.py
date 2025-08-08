@@ -42,15 +42,44 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 #     'O': 6
 # }
 
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/structures'
+# folder_in = folder_out
+# filename_in = 'rutile_335.xyz'
+# filename_out = 'rutile_335-offset.xyz'
+# filename_in = 'rutile_336.xyz'
+# filename_out = 'rutile_336-offset-107.xyz'
+# filename_out = 'rutile_336-offset-101.xyz'
+# filename_in = 'rutile_446.xyz'
+# filename_out = 'rutile_446-offset-190.xyz'
+
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print'
+# folder_in = folder_out
+# filename_in = 'last.xyz'
+# filename_out = 'last_offset.xyz'
+
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md-cell-opt-hse-22/hole-u-o-5-ti-0-1200k'
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz'
+folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/structures'
+folder_in = folder_out
+# filename_in = 'last.xyz'
+# filename_out = 'last-offset.xyz'
+# filename_in = 'cell_442_opt.xyz'
+# filename_out = 'cell_442_opt_atom_305.xyz'
+filename_in = 'cell_552_opt.xyz'
+# filename_out = 'cell_552_opt_atom_305.xyz'
+
 folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/structures'
 folder_in = folder_out
-filename_in = 'rutile_335.xyz'
-filename_out = 'rutile_335-offset.xyz'
+# filename_in = 'rutile_338.xyz'
+# filename_out = 'rutile_338-offset-107.xyz'
+# filename_out = 'rutile_338-offset-106.xyz'
+# filename_in = 'rutile_3310.xyz'
+# filename_out = 'rutile_3310-offset-135.xyz'
+# filename_out = 'rutile_3310-offset-134.xyz'
+filename_in = 'rutile_3312.xyz'
+filename_out = 'rutile_3312-offset-163.xyz'
+# filename_out = 'rutile_3312-offset-162.xyz'
 
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print'
-folder_in = folder_out
-filename_in = 'last.xyz'
-filename_out = 'last_offset.xyz'
 
 cols = ['Species', 'X', 'Y', 'Z']
 mapping = {
@@ -103,14 +132,14 @@ with open('{}/species_map.txt'.format(folder_out), 'w') as file:
 
 # atom 1
 # labels = np.array([38, 108, 104, 106, 95, 86, 109]) - 1
-labels = np.array([6, 54, 58, 88, 71, 67, 69]) - 1
-neutral = np.array([2.12, 2.12, 2.12, 1.94, 94, 1.94])
-a = np.array([2.00392, 2.14936, 1.96812, 1.84155, 1.95954, 1.84966])
-b = np.array([1.96812, 2.00392, 2.14936, 1.95954, 1.84966, 1.84155])
-c = np.array([2.14936, 1.96812, 2.00392, 1.84155, 1.95954, 1.84966])
+# labels = np.array([6, 54, 58, 88, 71, 67, 69]) - 1
+# neutral = np.array([2.12, 2.12, 2.12, 1.94, 94, 1.94])
+# a = np.array([2.00392, 2.14936, 1.96812, 1.84155, 1.95954, 1.84966])
+# b = np.array([1.96812, 2.00392, 2.14936, 1.95954, 1.84966, 1.84155])
+# c = np.array([2.14936, 1.96812, 2.00392, 1.84155, 1.95954, 1.84966])
 # bond_target = np.array([2.3]*6)
 # bond_target = np.array([1.8]*6)
-bond_target = c
+# bond_target = c
 
 # atom tio2 334 supercell
 # labels = np.array([69, 211, 197, 193, 216, 198, 199]) - 1
@@ -123,9 +152,12 @@ bond_target = c
 # bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 
 # atom tio2 336 supercell
-labels = np.array([105, 297, 293, 105, 299, 319, 298]) - 1
-neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
-bond_target = np.array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4])
+# labels = np.array([105, 297, 293, 105, 299, 319, 298]) - 1
+# labels = np.array([102, 317, 150, 323, 295, 156, 300]) - 1
+# labels = np.array([101, 315, 289, 259, 297, 322, 190]) - 1
+# labels = np.array([107, 323, 156, 317, 295, 150, 300]) - 1
+# neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
+# bond_target = np.array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4])
 
 # atom tio2 445 supercell
 # labels = np.array([159, 455, 459, 454, 456, 397, 453]) - 1
@@ -134,8 +166,42 @@ bond_target = np.array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4])
 
 # atom tio2 446 supercell
 # labels = np.array([189, 543, 547, 550, 541, 473, 549]) - 1
+# labels = np.array([190, 549, 552, 544, 550, 479, 542]) - 1
 # neutral = np.array([1.95181, 1.97966, 1.95181, 1.95180, 1.97966, 1.95180])
 # bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 442 supercell
+# labels = np.array([282, 73, 88, 105]) - 1
+# labels = np.array([305, 88, 110, 105]) - 1
+# filename_out = 'cell_442_opt_atom_305.xyz'
+# labels = np.array([340, 105, 98, 125]) - 1
+# filename_out = 'cell_442_opt_atom_340.xyz'
+# labels = np.array([361, 45, 105, 98]) - 1
+# filename_out = 'cell_442_opt_atom_361.xyz'
+# labels = np.array([367, 119, 107, 125]) - 1
+# filename_out = 'cell_442_opt_atom_367.xyz'
+# labels = np.array([310, 105, 110, 83]) - 1
+# filename_out = 'cell_442_opt_atom_310.xyz'
+# labels = np.array([241, 66, 98, 63]) - 1
+# filename_out = 'cell_442_opt_atom_241.xyz'
+# neutral = np.array([1.94, 1.99, 1.94])
+# bond_target = np.array([2.0, 2.2, 2.0])
+
+# atom tio2 338
+# labels = np.array([107, 347, 358, 395, 368, 362, 393]) - 1
+# labels = np.array([106, 362, 368, 400, 359, 346, 399]) - 1
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 3310
+# labels = np.array([135, 450, 495, 460, 454, 493, 439]) - 1
+# labels = np.array([134, 454, 460, 500, 451, 438, 499]) - 1
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
+# atom tio2 3312
+labels = np.array([163, 531, 542, 595, 552, 546, 593]) - 1
+# labels = np.array([162, 546, 552, 600, 543, 530, 599]) - 1
+bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+
 
 # atom mgo 222 supercell
 # labels = np.array([39, 8, 15, 19, 23, 13, 7]) - 1

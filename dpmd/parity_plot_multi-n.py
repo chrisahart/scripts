@@ -16,60 +16,85 @@ def plot_ener(dft, dp, ax, color_plot, pos, text, title=None):
     min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
     ax.plot([min_val, max_val], [min_val, max_val], 'k--')
     # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f} meV/atom", transform=ax.transAxes)
-    ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/atom", transform=ax.transAxes, color=color_plot)
+    ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.3f} meV/atom", transform=ax.transAxes, color=color_plot)
     if title is not None:
         ax.set_title(title)
 
 
-def plot_force(dft, dp, ax, color_plot, pos, text, title=None):
-    ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
-    ax.set_xlabel("DFT force (eV/Å)")
-    ax.set_ylabel("DP force (eV/Å)")
-    mae = mean_absolute_error(dft.flatten(), dp.flatten()) * 1000  # unit: meV/A
-    rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) * 1000  # unit: meV/A
-    print('plot_force')
-    print('mean_absolute_error', mae)
-    print('root_mean_squared_error', rmse)
-    # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f} meV/$\AA$", transform=ax.transAxes)
-    # ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/$\AA$", transform=ax.transAxes, color=color_plot)
-    ax.text(pos[0], pos[1], f"RMSE: {rmse:.2f} meV/Å", transform=ax.transAxes, color=color_plot)
-    min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
-    ax.plot([min_val, max_val], [min_val, max_val], 'k--')
+def plot_force(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=None):
+
+    if polaron_index is None:
+        ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
+        ax.set_xlabel("DFT force (eV/Å)")
+        ax.set_ylabel("DP force (eV/Å)")
+        mae = mean_absolute_error(dft.flatten(), dp.flatten()) * 1000  # unit: meV/A
+        rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) * 1000  # unit: meV/A
+        print('plot_force')
+        print('mean_absolute_error', mae)
+        print('root_mean_squared_error', rmse)
+        # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f} meV/$\AA$", transform=ax.transAxes)
+        # ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/$\AA$", transform=ax.transAxes, color=color_plot)
+        ax.text(pos[0], pos[1], f"RMSE: {rmse:.3f} meV/Å", transform=ax.transAxes, color=color_plot)
+        min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
+        ax.plot([min_val, max_val], [min_val, max_val], 'k--')
+        if title is not None:
+            ax.set_title(title)
+    else:
+        ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
+
+
+def plot_spin(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=None):
+
+    ax.plot([[-10, -10], [10, 10]], [[-10, -10], [10, 10]], 'k--')
+
+    if polaron_index is None:
+        ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
+        ax.set_xlabel("DFT spin")
+        ax.set_ylabel("DP spin")
+        min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
+        mae = mean_absolute_error(dft.flatten(), dp.flatten())
+        rmse = root_mean_squared_error(dft.flatten(), dp.flatten())
+        print('plot_spin')
+        print('mean_absolute_error', mae)
+        print('root_mean_squared_error', rmse)
+        # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f}", transform=ax.transAxes)
+        # ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f}", transform=ax.transAxes, color=color_plot)
+        ax.text(pos[0], pos[1], f"RMSE: {rmse:.3f}", transform=ax.transAxes, color=color_plot)
+        ax.set_xlim([axis_lim_y[0], axis_lim_y[1]])
+        ax.set_ylim([axis_lim_y[0], axis_lim_y[1]])
+
+    else:
+        ax.plot([[-10, -10], [10, 10]], [[-10, -10], [10, 10]], 'k--')
+        dft = dft.flatten()
+        dp = dp.flatten()
+        dft2 = []
+        dp2 = []
+        for i in range(len(polaron_index)):
+            if polaron_index[i] == 1:
+                dft2.append(dft[i])
+                dp2.append(dp[i])
+        ax.plot(dft2, dp2, '.', color=color_plot)
+        ax.set_xlabel("DFT spin")
+        ax.set_ylabel("DP spin")
+        mae = mean_absolute_error(dft2, dp2)
+        rmse = root_mean_squared_error(dft2, dp2)
+        print('plot_spin polaron_index is not None')
+        print('mean_absolute_error', mae)
+        print('root_mean_squared_error', rmse)
+        ax.text(pos[0], pos[1], f"RMSE: {rmse:.3f}", transform=ax.transAxes, color=color_plot)
+        ax.set_xlim([axis_lim_y[0], axis_lim_y[1]])
+        ax.set_ylim([axis_lim_y[0], axis_lim_y[1]])
+
     if title is not None:
         ax.set_title(title)
-    # else:
-    #     ax.set_title("Force")
-
-
-def plot_spin(dft, dp, ax, color_plot, pos, text, title=None):
-    ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
-    ax.set_xlabel("DFT spin")
-    ax.set_ylabel("DP spin")
-    min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
-    mae = mean_absolute_error(dft.flatten(), dp.flatten())
-    rmse = root_mean_squared_error(dft.flatten(), dp.flatten())
-    print('plot_spin')
-    print('mean_absolute_error', mae)
-    print('root_mean_squared_error', rmse)
-    # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f}", transform=ax.transAxes)
-    # ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f}", transform=ax.transAxes, color=color_plot)
-    ax.text(pos[0], pos[1], f"RMSE: {rmse:.2f}", transform=ax.transAxes, color=color_plot)
-    ax.plot([min_val, max_val], [min_val, max_val], 'k--')
-
-    ax.set_xlim([axis_lim_y[0], axis_lim_y[1]])
-    ax.set_ylim([axis_lim_y[0], axis_lim_y[1]])
-
-    if title is not None:
-        ax.set_title(title)
-    # else:
-    #     ax.set_title("Spin")
 
 
 def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
     num_atoms = int(dp.shape[1])
     num_timesteps = int(dp.shape[0])
     time_array = np.linspace(0, int(num_timesteps / 2), num=num_timesteps)
-    num_atoms_plot_spin = 64
+    # num_atoms_plot_spin = 64
+    num_atoms_plot_spin = int(288/3 * 2)
     plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
 
     print('np.shape(dft)', np.shape(dft))
@@ -363,21 +388,53 @@ def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
 
 # Bulk TiO2 336
 # model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
-model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/cell-336/hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
+# text_array = ['400 K train', '400 K valid', '400 K test']
+# num_atoms = 324
+
+# Bulk TiO2 leopold
+model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+model = ['single-fit-ener-dpa2', 'single-fit-m-dpa2']
+model = ['single-fit-ener-dpa2-finetune', 'single-fit-m-dpa2-finetune']
+model = ['single-fit-ener-dpa3-6-default', 'single-fit-m-dpa3-6-default']
+# model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
+# model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
+# model = 'se_e2_a'
+# model = 'dpa3-6-default'
+# model = 'dpa2'
+# model = 'dpa2-finetune'
+# model = 'dpa2-finetune-branch-H2O_H2O-PD'
+# model = 'dpa2-finetune-branch-H2O_H2O-PD-use-pretrain-script'
+# model = 'dpa3-16-official'
+# model = 'dpa3-16-official-finetune'
+# model = ['single-fit-ener-{}'.format(model), 'single-fit-m-{}'.format(model)]
 spin_is_population = True
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/cell-336/hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/leopold/leopold'
 model_ener = ['{}/{}'.format(folder, model[0])] * 4
 model_spin = ['{}/{}'.format(folder, model[1])] * 4
-database = ['{}/database_population_train/'.format(folder),
-            '{}/database_population_test/1'.format(folder),
-            '{}/database_population_test/2'.format(folder)]
+database = ['{}/database_train/'.format(folder),
+            '{}/database_test/1'.format(folder),
+            '{}/database_test/2'.format(folder)]
 val = ['_0_', '_1_', '_2_']
 axis_lim_y = np.array([0, 1])
 pos_array_energy = np.array(([0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
 pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 pos_array_spin = np.array(([0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
 text_array = ['400 K train', '400 K valid', '400 K test']
-num_atoms = 324
+num_atoms = 288
+
 
 print('model', model)
 color_plot_array = ['r', 'g', 'b', 'm']
@@ -390,6 +447,7 @@ axis_lim_x_zoom = np.array([transition_time[transition_time_plot]-40, transition
 dft_e = []
 dft_f = []
 dft_s = []
+dft_polaron = []
 spin_0 = []
 ener_0 = []
 force_0 = []
@@ -397,14 +455,18 @@ spin_1 = []
 ener_1 = []
 force_1 = []
 
-test = np.load("{}/database_population_train/set.000/atomic_spin.npy".format(folder))
+# test = np.load("{}/database_population_train/set.000/atomic_spin.npy".format(folder))
 # test = np.load("{}/database_population_test/1/set.000/atomic_spin.npy".format(folder))
-print('test', test.shape)
+# test = np.load("{}/database_train/set.000/atomic_spin.npy".format(folder))
 # print('test', test[0, :, :])
+# test = np.load("{}/database_train/set.000/force.npy".format(folder))
+# print('test', test.shape)
+# print('test', test[0, :])
 
 for i in range(len(database)):
     dft_e.append(np.load("{}/set.000/energy.npy".format(database[i], val[i])))
     dft_f.append(np.load("{}/set.000/force.npy".format(database[i], val[i])))
+    dft_polaron.append(np.load("{}/set.000/aparam.npy".format(database[i], val[i])))
     ener_0.append(np.load("{}/0{}ener.npy".format(model_ener[i], val[i])))
     force_0.append(np.load("{}/0{}force.npy".format(model_ener[i], val[i])))
     ener_1.append(np.load("{}/1{}ener.npy".format(model_ener[i], val[i])))
@@ -416,9 +478,10 @@ for i in range(len(database)):
     if spin_is_population:
         dft_s.append(np.load("{}/set.000/atomic_spin.npy".format(database[i], val[i])))
 
-# 1. Plot parity
+# Plot parity 2x3 subplots
 fig, axes = plt.subplots(2, 3, figsize=(15, 6))
 for i in range(len(database)):
+    print(i)
     plot_ener(dft_e[i], ener_0[i], axes[0, 0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, No-aparam")
     plot_ener(dft_e[i], ener_1[i], axes[1, 0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, Yes-aparam")
     plot_force(dft_f[i], force_0[i], axes[0, 1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i], title="Force, No-aparam")
@@ -434,9 +497,10 @@ for i in range(len(database)):
     plt.savefig("{}/fit_2x3_folders_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
     plt.savefig("{}/fit_2x3_folders_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
 
-# 2. Plot parity
+# Plot parity 1x3 subplot
 fig2, axes2 = plt.subplots(1, 3, figsize=(15, 3))
 for i in range(len(database)):
+    print(i)
     plot_ener(dft_e[i], ener_1[i], axes2[0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i])
     plot_force(dft_f[i], force_1[i], axes2[1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i])
     if not spin_is_population:
@@ -448,11 +512,29 @@ for i in range(len(database)):
     plt.savefig("{}/fit_1x3_folders_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
     plt.savefig("{}/fit_1x3_folders_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
 
+# Plot spin
+fig3, axes3 = plt.subplots()
+for i in range(len(database)):
+    print(i)
+    plot_spin((dft_s[i][:, :, 0] - dft_s[i][:, :, 1]), (spin_1[i][:, :, 0] - spin_1[i][:, :, 1]), axes3, color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i], polaron_index=dft_polaron[i])
+plt.tight_layout()
+for i in range(len(database)):
+    plt.savefig("{}/spin_moment_polaron_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
+
+# Plot spin polaron
+fig4, axes4 = plt.subplots()
+for i in range(len(database)):
+    print(i)
+    plot_spin((dft_s[i][:, :, 0] - dft_s[i][:, :, 1]), (spin_1[i][:, :, 0] - spin_1[i][:, :, 1]), axes4, color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i])
+plt.tight_layout()
+for i in range(len(database)):
+    plt.savefig("{}/spin_moment_all_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
+
 # Plot spin moment training
+axis_lim_y = [-0.02, 1.0]
 plot_spin_time = True
 # plot_spin_time = False
 if plot_spin_time:
-    axis_lim_y = [-0.02, 0.9]
     fig_spin_train, axes_spin_train = plt.subplots()
     plot_spin_time1((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
                     axes_spin_train, axis_lim_y, title="Energy, No-aparam")
@@ -464,7 +546,6 @@ if plot_spin_time:
 
 # Plot spin moment validation
 if plot_spin_time:
-    axis_lim_y = [-0.02, 0.9]
     fig_spin_valid, axes_spin_valid = plt.subplots()
     plot_spin_time1((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
                     axes_spin_valid, axis_lim_y, title="Energy, No-aparam")
@@ -476,7 +557,6 @@ if plot_spin_time:
 
 # Plot spin moment test
 if plot_spin_time:
-    axis_lim_y = [-0.02, 0.9]
     fig_spin_test, axes_spin_test = plt.subplots()
     plot_spin_time1((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
                     axes_spin_test, axis_lim_y, title="Energy, No-aparam")
