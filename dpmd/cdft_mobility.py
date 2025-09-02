@@ -57,10 +57,12 @@ def calc_mobility(diffusion, kb_t):
 
 
 # Parameters
-temp = 300  # K
-multiplicity = 2  # Site multiplicity
+# temp = 300  # K
+temp = 600  # K
+multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
-vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+# vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
 
 # Constants
 kb_t_au = 8.617333262145E-5 * temp  # KbT in eV
@@ -70,15 +72,31 @@ planck_au = 2 * np.pi  # Planck constant in SI units
 angstrom_to_cm = 1e-8
 ev_to_joules = 1.60218e-19
 
+# Rutile Deskins Dupuis
+# rate_constant = 7.65e11
+# diffusion_spencer = calc_diffusion(multiplicity, 2.970, rate_constant)
+# print(diffusion_spencer*1e3)
+# diffusion_spencer = 1.35e-3
+# mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)
+# print(mobility_spencer)
+# suggests that they use site multiplicity = 4? why?
+# 0.052220331546976445
 # Hematite Hole Boltzmann factor at 300 K
 # r_hop = np.array([2.97])
 # coupling = np.array([147]) / 1e3
 # reorg = np.array([752]) / 1e3
 
-# TiO2 336 22% HFX 1st nearest neighbour
+# TiO2 336 22% HFX 1st nearest neighbour rel-609
 # r_hop = np.array([2.96])
 # coupling = np.array([14.446622491241]) * param.hartree_to_ev / 1e3
 # energy_cdft_ts = np.array([-9762.745898065810252])
+# energy_dft_gs = np.array([-9762.753627197094829])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 336 22% HFX 1st nearest neighbour abs-684
+# r_hop = np.array([2.96])
+# coupling = np.array([14.857164922304]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-9762.746504160379118])
 # energy_dft_gs = np.array([-9762.753627197094829])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
@@ -103,14 +121,32 @@ ev_to_joules = 1.60218e-19
 # energy_dft_gs = np.array([-9761.98275975738943])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
-# TiO2 336 25% HFX 1st nearest neighbour
-r_hop = np.array([2.96])
-coupling = np.array([14.408699460995]) * param.hartree_to_ev / 1e3
-energy_cdft_ts = np.array([-13017.114620704207482])
-energy_dft_gs = np.array([-13017.120554204866494])
+# TiO2 338 25% HFX 1st nearest neighbour
+# r_hop = np.array([2.96])
+# coupling = np.array([14.408699460995]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-13017.114620704207482])
+# energy_dft_gs = np.array([-13017.120554204866494])
 # energy_cdft_ts = np.array([-13017.114949657321631])
 # energy_dft_gs = np.array([-13017.12058427568445])
-reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 3310 25% HFX 1st nearest neighbour
+# r_hop = np.array([2.96])
+# coupling = np.array([14.533195990956]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-16271.480767503899187])
+# energy_dft_gs = np.array([-16271.486641339810376])
+# energy_cdft_ts = np.array([-13017.114949657321631])
+# energy_dft_gs = np.array([-13017.12058427568445])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 3312 25% HFX 1st nearest neighbour
+# r_hop = np.array([2.96])
+# coupling = np.array([15.036973292412]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-19525.846732206777233])
+# energy_dft_gs = np.array([-19525.852698631635576 ])
+# energy_cdft_ts = np.array([-13017.114949657321631])
+# energy_dft_gs = np.array([-13017.12058427568445])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # TiO2 446 25% HFX 1st nearest neighbour ***** energy does not make sense
 # r_hop = np.array([2.96])
@@ -131,6 +167,138 @@ reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 # coupling = np.array([0.225872628396]) * param.hartree_to_ev / 1e3
 # energy_cdft_ts = np.array([-9762.74181232870068])
 # energy_dft_gs = np.array([-9762.753847150284855 ])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --------------------
+
+# TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
+# r_hop = np.array([2.44518])
+# coupling = np.array([4.805772678533]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-5786.413083831913355])
+# energy_dft_gs = np.array([-5786.426998360552716])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 441 19% HFX i 2 (20% cell opt) abs-773-scf-1e-6
+# r_hop = np.array([2.44518])
+# coupling = np.array([5.864858221891]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-5786.413084373519268])
+# energy_dft_gs = np.array([-5786.426998360552716])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 441 19% HFX ii (20% cell opt) rel-723-scf-1e-6
+# r_hop = np.array([2.81388])
+# coupling = np.array([12.445206447709]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-5786.414133694046541])
+# energy_dft_gs = np.array([-5786.426998360552716])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 441 19% HFX ii (20% cell opt) abs-773-scf-1e-6
+# r_hop = np.array([2.81388])
+# coupling = np.array([14.917480949737]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-5786.414949730638000])
+# energy_dft_gs = np.array([-5786.426998360552716])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --------------------
+
+# TiO2 anatase 442 19% HFX atoms-282-305  ii 1 rel-764-scf-1e-6 (20% cell opt)
+# r_hop = np.array([2.44518])
+# coupling = np.array([4.928405167383]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.487597092980650])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 442 19% HFX atoms-282-305  ii 1 abs-777-scf-1e-6 (20% cell opt)
+# r_hop = np.array([2.44518])
+# coupling = np.array([5.954132079663]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.487691769623780])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX atoms-282-340 i 2 rel-731-scf-1e-6 (20% cell opt)
+# r_hop = np.array([2.81388])
+# coupling = np.array([13.374766550741]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.488784444944031])
+# energy_dft_gs = np.array([-11572.502169794801375])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 442 19% HFX atoms-282-340 i 2 abs-777-scf-1e-6 (20% cell opt)
+# r_hop = np.array([2.81388])
+# coupling = np.array([13.386030986104]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.489707433431249])
+# energy_dft_gs = np.array([-11572.502169794801375])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX atoms-282-367 iv 4a (20% cell opt) abs-777-scf-1e-6
+# r_hop = np.array([3.79485])
+# coupling = np.array([4.274852071483]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.483965868430460])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 442 19% HFX atoms-282-367 iv 4a (20% cell opt) abs-777-scf-1e-6-strength-cdft-eps-1e-2
+# r_hop = np.array([3.79485])
+# coupling = np.array([4.208369493258]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.483966863779642])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX atoms-282-310 iv 4b (20% cell opt) abs-777-scf-1e-6
+r_hop = np.array([3.77420])
+coupling = np.array([1.113395978848]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-11572.476950093205232])
+energy_dft_gs = np.array([-11572.502234968242192])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX atoms-282-367 v 3 (20% cell opt) abs-777-scf-1e-6-strength-cdft-eps-1e-2
+# r_hop = np.array([3.07161])
+# coupling = np.array([0.404784354577]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.479161906976515])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX atoms-282-241 vi 5 (20% cell opt)
+# r_hop = np.array([3.79726])
+# coupling = np.array([1.059077001888]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.482330965658548])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --------------------
+
+# TiO2 anatase 442 19% HFX i (22% cell opt)
+# r_hop = np.array([2.69802])
+# coupling = np.array([12.272583913530]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.489001493615433])
+# energy_dft_gs = np.array([-11572.502106984749844])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# TiO2 anatase 442 19% HFX ii
+# r_hop = np.array([2.50752])
+# coupling = np.array([4.805772678533]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-5786.413083831913355])
+# energy_dft_gs = np.array([-5786.426962155201181])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 anatase 442 19% HFX ii (22% cell opt)
+# r_hop = np.array([2.50792])
+# coupling = np.array([4.921613527589]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.487723034415467])
+# energy_dft_gs = np.array([-11572.502106984749844])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 for i in range(0, np.shape(coupling)[0]):

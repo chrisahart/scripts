@@ -59,27 +59,33 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 
 # folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md-cell-opt-hse-22/hole-u-o-5-ti-0-1200k'
 # folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz'
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/structures'
-folder_in = folder_out
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/structures'
+# folder_in = folder_out
 # filename_in = 'last.xyz'
 # filename_out = 'last-offset.xyz'
 # filename_in = 'cell_442_opt.xyz'
 # filename_out = 'cell_442_opt_atom_305.xyz'
-filename_in = 'cell_552_opt.xyz'
+# filename_in = 'cell_552_opt.xyz'
 # filename_out = 'cell_552_opt_atom_305.xyz'
+# filename_in = 'cell_441_opt.xyz'
 
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/structures'
-folder_in = folder_out
+# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/structures'
+# folder_in = folder_out
 # filename_in = 'rutile_338.xyz'
 # filename_out = 'rutile_338-offset-107.xyz'
 # filename_out = 'rutile_338-offset-106.xyz'
 # filename_in = 'rutile_3310.xyz'
 # filename_out = 'rutile_3310-offset-135.xyz'
 # filename_out = 'rutile_3310-offset-134.xyz'
-filename_in = 'rutile_3312.xyz'
-filename_out = 'rutile_3312-offset-163.xyz'
+# filename_in = 'rutile_3312.xyz'
+# filename_out = 'rutile_3312-offset-163.xyz'
 # filename_out = 'rutile_3312-offset-162.xyz'
 
+folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hole-u-o-5-ti-0-600k-hse-25'
+folder_in = folder_out
+filename_in = 'last.xyz'
+filename_out = 'last_center.xyz'
+change_bonds = False
 
 cols = ['Species', 'X', 'Y', 'Z']
 mapping = {
@@ -171,6 +177,16 @@ with open('{}/species_map.txt'.format(folder_out), 'w') as file:
 # bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 
 # atom tio2 442 supercell
+# neutral = np.array([1.94, 1.99, 1.94])
+# bond_target = np.array([2.1, 2.3, 2.1])
+# filename_out = 'cell_441_opt_atom_122.xyz'
+# labels = np.array([122, 11, 38, 35]) - 1
+# filename_out = 'cell_441_opt_atom_147.xyz'
+# labels = np.array([147, 35, 47, 51]) - 1
+# filename_out = 'cell_441_opt_atom_129.xyz'
+# labels = np.array([129, 38, 35, 54]) - 1
+
+# atom tio2 442 supercell
 # labels = np.array([282, 73, 88, 105]) - 1
 # labels = np.array([305, 88, 110, 105]) - 1
 # filename_out = 'cell_442_opt_atom_305.xyz'
@@ -198,9 +214,9 @@ with open('{}/species_map.txt'.format(folder_out), 'w') as file:
 # bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 
 # atom tio2 3312
-labels = np.array([163, 531, 542, 595, 552, 546, 593]) - 1
+# labels = np.array([163, 531, 542, 595, 552, 546, 593]) - 1
 # labels = np.array([162, 546, 552, 600, 543, 530, 599]) - 1
-bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 
 
 # atom mgo 222 supercell
@@ -213,34 +229,35 @@ bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 # neutral = np.array([2.09700, 2.09700, 2.09700, 2.09700, 2.09700, 2.09700])
 # bond_target = np.array([1.8, 1.8, 1.8, 1.8, 1.8, 1.8])
 
-Fe_O = np.zeros(np.shape(labels)[0] - 1)
-Fe_O_x = np.zeros(np.shape(labels)[0] - 1)
-Fe_O_y = np.zeros(np.shape(labels)[0] - 1)
-Fe_O_z = np.zeros(np.shape(labels)[0] - 1)
+if change_bonds:
+    Fe_O = np.zeros(np.shape(labels)[0] - 1)
+    Fe_O_x = np.zeros(np.shape(labels)[0] - 1)
+    Fe_O_y = np.zeros(np.shape(labels)[0] - 1)
+    Fe_O_z = np.zeros(np.shape(labels)[0] - 1)
 
-# Calculate bond lengths
-for i in range(np.shape(labels)[0] - 1):
-    Fe_O[i] = calc_distance(coord_x[0, labels[0]], coord_y[0, labels[0]], coord_z[0, labels[0]],
-                                      coord_x[0, labels[1+i]], coord_y[0, labels[1+i]], coord_z[0, labels[1+i]])
-    Fe_O_x[i] = coord_x[0, labels[0]] - coord_x[0, labels[1 + i]]
-    Fe_O_y[i] = coord_y[0, labels[0]] - coord_y[0, labels[1 + i]]
-    Fe_O_z[i] = coord_z[0, labels[0]] - coord_z[0, labels[1 + i]]
+    # Calculate bond lengths
+    for i in range(np.shape(labels)[0] - 1):
+        Fe_O[i] = calc_distance(coord_x[0, labels[0]], coord_y[0, labels[0]], coord_z[0, labels[0]],
+                                          coord_x[0, labels[1+i]], coord_y[0, labels[1+i]], coord_z[0, labels[1+i]])
+        Fe_O_x[i] = coord_x[0, labels[0]] - coord_x[0, labels[1 + i]]
+        Fe_O_y[i] = coord_y[0, labels[0]] - coord_y[0, labels[1 + i]]
+        Fe_O_z[i] = coord_z[0, labels[0]] - coord_z[0, labels[1 + i]]
 
-# Calculate change to coord
-bond_change = -1*np.sign(bond_target - Fe_O) * np.sqrt((abs(bond_target - Fe_O) ** 2)/3)
-bond_changex = bond_change
-bond_changey = bond_change
-bond_changez = bond_change
+    # Calculate change to coord
+    bond_change = -1*np.sign(bond_target - Fe_O) * np.sqrt((abs(bond_target - Fe_O) ** 2)/3)
+    bond_changex = bond_change
+    bond_changey = bond_change
+    bond_changez = bond_change
 
-# Modify coord
-for i in range(len(labels) - 1):
+    # Modify coord
+    for i in range(len(labels) - 1):
 
-    coord_x[0, labels[1 + i]] = coord_x[0, labels[1 + i]] + \
-                                (bond_changex[i] * np.sign(coord_x[0, labels[0]] - coord_x[0, labels[1 + i]]))
-    coord_y[0, labels[1 + i]] = coord_y[0, labels[1 + i]] + \
-                                (bond_changey[i] * np.sign(coord_y[0, labels[0]] - coord_y[0, labels[1 + i]]))
-    coord_z[0, labels[1 + i]] = coord_z[0, labels[1 + i]] + \
-                                (bond_changez[i] * np.sign(coord_z[0, labels[0]] - coord_z[0, labels[1 + i]]))
+        coord_x[0, labels[1 + i]] = coord_x[0, labels[1 + i]] + \
+                                    (bond_changex[i] * np.sign(coord_x[0, labels[0]] - coord_x[0, labels[1 + i]]))
+        coord_y[0, labels[1 + i]] = coord_y[0, labels[1 + i]] + \
+                                    (bond_changey[i] * np.sign(coord_y[0, labels[0]] - coord_y[0, labels[1 + i]]))
+        coord_z[0, labels[1 + i]] = coord_z[0, labels[1 + i]] + \
+                                    (bond_changez[i] * np.sign(coord_z[0, labels[0]] - coord_z[0, labels[1 + i]]))
 
 # Randomly modify positions of all atoms
 # change = 0.01
@@ -249,6 +266,14 @@ for i in range(len(labels) - 1):
 #     coord_x[0, i] = coord_x[0, i] + change * functions.random_sign()
 #     coord_y[0, i] = coord_y[0, i] + change * functions.random_sign()
 #     coord_z[0, i] = coord_z[0, i] + change * functions.random_sign()
+
+# Modify positions of all atoms
+change = -1 * np.array([2.37703, -1.60344, -0.26348])
+for i in range(num_atoms):
+
+    coord_x[0, i] = coord_x[0, i] + change[0]
+    coord_y[0, i] = coord_y[0, i] + change[1]
+    coord_z[0, i] = coord_z[0, i] + change[2]
 
 # Create pandas dataframe from species and coordinates
 coord = np.column_stack((coord_x.ravel(), coord_y.ravel(), coord_z.ravel()))

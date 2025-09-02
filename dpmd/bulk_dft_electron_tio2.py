@@ -346,40 +346,59 @@ def read_hubbard(folder, filename, num_atoms):
 
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs'  # No hopping 10 ps
+# xlim_1 = [0, 10000]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8-rs-2.7'  # No hopping 3.5 ps
+# xlim_1 = [0, 3000]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8-rs-2.7-rs-2.65'  # Polaron stable for 700 fs then fully delocalises
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8-rs-2.7-rs-2.6'  # Polaron stable for 700 fs then fully delocalises
-
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-20'  # 2.5 ps ? hops ~8 hops per ps mobility clearly too high. Some delocalisation driven hops
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-22'  # 5 ps ? hops, two bad delocalisation-driven hops
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25'  # 3 ps 4 hops   ~1 hop per ps (all nn)
-
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-20-tz-tz2p'  # 400 fs 1 hop. Some delocalisation initially, then stable
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-22-tz-tz2p'  # 500 fs 2 hops
-
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose'  # 5 ps stable with 9 hops: 1/k = 500 fs, mu =
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz'  # 1.3 ps 2 hops less stable than DZ, do not continue
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz-rs-24'  #
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz-rs-23'  #
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz-rs-22'  #
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz-rs-21'  #
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz-rs-20'  #
+# xlim_1 = [0, 800]
 
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-400k'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-400k-rs'  # No hopping 10 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-400k-rs-u-2.9'  # No hopping 3.5 ps
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-400k-rs-u-2.9-rs-2.8'  # TBC
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-400k-rs-u-2.9-rs-2.8-rs.27'  # TBC
 
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-500k'  # No hopping 3 ps
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-500k-rs'  # Polaron stable for 4.5 ps then fully delocalises
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-20'  # 2.5 ps lifetime fs 62, some delocalization driven hops
+# xlim_1 = [0, 2675]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-22'  # 5 ps lifetime fs 125, two bad delocalization-driven hops
+# xlim_1 = [0, 5252]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25'  # 3 ps lifetime fs 799
+# xlim_1 = [0, 3199]
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-20-tz-tz2p'  # 588 fs lifetime fs 117, some delocalization initially, then stable
+# xlim_1 = [0, 588]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-22-tz-tz2p'  # 601 fs lifetime fs 166
+# xlim_1 = [0, 588]
+
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose'  # 10 ps DONE lifetime fs 588
+# xlim_1 = [0, 10415]
+# xlim_1 = [0, 10e3]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-tz'  # 2 ps DONE lifetime fs 285 (more expensive than DZ)
+# xlim_1 = [0, 2019]
+# xlim_1 = [0, 2e3]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22'  # CANCEL lifetime fs 200 (archer diskspace exceeded)
+# xlim_1 = [0, 399]
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/backup/4/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'  # RUNNING lifetime fs 188
+# xlim_1 = [0, 4909]
+# xlim_1 = [1e3, 5e3]
+xlim_1 = [800, 4800]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'  # RUNNING lifetime fs 149
+# xlim_1 = [0, 6066]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-23'  # CANCEL lifetime fs 520
+# xlim_1 = [0, 2082]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-tz2p'  # CANCEL lifetime fs 317
+# xlim_1 = [0, 2223]
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-pbe0-mckenna'  # CANCEL Unstable polaron
+# xlim_1 = [0, 306]
 
 files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
 num_atoms = 324
-box_size = [13.8, 13.8, 17.76, 90, 90, 90]
+box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+temperature_set = 300
+# xlim_1 = [0, 2e3]
 
+# Anatase
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-221/md'
 # # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0'.format(folder)  # 16 ps: Polaron hops 9 times, some with intermediate delocalisation
 # # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-dz-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-timestep-1.0-o-3.5'.format(folder)  # 16 ps: Similar to above, 10 hops, some with intermediate delocalisation
@@ -403,11 +422,30 @@ box_size = [13.8, 13.8, 17.76, 90, 90, 90]
 # box_size = [11.34, 11.34, 9.62, 90, 90, 90]
 
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md'
-# # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz-electron-timestep-1.0-o-0-ti-3.5'.format(folder)  # 3.5 ps: No polaron hopping. dt = 0.5
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz-electron-timestep-1.0-o-0-ti-3.5'.format(folder)  # 3.5 ps: No polaron hopping. dt = 0.5
+# xlim_1 = [0, 7101]
 # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz-hole-timestep-1.0-o-3.5-ti-0'.format(folder)  # 3.5 ps: 2 hops, good. dt = 0.5
-# # files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# xlim_1 = [0, 7120]
+# temperature_set = 500
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20'
+# folder_1 = '{}/hole-u-o-5-ti-0-600k'.format(folder)  # 10 ps lifetime fs 2500
+# xlim_1 = [0, 10906]
+# xlim_1 = [0, 10000]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-hse-25'.format(folder)  # CSVR no hoppng
+# xlim_1 = [0, 2192]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-hse-25-center'.format(folder)  # CSVR no hoppng
+# xlim_1 = [0, 1457]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-hse-25-center-rs-19'.format(folder)  # lifetime fs 355
+# xlim_1 = [0, 2922]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-hse-25-center-rs-22'.format(folder)  # CSVR 3 ps total
+# xlim_1 = [0, 1504]
+# temperature_set = 600
+
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
 # num_atoms = 192
 # box_size = [15.12, 15.12, 9.62, 90, 90, 90]
+
 
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md'
 # # folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-dz-electron-timestep-1.0-o-0-ti-3.5'.format(folder)  # 1.4 ps:
@@ -421,22 +459,34 @@ box_size = [13.8, 13.8, 17.76, 90, 90, 90]
 # folder_1 = '{}/hole-u-o-3.5-ti-0-500k-rs-300k'.format(folder)  # 3 ps : No polaron hopping
 # folder_1 = '{}/hole-u-o-3.5-ti-0-500k-rs-800k'.format(folder)  # 2.5 ps: Polaron hopping not stable, restart at U = 5?
 # folder_1 = '{}/hole-u-o-3.5-ti-0-500k-rs-1200k'.format(folder)  # 2.5 ps: Polaron hopping not stable, restart at U = 5?
+
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md-cell-opt-hse-22'
 # folder_1 = '{}/hole-u-o-5-ti-0-500k-atom-282'.format(folder)  # 1.75 ps: 1 bad hop at 250 fs
 # folder_1 = '{}/hole-u-o-5-ti-0-500k-atom-282-rs-step-200'.format(folder)  # 11 ps : 4 polaron hops, not adiabatic but not smooth
+# xlim_1 = [0, 11413]
+
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md-cell-opt-hse-20'
-# folder_1 = '{}/hole-u-o-5-ti-0-300k'.format(folder)  # 2 ps : No polaron hopping
-# folder_1 = '{}/hole-u-o-5-ti-0-500k'.format(folder)  # 2 ps : 2 polaron hops, smooth
-# folder_1 = '{}/hole-u-o-5-ti-0-600k'.format(folder)  # 2 ps : 2 polaron hops, smooth
-# folder_1 = '{}/hole-u-o-5-ti-0-800k'.format(folder)  # 2 ps : 4 polaron hops, bad and unstable. Cancel
-# folder_1 = '{}/hole-u-o-8-ti-0-800k'.format(folder)  # 2 ps : 4 polaron hops, bad and unstable. Cancel
-# folder_1 = '{}/hole-u-o-10-ti-0-800k'.format(folder)  # 2 ps : 4 polaron hops, bad and unstable. Cancel
-# folder_1 = '{}/hole-u-o-5-ti-0-1200k'.format(folder)  # 2 ps : 5 polaron hops, bad and unstable. Cancel
-# folder_1 = '{}/hole-u-o-8-ti-0-1200k'.format(folder)  # 2 ps : 5 polaron hops, bad and unstable. Cancel
-# folder_1 = '{}/hole-u-o-10-ti-0-1200k'.format(folder)  # 2 ps : 5 polaron hops, bad and unstable. Cancel
+# folder_1 = '{}/hole-u-o-5-ti-0-300k'.format(folder)  # 10 ps : No polaron hopping
+# folder_1 = '{}/hole-u-o-5-ti-0-300k-rs-hse-25'.format(folder)  # 2 ps : No polaron hopping
+# folder_1 = '{}/hole-u-o-5-ti-0-800k'.format(folder)  # 2 ps : 4 polaron hops, bad and unstable. CANCEL
+# folder_1 = '{}/hole-u-o-8-ti-0-800k'.format(folder)  # SCF run NOT converged CANCEL
+# folder_1 = '{}/hole-u-o-10-ti-0-800k'.format(folder)  # SCF run NOT converged CANCEL
+# folder_1 = '{}/hole-u-o-5-ti-0-1200k'.format(folder)  # 2 ps : 5 polaron hops, bad and unstable. CANCEL
+# folder_1 = '{}/hole-u-o-8-ti-0-1200k'.format(folder)  # SCF run NOT converged CANCEL
+# folder_1 = '{}/hole-u-o-10-ti-0-1200k'.format(folder)  # SCF run NOT converged CANCEL
+# folder_1 = '{}/hole-u-o-5-ti-0-600k'.format(folder)  # CSVR 4 hops lifetime fs 2500
+# xlim_1 = [0, 10000]
+# xlim_1 = [0, 10710]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-rs-hse-25'.format(folder)  # CSVR 1 hop lifetime fs 3126
+# xlim_1 = [0, 3126]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-rs-hse-25-rs-19'.format(folder)  # lifetime fs 295
+# xlim_1 = [0, 5020]
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-rs-hse-25-rs-22'.format(folder)  # lifetime fs inf
+# xlim_1 = [0, 1671]
 # files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-charges-1-clean.mulliken', 'tio2-charges-1-clean.hubbard', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
 # num_atoms = 384
 # box_size = [15.12, 15.12, 19.23, 90, 90, 90]
+# temperature_set = 600
 
 print('folder_1', folder_1)
 file_energy_1, energy_kinetic_1, energy_potential_1, energy_total_1, temperature_1, time_val_1, time_per_step_1, step_1 = read_energy(folder_1, files[0])
@@ -450,6 +500,7 @@ if plot_mulliken:
 plot_hubbard = True
 plot_hubbard = False
 calc_distance = True
+# calc_distance = False
 if plot_hubbard:
     atoms_hubbard = num_atoms/3 * 2
     hubbard_1_df, hubbard_1_np = read_hubbard(folder_1, files[3], atoms_hubbard*2)
@@ -469,6 +520,9 @@ num_timesteps = np.shape(hirshfeld_1_np)[0]
 time_array = np.linspace(start=0, stop=num_timesteps*timestep,num=num_timesteps)
 num_timesteps2 = np.shape(time_per_step_1)[0]
 time_array2 = np.linspace(start=0, stop=num_timesteps*timestep, num=num_timesteps2)
+print('np.shape(hirshfeld_1_np)[0]', num_timesteps)
+print('np.shape(time_per_step_1)[0]', num_timesteps2)
+
 if plot_mulliken:
     num_timesteps3 = np.shape(mulliken_1_np)[0]
     time_array3 = np.linspace(start=0, stop=num_timesteps3*timestep,num=num_timesteps3)
@@ -479,7 +533,8 @@ if plot_hubbard:
 # xlim_1 = [0, 10e3]
 # xlim_1 = [0, 60]
 # xlim_1 = [0, 1e3]
-xlim_1 = [0, time_array[-1]]
+# xlim_1 = [0, 1e4]
+# xlim_1 = [0, time_array[-1]]
 ylim_1 = [0, 1.0]
 draw_legend = False
 folder_save = folder_1
@@ -577,6 +632,7 @@ if calc_distance:
     fig_bonds_1, ax_bonds_1 = plt.subplots(figsize=(10, 4))
     # fig_bonds_1, ax_bonds_1 = plt.subplots()
     for i in range(num_atoms_ti):
+        # ax_bonds_1.plot(time_val_1 - time_val_1[0], np.sum(bond_lengths_time_sorted, axis=2)[:, i], '-', label='Fe {}'.format(i + 1))
         ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, i], '-', label='Fe {}'.format(i + 1))
     # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, polaron_atom], 'k-', label='Fe {}'.format(polaron_atom + 1))
     ax_bonds_1.set_xlabel('Time / fs')
@@ -607,6 +663,10 @@ if calc_distance:
 # fig_bonds_2.tight_layout()
 
 # Calculate polaron atom
+hirshfeld_mobility = hirshfeld_1_np[]
+num_timesteps
+
+
 if calc_distance:
     polaron_atom_time = np.zeros(num_timesteps, dtype=int)
     for j in range(num_timesteps):
@@ -622,20 +682,22 @@ if calc_distance:
         polaron_distances[j] = distances.distance_array(universe.select_atoms('index {}'.format(polaron_atom_time[j])).positions,
                                                         universe.select_atoms('index {}'.format(polaron_atom_time[j+1])).positions,
                                                         box=box_size)
+    polaron_distances = polaron_distances[:int(xlim_1[1])]
     polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
-    print('polaron_distance', polaron_distances)
+    # print('polaron_distance', polaron_distances)
     print('polaron_distances_hop', polaron_distances_hop)
+    print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
 
     # Plot polaron distances
     offset = 0
     metric = np.zeros((num_atoms_ti, num_timesteps2))
     # fig_bonds_2, ax_bonds_2 = plt.subplots()
-    fig_bonds_2, ax_bonds_2 = plt.subplots(figsize=(10, 4))
+    fig_bonds_2, ax_bonds_2 = plt.subplots(figsize=(10, 2))
     # ax_bonds_2.plot(time_val_1 - time_val_1[0] - offset, polaron_distances[:-1], 'kx-')
-    ax_bonds_2.plot(time_val_1 - time_val_1[0] - offset, polaron_distances, 'kx-')
+    ax_bonds_2.plot(time_val_1[:int(xlim_1[1])] - time_val_1[0] - offset, polaron_distances, 'kx-')
     ax_bonds_2.set_xlabel('Time / fs')
     # ax_bonds_2.set_xlabel('Timestep')
-    ax_bonds_2.set_ylabel('Polaron hopping distance / A')
+    ax_bonds_2.set_ylabel('Distance / A')
     # if draw_legend: ax_bonds_2.legend(frameon=True)
     # # ax_bonds_2.set_xlim([0, len(universe.trajectory)])
     ax_bonds_2.set_xlim(xlim_1)
@@ -644,11 +706,11 @@ if calc_distance:
     fig_bonds_2.savefig('{}/polaron_hopping_distance.png'.format(folder_save), dpi=300)
     fig_bonds_2.tight_layout()
 
-    # Calculate mobility
+    # Calculate mobility using xlim_1
     # hops_distance = np.array([2.99547136, 2.85545014, 3.01149688]) * 1e-8  # Angstrom to cm
     # hops_time = (5103+200)/2 * 1e-12  # fs to s
     hops_distance = polaron_distances_hop * 1e-8  # Angstrom to cm
-    hops_time = (time_val_1[-1] - time_val_1[0]) * 1e-15  # ps 1e-12 fs 1e-15
+    hops_time = (xlim_1[1] - time_val_1[0]) * 1e-15  # ps 1e-12 fs 1e-15
     print('hops per ps ', np.shape(hops_distance)[0]/hops_time*1e-15*1e3)
 
     rate_constant = np.shape(hops_distance)[0] / hops_time
@@ -661,7 +723,7 @@ if calc_distance:
 
     site_multiplicity = 1
     diffusion_constant_analytical = (np.mean(hops_distance) ** 2 * site_multiplicity * rate_constant) / 2
-    mobility = (1.60217662e-19 * diffusion_constant_analytical) / (1.380649e-23 * 600)
+    mobility = (1.60217662e-19 * diffusion_constant_analytical) / (1.380649e-23 * temperature_set)
     print('mobility analytical', mobility, 'cm^2/(V·s)')
 
     # print('lifetime hematite', 1/1.2e12 * 1e15)
@@ -673,8 +735,39 @@ if calc_distance:
 
     mean_square_displacement = np.sum(hops_distance ** 2) / hops_time
     diffusion_constant_numerical = mean_square_displacement / (2 * 3)
-    mobility = (1.60217662e-19 * diffusion_constant_numerical) / (1.380649e-23 * 600)
+    mobility = (1.60217662e-19 * diffusion_constant_numerical) / (1.380649e-23 * temperature_set)
     print('mobility numerical', mobility, 'cm^2/(V·s)')
+
+    k_el = 1
+    temp = temperature_set
+    kb_t_au = 8.617333262145E-5 * temperature_set  # KbT in eV
+    kb_t = 1.38e-23 * temperature_set  # KbT in SI units
+    # vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+    vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
+    # rate_constant = vn * k_el * np.exp(-energy/kb_t)
+    activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+    print('activation_energy / meV', activation_energy*1e3)
+
+    rows, cols = 2, 1
+    fig_plot_all, ax_plot_all = plt.subplots(rows, cols,sharex='col', sharey='row',
+                                figsize=(10, 6), gridspec_kw={'height_ratios': [2, 1],  'hspace': 0.05})
+    temp = np.zeros(num_timesteps)
+    offset = 800
+    for j in range(num_atoms):
+        ax_plot_all[0].plot((time_array[:int(xlim_1[1])]) - offset, hirshfeld_1_np[:int(xlim_1[1]), 5, j], '-', label='{}'.format(j + 1))
+    if draw_legend: ax_plot_all[0].legend(frameon=True)
+    # ax_plot_all[0].set_xlabel('Time / fs')
+    ax_plot_all[0].set_ylabel('Spin moment')
+    ax_plot_all[0].set_xlim(np.array(xlim_1)-offset)
+    ax_plot_all[0].set_ylim(ylim_1)
+    ax_plot_all[1].plot((time_val_1[:int(xlim_1[1])] - time_val_1[0]) - offset, polaron_distances, 'kx-')
+    ax_plot_all[1].set_xlabel('Time / fs')
+    ax_plot_all[1].set_ylabel('Distance / A')
+    ax_plot_all[1].set_xlim(np.array(xlim_1)-offset)
+    ax_plot_all[1].set_ylim([0, 3.2])
+    fig_plot_all.tight_layout()
+    fig_plot_all.subplots_adjust(hspace=0.05)
+    fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder_save), dpi=300)
 
 if __name__ == "__main__":
     print('Finished.')
