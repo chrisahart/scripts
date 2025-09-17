@@ -2,14 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import root_mean_squared_error
+from general import parameters as param
 
 
-def plot_ener(dft, dp, ax, color_plot, pos, text, title=None):
+def plot_ener(dft, dp, ax, color_plot, pos, text, num_atoms, title=None):
     ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
     ax.set_xlabel("DFT energy (eV)")
     ax.set_ylabel("DP energy (eV)")
-    mae = mean_absolute_error(dft.flatten(), dp.flatten()) / 120 * 1000  # unit: meV/atom
-    rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) / 120 * 1000  # unit: meV/atom
+    mae = mean_absolute_error(dft.flatten(), dp.flatten()) / num_atoms * 1000  # unit: meV/atom
+    rmse = root_mean_squared_error(dft.flatten(), dp.flatten()) / num_atoms * 1000  # unit: meV/atom
     print('plot_ener')
     print('mean_absolute_error', mae)
     print('root_mean_squared_error', rmse)
@@ -89,12 +90,12 @@ def plot_spin(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=None
         ax.set_title(title)
 
 
-def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
+def plot_spin_time1(dft, dp, ax, axis_lim_y, num_atoms, title=None):
     num_atoms = int(dp.shape[1])
     num_timesteps = int(dp.shape[0])
     time_array = np.linspace(0, int(num_timesteps / 2), num=num_timesteps)
     # num_atoms_plot_spin = 64
-    num_atoms_plot_spin = int(288/3 * 2)
+    num_atoms_plot_spin = int(num_atoms/3 * 2)
     plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
 
     print('np.shape(dft)', np.shape(dft))
@@ -363,7 +364,7 @@ def plot_spin_time1(dft, dp, ax, axis_lim_y, title=None):
 # # model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
 # # model = ['multi-task-dpa1-se_atten_v2-attn_layer-2', 'multi-task-dpa1-se_atten_v2-attn_layer-2']
 # # model = ['multi-task-dpa2-nlayers-6', 'multi-task-dpa2-nlayers-6']
-# # model = ['multi-task-dpa3', 'multi-task-dpa3']
+# model = ['multi-task-dpa3', 'multi-task-dpa3']
 # # spin_is_population = False
 # # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-6'
 # # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-8-2'
@@ -409,19 +410,10 @@ model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
 model = ['single-fit-ener-dpa2', 'single-fit-m-dpa2']
 model = ['single-fit-ener-dpa2-finetune', 'single-fit-m-dpa2-finetune']
 model = ['single-fit-ener-dpa3-6-default', 'single-fit-m-dpa3-6-default']
-# model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
-# model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
-# model = 'se_e2_a'
-# model = 'dpa3-6-default'
-# model = 'dpa2'
-# model = 'dpa2-finetune'
-# model = 'dpa2-finetune-branch-H2O_H2O-PD'
-# model = 'dpa2-finetune-branch-H2O_H2O-PD-use-pretrain-script'
-# model = 'dpa3-16-official'
-# model = 'dpa3-16-official-finetune'
-# model = ['single-fit-ener-{}'.format(model), 'single-fit-m-{}'.format(model)]
+model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
+model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
 spin_is_population = True
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/leopold/leopold'
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold'
 model_ener = ['{}/{}'.format(folder, model[0])] * 4
 model_spin = ['{}/{}'.format(folder, model[1])] * 4
 database = ['{}/database_train/'.format(folder),
@@ -429,12 +421,134 @@ database = ['{}/database_train/'.format(folder),
             '{}/database_test/2'.format(folder)]
 val = ['_0_', '_1_', '_2_']
 axis_lim_y = np.array([0, 1])
-pos_array_energy = np.array(([0.38, 0.25], [0.38, 0.15], [0.38, 0.05]))
-pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
-pos_array_spin = np.array(([0.78, 0.25], [0.78, 0.15], [0.78, 0.05]))
-text_array = ['400 K train', '400 K valid', '400 K test']
+pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+pos_array_force = np.array(([0.55, 0.25], [0.55, 0.15], [0.55, 0.05]))
+pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+text_array = ['Train', 'Valid', 'Test']
 num_atoms = 288
 
+# Bulk TiO2 leopold
+model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+model = ['single-fit-ener-dpa2', 'single-fit-m-dpa2']
+model = ['single-fit-ener-dpa2-finetune', 'single-fit-m-dpa2-finetune']
+model = ['single-fit-ener-dpa3-6-default', 'single-fit-m-dpa3-6-default']
+model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
+model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
+spin_is_population = True
+folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold'
+model_ener = ['{}/{}'.format(folder, model[0])] * 4
+model_spin = ['{}/{}'.format(folder, model[1])] * 4
+database = ['{}/database_train/'.format(folder),
+            '{}/database_test/1'.format(folder),
+            '{}/database_test/2'.format(folder)]
+val = ['_0_', '_1_', '_2_']
+axis_lim_y = np.array([0, 1])
+pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+pos_array_force = np.array(([0.55, 0.25], [0.55, 0.15], [0.55, 0.05]))
+pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+text_array = ['Train', 'Valid', 'Test']
+num_atoms = 288
+
+# # Bulk TiO2 336 22% hse-22
+# # model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+# # model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# # model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
+# model = ['multi-task-dpa3', 'multi-task-dpa3']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-22'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+# text_array = ['Train', 'Valid', 'Test']
+# num_atoms = 324
+
+# Bulk TiO2 336 25% hse-25-3-ps (no hops)
+# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+# model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
+# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# model = ['multi-task-dpa3', 'multi-task-dpa3']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-25-3-ps'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+# text_array = ['Train', 'Valid', 'Test']
+# num_atoms = 324
+
+# Bulk TiO2 336 25% hse-25-4-ps (many hops)
+# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+# model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
+# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
+# model = ['multi-task-dpa3', 'multi-task-dpa3']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-25-4-ps'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+# text_array = ['Train', 'Valid', 'Test']
+# num_atoms = 324
+
+# # Bulk TiO2 336 22% hse-22-v2
+# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
+# model = ['single-fit-ener-dpa3-nlayers-6-old', 'single-fit-m-dpa3-nlayers-6-old']
+# # model = ['single-fit-ener-dpa3-nlayers-6-new', 'single-fit-m-dpa3-nlayers-6-new']
+# # model = ['single-fit-ener-dpa3-nlayers-6-new2', 'single-fit-m-dpa3-nlayers-6-new2']
+# # model = ['single-fit-ener-dpa3-nlayers-6-new2-dynamic', 'single-fit-m-dpa3-nlayers-6-new2-dynamic']
+# # model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
+# # model = ['single-fit-ener-dpa3-16-official-all', 'single-fit-m-dpa3-16-official-all']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-22-v2'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+# text_array = ['Train', 'Valid', 'Test']
+# num_atoms = 324
+
+# # Bulk TiO2 336 22% multi-fit hse-22-25-4-ps-multi
+# model = ['multi-task-ener-dpa3', 'multi-task-m-dpa3']
+# spin_is_population = True
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-22-25-4-ps-multi'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database_folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/database/hse-22-backup-4-ps'
+# database = ['{}/database_population_train/'.format(database_folder),
+#             '{}/database_population_test/1'.format(database_folder),
+#             '{}/database_population_test/2'.format(database_folder)]
+# val = ['_0_', '_1_', '_2_']
+# axis_lim_y = np.array([0, 1])
+# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
+# pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
+# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
+# text_array = ['Train', 'Valid', 'Test']
+# num_atoms = 324
 
 print('model', model)
 color_plot_array = ['r', 'g', 'b', 'm']
@@ -482,8 +596,8 @@ for i in range(len(database)):
 fig, axes = plt.subplots(2, 3, figsize=(15, 6))
 for i in range(len(database)):
     print(i)
-    plot_ener(dft_e[i], ener_0[i], axes[0, 0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, No-aparam")
-    plot_ener(dft_e[i], ener_1[i], axes[1, 0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, Yes-aparam")
+    plot_ener(dft_e[i], ener_0[i], axes[0, 0], num_atoms=num_atoms, color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, No-aparam")
+    plot_ener(dft_e[i], ener_1[i], axes[1, 0], num_atoms=num_atoms, color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i], title="Energy, Yes-aparam")
     plot_force(dft_f[i], force_0[i], axes[0, 1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i], title="Force, No-aparam")
     plot_force(dft_f[i], force_1[i], axes[1, 1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i], title="Force, Yes-aparam")
     if not spin_is_population:
@@ -501,7 +615,7 @@ for i in range(len(database)):
 fig2, axes2 = plt.subplots(1, 3, figsize=(15, 3))
 for i in range(len(database)):
     print(i)
-    plot_ener(dft_e[i], ener_1[i], axes2[0], color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i])
+    plot_ener(dft_e[i], ener_1[i], axes2[0], num_atoms=num_atoms, color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i])
     plot_force(dft_f[i], force_1[i], axes2[1], color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i])
     if not spin_is_population:
         plot_spin(dft_s[i], spin_1[i], axes2[2], color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i])
@@ -512,8 +626,29 @@ for i in range(len(database)):
     plt.savefig("{}/fit_1x3_folders_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
     plt.savefig("{}/fit_1x3_folders_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
 
+
+# Plot energy parity
+fig_energy, axes_energy = plt.subplots(figsize=(5, 5))
+for i in range(len(database)):
+    print(i)
+    plot_ener(dft_e[i], ener_1[i], axes_energy, num_atoms=num_atoms, color_plot=color_plot_array[i], pos=pos_array_energy[i], text=text_array[i])
+plt.tight_layout()
+for i in range(len(database)):
+    plt.savefig("{}/energy_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
+    plt.savefig("{}/energy_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
+
+# Plot force parity
+fig_force, axes_force = plt.subplots(figsize=(5, 5))
+for i in range(len(database)):
+    print(i)
+    plot_force(dft_f[i], force_1[i], axes_force, color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i])
+plt.tight_layout()
+for i in range(len(database)):
+    plt.savefig("{}/force_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
+    plt.savefig("{}/force_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
+
 # Plot spin
-fig3, axes3 = plt.subplots()
+fig3, axes3 = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
     plot_spin((dft_s[i][:, :, 0] - dft_s[i][:, :, 1]), (spin_1[i][:, :, 0] - spin_1[i][:, :, 1]), axes3, color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i], polaron_index=dft_polaron[i])
@@ -522,7 +657,7 @@ for i in range(len(database)):
     plt.savefig("{}/spin_moment_polaron_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
 
 # Plot spin polaron
-fig4, axes4 = plt.subplots()
+fig4, axes4 = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
     plot_spin((dft_s[i][:, :, 0] - dft_s[i][:, :, 1]), (spin_1[i][:, :, 0] - spin_1[i][:, :, 1]), axes4, color_plot=color_plot_array[i], pos=pos_array_spin[i], text=text_array[i])
@@ -537,7 +672,7 @@ plot_spin_time = True
 if plot_spin_time:
     fig_spin_train, axes_spin_train = plt.subplots()
     plot_spin_time1((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
-                    axes_spin_train, axis_lim_y, title="Energy, No-aparam")
+                    axes_spin_train, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
     plt.tight_layout()
     plt.savefig("{}/spin_train.png".format(model_spin[0]), dpi=600)
     if zoom:
@@ -548,7 +683,7 @@ if plot_spin_time:
 if plot_spin_time:
     fig_spin_valid, axes_spin_valid = plt.subplots()
     plot_spin_time1((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
-                    axes_spin_valid, axis_lim_y, title="Energy, No-aparam")
+                    axes_spin_valid, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
     plt.tight_layout()
     plt.savefig("{}/spin_valid.png".format(model_spin[0]), dpi=600)
     if zoom:
@@ -559,7 +694,7 @@ if plot_spin_time:
 if plot_spin_time:
     fig_spin_test, axes_spin_test = plt.subplots()
     plot_spin_time1((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
-                    axes_spin_test, axis_lim_y, title="Energy, No-aparam")
+                    axes_spin_test, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
     plt.tight_layout()
     plt.savefig("{}/spin_test.png".format(model_spin[0]), dpi=600)
     if zoom:

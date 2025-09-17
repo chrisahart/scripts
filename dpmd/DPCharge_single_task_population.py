@@ -1,21 +1,51 @@
-from ase.io import read
-import numpy as np
-from ase import Atoms
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
-from ase.md.npt import NPT
-from ase.md.verlet import VelocityVerlet
-from ase.md.langevin import Langevin
-from ase import units
 from ase.calculators.calculator import Calculator, PropertyNotImplementedError, all_changes
 from deepmd.infer import DeepPot
+from deepmd.infer.deep_polaron import DeepPolaron
 from pathlib import Path
 import numpy as np
 from typing import TYPE_CHECKING, ClassVar, Optional, Union, Callable
+
 if TYPE_CHECKING:
     from ase import Atoms
 
+__all__ = ["DP"]
 
 class DP(Calculator):
+    """Implementation of ASE deepmd calculator for polaron dynamics.
+
+    Implemented properties are `energy`, `free_energy`, `forces`, `stress`
+
+    Parameters
+
+    ----------
+    model_ener_force : Union[str, Path]
+        path to the energy and forces model
+
+    model_spin : Union[str, Path]
+        path to the spin model
+
+    label : str, optional
+
+        calculator label, by default "DP"
+    type_dict : dict[str, int], optional
+
+        mapping of element types and their numbers, best left None and the calculator
+
+        will infer this information from model, by default None
+
+    neighbor_list : ase.neighborlist.NeighborList, optional
+
+        The neighbor list object. If None, then build the native neighbor list.
+    initial_charge_state : np.ndarray, optional
+
+        Initial charge state of the system, by default None
+
+    identifier : Callable, optional
+
+        Callable to identify the charge state, by default None
+
+    """
+
     name = "DP"
     implemented_properties: ClassVar[list[str]] = [
         "energy",
@@ -50,6 +80,7 @@ class DP(Calculator):
         )
 
         # 2. initialize the type_map
+
         if type_dict:
             self.type_dict = type_dict
 
@@ -59,7 +90,9 @@ class DP(Calculator):
             )
 
         # 3. set charge_state & spin
+
         self.charge_state = initial_charge_state  # record current charge state
+
         self.charge_state_history = [initial_charge_state]
         self.spin = None  # record current spin moment
 
@@ -72,6 +105,26 @@ class DP(Calculator):
             properties: list[str] = ["energy", "forces", "virial"],
             system_changes: list[str] = all_changes,
     ) -> None:
+        """Run calculation with deepmd models.
+
+        Parameters
+
+        ----------
+        atoms : Optional[Atoms], optional
+
+            atoms object to run the calculation on, by default None
+
+        properties : list[str], optional
+
+            unused, only for function signature compatibility,
+            by default ["energy", "forces", "stress"]
+        system_changes : list[str], optional
+
+            unused, only for function signature compatibility, by default all_changes
+
+        """
+
+        # 0. prepare: coord, cell, symbols, atype
 
         if atoms is not None:
             self.atoms = atoms.copy()
@@ -96,106 +149,25 @@ class DP(Calculator):
 
         # 2. get updated spin from the spin model
 
-        _, _, _, spin, _ = self.dp_spin.eval(coords=coord, cells=cell, atom_types=atype, atomic=True,
-                                             aparam=self.charge_state)
+        # _, _, _, spin, _ = self.dp_spin.eval(coords=coord, cells=cell, atom_types=atype, atomic=True,
+        #                                      aparam=self.charge_state)
+        spin = self.dp_spin.eval(coords=coord, cells=cell, atom_types=atype, atomic=True, aparam=self.charge_state)[0]
+
         self.spin = spin.flatten()
         self.spin_history.append(self.spin)
         self.charge_state = self.identifier(self.atoms, self.spin)
         self.charge_state_history.append(self.charge_state)
 
+        # convert virial into stress for lattice relaxation
 
-def identify_polaron_site(atoms: Atoms, spin: np.ndarray) -> np.ndarray:
-    spin = spin.flatten()
-    charge_state = np.zeros(len(atoms))
+        if "stress" in properties:
+            if sum(atoms.get_pbc()) > 0:
+                # the usual convention (tensile stress is positive)
+                # stress = -virial / volume
 
-    # Identify the atom with the minimum spin
+                stress = -0.5 * (v[0].copy() + v[0].copy().T) / atoms.get_volume()
+                # Voigt notation
 
-    allowed_element = ['Ti']
-
-    allowed_element_idx = [atom.index for atom in atoms if atom.symbol in allowed_element]
-    spin_element = spin[allowed_element_idx]
-    min_idx = np.argmax(spin_element)
-    charge_state[allowed_element_idx[min_idx]] = 1
-
-    return charge_state
-
-
-# Read the atomic structure from a file
-data = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/deepmd/cell-222/electron-u-6/database_spin_train/set.000'
-coord = np.load('{}/coord.npy'.format(data))
-box = np.load('{}/box.npy'.format(data))
-vel = np.loadtxt('{}/vel.xyz'.format(data))
-aparam = np.load('{}/aparam.npy'.format(data))
-
-# MD simulation parameters
-dt = 0.5 * units.fs
-nstep = int(1e4)
-thermo_freq = 10
-T = 600
-num_atoms = 64
-symbols = ['Mg'] * 32 + ['O'] * 32
-polaron_index_start = np.argmax(aparam[:num_atoms])
-
-atoms = Atoms(symbols=symbols, positions=np.reshape(coord[0].flatten(), (num_atoms, 3)))
-
-cell = np.reshape(box[0], (3, 3))
-atoms.set_cell(cell)
-atoms.set_pbc(True)
-
-# Convert velocities from CP2K units (Å/fs) to ASE units (Å/ps)
-vel_ase = np.reshape(vel.flatten(), (num_atoms, 3)) * units.Angstrom / units.fs
-atoms.set_velocities(vel_ase)
-
-# CP2K velocity angstrom*fs^-1
-# atoms.set_velocities(np.reshape(vel.flatten(), (num_atoms, 3)))
-
-md_type = 'nvt'
-charge_state = np.zeros(len(atoms))
-charge_state[polaron_index_start] = 1
-
-# Create the DP calculator with two separate models
-
-calc = DP(
-    model_ener_force='model_ener.pth',
-    model_spin='model_spin.pth',
-    initial_charge_state=charge_state,
-    identifier=identify_polaron_site
-)
-atoms.calc = calc
-
-# Initialize velocities
-# MaxwellBoltzmannDistribution(atoms, temperature_K=T)
-
-# Set up and run the MD simulation
-
-if md_type == 'nve':
-    md = VelocityVerlet(
-        atoms=atoms,
-        timestep=dt,
-        trajectory='md.traj',
-        logfile='md.log',
-        loginterval=thermo_freq,
-        append_trajectory=False
-
-    )
-elif md_type == 'nvt':
-    md = Langevin(
-        atoms=atoms,
-        timestep=dt,
-        temperature_K=T,
-        friction=0.01 / units.fs,
-        trajectory='md.traj',
-        logfile='md.log',
-        loginterval=thermo_freq,
-        append_trajectory=False
-
-    )
-
-# Run the MD simulation
-md.run(nstep)
-
-# Save spin and charge state history
-spin_history = calc.spin_history.copy()[2:]
-charge_state_history = calc.charge_state_history.copy()
-np.save('spin_history.npy', spin_history)
-np.save('charge_state_history.npy', charge_state_history)
+                self.results["stress"] = stress.flat[[0, 4, 8, 5, 2, 1]]
+            else:
+                raise PropertyNotImplementedError

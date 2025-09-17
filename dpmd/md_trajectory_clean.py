@@ -269,14 +269,42 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # name = 'mgo'
 # num_atoms = 216
 
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)  # Polaron
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt'
+# folder_1 = '{}/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/backup/4'
+# folder_1 = '{}/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt'
+# folder_1 = '{}/electron-u-ti-3.0-300k-rs'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
-folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-u-3.5-electron-dz2-u-3.0-rs-print-hse-25-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3'.format(folder)  # Polaron
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k'.format(folder)
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
 name = 'tio2'
 num_atoms = 324
 
 # Energy Hirshfeld Position Force
-files_do = [True, True, True, True]
+files_do = [True, False, True, True]
+# files_do = [True, True, True, True]
 # files_do = [False, False, True, False]
 # energy_step_1_missing = []
 # hirshfeld_step_1_missing = []
@@ -314,6 +342,10 @@ if files_do[1] is True:
     print('Hirshfeld length + missing values', len(hirshfeld_index_unique_frames)+len(hirshfeld_step_1_missing))
     print('Hirshfeld df total number steps', np.shape(hirshfeld_1_np_no_duplicates))
     # plt.plot(hirshfeld_step_1_no_duplicates, 'k.', markersize=1)
+else:
+    hirshfeld_step_1_missing = []
+    hirshfeld_index_no_duplicates = []
+    hirshfeld_1_np_no_duplicates = np.NaN
 
 # Position
 if files_do[2] is True:
@@ -425,16 +457,17 @@ index_array = np.array([np.shape(energy_clean)[0], len(hirshfeld_index_no_duplic
 truncate_length = np.min(index_array)
 print('Truncate to min length', truncate_length)
 energy_clean = energy_clean[:truncate_length]
-hirshfeld_1_np_no_duplicates = hirshfeld_1_np_no_duplicates[:truncate_length]
-hirshfeld_index_no_duplicates = hirshfeld_index_no_duplicates[:truncate_length]
+if files_do[1] is True:
+    hirshfeld_1_np_no_duplicates = hirshfeld_1_np_no_duplicates[:truncate_length]
+    hirshfeld_index_no_duplicates = hirshfeld_index_no_duplicates[:truncate_length]
+    print('Hirshfeld index has this many values: ', len(hirshfeld_index_no_duplicates))
+    print('Hirshfeld has this many values: ', hirshfeld_1_np_no_duplicates.shape)
+
 pos_index_no_duplicates = pos_index_no_duplicates[:truncate_length]
 coordinates_no_duplicates = coordinates_no_duplicates[:truncate_length]
 frc_no_duplicates = frc_no_duplicates[:truncate_length]
 frc_index_no_duplicates = frc_index_no_duplicates[:truncate_length]
 print('\nEnergy dataframe has this many values: ', np.shape(energy_clean))
-
-print('Hirshfeld index has this many values: ', len(hirshfeld_index_no_duplicates))
-print('Hirshfeld has this many values: ', hirshfeld_1_np_no_duplicates.shape)
 
 print('Coordinates index has this many values: ', len(pos_index_no_duplicates))
 print('Coordinates has this many values: ', coordinates_no_duplicates.shape)

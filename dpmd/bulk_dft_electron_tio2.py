@@ -9,6 +9,7 @@ from ase.io import read, write
 # from general import print_xyz
 from collections import OrderedDict
 import csv
+from MDAnalysis.analysis import rdf
 
 """
     Plot energy and forces for bulk hematite
@@ -229,7 +230,7 @@ def read_hubbard(folder, filename, num_atoms):
 
     return file_spec1, hubbard_data
 
-
+offset = 0
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-csvr-timecon-1-COMVEL_TO-1e-10-nvt'  # 27 ps: 1 polaron hop atom 3 to 4
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-4.0-csvr-timecon-1-COMVEL_TO-1e-10-nvt'  # 2 ps: 3 polaron hops
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/md/pbe-u-4.1/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-electron-u-3.9-csvr-timecon-1-COMVEL_TO-1e-10-nvt'  # 12 ps: 1 polaron hop 3 to 6
@@ -345,8 +346,9 @@ def read_hubbard(folder, filename, num_atoms):
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-from-neutral-from-electron-opt/u-2.5'
 
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k'  # No hopping 3.5 ps
-# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs'  # No hopping 10 ps
+folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs'  # No hopping 10 ps
 # xlim_1 = [0, 10000]
+xlim_1 = [6000, 10000]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8'  # No hopping 3.5 ps
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-u-2.9-rs-2.8-rs-2.7'  # No hopping 3.5 ps
@@ -379,10 +381,10 @@ def read_hubbard(folder, filename, num_atoms):
 # xlim_1 = [0, 2e3]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22'  # CANCEL lifetime fs 200 (archer diskspace exceeded)
 # xlim_1 = [0, 399]
-folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/backup/4/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'  # RUNNING lifetime fs 188
+# folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/backup/4/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'  # RUNNING lifetime fs 188
 # xlim_1 = [0, 4909]
-# xlim_1 = [1e3, 5e3]
-xlim_1 = [800, 4800]
+# xlim_1 = [460, 4800]
+# offset = 460
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'  # RUNNING lifetime fs 149
 # xlim_1 = [0, 6066]
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-23'  # CANCEL lifetime fs 520
@@ -520,8 +522,8 @@ num_timesteps = np.shape(hirshfeld_1_np)[0]
 time_array = np.linspace(start=0, stop=num_timesteps*timestep,num=num_timesteps)
 num_timesteps2 = np.shape(time_per_step_1)[0]
 time_array2 = np.linspace(start=0, stop=num_timesteps*timestep, num=num_timesteps2)
-print('np.shape(hirshfeld_1_np)[0]', num_timesteps)
-print('np.shape(time_per_step_1)[0]', num_timesteps2)
+print('num_timesteps np.shape(hirshfeld_1_np)[0]', num_timesteps)
+print('num_timesteps2 np.shape(time_per_step_1)[0]', num_timesteps2)
 
 if plot_mulliken:
     num_timesteps3 = np.shape(mulliken_1_np)[0]
@@ -607,6 +609,7 @@ if plot_hubbard:
 # Setup md analysis environment
 if calc_distance:
     universe = mda.Universe(topology_file, trajectory_file)
+    universe.dimensions = box_size
     num_timesteps2 = len(universe.trajectory)
     time_val_1 = np.linspace(start=0, stop=len(universe.trajectory) * timestep, num=len(universe.trajectory))
     atoms_ti = universe.select_atoms('name Ti')
@@ -663,34 +666,33 @@ if calc_distance:
 # fig_bonds_2.tight_layout()
 
 # Calculate polaron atom
-hirshfeld_mobility = hirshfeld_1_np[]
-num_timesteps
-
+hirshfeld_mobility = hirshfeld_1_np[int(xlim_1[0]):int(xlim_1[1])]
+num_timesteps_mobility = int(xlim_1[1]-xlim_1[0])
+time_val_1 = np.linspace(start=xlim_1[0], stop=int(xlim_1[1]), num=num_timesteps_mobility)
 
 if calc_distance:
     polaron_atom_time = np.zeros(num_timesteps, dtype=int)
     for j in range(num_timesteps):
-        polaron_atom_time[j] = int(np.argmax(hirshfeld_1_np[frames_skip+j, 5, :]))
+        polaron_atom_time[j] = int(np.argmax(hirshfeld_1_np[j, 5, :]))
     # polaron_atoms = np.unique(polaron_atom_time)
     polaron_atoms = polaron_atom_time[np.insert(polaron_atom_time[:-1] != polaron_atom_time[1:], 0, True)]
     print('polaron_atoms', polaron_atoms+1)
 
     # Calculate distance between current timestep polaron atom and next timestep
     # Then get all non-zero answer
-    polaron_distances = np.zeros(num_timesteps2)
+    polaron_distances = np.zeros(num_timesteps)
     for j in range(num_timesteps - 1):
         polaron_distances[j] = distances.distance_array(universe.select_atoms('index {}'.format(polaron_atom_time[j])).positions,
                                                         universe.select_atoms('index {}'.format(polaron_atom_time[j+1])).positions,
                                                         box=box_size)
-    polaron_distances = polaron_distances[:int(xlim_1[1])]
+    polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
     polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
     # print('polaron_distance', polaron_distances)
     print('polaron_distances_hop', polaron_distances_hop)
     print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
 
     # Plot polaron distances
-    offset = 0
-    metric = np.zeros((num_atoms_ti, num_timesteps2))
+    metric = np.zeros((num_atoms_ti, num_timesteps_mobility))
     # fig_bonds_2, ax_bonds_2 = plt.subplots()
     fig_bonds_2, ax_bonds_2 = plt.subplots(figsize=(10, 2))
     # ax_bonds_2.plot(time_val_1 - time_val_1[0] - offset, polaron_distances[:-1], 'kx-')
@@ -710,13 +712,13 @@ if calc_distance:
     # hops_distance = np.array([2.99547136, 2.85545014, 3.01149688]) * 1e-8  # Angstrom to cm
     # hops_time = (5103+200)/2 * 1e-12  # fs to s
     hops_distance = polaron_distances_hop * 1e-8  # Angstrom to cm
-    hops_time = (xlim_1[1] - time_val_1[0]) * 1e-15  # ps 1e-12 fs 1e-15
+    hops_time = (xlim_1[1] - xlim_1[0]) * 1e-15  # ps 1e-12 fs 1e-15
     print('hops per ps ', np.shape(hops_distance)[0]/hops_time*1e-15*1e3)
 
     rate_constant = np.shape(hops_distance)[0] / hops_time
     print('rate_constant', rate_constant)
     print('rate_constant / 1e12', rate_constant/1e12)
-    print('lifetime fs', 1/rate_constant * 1e15)
+    # print('lifetime fs', 1/rate_constant * 1e15)
 
     mean_distance = np.mean(hops_distance)
     print('mean_distance', mean_distance)
@@ -752,22 +754,69 @@ if calc_distance:
     fig_plot_all, ax_plot_all = plt.subplots(rows, cols,sharex='col', sharey='row',
                                 figsize=(10, 6), gridspec_kw={'height_ratios': [2, 1],  'hspace': 0.05})
     temp = np.zeros(num_timesteps)
-    offset = 800
     for j in range(num_atoms):
-        ax_plot_all[0].plot((time_array[:int(xlim_1[1])]) - offset, hirshfeld_1_np[:int(xlim_1[1]), 5, j], '-', label='{}'.format(j + 1))
+        ax_plot_all[0].plot(time_val_1 - offset, hirshfeld_mobility[:int(xlim_1[1]), 5, j], '-', label='{}'.format(j + 1))
     if draw_legend: ax_plot_all[0].legend(frameon=True)
     # ax_plot_all[0].set_xlabel('Time / fs')
     ax_plot_all[0].set_ylabel('Spin moment')
     ax_plot_all[0].set_xlim(np.array(xlim_1)-offset)
-    ax_plot_all[0].set_ylim(ylim_1)
-    ax_plot_all[1].plot((time_val_1[:int(xlim_1[1])] - time_val_1[0]) - offset, polaron_distances, 'kx-')
+    # ax_plot_all[0].set_ylim(ylim_1)
+    ax_plot_all[0].set_ylim([0, 0.8])
+    ax_plot_all[1].plot(time_val_1 - offset, polaron_distances, 'kx-')
     ax_plot_all[1].set_xlabel('Time / fs')
     ax_plot_all[1].set_ylabel('Distance / A')
     ax_plot_all[1].set_xlim(np.array(xlim_1)-offset)
-    ax_plot_all[1].set_ylim([0, 3.2])
+    ax_plot_all[1].set_ylim([0, 3.3])
     fig_plot_all.tight_layout()
     fig_plot_all.subplots_adjust(hspace=0.05)
     fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder_save), dpi=300)
+
+# Plot RDF for Ti - O
+# Plot RDF for Ti - O
+nbins = 300
+rdf_xlim = 13.77 / 2
+
+if calc_distance:
+    ti_polaron = universe.select_atoms("bynum 78")
+    atoms_o = universe.select_atoms("element O")
+    rdf_ti_o_polaron = rdf.InterRDF(ti_polaron, atoms_o, range=(0, rdf_xlim), nbins=nbins)
+    rdf_ti_o_polaron.run()
+
+    ti_not_polaron = universe.select_atoms("element Ti and not bynum 78")
+    rdf_ti_o_not_polaron = rdf.InterRDF(ti_not_polaron, atoms_o, range=(0, rdf_xlim), nbins=nbins)
+    rdf_ti_o_not_polaron.run()
+
+    fig_rdf_ti_o, ax_rdf_ti_o = plt.subplots(figsize=(10, 4))
+    ax_rdf_ti_o.plot(rdf_ti_o_polaron.bins, rdf_ti_o_polaron.rdf, 'r-', label='RDF Ti (polaron) - O')
+    ax_rdf_ti_o.plot(rdf_ti_o_not_polaron.bins, rdf_ti_o_not_polaron.rdf, 'g-', label='RDF Ti - O')
+    ax_rdf_ti_o.set_xlabel("Radial distance / Å")
+    ax_rdf_ti_o.set_ylabel("RDF (arb. units)")
+    ax_rdf_ti_o.legend(frameon=False)
+    ax_rdf_ti_o.set_xlim([0, rdf_xlim])
+    ax_rdf_ti_o.tick_params(axis='y', which='both', left=False, right=False, labelleft=False)
+    fig_rdf_ti_o.tight_layout()
+    fig_rdf_ti_o.savefig("{}/rdf.png".format(folder_save), dpi=600)
+
+# Plot RDF for Ti - Ti
+if calc_distance:
+    ti_polaron = universe.select_atoms("bynum 78")
+    rdf_ti_ti_polaron = rdf.InterRDF(ti_polaron, ti_not_polaron, range=(0, rdf_xlim), nbins=nbins)
+    rdf_ti_ti_polaron.run()
+
+    ti_not_polaron = universe.select_atoms("element Ti and not bynum 78")
+    rdf_ti_ti_not_polaron = rdf.InterRDF(ti_not_polaron, ti_not_polaron, exclusion_block=(1, 1), range=(0, rdf_xlim), nbins=nbins)
+    rdf_ti_ti_not_polaron.run()
+
+    fig_rdf_ti_ti, ax_rdf_ti_ti = plt.subplots(figsize=(10, 4))
+    ax_rdf_ti_ti.plot(rdf_ti_ti_polaron.bins, rdf_ti_ti_polaron.rdf, 'r-', label='RDF Ti (polaron) - Ti')
+    ax_rdf_ti_ti.plot(rdf_ti_ti_not_polaron.bins, rdf_ti_ti_not_polaron.rdf, 'g-', label='RDF Ti - Ti')
+    ax_rdf_ti_ti.set_xlabel("Radial distance / Å")
+    ax_rdf_ti_ti.set_ylabel("RDF (arb. units)")
+    ax_rdf_ti_ti.legend(frameon=False)
+    ax_rdf_ti_ti.set_xlim([0, rdf_xlim])
+    ax_rdf_ti_ti.tick_params(axis='y', which='both', left=False, right=False, labelleft=False)
+    fig_rdf_ti_ti.tight_layout()
+    fig_rdf_ti_ti.savefig("{}/rdf.png".format(folder_save), dpi=600)
 
 if __name__ == "__main__":
     print('Finished.')
