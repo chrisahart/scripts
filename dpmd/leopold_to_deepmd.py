@@ -261,9 +261,9 @@ def read_leopold(folder, filename, num_atoms):
 
 
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/dataset'
-# name = 'train'
+name = 'train'
 # name = 'valid'
-name = 'test'
+# name = 'test'
 data = '{}_clean.xyz'.format(name)
 num_atoms = 288
 box_size = np.array([12.9730319977, 12.9730319977, 17.7244205475, 90, 90, 90])

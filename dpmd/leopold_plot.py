@@ -261,8 +261,8 @@ def read_leopold(folder, filename, num_atoms):
 
 
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/dataset'
-# name = 'train'
-name = 'valid'
+name = 'train'
+# name = 'valid'
 # name = 'test'
 data = '{}_clean.xyz'.format(name)
 num_atoms = 288
@@ -438,18 +438,21 @@ if plot_zoom:
     fig_bonds_4.tight_layout()
 
     # # Plot spin of all atoms 5
-    # xlim_1 = [2296, 2296+40]
-    # ylim_1_bonds = [1.90, 2.05]
-    # fig_spin5, ax_spin5 = plt.subplots()
-    # temp = np.zeros(num_timesteps)
-    # for j in range(num_atoms):
-    #     ax_spin5.plot(time_array, leopold_1_np[:, -2, j]-leopold_1_np[:, -1, j], '-', label='{}'.format(j+1))
-    # ax_spin5.set_xlabel('Frame')
-    # ax_spin5.set_ylabel('Spin moment')
-    # ax_spin5.set_xlim(xlim_1)
-    # ax_spin5.set_ylim(ylim_1_spin)
-    # fig_spin5.tight_layout()
-    # fig_spin5.savefig('{}/spin_all5_{}.png'.format(folder, name), dpi=300)
+    xlim_1 = [2296, 2296+39]
+    ylim_1_bonds = [1.90, 2.05]
+    fig_spin5, ax_spin5 = plt.subplots()
+    temp = np.zeros(num_timesteps)
+    for j in range(num_atoms):
+        # ax_spin5.plot(time_array, leopold_1_np[:, -2, j]-leopold_1_np[:, -1, j], '-', label='{}'.format(j+1))
+        ax_spin5.plot(time_array, spin_moment[:, j], '-', label='{}'.format(j+1))
+        # ax_spin1.plot(time_array, spin_moment[:, j], '-', label='{}'.format(j + 1))
+
+    ax_spin5.set_xlabel('Frame')
+    ax_spin5.set_ylabel('Spin moment')
+    ax_spin5.set_xlim(xlim_1)
+    ax_spin5.set_ylim(ylim_1_spin)
+    fig_spin5.tight_layout()
+    fig_spin5.savefig('{}/spin_all5_{}.png'.format(folder, name), dpi=300)
     #
     # # Plot average of 6 Ti-O bonds 5
     # fig_bonds_5, ax_bonds_5 = plt.subplots()

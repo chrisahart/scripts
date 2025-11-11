@@ -199,7 +199,7 @@ def write_xyz(filename, coordinates, species, num_atoms, index, energy_clean):
 
             for atom in range(num_atoms):
                 x, y, z = coordinates[timestep, :, atom]
-                f.write(f"{species[atom]} {x:.6f} {y:.6f} {z:.6f}\n")
+                f.write(f"{species[atom]} {x:.10f} {y:.10f} {z:.10f}\n")
 
 
 def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplicates):
@@ -296,14 +296,37 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # name = 'tio2'
 # num_atoms = 324
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
-folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k'.format(folder)
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md'
+# folder_1 = '{}/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/'
+# folder_1 = '{}/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/'
+# folder_1 = '{}/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-22-2-rs'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/'
+# folder_1 = '{}/trajectory'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+folder_1 = '{}/trajectory_mdanalysis'.format(folder)
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# folder_1 = '{}/trajectory_vmd'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
 name = 'tio2'
 num_atoms = 324
 
 # Energy Hirshfeld Position Force
-files_do = [True, False, True, True]
+# files_do = [False, False, False, False, True]
+files_do = [True, True, True, True, True]
 # files_do = [True, True, True, True]
 # files_do = [False, False, True, False]
 # energy_step_1_missing = []
@@ -358,11 +381,11 @@ if files_do[2] is True:
     pos_index = [s.replace(',', '') for s in pos_index]
     pos_index = [int(s) for s in pos_index]
     pos_index_unique_frames, pos_index_unique_indices = remove_duplicates(list(pos_index))
-    coordinates_no_duplicates = coordinates[pos_index_unique_indices]
-    pos_step_1_missing = detect_missing_values(pos_index_unique_frames)
     print('\nPosition step last value', pos_index_unique_frames[-1])
     print('Position total number steps', pos_index_unique_frames[-1] + 1)
     print('Position length', len(pos_index_unique_frames))
+    coordinates_no_duplicates = coordinates[pos_index_unique_indices]
+    pos_step_1_missing = detect_missing_values(pos_index_unique_frames)
     # print('Position missing values', pos_step_1_missing)
     print('Position length + missing values', len(pos_index_unique_frames)+len(pos_step_1_missing))
     print('Position df total number steps', np.shape(coordinates_no_duplicates))
@@ -375,6 +398,7 @@ if files_do[3] is True:
     frc_index = [s.replace(',', '') for s in frc_index]
     frc_index = [int(s) for s in frc_index]
     frc_index_unique_frames, frc_index_unique_indices = remove_duplicates(list(frc_index))
+    print('forces.shape', forces.shape)
     frc_no_duplicates = forces[frc_index_unique_indices]
     frc_step_1_missing = detect_missing_values(frc_index_unique_frames)
     print('\nForce step last value', frc_index_unique_frames[-1])
@@ -382,14 +406,57 @@ if files_do[3] is True:
     print('Force length', len(frc_index_unique_frames))
     # print('Force missing values', frc_step_1_missing)
     print('Force length + missing values', len(frc_index_unique_frames)+len(frc_step_1_missing))
+    print('forces.shape', forces.shape)
     # plt.plot(frc_step_1_no_duplicates, 'k.', markersize=1)
 
+# Velocity
+if files_do[4] is True:
+    velocity, velocity_x, velocity_y, velocity_z, _, _, _ = load_values_coord(folder_1, files[4], ['Species', 'X', 'Y', 'Z'])
+    vel_index = np.loadtxt('{}/index_vel.txt'.format(folder_1), dtype='str')
+    vel_index = [s.replace(',', '') for s in vel_index]
+    vel_index = [int(s) for s in vel_index]
+    vel_index_unique_frames, vel_index_unique_indices = remove_duplicates(list(vel_index))
+    # print(vel_index_unique_frames)
+    # print(vel_index_unique_indices)
+    print('\nVelocity step last value', vel_index_unique_frames[-1])
+    print('Velocity total number steps', vel_index_unique_frames[-1] + 1)
+    print('Velocity length', len(vel_index_unique_frames))
+    print('velocity.shape', velocity.shape)
+    # print('velocity[0, :, 0])', velocity[0, :, 0])
+    # print('velocity[1000, :, 0])', velocity[1000, :, 0])
+    # print('velocity[2000, :, 0])', velocity[2000, :, 0])
+    # print('velocity[3000, :, 0])', velocity[3000, :, 0])
+    # print('velocity[4000, :, 0])', velocity[4000, :, 0])
+    # print('velocity[5100, :, 0])', velocity[5100, :, 0])
+    # print('velocity[5110, :, 0])', velocity[5110, :, 0])
+    # print('velocity[5120, :, 0])', velocity[5120, :, 0])
+    # print('velocity[5130, :, 0])', velocity[5130, :, 0])
+    # print('velocity[5140, :, 0])', velocity[5140, :, 0])
+    # print('velocity[5141, :, 0])', velocity[5141, :, 0])
+    # print('velocity[5142, :, 0])', velocity[5142, :, 0])
+    # print('velocity[5143, :, 0])', velocity[5143, :, 0])
+    # print('velocity[5144, :, 0])', velocity[5144, :, 0])
+    # print('velocity[5145, :, 0])', velocity[5145, :, 0])
+    # print('velocity[5146, :, 0])', velocity[5146, :, 0])
+    # print('velocity[5147, :, 0])', velocity[5147, :, 0])
+    # print('velocity[5148, :, 0])', velocity[5148, :, 0])
+    # print('velocity[5149, :, 0])', velocity[5149, :, 0])
+    # print('velocity[5150, :, 0])', velocity[5150, :, 0])
+    # print('velocity[5160, :, 0])', velocity[5160, :, 0])
+    # print('velocity[5200, :, 0])', velocity[5200, :, 0])
+    # print('velocity[-1, :, 0])', velocity[-1, :, 0])
+    vel_no_duplicates = velocity[vel_index_unique_indices]
+    vel_step_1_missing = detect_missing_values(vel_index_unique_frames)
+    # print('velocity missing values', vel_step_1_missing)
+    print('Velocity length + missing values', len(vel_index_unique_frames)+len(vel_step_1_missing))
+    # plt.plot(vel_step_1_no_duplicates, 'k.', markersize=1)
+    
 # if files_do[0] is True: print('\nEnergy missing values', energy_step_1_missing)
 # if files_do[1] is True: print('Hirshfeld missing values', hirshfeld_step_1_missing)
 # if files_do[2] is True: print('Position missing values', pos_step_1_missing)
 # if files_do[3] is True: print('Force missing values', frc_step_1_missing)
 
-missing_all = energy_step_1_missing + hirshfeld_step_1_missing + pos_step_1_missing + frc_step_1_missing
+missing_all = energy_step_1_missing + hirshfeld_step_1_missing + pos_step_1_missing + frc_step_1_missing + vel_step_1_missing
 missing_all = (list(OrderedDict.fromkeys(missing_all)))
 # print('All missing values', missing_all)
 # print('\nWe will have this many values:',  frc_index_unique_frames[-1] + 1 - len(missing_all))
@@ -451,9 +518,25 @@ if files_do[3] is True:
     print('Forces index has this many values: ', len(frc_index_no_duplicates))
     print('Forces has this many values: ', frc_no_duplicates.shape)
 
-
+# Clean velocity
+if files_do[3] is True:
+    vel_index_no_duplicates = [x for x in vel_index_unique_frames if x not in missing_all]
+    missing_set = set(vel_step_1_missing)
+    adjusted_index_map = []
+    adjusted_index = 0
+    for original_index in range(max(vel_index_no_duplicates) + 1):
+        if original_index not in missing_set:
+            adjusted_index_map.append(adjusted_index)
+            adjusted_index += 1
+        else:
+            adjusted_index_map.append(None)
+    adjusted_indices = [adjusted_index_map[idx] for idx in vel_index_no_duplicates if adjusted_index_map[idx] is not None]
+    vel_no_duplicates = vel_no_duplicates[adjusted_indices]
+    print('Velocity index has this many values: ', len(vel_index_no_duplicates))
+    print('Velocity has this many values: ', vel_no_duplicates.shape)
+    
 # Truncate to min length
-index_array = np.array([np.shape(energy_clean)[0], len(hirshfeld_index_no_duplicates), len(pos_index_no_duplicates), len(frc_index_no_duplicates)])
+index_array = np.array([np.shape(energy_clean)[0], len(hirshfeld_index_no_duplicates), len(pos_index_no_duplicates), len(frc_index_no_duplicates), len(vel_index_no_duplicates)])
 truncate_length = np.min(index_array)
 print('Truncate to min length', truncate_length)
 energy_clean = energy_clean[:truncate_length]
@@ -465,15 +548,20 @@ if files_do[1] is True:
 
 pos_index_no_duplicates = pos_index_no_duplicates[:truncate_length]
 coordinates_no_duplicates = coordinates_no_duplicates[:truncate_length]
-frc_no_duplicates = frc_no_duplicates[:truncate_length]
-frc_index_no_duplicates = frc_index_no_duplicates[:truncate_length]
-print('\nEnergy dataframe has this many values: ', np.shape(energy_clean))
 
+print('\nEnergy dataframe has this many values: ', np.shape(energy_clean))
 print('Coordinates index has this many values: ', len(pos_index_no_duplicates))
 print('Coordinates has this many values: ', coordinates_no_duplicates.shape)
 
+frc_no_duplicates = frc_no_duplicates[:truncate_length]
+frc_index_no_duplicates = frc_index_no_duplicates[:truncate_length]
 print('Forces index has this many values: ', len(frc_index_no_duplicates))
 print('Forces has this many values: ', frc_no_duplicates.shape)
+
+vel_no_duplicates = vel_no_duplicates[:truncate_length]
+vel_index_no_duplicates = vel_index_no_duplicates[:truncate_length]
+print('Velocity index has this many values: ', len(vel_index_no_duplicates))
+print('Velocity has this many values: ', vel_no_duplicates.shape)
 
 # Save energy
 if files_do[0] is True:
@@ -487,10 +575,15 @@ if files_do[1] is True:
 if files_do[2] is True:
     # energy_clean = np.NaN
     write_xyz('{}/{}-pos-1-cleaned.xyz'.format(folder_1, name), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
+    # write_xyz('{}/{}-pos-1-vmd-wrap-cleaned.xyz'.format(folder_1, name), coordinates_no_duplicates, species, num_atoms, pos_index_no_duplicates, energy_clean)
 
 # Save force
 if files_do[3] is True:
     write_xyz('{}/{}-frc-1-cleaned.xyz'.format(folder_1, name), frc_no_duplicates, species, num_atoms, frc_index_no_duplicates, energy_clean)
+
+# Save velocity
+if files_do[4] is True:
+    write_xyz('{}/{}-vel-1-cleaned.xyz'.format(folder_1, name), vel_no_duplicates, species, num_atoms, vel_index_no_duplicates, energy_clean)
 
 if __name__ == "__main__":
     print('Finished.')
