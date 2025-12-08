@@ -269,9 +269,9 @@ def read_energy(folder, filename):
 # mgo 222
 # pbc set {9.2 9.2 8.88 90 90 90} -all ; pbc box
 # pbc wrap -all
-files = ['mgo-1-cleaned.ener', 'mgo-charges-1-clean-cleaned.hirshfeld', 'mgo-pos-1-cleaned.xyz', 'mgo-frc-1-cleaned.xyz']
-box = np.array([[8.38, 0, 0, 0, 8.38, 0, 0, 0, 8.38]])
-num_atoms = 64
+# files = ['mgo-1-cleaned.ener', 'mgo-charges-1-clean-cleaned.hirshfeld', 'mgo-pos-1-cleaned.xyz', 'mgo-frc-1-cleaned.xyz']
+# box = np.array([[8.38, 0, 0, 0, 8.38, 0, 0, 0, 8.38]])
+# num_atoms = 64
 
 # directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt'
 # charged = False
@@ -290,15 +290,15 @@ num_atoms = 64
 # the training data contains 2030 frames
 # the validation data contains 600 frames
 
-directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-6'
-charged = True
+# directory = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/archer/mgo/cell-222/md/pbe-u-8/neutral-4hours-100k-COMVEL_TO-1e-10-TEMPTOL-10-200k-300k-400k-500k-600k-csvr-timecon-1-COMVEL_TO-1e-10-nvt-hole-u-6'
+# charged = True
 # 1500 to 4000 fs
 # Discard first 3000 frames
 
-size_exclude_start = int(1.5e3 * 2)
-size_exclude_end = int(0e3 * 2)
-size_test = int(0.1e3 * 2)
-size_validation = int(0.3e3 * 2)
+# size_exclude_start = int(1.5e3 * 2)
+# size_exclude_end = int(0e3 * 2)
+# size_test = int(0.1e3 * 2)
+# size_validation = int(0.3e3 * 2)
 
 # the data contains 8103 frames
 # the data contains 5103 frames after excluding the first and last frames
@@ -393,6 +393,237 @@ size_validation = int(0.3e3 * 2)
 # the training data contains 85 frames
 # the validation data contains 50 frames
 
+# Rutile 336
+box = np.array([[13.77, 0, 0, 0, 13.77, 0, 0, 0, 17.76]])
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+num_atoms = 324
+charged = True
+
+# HSE 22%
+# folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
+directory = '{}/testing'.format(folder)
+
+size_exclude_start = int(1000)
+size_exclude_end = int(0)
+size_test = int(52)
+size_validation = int(0)
+
+# the data contains 10052 frames
+# the data contains 9052 frames after excluding the first and last frames
+# the test data contains 52 frames
+# the data contains 9000 frames after excluding the first and last frames and test set
+# the training data contains 9000 frames
+# the validation data contains 0 frames
+
+# PBE
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/'
+# directory = '{}/electron-u-ti-3.0-300k-rs-pbe'.format(folder)
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(934)
+# size_validation = int(1000)
+
+# the data contains 6934 frames
+# the data contains 6934 frames after excluding the first and last frames
+# the test data contains 934 frames
+# the data contains 6000 frames after excluding the first and last frames and test set
+# the training data contains 5000 frames
+# the validation data contains 1000 frames
+
+# Transition states only
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good'
+# directory = '{}/combined'.format(folder)
+
+# size_exclude_start = int(0*2)
+# size_exclude_end = int(0)
+# size_test = int(20*2)
+# size_validation = int(40)
+
+# the data contains 440 frames
+# the data contains 440 frames after excluding the first and last frames
+# the test data contains 40 frames
+# the data contains 400 frames after excluding the first and last frames and test set
+# the training data contains 360 frames
+# the validation data contains 40 frames
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(40)
+# size_validation = int(130)
+
+# the data contains 440 frames
+# the data contains 440 frames after excluding the first and last frames
+# the test data contains 40 frames
+# the data contains 400 frames after excluding the first and last frames and test set
+# the training data contains 270 frames
+# the validation data contains 130 frames
+
+# MD only
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/md/'
+
+# directory = '{}/step-8200-8500-eps-1e-7-stride-1'.format(folder)
+# size_exclude_start = int(0*2)
+# size_exclude_end = int(1)
+# size_test = int(20*2)
+# size_validation = int(40)
+
+# the data contains 301 frames
+# the data contains 300 frames after excluding the first and last frames
+# the test data contains 40 frames
+# the data contains 260 frames after excluding the first and last frames and test set
+# the training data contains 220 frames
+# the validation data contains 40 frames
+
+# directory = '{}/step-9300-9500-eps-1e-7-stride-1'.format(folder)
+# size_exclude_start = int(0*2)
+# size_exclude_end = int(1)
+# size_test = int(20*2)
+# size_validation = int(40)
+
+# the data contains 201 frames
+# the data contains 200 frames after excluding the first and last frames
+# the test data contains 40 frames
+# the data contains 160 frames after excluding the first and last frames and test set
+# the training data contains 120 frames
+# the validation data contains 40 frames
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/md/'
+# directory = '{}/combined'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(100)
+# size_validation = int(100)
+
+# the data contains 1400 frames
+# the data contains 1400 frames after excluding the first and last frames
+# the test data contains 100 frames
+# the data contains 1300 frames after excluding the first and last frames and test set
+# the training data contains 1200 frames
+# the validation data contains 100 frames
+
+# Anatase 441
+# num_atoms = 192
+# box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 9.68]])
+# charged = True
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
+# directory = '{}/combined'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(200)
+# size_test = int(100)
+# size_validation = int(100)
+
+# the data contains 1350 frames
+# the data contains 1350 frames after excluding the first and last frames
+# the test data contains 100 frames
+# the data contains 1250 frames after excluding the first and last frames and test set
+# the training data contains 1150 frames
+# the validation data contains 100 frames
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/ts/good'
+# directory = '{}/combined'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(40)
+# size_validation = int(40)
+
+# the data contains 300 frames
+# the data contains 300 frames after excluding the first and last frames
+# the test data contains 40 frames
+# the data contains 260 frames after excluding the first and last frames and test set
+# the training data contains 220 frames
+# the validation data contains 40 frames
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20'
+# directory = '{}/hse-25-deepmd'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(192)
+# size_test = int(500)
+# size_validation = int(500)
+
+# the data contains 2192 frames
+# the data contains 2000 frames after excluding the first and last frames
+# the test data contains 500 frames
+# the data contains 1500 frames after excluding the first and last frames and test set
+# the training data contains 1000 frames
+# the validation data contains 500 frames
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
+# directory = '{}/hse-19-complete/trajectory_mdanalysis'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+
+# size_exclude_start = int(10000)
+# size_exclude_end = int(2438)
+# size_test = int(4000)
+# size_validation = int(1000)
+
+# the data contains 22438 frames
+# the data contains 12438 frames after excluding the first and last frames
+# the test data contains 5000 frames
+# the data contains 7438 frames after excluding the first and last frames and test set
+# the training data contains 6438 frames
+# the validation data contains 1000 frames
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(2438)
+# size_validation = int(0)
+
+# the data contains 22438 frames
+# the data contains 22438 frames after excluding the first and last frames
+# the test data contains 2438 frames
+# the data contains 20000 frames after excluding the first and last frames and test set
+# the training data contains 20000 frames
+# the validation data contains 0 frames
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
+# directory = '{}/hole-u-o-5-ti-0-600k-hse-25-center-rs-22-yungu-rs-rs-19-rs-neutral-pbe'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+
+# size_exclude_start = int(1600)
+# size_exclude_end = int()
+# size_test = int(1000)
+# size_validation = int(1000)
+
+# the data contains 8600 frames
+# the data contains 7000 frames after excluding the first and last frames
+# the test data contains 1000 frames
+# the data contains 6000 frames after excluding the first and last frames and test set
+# the training data contains 5000 frames
+# the validation data contains 1000 frames
+
+# Anatase 442
+# num_atoms = 384
+# box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 19.36]])
+# charged = True
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/md-cell-opt-hse-20/deepmd'
+# directory = '{}/hole-u-o-5-ti-0-600k-rs-hse-25'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+
+# size_exclude_start = int(0)
+# size_exclude_end = int(126)
+# size_test = int(500)
+# size_validation = int(1000)
+
+# the data contains 3126 frames
+# the data contains 3000 frames after excluding the first and last frames
+# the test data contains 1000 frames
+# the data contains 2000 frames after excluding the first and last frames and test set
+# the training data contains 1000 frames
+# the validation data contains 1000 frames
+
 # For energy just .flatten() potential energy column converted to eV Shape (200,1) -> (timesteps, 1)
 print('Loading energy')
 _, _, energy, _, _, time_val, time_per_step, step = read_energy(directory, files[0])
@@ -412,12 +643,11 @@ population_beta = hirshfeld[:, 4]
 hirshfeld = hirshfeld[:, 5]
 aparam = np.zeros((num_timesteps, num_atoms))
 if charged:
-    for i in range(num_timesteps-1):
+    for i in range(num_timesteps):
         spin_moment = hirshfeld[i]
         value = np.max(np.abs(spin_moment))
         index = np.argmax(np.abs(spin_moment))
-        aparam[i + 1, index] = 1.0
-        # print(i, index+1, value)
+        aparam[i, index] = 1.0
 
 # Shape (200,360) -> (timesteps, num_atoms*3) where it is arranged [x1, y1, z1, x2, y2, z2 ... xn, yn, zn]
 print('Loading coordinates')
@@ -492,14 +722,14 @@ box_array = box_array[:-size_test]
 print("# the data contains %d frames after excluding the first and last frames and test set" % energy.shape[0])
 
 # Load index from file
-index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
-index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
+# index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
+# index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
 
 # Set random index
-# rng = np.random.default_rng()
-# index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
-# index_validation = np.sort(index_validation)
-# index_training = list(set(range(energy.shape[0])) - set(index_validation))
+rng = np.random.default_rng()
+index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
+index_validation = np.sort(index_validation)
+index_training = list(set(range(energy.shape[0])) - set(index_validation))
 
 energy_train = energy[index_training]
 population_alpha_train = population_alpha[index_training]
@@ -525,8 +755,8 @@ print("# the validation data contains %d frames" % energy_valid.shape[0])
 # Index
 np.savetxt('{}/database_ener_force_train/index_training.raw'.format(directory), index_training)
 np.savetxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory), index_validation)
-np.savetxt('{}/database_spin_train/index_training.raw'.format(directory), index_training)
-np.savetxt('{}/database_spin_test/1/index_validation.raw'.format(directory), index_validation)
+# np.savetxt('{}/database_spin_train/index_training.raw'.format(directory), index_training)
+# np.savetxt('{}/database_spin_test/1/index_validation.raw'.format(directory), index_validation)
 np.savetxt('{}/database_population_train/index_training.raw'.format(directory), index_training)
 np.savetxt('{}/database_population_test/1/index_validation.raw'.format(directory), index_validation)
 
@@ -534,20 +764,20 @@ np.savetxt('{}/database_population_test/1/index_validation.raw'.format(directory
 np.save('{}/database_ener_force_train/set.000/energy.npy'.format(directory), energy_train)
 np.save('{}/database_ener_force_test/1/set.000/energy.npy'.format(directory), energy_valid)
 np.save('{}/database_ener_force_test/2/set.000/energy.npy'.format(directory), energy_test)
-np.save('{}/database_spin_train/set.000/energy.npy'.format(directory), energy_train)
-np.save('{}/database_spin_test/1/set.000/energy.npy'.format(directory), energy_valid)
-np.save('{}/database_spin_test/2/set.000/energy.npy'.format(directory), energy_test)
+# np.save('{}/database_spin_train/set.000/energy.npy'.format(directory), energy_train)
+# np.save('{}/database_spin_test/1/set.000/energy.npy'.format(directory), energy_valid)
+# np.save('{}/database_spin_test/2/set.000/energy.npy'.format(directory), energy_test)
 np.save('{}/database_population_train/set.000/energy.npy'.format(directory), energy_train)
 np.save('{}/database_population_test/1/set.000/energy.npy'.format(directory), energy_valid)
 np.save('{}/database_population_test/2/set.000/energy.npy'.format(directory), energy_test)
 
 # Hirshfeld
-np.savetxt('{}/database_spin_train/atom_ener.raw'.format(directory), hirshfeld_train.flatten(), delimiter=' ')
-np.save('{}/database_spin_train/set.000/atom_ener.npy'.format(directory), hirshfeld_train.flatten())
-np.savetxt('{}/database_spin_test/1/atom_ener.raw'.format(directory), hirshfeld_valid.flatten(), delimiter=' ')
-np.save('{}/database_spin_test/1/set.000/atom_ener.npy'.format(directory), hirshfeld_valid.flatten())
-np.savetxt('{}/database_spin_test/2/atom_ener.raw'.format(directory), hirshfeld_test.flatten(), delimiter=' ')
-np.save('{}/database_spin_test/2/set.000/atom_ener.npy'.format(directory), hirshfeld_test.flatten())
+# np.savetxt('{}/database_spin_train/atom_ener.raw'.format(directory), hirshfeld_train.flatten(), delimiter=' ')
+# np.save('{}/database_spin_train/set.000/atom_ener.npy'.format(directory), hirshfeld_train.flatten())
+# np.savetxt('{}/database_spin_test/1/atom_ener.raw'.format(directory), hirshfeld_valid.flatten(), delimiter=' ')
+# np.save('{}/database_spin_test/1/set.000/atom_ener.npy'.format(directory), hirshfeld_valid.flatten())
+# np.savetxt('{}/database_spin_test/2/atom_ener.raw'.format(directory), hirshfeld_test.flatten(), delimiter=' ')
+# np.save('{}/database_spin_test/2/set.000/atom_ener.npy'.format(directory), hirshfeld_test.flatten())
 
 # Population
 population_train = np.zeros((np.shape(population_alpha_train)[0], num_atoms, 2))
@@ -576,12 +806,12 @@ np.savetxt('{}/database_ener_force_test/1/aparam.raw'.format(directory), aparam_
 np.save('{}/database_ener_force_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
 np.savetxt('{}/database_ener_force_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
 np.save('{}/database_ener_force_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
-np.savetxt('{}/database_spin_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
-np.save('{}/database_spin_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
-np.savetxt('{}/database_spin_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
-np.save('{}/database_spin_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
-np.savetxt('{}/database_spin_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
-np.save('{}/database_spin_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
+# np.savetxt('{}/database_spin_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
+# np.save('{}/database_spin_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
+# np.savetxt('{}/database_spin_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
+# np.save('{}/database_spin_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
+# np.savetxt('{}/database_spin_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
+# np.save('{}/database_spin_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
 np.savetxt('{}/database_population_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
 np.save('{}/database_population_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
 np.savetxt('{}/database_population_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
@@ -593,9 +823,9 @@ np.save('{}/database_population_test/2/set.000/aparam.npy'.format(directory), ap
 np.save('{}/database_ener_force_train/set.000/coord.npy'.format(directory), coordinates_train)
 np.save('{}/database_ener_force_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
 np.save('{}/database_ener_force_test/2/set.000/coord.npy'.format(directory), coordinates_test)
-np.save('{}/database_spin_train/set.000/coord.npy'.format(directory), coordinates_train)
-np.save('{}/database_spin_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
-np.save('{}/database_spin_test/2/set.000/coord.npy'.format(directory), coordinates_test)
+# np.save('{}/database_spin_train/set.000/coord.npy'.format(directory), coordinates_train)
+# np.save('{}/database_spin_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
+# np.save('{}/database_spin_test/2/set.000/coord.npy'.format(directory), coordinates_test)
 np.save('{}/database_population_train/set.000/coord.npy'.format(directory), coordinates_train)
 np.save('{}/database_population_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
 np.save('{}/database_population_test/2/set.000/coord.npy'.format(directory), coordinates_test)
@@ -604,9 +834,9 @@ np.save('{}/database_population_test/2/set.000/coord.npy'.format(directory), coo
 np.save('{}/database_ener_force_train/set.000/force.npy'.format(directory), forces_train)
 np.save('{}/database_ener_force_test/1/set.000/force.npy'.format(directory), forces_valid)
 np.save('{}/database_ener_force_test/2/set.000/force.npy'.format(directory), forces_test)
-np.save('{}/database_spin_train/set.000/force.npy'.format(directory), forces_train)
-np.save('{}/database_spin_test/1/set.000/force.npy'.format(directory), forces_valid)
-np.save('{}/database_spin_test/2/set.000/force.npy'.format(directory), forces_test)
+# np.save('{}/database_spin_train/set.000/force.npy'.format(directory), forces_train)
+# np.save('{}/database_spin_test/1/set.000/force.npy'.format(directory), forces_valid)
+# np.save('{}/database_spin_test/2/set.000/force.npy'.format(directory), forces_test)
 np.save('{}/database_population_train/set.000/force.npy'.format(directory), forces_train)
 np.save('{}/database_population_test/1/set.000/force.npy'.format(directory), forces_valid)
 np.save('{}/database_population_test/2/set.000/force.npy'.format(directory), forces_test)
@@ -615,9 +845,9 @@ np.save('{}/database_population_test/2/set.000/force.npy'.format(directory), for
 np.save('{}/database_ener_force_train/set.000/box.npy'.format(directory), box_array_train)
 np.save('{}/database_ener_force_test/1/set.000/box.npy'.format(directory), box_array_valid)
 np.save('{}/database_ener_force_test/2/set.000/box.npy'.format(directory), box_array_test)
-np.save('{}/database_spin_train/set.000/box.npy'.format(directory), box_array_train)
-np.save('{}/database_spin_test/1/set.000/box.npy'.format(directory), box_array_valid)
-np.save('{}/database_spin_test/2/set.000/box.npy'.format(directory), box_array_test)
+# np.save('{}/database_spin_train/set.000/box.npy'.format(directory), box_array_train)
+# np.save('{}/database_spin_test/1/set.000/box.npy'.format(directory), box_array_valid)
+# np.save('{}/database_spin_test/2/set.000/box.npy'.format(directory), box_array_test)
 np.save('{}/database_population_train/set.000/box.npy'.format(directory), box_array_train)
 np.save('{}/database_population_test/1/set.000/box.npy'.format(directory), box_array_valid)
 np.save('{}/database_population_test/2/set.000/box.npy'.format(directory), box_array_test)

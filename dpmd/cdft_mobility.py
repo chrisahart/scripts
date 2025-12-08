@@ -57,8 +57,8 @@ def calc_mobility(diffusion, kb_t):
 
 
 # Parameters
-# temp = 300  # K
-temp = 600  # K
+temp = 300  # K
+# temp = 600  # K
 multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
@@ -252,11 +252,11 @@ ev_to_joules = 1.60218e-19
 # --
 
 # TiO2 anatase 442 19% HFX atoms-282-310 iv 4b (20% cell opt) abs-777-scf-1e-6
-r_hop = np.array([3.77420])
-coupling = np.array([1.113395978848]) * param.hartree_to_ev / 1e3
-energy_cdft_ts = np.array([-11572.476950093205232])
-energy_dft_gs = np.array([-11572.502234968242192])
-reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+# r_hop = np.array([3.77420])
+# coupling = np.array([1.113395978848]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.476950093205232])
+# energy_dft_gs = np.array([-11572.502234968242192])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # --
 
@@ -299,6 +299,50 @@ reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 # coupling = np.array([4.921613527589]) * param.hartree_to_ev / 1e3
 # energy_cdft_ts = np.array([-11572.487723034415467])
 # energy_dft_gs = np.array([-11572.502106984749844])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# --
+
+# HfO2 nn 1
+r_hop = np.array([2.56])
+coupling = np.array([6.526747106308]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-8805.969671176280826])
+energy_dft_gs = np.array([-8805.983138680127013])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# HfO2 nn 2a
+r_hop = np.array([2.79])
+coupling = np.array([13.921941444597]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-8805.971553479334034])
+energy_dft_gs = np.array([-8805.983138680127013])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# HfO2 nn 2a
+r_hop = np.array([2.79])
+coupling = np.array([13.921941444597]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-8805.971553479334034])
+energy_dft_gs = np.array([-8805.983138680127013])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# HfO2 nn 2b
+r_hop = np.array([2.79])
+coupling = np.array([13.953232053986]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-8805.971622044589822])
+energy_dft_gs = np.array([-8805.983138680127013])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# HfO2 nn 3a
+# r_hop = np.array([2.85])
+# coupling = np.array([15.032498074920]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-8805.970810280490696])
+# energy_dft_gs = np.array([-8805.983138680127013])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# HfO2 nn 3b
+# r_hop = np.array([2.85])
+# coupling = np.array([15.016695504736]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-8805.971120900601818])
+# energy_dft_gs = np.array([-8805.983138680127013])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 for i in range(0, np.shape(coupling)[0]):

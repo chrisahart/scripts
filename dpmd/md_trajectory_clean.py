@@ -314,19 +314,83 @@ def write_hirshfeld(filename, species, hirshfeld_data, hirshfeld_index_no_duplic
 # name = 'tio2'
 # num_atoms = 324
 
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/'
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/'
 # folder_1 = '{}/trajectory'.format(folder)
 # files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
-folder_1 = '{}/trajectory_mdanalysis'.format(folder)
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# folder_1 = '{}/trajectory_mdanalysis'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# folder_1 = '{}/trajectory_mdanalysis_wrap'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
 # folder_1 = '{}/trajectory_vmd'.format(folder)
 # files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1-vmd-wrap.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-pbe'
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/md'
+# folder_1 = '{}/step-1000-1100-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-2200-2300-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-2500-2600-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-5600-5800-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-7400-7700-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-8200-8500-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-9300-9500-eps-1e-7-stride-1'.format(folder)
+# folder_1 = '{}/step-9800-9900-eps-1e-7-stride-1'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 324
+
+folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete/'
+folder_1 = '{}/testing'.format(folder)
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
 name = 'tio2'
 num_atoms = 324
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+# folder_1 = '{}/combined'.format(folder)
+# folder_1 = '{}/trajectory_mdanalysis'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 192
+# box_size = [15.12, 15.12, 9.62, 90, 90, 90]
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
+# folder_1 = '{}/step-9500-9900-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-7850-8250-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-4800-4920-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-2600-3000-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-18600-19500-eps-1e-7-stride-5'.format(folder)
+# folder_1 = '{}/step-1850-2100-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-15000-15800-eps-1e-7-stride-5'.format(folder)
+# folder_1 = '{}/step-13050-13250-eps-1e-7-stride-2'.format(folder)
+# folder_1 = '{}/step-11100-11350-eps-1e-7-stride-2'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 192
+# box_size = [15.12, 15.12, 9.62, 90, 90, 90]
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/ts/good'
+# folder_1 = '{}/combined'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 192
+# box_size = [15.12, 15.12, 9.62, 90, 90, 90]
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
+# folder_1 = '{}/hole-u-o-5-ti-0-600k-hse-25-center-rs-22-yungu-rs-rs-19-rs-neutral-pbe'.format(folder)
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
+# name = 'tio2'
+# num_atoms = 192
+# box_size = [15.08, 15.08, 9.68, 90, 90, 90]
 
 # Energy Hirshfeld Position Force
 # files_do = [False, False, False, False, True]
 files_do = [True, True, True, True, True]
+# files_do = [True, True, True, True, False]
 # files_do = [True, True, True, True]
 # files_do = [False, False, True, False]
 # energy_step_1_missing = []

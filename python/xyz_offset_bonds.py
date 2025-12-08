@@ -81,17 +81,67 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 # filename_out = 'rutile_3312-offset-163.xyz'
 # filename_out = 'rutile_3312-offset-162.xyz'
 
-folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hole-u-o-5-ti-0-600k-hse-25'
+
+# atom hfo2-m
+# folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/mengyu/chris/333/geo_opt/neutral/pbe'
+# folder_in = folder_out
+# filename_in = 'last.xyz'
+# filename_out = 'last_center_atom_302.xyz'
+# filename_out = 'last_center_atom_220.xyz'
+# filename_out = 'last_center_atom_283.xyz'
+# filename_out = 'last_center_atom_253.xyz'
+# filename_out = 'last_center_atom_301.xyz'
+# filename_out = 'last_center_atom_256.xyz'
+# change_bonds = True
+# labels = np.array([302, 38, 85, 5]) - 1
+# labels = np.array([220, 67, 85, 4]) - 1
+# labels = np.array([283, 67, 40, 4]) - 1
+# labels = np.array([253, 64, 38, 85]) - 1
+# labels = np.array([301, 37, 4]) - 1
+# labels = np.array([256, 67, 41, 88]) - 1
+# bond_target = np.array([2.4, 2.4])
+# bond_target = np.array([2.3, 2.3, 2.3])
+# bond_target = np.array([1.9, 1.9, 1.9])
+# cols = ['Species', 'X', 'Y', 'Z']
+# mapping = {
+#     'Hf': 0,
+#     'O': 1
+# }
+
+# atom hfo2-t
+folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/mengyu/tetragonal/geo_opt/neutral/pbe'
 folder_in = folder_out
 filename_in = 'last.xyz'
-filename_out = 'last_center.xyz'
-change_bonds = False
-
+# filename_out = 'last_center_atom_123.xyz'
+# filename_out = 'last_center_atom_230.xyz'
+filename_out = 'last_center_atom_122.xyz'
+change_bonds = True
+# labels = np.array([123, 96, 69, 15, 42]) - 1
+# labels = np.array([230, 68, 15, 96, 41]) - 1
+labels = np.array([122, 68, 14, 95, 41]) - 1
+bond_target = np.array([2.2, 2.2, 2.2, 2.2])
 cols = ['Species', 'X', 'Y', 'Z']
 mapping = {
-    'Ti': 0,
+    'Hf': 0,
     'O': 1
 }
+
+# atom hfo2-po
+# folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/po/geo_opt/neutral/pbe-mgrid-600'
+# folder_in = folder_out
+# filename_in = 'last.xyz'
+# filename_out = 'last_center_atom_123.xyz'
+# filename_out = 'last_center_atom_275.xyz'
+# change_bonds = True
+# labels = np.array([123, 60, 42, 15]) - 1
+# labels = np.array([275, 59, 86, 15]) - 1
+# bond_target = np.array([2.3, 2.3, 2.3])
+# cols = ['Species', 'X', 'Y', 'Z']
+# mapping = {
+#     'Hf': 0,
+#     'O': 1
+# }
+
 
 # folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/structures'
 # folder_in = folder_out
@@ -218,7 +268,6 @@ with open('{}/species_map.txt'.format(folder_out), 'w') as file:
 # labels = np.array([162, 546, 552, 600, 543, 530, 599]) - 1
 # bond_target = np.array([2.2, 2.2, 2.2, 2.2, 2.2, 2.2])
 
-
 # atom mgo 222 supercell
 # labels = np.array([39, 8, 15, 19, 23, 13, 7]) - 1
 # neutral = np.array([2.09700, 2.09700, 2.09700, 2.09700, 2.09700, 2.09700])
@@ -228,6 +277,7 @@ with open('{}/species_map.txt'.format(folder_out), 'w') as file:
 # labels = np.array([150, 41, 18, 96, 87, 15, 42]) - 1
 # neutral = np.array([2.09700, 2.09700, 2.09700, 2.09700, 2.09700, 2.09700])
 # bond_target = np.array([1.8, 1.8, 1.8, 1.8, 1.8, 1.8])
+
 
 if change_bonds:
     Fe_O = np.zeros(np.shape(labels)[0] - 1)
@@ -268,12 +318,12 @@ if change_bonds:
 #     coord_z[0, i] = coord_z[0, i] + change * functions.random_sign()
 
 # Modify positions of all atoms
-change = -1 * np.array([2.37703, -1.60344, -0.26348])
-for i in range(num_atoms):
-
-    coord_x[0, i] = coord_x[0, i] + change[0]
-    coord_y[0, i] = coord_y[0, i] + change[1]
-    coord_z[0, i] = coord_z[0, i] + change[2]
+# change = -1 * np.array([2.37703, -1.60344, -0.26348])
+# for i in range(num_atoms):
+#
+#     coord_x[0, i] = coord_x[0, i] + change[0]
+#     coord_y[0, i] = coord_y[0, i] + change[1]
+#     coord_z[0, i] = coord_z[0, i] + change[2]
 
 # Create pandas dataframe from species and coordinates
 coord = np.column_stack((coord_x.ravel(), coord_y.ravel(), coord_z.ravel()))

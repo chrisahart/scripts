@@ -49,8 +49,13 @@ set_ylim_trapping_hubbard = [130, 1140]
 
 # PBE0 and HSE
 set_ylim_linearity_hfx = [-0.32, 0.07]
+set_ylim_linearity_hfx = [0.07, -0.32]
+set_ylim_linearity_hfx = [0.0, -0.32]
 set_ylim_band_gap_hfx = [2.9, 3.63]
+set_ylim_band_gap_hfx = [3.0, 3.63]
 set_ylim_trapping_hfx = [190, 700]
+set_ylim_trapping_hfx = [200, 700]
+set_ylim_trapping_hfx = [350, 680]
 
 folder_use_hubbard = []
 folder_files_hubbard = []
@@ -80,10 +85,10 @@ skip_folders_hubbard_end_gap = -1
 # skip_folders_hubbard_end_gap = -1
 # folder_files_hubbard = []
 # for i in range(len(folder_use_hubbard)):
-#     folder_files_hubbard.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_hubbard[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_hubbard[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_hubbard[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_hubbard[i])])
+#     folder_files_hubbard.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_hubbard[i])])
 #
 # # HSE
 # # folder_use_hse = ['hfx-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3', 'hfx-schwarz-e-1e-4-f-1e-6-fit11-cpfit3',
@@ -99,10 +104,10 @@ skip_folders_hubbard_end_gap = -1
 # skip_folders_hse_end_gap = -1
 # folder_files_hse = []
 # for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_hse[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_hse[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_hse[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_hse[i])])
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_hse[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_hse[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_hse[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_hse[i])])
 # # pbe0
 # folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 # colors_pbe0 = ['g']
@@ -113,10 +118,10 @@ skip_folders_hubbard_end_gap = -1
 # skip_folders_pbe0_end_gap = -1
 # folder_files_pbe0 = []
 # for i in range(len(folder_use_pbe0)):
-#     folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_pbe0[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_pbe0[i]),
-#                                  '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_pbe0[i])])
+#     folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_pbe0[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_pbe0[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_pbe0[i])])
 
 # Supercell 4x4x1
 # folder_use_hubbard = []
@@ -131,66 +136,66 @@ skip_folders_hubbard_end_gap = -1
 # skip_folders_hse_end_gap = -1
 # folder_files_hse = []
 # for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-neutral/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-md-hole/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/from-md-hole/{}'.format(folder_use_hse[i])])
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-neutral/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-md-hole/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/from-md-hole/{}'.format(folder_use_hse[i])])
 
 
 # Supercell 4x4x2
-set_ylim_linearity_hfx = [0, -0.25]
-set_ylim_band_gap_hfx = [3.1, 3.62]
-set_ylim_trapping_hfx = [365, 675]
-# Hubbard U
-folder_use_hubbard = ['pbe-u-ti-0-o']
-# folder_use_hubbard = []
-colors_hubbard = ['r', 'b']
-labels_hubbard = ['Ti U = 0', 'Ti U = 6']
-hubbard_values_polaron = [[2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0]]
-skip_folders_hubbard_start = 1
-skip_folders_hubbard_end = -1
-folder_files_hubbard = []
-for i in range(len(folder_use_hubbard)):
-    folder_files_hubbard.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hubbard[i]),
-                                 '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hubbard[i]),
-                                 '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hubbard[i]),
-                                 '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hubbard[i])])
-# HSE
-folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
-# folder_use_hse = []
-colors_hse = ['k']
-labels_hse = ['']
-hse_values_polaron = [[12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30]]
-skip_folders_hse_start = 2
-skip_folders_hse_end = -1
-skip_folders_hse_start_gap = 2
-skip_folders_hse_end_gap = -1
-folder_files_hse = []
+# set_ylim_linearity_hfx = [0, -0.25]
+# set_ylim_band_gap_hfx = [3.1, 3.62]
+# set_ylim_trapping_hfx = [365, 675]
+# # Hubbard U
+# folder_use_hubbard = ['pbe-u-ti-0-o']
+# # folder_use_hubbard = []
+# colors_hubbard = ['r', 'b']
+# labels_hubbard = ['Ti U = 0', 'Ti U = 6']
+# hubbard_values_polaron = [[2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0]]
+# skip_folders_hubbard_start = 1
+# skip_folders_hubbard_end = -1
+# folder_files_hubbard = []
+# for i in range(len(folder_use_hubbard)):
+#     folder_files_hubbard.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hubbard[i]),
+#                                  '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hubbard[i])])
+# # HSE
+# folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
+# # folder_use_hse = []
+# colors_hse = ['k']
+# labels_hse = ['']
+# hse_values_polaron = [[12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30]]
+# skip_folders_hse_start = 2
+# skip_folders_hse_end = -1
+# skip_folders_hse_start_gap = 2
+# skip_folders_hse_end_gap = -1
+# folder_files_hse = []
+# # for i in range(len(folder_use_hse)):
+# #     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
+# #                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hse[i]),
+# #                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
+# #                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
 # for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
-for i in range(len(folder_use_hse)):
-    folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/neutral-opt/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight',
-                             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-neutral/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight-rs-scf-1e-7',
-                             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
-                             '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
-# pbe0
-folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
-folder_use_pbe0 = []
-colors_pbe0 = ['g']
-labels_pbe0 = ['PBE0']
-pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
-skip_folders_pbe0_start = 0
-skip_folders_pbe0_end = -1
-skip_folders_pbe0_end_gap = -1
-folder_files_pbe0 = []
-for i in range(len(folder_use_pbe0)):
-    folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
-                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i]),
-                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i])])
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/neutral-opt/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight',
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-neutral/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight-rs-scf-1e-7',
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
+# # pbe0
+# folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
+# folder_use_pbe0 = []
+# colors_pbe0 = ['g']
+# labels_pbe0 = ['PBE0']
+# pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
+# skip_folders_pbe0_start = 0
+# skip_folders_pbe0_end = -1
+# skip_folders_pbe0_end_gap = -1
+# folder_files_pbe0 = []
+# for i in range(len(folder_use_pbe0)):
+#     folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i])])
 
 # Supercell 5x5x2
 # folder_use_hubbard = []
@@ -204,10 +209,10 @@ for i in range(len(folder_use_pbe0)):
 # skip_folders_hse_end_gap = -1
 # folder_files_hse = []
 # for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_hse[i])])
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_hse[i])])
 # # pbe0
 # folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 # folder_use_pbe0 = []
@@ -219,77 +224,78 @@ for i in range(len(folder_use_pbe0)):
 # skip_folders_pbe0_end_gap = -1
 # folder_files_pbe0 = []
 # for i in range(len(folder_use_pbe0)):
-#     folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i])])
+#     folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i])])
 
 # Supercell 4x4x1 4x4x2 5x5x2
-# draw_legend = True
-# folder_use_hubbard = []
+draw_legend = True
+folder_use_hubbard = []
+folder_use_pbe0 = []
+folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
+# folder_use_hse = []
+colors_hse = ['r', 'g', 'b']
+labels_hse = ['4x4x1', '4x4x2', '5x5x2']
+labels_hse = ['HSE 4x4x1 (192 atoms)', 'HSE 4x4x2 (384 atoms)', 'HSE 5x5x2 (600 atoms)']
+hse_values_polaron = [[12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30], [12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30], [12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30]]
+skip_folders_hse_start = 2
+skip_folders_hse_end = -1
+skip_folders_hse_start_gap = 2
+skip_folders_hse_end_gap = -1
+folder_files_hse = []
+for i in range(len(folder_use_hse)):
+    folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-neutral/{}-rs-scf-1e-7'.format(folder_use_hse[i]),
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-md-hole/{}'.format(folder_use_hse[i]),
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/from-md-hole/{}'.format(folder_use_hse[i])])
+# for i in range(len(folder_use_hse)):
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
+for i in range(len(folder_use_hse)):
+    folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/neutral-opt/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight',
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-neutral/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight-rs-scf-1e-7',
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
+                             '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
+# for i in range(len(folder_use_hse)):
+#     folder_files_hse.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}-new'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}-rs-scf-1e-7'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_hse[i]),
+#                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_hse[i])])
+folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3'] * 2
+
+# # pbe0
+folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 # folder_use_pbe0 = []
-# folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
-# # folder_use_hse = []
-# colors_hse = ['r', 'g', 'b']
-# labels_hse = ['4x4x1', '4x4x2', '5x5x2']
-# labels_hse = ['HSE 4x4x1 (192 atoms)', 'HSE 4x4x2 (384 atoms)', 'HSE 5x5x2 (600 atoms)']
-# hse_values_polaron = [[12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30], [12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30], [12, 15, 18, 19, 20, 21, 22, 23, 24, 25, 30]]
-# skip_folders_hse_start = 2
-# skip_folders_hse_end = -1
-# skip_folders_hse_start_gap = 1
-# skip_folders_hse_end_gap = -1
-# folder_files_hse = []
-# for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-neutral/{}-rs-scf-1e-7'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/hole/from-md-hole/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt-cell-opt-hse-20/neutral/from-md-hole/{}'.format(folder_use_hse[i])])
-# # for i in range(len(folder_use_hse)):
-# #     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
-# for i in range(len(folder_use_hse)):
-#     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/neutral-opt/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight',
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-neutral/hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-tight-rs-scf-1e-7',
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/hole/from-u-5-atom-282/{}'.format(folder_use_hse[i]),
-#                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-20/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_hse[i])])
-# # for i in range(len(folder_use_hse)):
-# #     folder_files_hse.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}-new'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}-rs-scf-1e-7'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_hse[i]),
-# #                              '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_hse[i])])
-# folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3'] * 2
-#
-# # # pbe0
-# folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
-# # folder_use_pbe0 = []
-# colors_pbe0 = ['r', 'g', 'b']
-# # labels_pbe0 = ['PBE0 4x4x1 (192 atoms)', 'PBE0 4x4x2 (384 atoms)', 'PBE0 5x5x2 (600 atoms)']
-# colors_pbe0 = ['b']
-# labels_pbe0 = ['PBE0 4x4x2 (384 atoms)']
-# pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
-# skip_folders_pbe0_start = 0
-# skip_folders_pbe0_end = -1
-# skip_folders_pbe0_end_gap = -1
-# folder_files_pbe0 = []
-# # for i in range(len(folder_use_pbe0)):
-# #     folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_pbe0[i])])
+colors_pbe0 = ['r', 'g', 'b']
+# labels_pbe0 = ['PBE0 4x4x1 (192 atoms)', 'PBE0 4x4x2 (384 atoms)', 'PBE0 5x5x2 (600 atoms)']
+colors_pbe0 = ['b']
+labels_pbe0 = ['PBE0 4x4x2 (384 atoms)']
+pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
+skip_folders_pbe0_start = 0
+skip_folders_pbe0_end = -1
+skip_folders_pbe0_end_gap = -1
+folder_files_pbe0 = []
 # for i in range(len(folder_use_pbe0)):
-#     folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i]),
-#                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i])])
-# # for i in range(len(folder_use_pbe0)):
-# #     folder_files_pbe0.append(['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i]),
-# #                               '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_pbe0[i])])
-# folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input'] * 1
-# pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25], [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25], [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
+#     folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/hole/from-md-hole/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/geo-opt/mp-390/neutral-from-hole/{}'.format(folder_use_pbe0[i])])
+for i in range(len(folder_use_pbe0)):
+    folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
+                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i]),
+                              '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/geo-opt-cell-opt-hse-22/neutral/from-hole/from-u-5-atom-282/{}'.format(folder_use_pbe0[i])])
+# for i in range(len(folder_use_pbe0)):
+#     folder_files_pbe0.append(['/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-neutral/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/hole/from-offset-390-u-5/{}'.format(folder_use_pbe0[i]),
+#                               '/Volumes/Samsung/Data/Postdoc2//Data/Work/calculations/tio2/anatase/archer/anatase/cell-552/geo-opt-cell-opt/neutral/from-offset-390-u-5/{}'.format(folder_use_pbe0[i])])
+folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input'] * 1
+folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input'] * 0
+pbe0_values_polaron = [[10, 10.5, 11, 11.5, 12, 13, 14, 15, 25], [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25], [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]]
 
 ionisation_potential_hse_e = []
 non_linearity_alpha_hse_e = []
@@ -490,8 +496,39 @@ for i in range(np.shape(folder_save)[0]):
 
 rows = 1
 cols = 2
-# fig_plot_nonlinearity_gap, ax_plot_nonlinearity_gap = plt.subplots(rows, cols, figsize=(12, 6))
-fig_plot_nonlinearity_gap, ax_plot_nonlinearity_gap = plt.subplots(rows, cols, figsize=(12, 5))
+fig_plot_nonlinearity_trapping, ax_plot_nonlinearity_trapping = plt.subplots(rows, cols, figsize=(12, 6))
+# fig_plot_nonlinearity_trapping, ax_plot_nonlinearity_trapping = plt.subplots(rows, cols, figsize=(12, 5))
+ax_plot_nonlinearity_trapping[1].axhline(y=draw_nonlinearity, color='k', alpha=0.5)
+ax_plot_nonlinearity_trapping[1].axhline(y=-draw_nonlinearity, color='k', alpha=0.5)
+for i in range(len(folder_use_hse)):
+    ax_plot_nonlinearity_trapping[1].plot(hse_values_polaron[i][skip_folders_hse_start:skip_folders_hse_end],
+                       non_linearity_beta_hse_e[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_hse[i], label='{}'.format(labels_hse[i]))
+for i in range(len(folder_use_pbe0)):
+    ax_plot_nonlinearity_trapping[1].plot(pbe0_values_polaron[i][skip_folders_pbe0_start:skip_folders_pbe0_end],
+                       non_linearity_beta_pbe0_e[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
+ax_plot_nonlinearity_trapping[1].set_ylabel('Non-linearity / eV')
+ax_plot_nonlinearity_trapping[1].set_ylim(set_ylim_linearity_hfx[0], set_ylim_linearity_hfx[1])
+ax_plot_nonlinearity_trapping[1].set_xlabel('% HFX')
+if draw_legend: ax_plot_nonlinearity_trapping[1].legend(frameon=False)
+for i in range(len(folder_use_hse)):
+    ax_plot_nonlinearity_trapping[0].plot(hse_values_polaron[i][skip_folders_hse_start:skip_folders_hse_end],
+                      trapping_energy_hse[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev*1e3, 'o-', color=colors_hse[i], fillstyle='none', label='{}'.format(labels_hse[i]))
+for i in range(len(folder_use_pbe0)):
+    ax_plot_nonlinearity_trapping[0].plot(pbe0_values_polaron[i][skip_folders_pbe0_start:skip_folders_pbe0_end],
+                      trapping_energy_pbe0[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev*1e3, 'o-', color=colors_pbe0[i], fillstyle='none', label='{}'.format(labels_pbe0[i]))
+# ax_trapping2.plot(pbe0_values_polaron[skip_folders_pbe0:], trapping_energy_pbe0[skip_folders_pbe0:] * param.hartree_to_ev*1e3, 'gx-', label='PBE0')
+ax_plot_nonlinearity_trapping[0].set_ylabel('Trapping energy / meV')
+ax_plot_nonlinearity_trapping[0].set_xlabel('% HFX')
+ax_plot_nonlinearity_trapping[0].set_ylim(set_ylim_trapping_hfx[0], set_ylim_trapping_hfx[1])
+if draw_legend: ax_plot_nonlinearity_trapping[0].legend(frameon=False)
+fig_plot_nonlinearity_trapping.tight_layout()
+for i in range(np.shape(folder_save)[0]):
+    fig_plot_nonlinearity_trapping.savefig('{}/trapping_nonlinearity.png'.format(folder_save[i]), dpi=300)
+
+rows = 1
+cols = 2
+fig_plot_nonlinearity_gap, ax_plot_nonlinearity_gap = plt.subplots(rows, cols, figsize=(12, 6))
+# fig_plot_nonlinearity_gap, ax_plot_nonlinearity_gap = plt.subplots(rows, cols, figsize=(12, 5))
 
 ax_plot_nonlinearity_gap[0].axhline(y=draw_gap, color='k', alpha=0.5)
 for i in range(len(folder_use_hse)):
@@ -508,10 +545,10 @@ ax_plot_nonlinearity_gap[1].axhline(y=draw_nonlinearity, color='k', alpha=0.5)
 ax_plot_nonlinearity_gap[1].axhline(y=-draw_nonlinearity, color='k', alpha=0.5)
 for i in range(len(folder_use_hse)):
     ax_plot_nonlinearity_gap[1].plot(hse_values_polaron[i][skip_folders_hse_start:skip_folders_hse_end],
-                       non_linearity_beta_hse_e[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev, 'x-', fillstyle='none', color=colors_hse[i], label='{}'.format(labels_hse[i]))
+                       non_linearity_beta_hse_e[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_hse[i], label='{}'.format(labels_hse[i]))
 for i in range(len(folder_use_pbe0)):
     ax_plot_nonlinearity_gap[1].plot(pbe0_values_polaron[i][skip_folders_pbe0_start:skip_folders_pbe0_end],
-                       non_linearity_beta_pbe0_e[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev, 'x-', fillstyle='none', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
+                       non_linearity_beta_pbe0_e[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
 ax_plot_nonlinearity_gap[1].set_ylabel('Non-linearity / eV')
 ax_plot_nonlinearity_gap[1].set_ylim(set_ylim_linearity_hfx[0], set_ylim_linearity_hfx[1])
 ax_plot_nonlinearity_gap[1].set_xlabel('% HFX')
@@ -542,10 +579,10 @@ ax_plot_nonlinearity_gap_trapping[1].axhline(y=draw_nonlinearity, color='k', alp
 ax_plot_nonlinearity_gap_trapping[1].axhline(y=-draw_nonlinearity, color='k', alpha=0.5)
 for i in range(len(folder_use_hse)):
     ax_plot_nonlinearity_gap_trapping[1].plot(hse_values_polaron[i][skip_folders_hse_start:skip_folders_hse_end],
-                       non_linearity_beta_hse_e[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev, 'x-', fillstyle='none', color=colors_hse[i], label='{}'.format(labels_hse[i]))
+                       non_linearity_beta_hse_e[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_hse[i], label='{}'.format(labels_hse[i]))
 for i in range(len(folder_use_pbe0)):
     ax_plot_nonlinearity_gap_trapping[1].plot(pbe0_values_polaron[i][skip_folders_pbe0_start:skip_folders_pbe0_end],
-                       non_linearity_beta_pbe0_e[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev, 'x-', fillstyle='none', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
+                       non_linearity_beta_pbe0_e[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev, 'o-', fillstyle='none', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
 ax_plot_nonlinearity_gap_trapping[1].set_ylabel('Non-linearity / eV')
 ax_plot_nonlinearity_gap_trapping[1].set_ylim(set_ylim_linearity_hfx[0], set_ylim_linearity_hfx[1])
 ax_plot_nonlinearity_gap_trapping[1].set_xlabel('% HFX')
@@ -553,15 +590,15 @@ if draw_legend: ax_plot_nonlinearity_gap_trapping[1].legend(frameon=False)
 
 for i in range(len(folder_use_hse)):
     ax_plot_nonlinearity_gap_trapping[2].plot(hse_values_polaron[i][skip_folders_hse_start:skip_folders_hse_end],
-                      trapping_energy_hse[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev*1e3, 'x-', color=colors_hse[i], label='{}'.format(labels_hse[i]))
+                      trapping_energy_hse[i][skip_folders_hse_start:skip_folders_hse_end] * param.hartree_to_ev*1e3, 'o-', color=colors_hse[i], fillstyle='none', label='{}'.format(labels_hse[i]))
 for i in range(len(folder_use_pbe0)):
     ax_plot_nonlinearity_gap_trapping[2].plot(pbe0_values_polaron[i][skip_folders_pbe0_start:skip_folders_pbe0_end],
-                      trapping_energy_pbe0[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev*1e3, 'x-', color=colors_pbe0[i], label='{}'.format(labels_pbe0[i]))
+                      trapping_energy_pbe0[i][skip_folders_pbe0_start:skip_folders_pbe0_end] * param.hartree_to_ev*1e3, 'o-', color=colors_pbe0[i], fillstyle='none', label='{}'.format(labels_pbe0[i]))
 # ax_trapping2.plot(pbe0_values_polaron[skip_folders_pbe0:], trapping_energy_pbe0[skip_folders_pbe0:] * param.hartree_to_ev*1e3, 'gx-', label='PBE0')
 ax_plot_nonlinearity_gap_trapping[2].set_ylabel('Trapping energy / meV')
 ax_plot_nonlinearity_gap_trapping[2].set_xlabel('% HFX')
 ax_plot_nonlinearity_gap_trapping[2].set_ylim(set_ylim_trapping_hfx[0], set_ylim_trapping_hfx[1])
-if draw_legend: ax_trapping2.legend(frameon=False)
+if draw_legend: ax_plot_nonlinearity_gap_trapping[2].legend(frameon=False)
 
 fig_plot_nonlinearity_gap_trapping.tight_layout()
 for i in range(np.shape(folder_save)[0]):

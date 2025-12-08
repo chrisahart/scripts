@@ -9,19 +9,24 @@ import numpy as np
 # cell = [10.071, 10.071, 13.747, 90, 90, 120]
 # print('cell')
 
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis_wrap'
+# filename_input = "{}/tio2-pos-1-orig.xyz".format(folder)
+# filename_output = "{}/tio2-pos-1.xyz".format(folder)
+# cell = [13.77, 13.77, 17.76, 90, 90, 90]
+# desired_pos = np.array([0.00000, 0.00000, 1.47961])
+
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete/trajectory_mdanalysis_cell_opt'
 filename_input = "{}/tio2-pos-1-orig.xyz".format(folder)
 filename_output = "{}/tio2-pos-1.xyz".format(folder)
-cell = [13.77, 13.77, 17.76, 90, 90, 90]
+# cell = [15.12, 15.12, 9.62, 90, 90, 90]
+cell = [15.08, 15.08, 9.68, 90, 90, 90]
+desired_pos = np.array([0.00000, 0.00000, 0.00000])
 
 u = mda.Universe(filename_input, format="XYZ")
 u.dimensions = np.array(cell)
 
 # Get the position of atom 1 in the first frame
 atom1_pos = u.atoms.positions[0]
-
-# Desired position for atom 1 in the first frame
-desired_pos = np.array([0.00000, 0.00000, 1.47961])
 
 # Get the position of atom 1 in the first frame after centering the COM
 first_frame = u.trajectory[0]
@@ -39,11 +44,16 @@ with open(filename_output, 'w') as f:
         centered_coords = u.atoms.positions - com
 
         # Translate all atoms to move atom 1 to the desired position
-        final_coords = centered_coords + translation
+        translated_coords = centered_coords + translation
+        u.atoms.positions = translated_coords
+
+        # Wrap all atoms into the simulation box
+        # wrapped_coords = u.atoms.wrap(compound='atoms')
+        wrapped_coords = translated_coords
 
         f.write(f"{len(u.atoms)}\n")
         f.write(f"i = {ts.frame}, time = {ts.frame/2}, E = 0\n")
-        for atom, coord in zip(u.atoms.names, final_coords):
+        for atom, coord in zip(u.atoms.names, wrapped_coords):
             f.write(f"{atom} {coord[0]:.6f} {coord[1]:.6f} {coord[2]:.6f}\n")
 
 print('Finished.')
