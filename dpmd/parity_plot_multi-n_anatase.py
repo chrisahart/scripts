@@ -145,54 +145,15 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
     # ax.legend()
 
 
-# Bulk TiO2 anatase 441 HSE 22% catastrophic failure
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # force ts: 59, 67, 113. force md: 107, 90, 1253
-# model = ['single-fit-ener-se_e2_a-official-v3.1.0-sel-90-start_pref-0.02-1000_limit_pref-1-1', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # force ts: 240, 240, 240. force md: 400, 400, 1200
-# spin_is_population = True
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-ts-md3'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_ts/database_population_train/'.format(folder),
-#             '{}/database_ts/database_population_test/1'.format(folder),
-#             '{}/database_ts/database_population_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# database = ['{}/database_md/database_population_train/'.format(folder),
-#             '{}/database_md/database_population_test/1'.format(folder),
-#             '{}/database_md/database_population_test/2'.format(folder)]
-# val = ['_3_', '_4_', '_5_']
-# num_atoms = 192
-
-# Bulk TiO2 anatase 441 hse-19-ts-only2               too little data, but looks okay? force error 100 meV/A
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-3-rcut-4.5', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # force md:
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-5-rcut-4.5', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # force md:
-# spin_is_population = True
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-ts-only2'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_ts/database_population_train/'.format(folder),
-#             '{}/database_ts/database_population_test/1'.format(folder),
-#             '{}/database_ts/database_population_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# num_atoms = 192
-
-# Bulk TiO2 anatase 441 hse-19-md-only2
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-3-rcut-4.5', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # force md:
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-5-rcut-4.5', 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # force md:
-# spin_is_population = True
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-md-only2'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_ts/database_population_train/'.format(folder),
-#             '{}/database_ts/database_population_test/1'.format(folder),
-#             '{}/database_ts/database_population_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# num_atoms = 192
-
-# Bulk TiO2 anatase 441 HSE 22%         now working well
+# Bulk TiO2 anatase 441 HSE 22%          working well. oddly rcut 4 better than 4.5. would be nice to show for rutile that 6 -> 4 does not decrease accuracy much
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy md: 0.095, 0.100, 0.075. force md: 36, 37, 40
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy md: 0.086, 0.087, 0.094 force md: 34, 37, 40  ***
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.492, 0.492, 0.470. force md: 36, 37, 40
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.097, 0.101, 0.096. force md: 34, 37, 40
 
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.2-100_limit_pref-20-60',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy md: 0.220, 0.225, 0.202. force md: 37, 38, 42
@@ -201,8 +162,17 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
 
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy md: 0.216, 0.216, 0.248. force md: 37, 38, 43
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-rcut-4.5',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.083, 0.081, 0.111. force md: 36, 38, 43   **
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-rcut-4.5',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.083, 0.081, 0.111. force md: 36, 38, 43
+
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.028, 0.028, 0.029
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # spin md 5 ps: 0.005, 0.006, 0.006. polaron:  0.021, 0.023, 0.025
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.8']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.023, 0.024, 0.024
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-10000-10']  # spin md 5 ps: 0.005, 0.006, 0.005. polaron:  0.023, 0.024, 0.024   **  not much difference between them all
 
 spin_is_population = True
 folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-ts-md-9500-9900-removed'
@@ -212,17 +182,52 @@ database = ['{}/database_ts/database_population_train/'.format(folder),
             '{}/database_ts/database_population_test/1'.format(folder),
             '{}/database_ts/database_population_test/2'.format(folder)]
 val = ['_0_', '_1_', '_2_']
-# database = ['{}/database_md/database_population_train/'.format(folder),
-#             '{}/database_md/database_population_test/1'.format(folder),
-#             '{}/database_md/database_population_test/2'.format(folder)]
-# val = ['_3_', '_4_', '_5_']
+database = ['{}/database_md/database_population_train/'.format(folder),
+            '{}/database_md/database_population_test/1'.format(folder),
+            '{}/database_md/database_population_test/2'.format(folder)]
+val = ['_3_', '_4_', '_5_']
+database = ['{}/database_hse-19-5-ps/database_population_train/'.format(folder),
+            '{}/database_hse-19-5-ps/database_population_test/1'.format(folder),
+            '{}/database_hse-19-5-ps/database_population_test/2'.format(folder)]
+val = ['_6_', '_7_', '_8_']
+# database = ['{}/database_hse-19-20-ps/database_population_train/'.format(folder),
+#             '{}/database_hse-19-20-ps/database_population_test/2'.format(folder)]
+# val = ['_9_', '_10_']
 num_atoms = 192
+
+# Bulk TiO2 anatase 441 HSE 22% 5 ps trained
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy:. force:
+# spin_is_population = True
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-5-ps'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# num_atoms = 192
+
+# Bulk TiO2 anatase 441 PBE neutral
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: 0.202, 0.200, 0.215. force: 40, 40, 41
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: . force:
+# spin_is_population = True
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/pbe-neutral'
+# model_ener = ['{}/{}'.format(folder, model[0])] * 4
+# model_spin = ['{}/{}'.format(folder, model[1])] * 4
+# database = ['{}/database_population_train/'.format(folder),
+#             '{}/database_population_test/1'.format(folder),
+#             '{}/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# num_atoms = 192
 
 # Bulk TiO2 anatase 441 HSE 25%                          2 ps no hopping       good fit
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-3-rcut-4.5',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy: 0.246, 0.249, 0.248. force: 31, 33, 53
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-data_stat_nbatch-5-rcut-4.5',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy: 0.107, 0.108, 0.242,. force: 31, 33, 56
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy: 0.107, 0.108, 0.242. force: 31, 33, 56
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-rcut-4.5',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy: 0.071, 0.070, 31, 33, 52 **
 # spin_is_population = True

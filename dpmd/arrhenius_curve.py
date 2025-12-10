@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from general import parameters as param
 
 folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-v2'
-rate_constant = np.array([2899999999999.9995,2200000000000.0, 1100000000000.0])
+rate_constant = np.array([2899999999999.9995, 2200000000000.0, 1100000000000.0])
 mobility_analytical = np.array([0.049421577096343476, 0.05594334565322291, 0.03711935362092547])
 temperature = np.array([300, 200, 150])
 

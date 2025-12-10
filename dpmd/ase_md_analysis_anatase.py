@@ -21,69 +21,19 @@ def compute_vacf(vels):
     return vacf
 
 
-# MgO
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/mgo/deepmd/md/cell-222/electron-u-6/temp-600-velocity-dft/single-task-dpa3'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/mgo/deepmd/md/cell-222/electron-u-6/temp-600-velocity-dft-population2/single-task-dpa3-new'
-# num_atoms = 64
-# box_size = [8.38, 8.38, 8.38, 90, 90, 90]
-
-# Rutile 336 22%
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-v2/single-fit-ener-dpa3-nlayers-6-new2'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-v2/single-fit-ener-dpa3-nlayers-6-new2'
-# num_atoms = 324
-# box_size = [13.77, 13.77, 17.76, 90, 90, 90]
-
-# Rutile 336 PBE + U
-# topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/single-fit-ener-se_e2_a-official-v3.1.0-sel-90'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/single-fit-ener-dpa3-nlayers-6-new2-v3.1.0'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/old/single-fit-m-dpa3-nlayers-6-new2-spin-v3'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/single-fit-spin-se_e2_a-official-v3.1.0'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/single-fit-spin-dpa3-nlayers-6-new2-v3.1.0-test-2-md'
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/pbe-u-4-ps-v2/single-fit-m-dpa3-lr-single-fit-ener-dpa3-md'
-
-# Rutile 336 HSE 22%
-# topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-10-ps-train-3-ps/single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1'
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-hse-25'.format(folder_1)
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-1-ps'.format(folder_1)
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-3-ps'.format(folder_1)
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-5-ps'.format(folder_1)
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-8-ps'.format(folder_1)  # **
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-steps-1m/300k-10-ps-vel-9.3-ps'.format(folder_1)
-
-# Bulk TiO2 336 hse-22-10-ps-train-5-ps
-# topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-10-ps-train-5-ps'
-# folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
-# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
-# folder_md = '300k-10-ps-vel-9-ps'
-# folder_md = '300k-10-ps-vel-9.3-ps'
-# folder_md = '300k-10-ps-vel-9.5-ps'
-# folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
-
-# Bulk TiO2 hse-22-ts-md2
-topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
-folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
+# Bulk anatase hse-19-ts-md-9500-9900-removed
+topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete/combined/system.xyz'
+folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
+folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8'
 folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
-folder_md = '300k-10-ps-vel-1-ps'
-# folder_md = '300k-10-ps-vel-5-ps'
-# folder_md = '300k-10-ps-vel-6-ps'
-# folder_md = '300k-10-ps-vel-7-ps'
-# folder_md = '300k-10-ps-vel-8-ps'
-# folder_md = '300k-10-ps-vel-9.3-ps'
-# folder_md = '300k-10-ps-vel-9.5-ps'
+folder_md = '600k-vel-17-ps'
+# folder_md = '600k-vel-18-ps'
+# folder_md = '600k-vel-19-ps'
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
 
-# Bulk TiO2 hse-22-ts-md2
-# topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2/single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
-# folder = '{}/single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1/300k-10-ps-vel-9-ps'.format(folder_1)
-
-temperature_set = 300
-num_atoms = 324
-box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+temperature_set = 600
+num_atoms = 192
+box_size = [15.08, 15.08, 9.68, 90, 90, 90]
 save_fig = True
 folder_save = folder
 

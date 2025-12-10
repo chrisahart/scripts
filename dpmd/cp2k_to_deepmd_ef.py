@@ -394,21 +394,21 @@ def read_energy(folder, filename):
 # the validation data contains 50 frames
 
 # Rutile 336
-box = np.array([[13.77, 0, 0, 0, 13.77, 0, 0, 0, 17.76]])
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
-files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
-num_atoms = 324
-charged = True
+# box = np.array([[13.77, 0, 0, 0, 13.77, 0, 0, 0, 17.76]])
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
+# num_atoms = 324
+# charged = True
 
 # HSE 22%
 # folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
-directory = '{}/testing'.format(folder)
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
+# directory = '{}/testing'.format(folder)
 
-size_exclude_start = int(1000)
-size_exclude_end = int(0)
-size_test = int(52)
-size_validation = int(0)
+# size_exclude_start = int(1000)
+# size_exclude_end = int(0)
+# size_test = int(52)
+# size_validation = int(0)
 
 # the data contains 10052 frames
 # the data contains 9052 frames after excluding the first and last frames
@@ -507,9 +507,9 @@ size_validation = int(0)
 # the validation data contains 100 frames
 
 # Anatase 441
-# num_atoms = 192
-# box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 9.68]])
-# charged = True
+num_atoms = 192
+box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 9.68]])
+charged = True
 
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
 # directory = '{}/combined'.format(folder)
@@ -545,7 +545,7 @@ size_validation = int(0)
 
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20'
 # directory = '{}/hse-25-deepmd'.format(folder)
-# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-vel-1.xyz']
 
 # size_exclude_start = int(0)
 # size_exclude_end = int(192)
@@ -559,9 +559,9 @@ size_validation = int(0)
 # the training data contains 1000 frames
 # the validation data contains 500 frames
 
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
-# directory = '{}/hse-19-complete/trajectory_mdanalysis'.format(folder)
-# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
+directory = '{}/hse-19-complete/trajectory_mdanalysis'.format(folder)
+files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
 
 # size_exclude_start = int(10000)
 # size_exclude_end = int(2438)
@@ -575,10 +575,10 @@ size_validation = int(0)
 # the training data contains 6438 frames
 # the validation data contains 1000 frames
 
-# size_exclude_start = int(0)
-# size_exclude_end = int(0)
-# size_test = int(2438)
-# size_validation = int(0)
+size_exclude_start = int(0)
+size_exclude_end = int(0)
+size_test = int(2438)
+size_validation = int(0)
 
 # the data contains 22438 frames
 # the data contains 22438 frames after excluding the first and last frames
@@ -666,6 +666,13 @@ coordinates = coordinates.reshape(num_timesteps, num_atoms*3)
 # print(coordinates_load[-1, 0:3])
 
 # Shape (200,360) -> (timesteps, num_atoms*3) where it is arranged [x1, y1, z1, x2, y2, z2 ... xn, yn, zn]
+print('Loading velocity')
+velocity, _, _, _, _, _, _ = load_values_coord(directory, files[4], ['Species', 'X', 'Y', 'Z'])
+print(velocity.shape)
+velocity = np.transpose(velocity, axes=(0, 2, 1))
+velocity = velocity.reshape(num_timesteps, num_atoms*3)
+
+# Shape (200,360) -> (timesteps, num_atoms*3) where it is arranged [x1, y1, z1, x2, y2, z2 ... xn, yn, zn]
 print('Loading forces')
 forces, _, _, _, _, _, _ = load_values_coord(directory, files[3], ['Species', 'X', 'Y', 'Z'])
 forces = forces * param.hartree_per_bohr_to_ev_per_angstrom
@@ -695,6 +702,7 @@ population_alpha = population_alpha[range(size_exclude_start, num_timesteps - si
 population_beta = population_beta[range(size_exclude_start, num_timesteps - size_exclude_end)]
 hirshfeld = hirshfeld[range(size_exclude_start, num_timesteps - size_exclude_end)]
 aparam = aparam[range(size_exclude_start, num_timesteps - size_exclude_end)]
+velocity = velocity[range(size_exclude_start, num_timesteps - size_exclude_end)]
 coordinates = coordinates[range(size_exclude_start, num_timesteps - size_exclude_end)]
 forces = forces[range(size_exclude_start, num_timesteps - size_exclude_end)]
 box_array = box_array[range(size_exclude_start, num_timesteps - size_exclude_end)]
@@ -705,6 +713,7 @@ population_alpha_test = population_alpha[-size_test:]
 population_beta_test = population_beta[-size_test:]
 hirshfeld_test = hirshfeld[-size_test:]
 aparam_test = aparam[-size_test:]
+velocity_test = velocity[-size_test:]
 coordinates_test = coordinates[-size_test:]
 forces_test = forces[-size_test:]
 box_array_test = box_array[-size_test:]
@@ -716,26 +725,28 @@ population_beta = population_beta[:-size_test]
 hirshfeld = hirshfeld[:-size_test]
 aparam = aparam[:-size_test]
 coordinates = coordinates[:-size_test]
+velocity = velocity[:-size_test]
 forces = forces[:-size_test]
 box_array = box_array[:-size_test]
 
 print("# the data contains %d frames after excluding the first and last frames and test set" % energy.shape[0])
 
 # Load index from file
-# index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
-# index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
+index_training = np.loadtxt('{}/database_ener_force_train/index_training.raw'.format(directory)).astype(np.int64)
+index_validation = np.loadtxt('{}/database_ener_force_test/1/index_validation.raw'.format(directory)).astype(np.int64)
 
 # Set random index
-rng = np.random.default_rng()
-index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
-index_validation = np.sort(index_validation)
-index_training = list(set(range(energy.shape[0])) - set(index_validation))
+# rng = np.random.default_rng()
+# index_validation = rng.choice(energy.shape[0], size=size_validation, replace=False)
+# index_validation = np.sort(index_validation)
+# index_training = list(set(range(energy.shape[0])) - set(index_validation))
 
 energy_train = energy[index_training]
 population_alpha_train = population_alpha[index_training]
 population_beta_train = population_beta[index_training]
 hirshfeld_train = hirshfeld[index_training]
 aparam_train = aparam[index_training]
+velocity_train = velocity[index_training]
 coordinates_train = coordinates[index_training]
 forces_train = forces[index_training]
 box_array_train = box_array[index_training]
@@ -745,6 +756,7 @@ population_alpha_valid = population_alpha[index_validation]
 population_beta_valid = population_beta[index_validation]
 hirshfeld_valid = hirshfeld[index_validation]
 aparam_valid = aparam[index_validation]
+velocity_valid = velocity[index_validation]
 coordinates_valid = coordinates[index_validation]
 forces_valid = forces[index_validation]
 box_array_valid = box_array[index_validation]
@@ -829,6 +841,14 @@ np.save('{}/database_ener_force_test/2/set.000/coord.npy'.format(directory), coo
 np.save('{}/database_population_train/set.000/coord.npy'.format(directory), coordinates_train)
 np.save('{}/database_population_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
 np.save('{}/database_population_test/2/set.000/coord.npy'.format(directory), coordinates_test)
+
+# Velocity
+np.save('{}/database_ener_force_train/set.000/velocity.npy'.format(directory), velocity_train)
+np.save('{}/database_ener_force_test/1/set.000/velocity.npy'.format(directory), velocity_valid)
+np.save('{}/database_ener_force_test/2/set.000/velocity.npy'.format(directory), velocity_test)
+np.save('{}/database_population_train/set.000/velocity.npy'.format(directory), velocity_train)
+np.save('{}/database_population_test/1/set.000/velocity.npy'.format(directory), velocity_valid)
+np.save('{}/database_population_test/2/set.000/velocity.npy'.format(directory), velocity_test)
 
 # Forces
 np.save('{}/database_ener_force_train/set.000/force.npy'.format(directory), forces_train)
