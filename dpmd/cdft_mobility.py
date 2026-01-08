@@ -57,11 +57,11 @@ def calc_mobility(diffusion, kb_t):
 
 
 # Parameters
-# temp = 300  # K
-temp = 600  # K
+temp = 300  # K
+# temp = 600  # K
 multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
-# vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
 
 # Constants
@@ -79,19 +79,24 @@ ev_to_joules = 1.60218e-19
 # diffusion_spencer = 1.35e-3
 # mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)
 # print(mobility_spencer)
-# suggests that they use site multiplicity = 4? why?
-# 0.052220331546976445
-# Hematite Hole Boltzmann factor at 300 K
 # r_hop = np.array([2.97])
 # coupling = np.array([147]) / 1e3
 # reorg = np.array([752]) / 1e3
 
-# TiO2 336 22% HFX 1st nearest neighbour rel-609
+# deskinsElectronTransportPolaron2007
 # r_hop = np.array([2.96])
-# coupling = np.array([14.446622491241]) * param.hartree_to_ev / 1e3
-# energy_cdft_ts = np.array([-9762.745898065810252])
-# energy_dft_gs = np.array([-9762.753627197094829])
-# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+# coupling = np.array([200]) / 1e3
+# reorg = np.array([1152]) / 1e3
+
+# moritaModelsPolaronTransport2023 linear
+# r_hop = np.array([2.96])
+# coupling = np.array([29]) / 1e3
+# reorg = np.array([330]) / 1e3
+
+# moritaModelsPolaronTransport2023 NEB
+# r_hop = np.array([2.96])
+# coupling = np.array([21]) / 1e3
+# reorg = np.array([230]) / 1e3
 
 # TiO2 336 22% HFX 1st nearest neighbour rel-609 linear4
 # r_hop = np.array([2.96])
@@ -100,7 +105,7 @@ ev_to_joules = 1.60218e-19
 # energy_dft_gs = np.array([-9762.753627197094829])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
-# TiO2 336 22% HFX 1st nearest neighbour rel-609 linear4
+# TiO2 336 22% HFX 1st nearest neighbour rel-609 CI-NEB
 # r_hop = np.array([2.96])
 # coupling = np.array([18.415441561408]) * param.hartree_to_ev / 1e3
 # energy_cdft_ts = np.array([-9762.746599628335389])
@@ -185,6 +190,16 @@ ev_to_joules = 1.60218e-19
 
 # --------------------
 
+# deskinsIntrinsicHoleMigration2009
+# r_hop = np.array([2.44518])
+# coupling = np.array([250]) / 1e3
+# reorg = np.array([1680]) / 1e3
+
+# Carey2021
+r_hop = np.array([2.81388])
+coupling = np.array([113]) / 1e3
+reorg = np.array([930]) / 1e3
+
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
 # coupling = np.array([4.805772678533]) * param.hartree_to_ev / 1e3
@@ -248,12 +263,11 @@ ev_to_joules = 1.60218e-19
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # TiO2 anatase 442 19% HFX atoms-282-340 i 2 rel-731-scf-1e-6 (20% cell opt) CI-NEB
-r_hop = np.array([2.81388])
-r_hop = np.array([2.81388])
-coupling = np.array([15.950119206863]) * param.hartree_to_ev / 1e3
-energy_cdft_ts = np.array([-11572.489011620660676])
-energy_dft_gs = np.array([-11572.502169794801375])
-reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+# r_hop = np.array([2.81388])
+# coupling = np.array([15.950119206863]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-11572.489011620660676])
+# energy_dft_gs = np.array([-11572.502169794801375])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # TiO2 anatase 442 19% HFX atoms-282-340 i 2 abs-777-scf-1e-6 (20% cell opt)
 # r_hop = np.array([2.81388])
@@ -401,8 +415,14 @@ for i in range(0, np.shape(coupling)[0]):
     diffusion_spencer_na = calc_diffusion(multiplicity, r_hop[i], rate_spencer_na)
     mobility_spencer_na = calc_mobility(diffusion_spencer_na, kb_t_au)
 
-    # energy_spencer = 0
+    # daiIdentificationLargePolarons2024
+    # energy_spencer = 13/1e3
+
     rate_spencer = calc_rate(vn, kb_t_au, transmission_coefficient, energy_spencer)
+
+    # Carey2021
+    rate_spencer = 8.4e10
+
     diffusion_spencer = calc_diffusion(multiplicity, r_hop[i], rate_spencer)
     mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)
 
