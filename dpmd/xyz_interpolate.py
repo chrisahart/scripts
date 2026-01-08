@@ -28,6 +28,7 @@ folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/arch
 
 # Anatase 442
 # box = [15.08, 15.08, 17.76, 90, 90, 90]
+# box = [15.08, 15.08, 19.36, 90, 90, 90]
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-cell-opt-hse-20/atoms-282-241/hse-19-dz/structures2'
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-cell-opt-hse-20/atoms-282-305/hse-19-dz/structures2'
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-cell-opt-hse-20/atoms-282-310/hse-19-dz/structures2'
