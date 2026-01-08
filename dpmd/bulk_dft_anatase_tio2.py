@@ -10,6 +10,7 @@ from ase.io import read, write
 from collections import OrderedDict
 import csv
 from MDAnalysis.analysis import rdf
+from scipy.optimize import curve_fit
 
 """
     Plot energy and forces for bulk hematite
@@ -21,6 +22,16 @@ params = {'axes.formatter.limits': [-4, 4],
           'lines.markersize': '8',
           }
 plt.rcParams.update(params)
+
+
+# Define the function to fit: y = mx
+def linear_func(x, m):
+    return m * x
+
+
+# Define the function to fit: y = mx + c
+def linear_func2(x, m, c):
+    return m * x + c
 
 
 def load_file_coord(folder, filename, cols, del_rows=None):
@@ -238,7 +249,9 @@ def read_hubbard(folder, filename, num_atoms):
     return file_spec1, hubbard_data
 
 offset = 0
+plot_msd_fit = False
 xlim_auto = False
+plot_msd = False
 
 # Anatase
 # folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-221/md'
@@ -293,21 +306,26 @@ xlim_auto = False
 # xlim_1 = [0, 11764]
 # xlim_1 = [0, 5000]
 
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
-# folder_1 = '{}/combined'.format(folder)
-# folder_1 = '{}/trajectory_mdanalysis'.format(folder)
-# xlim_1 = [0, 20000]
-# xlim_1 = [14200, 14270]
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+folder_1 = '{}/combined'.format(folder)
+folder_1 = '{}/trajectory_mdanalysis'.format(folder)
+# xlim_1 = [18000, 19000]
 # xlim_1 = [0, 10000]
 # xlim_1 = [10000, 20000]
+# xlim_1 = [0, 20000]
+xlim_1 = [10600, 11800]
+# xlim_1 = [11000, 11250]
+
+# xlim_1 = [19000, 20000]
+# xlim_1 = [15000, 20000]
 # offset = 10000
 # offset = 0
-# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
-
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
-folder_1 = '{}/combined'.format(folder)
 files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
-xlim_auto = True
+
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
+# folder_1 = '{}/combined'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+# xlim_auto = True
 
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/ts/good'
 # folder_1 = '{}/combined'.format(folder)
@@ -375,9 +393,11 @@ if plot_mulliken:
 # plot_hubbard = True
 plot_hubbard = False
 calc_distance = False
-# calc_distance = True
+calc_distance = True
 save_fig = False
 save_fig = True
+# plot_msd = True
+# plot_msd_fit = True
 # calc_distance = False
 if plot_hubbard:
     atoms_hubbard = num_atoms/3 * 2
@@ -430,7 +450,7 @@ ax_time_md.set_ylabel('Time per MD step')
 ax_time_md.set_xlim(xlim_1)
 ax_time_md.set_ylim(ylim_1_time)
 fig_time_md.tight_layout()
-if save_fig: fig_time_md.savefig('{}/time_taken_md_step.png'.format(folder_save), dpi=300)
+if save_fig: fig_time_md.savefig('{}/time_taken_md_step.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot energy
 # fig_time_md, ax_time_md = plt.subplots()
@@ -441,7 +461,7 @@ ax_energy_potential.set_xlabel('Time / fs')
 ax_energy_potential.set_ylabel('Energy / au')
 ax_energy_potential.set_xlim(xlim_1)
 fig_energy_potential.tight_layout()
-if save_fig: fig_energy_potential.savefig('{}/energy_potential.png'.format(folder_save), dpi=300)
+if save_fig: fig_energy_potential.savefig('{}/energy_potential.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot Hirshfeld spin of all atoms
 fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
@@ -458,7 +478,7 @@ ax_spin1.set_ylabel('Spin moment')
 ax_spin1.set_xlim(xlim_1)
 ax_spin1.set_ylim(ylim_1)
 fig_spin1.tight_layout()
-if save_fig: fig_spin1.savefig('{}/hirshfeld_spin_all.png'.format(folder_save), dpi=300)
+if save_fig: fig_spin1.savefig('{}/hirshfeld_spin_all.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot Hirshfeld spin of all atoms
 # fig_spin1_square, ax_spin1_square = plt.subplots(figsize=(7, 5))
@@ -476,7 +496,7 @@ ax_spin1_square.set_ylabel('Spin moment')
 ax_spin1_square.set_xlim(xlim_1)
 ax_spin1_square.set_ylim(ylim_1)
 fig_spin1_square.tight_layout()
-if save_fig: fig_spin1_square.savefig('{}/hirshfeld_spin_all2.png'.format(folder_save), dpi=300)
+if save_fig: fig_spin1_square.savefig('{}/hirshfeld_spin_all2.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot Mulliken spin of all atoms
 if plot_mulliken:
@@ -493,7 +513,7 @@ if plot_mulliken:
     ax_spin2.set_xlim(xlim_1)
     ax_spin2.set_ylim(ylim_1)
     fig_spin2.tight_layout()
-    if save_fig: fig_spin2.savefig('{}/mulliken_spin_all.png'.format(folder_save), dpi=300)
+    if save_fig: fig_spin2.savefig('{}/mulliken_spin_all.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot Hubbard spin of all atoms
 if plot_hubbard:
@@ -510,7 +530,7 @@ if plot_hubbard:
     ax_spin3.set_xlim(xlim_1)
     ax_spin3.set_ylim(ylim_1)
     fig_spin3.tight_layout()
-    if save_fig: fig_spin3.savefig('{}/hubbard_spin_all.png'.format(folder_save), dpi=300)
+    if save_fig: fig_spin3.savefig('{}/hubbard_spin_all.png'.format(folder_save), dpi=param.save_dpi)
 
 # Setup md analysis environment
 if calc_distance:
@@ -541,9 +561,13 @@ if calc_distance:
     metric = np.zeros((num_atoms_o, num_timesteps2))
     fig_bonds_1, ax_bonds_1 = plt.subplots(figsize=(10, 4))
     # fig_bonds_1, ax_bonds_1 = plt.subplots()
-    for i in range(num_atoms_o):
+    # print(np.shape(bond_lengths_time_sorted))
+    # print(bond_lengths_time_sorted[:, 0, 0])
+    ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted[:, 0, 0], '-', label='Fe {}'.format(i + 1))
+    # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, 0], '-', label='Fe {}'.format(i + 1))
+    # for i in range(num_atoms_o):
         # ax_bonds_1.plot(time_val_1 - time_val_1[0], np.sum(bond_lengths_time_sorted, axis=2)[:, i], '-', label='Fe {}'.format(i + 1))
-        ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, i], '-', label='Fe {}'.format(i + 1))
+        # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, i], '-', label='Fe {}'.format(i + 1))
     # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, polaron_atom], 'k-', label='Fe {}'.format(polaron_atom + 1))
     ax_bonds_1.set_xlabel('Time / fs')
     # ax_bonds_1.set_xlabel('Timestep')
@@ -552,7 +576,7 @@ if calc_distance:
     ax_bonds_1.set_xlim(xlim_1)
     # ax_bonds_1.set_xlim([0, len(universe.trajectory) * timestep])
     # ax_bonds_1.set_ylim([0.06, -0.10])
-    if save_fig: fig_bonds_1.savefig('{}/bond_lengths_average.png'.format(folder_save), dpi=300)
+    if save_fig: fig_bonds_1.savefig('{}/bond_lengths_average.png'.format(folder_save), dpi=param.save_dpi)
     fig_bonds_1.tight_layout()
 
 # Plot Ti-O bonds
@@ -569,7 +593,7 @@ if calc_distance:
 # # # ax_bonds_2.set_xlim([0, len(universe.trajectory)])
 # ax_bonds_2.set_xlim([0, len(universe.trajectory) * timestep])
 # # ax_bonds_2.set_ylim([0.06, -0.10])
-# if save_fig: fig_bonds_2.savefig('{}/bond_lengths_average.png'.format(folder_save), dpi=300)
+# if save_fig: fig_bonds_2.savefig('{}/bond_lengths_average.png'.format(folder_save), dpi=param.save_dpi)
 # fig_bonds_2.tight_layout()
 
 # Calculate polaron atom
@@ -586,6 +610,10 @@ if calc_distance:
     polaron_atoms = polaron_atom_time[np.insert(polaron_atom_time[:-1] != polaron_atom_time[1:], 0, True)]
     print('polaron_atoms', polaron_atoms+1)
 
+    polaron_atom_time2 = polaron_atom_time[xlim_1[0]:int(xlim_1[1])]
+    polaron_atoms2 = polaron_atom_time2[np.insert(polaron_atom_time2[:-1] != polaron_atom_time2[1:], 0, True)]
+    print('polaron_atoms2', polaron_atoms2+1)
+
     # Calculate distance between current timestep polaron atom and next timestep
     # Then get all non-zero answer
     polaron_distances = np.zeros(num_timesteps)
@@ -596,6 +624,7 @@ if calc_distance:
     polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
     polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
     polaron_indices = np.nonzero(polaron_distances)[0]
+
     # print('polaron_distance', polaron_distances)
     print('polaron_distances_hop', polaron_distances_hop)
     print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
@@ -616,7 +645,7 @@ if calc_distance:
     ax_bonds_2.set_xlim(xlim_1)
     # ax_bonds_2.set_xlim([0, len(universe.trajectory) * timestep])
     # ax_bonds_2.set_ylim([0.06, -0.10])
-    if save_fig: fig_bonds_2.savefig('{}/polaron_hopping_distance.png'.format(folder_save), dpi=300)
+    if save_fig: fig_bonds_2.savefig('{}/polaron_hopping_distance.png'.format(folder_save), dpi=param.save_dpi)
     fig_bonds_2.tight_layout()
 
     # Calculate mobility using xlim_1
@@ -629,7 +658,7 @@ if calc_distance:
     rate_constant = np.shape(hops_distance)[0] / hops_time
     print('rate_constant', rate_constant)
     print('rate_constant / 1e12', rate_constant/1e12)
-    if np.shape(hops_distance)[0] > 2: print('lifetime fs', 1/rate_constant * 1e15)
+    if np.shape(hops_distance)[0] > 1: print('lifetime fs', 1/rate_constant * 1e15)
 
     mean_distance = np.mean(hops_distance)
     print('mean_distance', mean_distance)
@@ -637,6 +666,7 @@ if calc_distance:
     site_multiplicity = 1
     diffusion_constant_analytical = (np.mean(hops_distance) ** 2 * site_multiplicity * rate_constant) / 2
     mobility = (1.60217662e-19 * diffusion_constant_analytical) / (1.380649e-23 * temperature_set)
+    print('diffusion_constant_analytical', diffusion_constant_analytical)
     print('mobility analytical', mobility, 'cm^2/(V·s)')
 
     # print('lifetime hematite', 1/1.2e12 * 1e15)
@@ -649,6 +679,7 @@ if calc_distance:
     mean_square_displacement = np.sum(hops_distance ** 2) / hops_time
     diffusion_constant_numerical = mean_square_displacement / 2
     mobility = (1.60217662e-19 * diffusion_constant_numerical) / (1.380649e-23 * temperature_set)
+    print('diffusion_constant_numerical', diffusion_constant_numerical)
     print('mobility numerical', mobility, 'cm^2/(V·s)')
 
     k_el = 1
@@ -683,7 +714,26 @@ if calc_distance:
     ax_plot_all[1].set_ylim([0, 3.3])
     fig_plot_all.tight_layout()
     fig_plot_all.subplots_adjust(hspace=0.05)
-    if save_fig: fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder_save), dpi=300)
+    if save_fig: fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder_save), dpi=param.save_dpi)
+
+    hirshfeld_polaron_mobility = hirshfeld_mobility[:int(xlim_1[1]), 5, polaron_atoms2]
+    print(polaron_atoms2)
+    hirshfeld_polaron_mobility = bond_lengths_time_sorted[:, 0, 0]
+    hirshfeld_polaron_mobility = hirshfeld_polaron_mobility.flatten()
+    print(hirshfeld_polaron_mobility)
+    print('np.shape(hirshfeld_polaron_mobility)', np.shape(hirshfeld_polaron_mobility))
+    print('np.shape(hirshfeld_polaron_mobility)', np.shape(hirshfeld_polaron_mobility)[0])
+
+    hirshfeld_polaron_mobility = energy_potential_1
+    fft_result = np.fft.fft(hirshfeld_polaron_mobility)
+    frequencies = np.fft.fftfreq(np.shape(hirshfeld_polaron_mobility)[0], d=1)
+    power_spectrum = np.abs(fft_result) ** 2
+    plt.figure(figsize=(8, 4))
+    plt.plot(frequencies, power_spectrum, 'b-')
+    plt.xlabel('Frequency (1/unit)')
+    plt.ylabel('Power Spectrum')
+    plt.title('Fourier Transform of Hirshfeld Mobility')
+    plt.grid(True)
     
     # hirshfeld and energy subplot
     # fig_hirshfeld_energy, ax_hirshfeld_energy = plt.subplots(rows, cols,sharex='col', sharey='row',
@@ -705,9 +755,9 @@ if calc_distance:
     # ax_hirshfeld_energy[1].set_xlim((np.array(xlim_1)-offset)/1000)
     # fig_hirshfeld_energy.tight_layout()
     # fig_hirshfeld_energy.subplots_adjust(hspace=0.05)
-    # if save_fig: fig_hirshfeld_energy.savefig('{}/polaron_energy_subplot.png'.format(folder_save), dpi=300)
+    # if save_fig: fig_hirshfeld_energy.savefig('{}/polaron_energy_subplot.png'.format(folder_save), dpi=param.save_dpi)
 
-    plot_ts = True
+    plot_ts = False
     if plot_ts:
         fig_spin1_square_ts, ax_spin1_square_ts = plt.subplots()
         temp = np.zeros(num_timesteps)
@@ -736,7 +786,73 @@ if calc_distance:
         ax_spin1_square_ts.set_xlim(np.array([time_val_energy[polaron_indices[ts_plot_index]] - ts_plot_time, time_val_energy[polaron_indices[ts_plot_index]] + ts_plot_time]))
         ax_spin1_square_ts.set_ylim(ylim_1)
         fig_spin1_square_ts.tight_layout()
-        if save_fig: fig_spin1_square_ts.savefig('{}/hirshfeld_spin_ts_{}.png'.format(folder_save, time_val_energy[polaron_indices[ts_plot_index]]), dpi=300)
+        if save_fig: fig_spin1_square_ts.savefig('{}/hirshfeld_spin_ts_{}.png'.format(folder_save, time_val_energy[polaron_indices[ts_plot_index]]), dpi=param.save_dpi)
+
+# Plot Hirshfeld spin of all atoms
+plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
+print(polaron_atoms2)
+print(polaron_atoms2.shape[0])
+print(range(polaron_atoms2.shape[0]-10, polaron_atoms2.shape[0]))
+fig_spin10, ax_spin10 = plt.subplots(figsize=(10, 4))
+# fig_spin10, ax_spin10 = plt.subplots()
+temp = np.zeros(num_timesteps)
+for j in range(num_atoms):
+    ax_spin10.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '-', label='{}'.format(j+1))
+for j in range(polaron_atoms2.shape[0]):
+# for j in range(polaron_atoms.shape[0]-10, polaron_atoms.shape[0]):
+#     ax_spin10.plot(time_array, hirshfeld_1_np[:, 5, polaron_atoms[j]], '-', label='{}'.format(j+1), color=plotting_colors[j])
+    ax_spin10.plot(time_array/1e3, hirshfeld_1_np[:, 5, polaron_atoms2[j]], '-', label='{}'.format(j+1))
+if draw_legend: ax_spin10.legend(frameon=True)
+ax_spin10.set_xlabel('Time / ps')
+ax_spin10.set_ylabel('Spin moment')
+ax_spin10.set_xlim(np.array(xlim_1)/1e3)
+ax_spin10.set_ylim(ylim_1)
+fig_spin10.tight_layout()
+if save_fig: fig_spin10.savefig('{}/hirshfeld_spin_color_all.png'.format(folder_save), dpi=param.save_dpi)
+
+# Plot MSD = cumulative polaron hopping distance**2
+if plot_msd:
+    fit_start = 15000
+    # fit_start = 5000
+    # fit_start = 0
+    cumulative_sum = np.cumsum(polaron_distances**2)
+    # cumulative_sum_m, cumulative_sum_c = np.polyfit(time_val_1, cumulative_sum, 1)
+    # fitted_line = cumulative_sum_m * time_val_1 + cumulative_sum_c
+    # cumulative_sum_m, _, _, _ = np.linalg.lstsq(time_val_1, cumulative_sum, rcond=None)
+
+    # y = mx
+    # cumulative_sum_m, _ = curve_fit(linear_func, time_val_1[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+    # fitted_line = linear_func(time_val_1[fit_start:int(xlim_1[1])], cumulative_sum_m)
+
+    # y = mx + c
+    cumulative_sum_fit, _ = curve_fit(linear_func2, time_val_1[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+    cumulative_sum_m = cumulative_sum_fit[0]
+    cumulative_sum_c = cumulative_sum_fit[1]
+    fitted_line = linear_func2(time_val_1[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
+
+    print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
+    print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
+    diffusion_constant_msd = 0.1*cumulative_sum_m/2
+    mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
+    rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
+    print('mobility from msd (units cm**2 / s)', mobility)
+    print('rate constant from msd (units / s)', rate_constant)
+    print('rate constant from msd (units e12 / s)', rate_constant/1e12)
+    activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+    print('activation_energy from msd (units meV)', activation_energy*1e3)
+
+    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    ax_msd.plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
+    if plot_msd_fit: ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+    ax_msd.set_xlim(0, time_array[-1])
+    ax_msd.set_xlabel("Time / ps")
+    ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+    ax_msd.set_xlim(np.array(xlim_1)/1e3)
+    ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
+    fig_msd.tight_layout()
+    fig_msd.savefig("{}/msd_cumulative.png".format(folder_save), dpi=600)
+    fig_msd.tight_layout()
+
 
 # Plot RDF for Ti - O
 nbins = 300
@@ -761,7 +877,7 @@ rdf_xlim = 13.77 / 2
 #     ax_rdf_ti_o.set_xlim([0, rdf_xlim])
 #     ax_rdf_ti_o.tick_params(axis='y', which='both', left=False, right=False, labelleft=False)
 #     fig_rdf_ti_o.tight_layout()
-#     if save_fig: fig_rdf_ti_o.savefig("{}/rdf.png".format(folder_save), dpi=600)
+#     if save_fig: fig_rdf_ti_o.savefig("{}/rdf.png".format(folder_save), dpi=param.save_dpi)
 #
 # # Plot RDF for Ti - Ti
 # if calc_distance:
@@ -782,7 +898,7 @@ rdf_xlim = 13.77 / 2
 #     ax_rdf_ti_ti.set_xlim([0, rdf_xlim])
 #     ax_rdf_ti_ti.tick_params(axis='y', which='both', left=False, right=False, labelleft=False)
 #     fig_rdf_ti_ti.tight_layout()
-#     if save_fig: fig_rdf_ti_ti.savefig("{}/rdf.png".format(folder_save), dpi=600)
+#     if save_fig: fig_rdf_ti_ti.savefig("{}/rdf.png".format(folder_save), dpi=param.save_dpi)
 
 if __name__ == "__main__":
     print('Finished.')

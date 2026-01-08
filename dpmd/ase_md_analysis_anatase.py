@@ -9,6 +9,8 @@ from ase import Atoms
 import ase.io
 from general import parameters as param
 import os
+from scipy.optimize import curve_fit
+
 
 def compute_vacf(vels):
     # Flatten atom and axis
@@ -21,17 +23,57 @@ def compute_vacf(vels):
     return vacf
 
 
+# Define the function to fit: y = mx
+def linear_func(x, m):
+    return m * x
+
+
+# Define the function to fit: y = mx + c
+def linear_func2(x, m, c):
+    return m * x + c
+
+
 # Bulk anatase hse-19-ts-md-9500-9900-removed
 topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete/combined/system.xyz'
 folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
 folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8'
 folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
-folder_md = '600k-vel-17-ps'
-# folder_md = '600k-vel-18-ps'
+# folder_md = '600k-vel-17-ps'
+# folder_md = '600k-vel-18-ps' #
+# folder_md = '600k-vel-18-ps-50-ps'
 # folder_md = '600k-vel-19-ps'
+# temperature_set = 600
+
+# folder_md = '200k-vel-18-ps-10-ps'
+# folder_md = '200k-vel-18-ps-50-ps'
+# folder_md = '200k-vel-18-ps-1000-ps'
+# temperature_set = 200
+
+# folder_md = '300k-vel-18-ps-10-ps'
+# folder_md = '300k-vel-18-ps-50-ps'
+# folder_md = '300k-vel-18-ps-1000-ps'
+# temperature_set = 300
+
+# folder_md = '400k-vel-18-ps-10-ps'
+# folder_md = '400k-vel-18-ps-50-ps'
+# folder_md = '400k-vel-18-ps-1000-ps'
+# temperature_set = 400
+
+# folder_md = '500k-vel-18-ps-10-ps'
+# folder_md = '500k-vel-18-ps-50-ps'
+# folder_md = '500k-vel-18-ps-1000-ps'
+# temperature_set = 500
+
+folder_md = '600k-vel-18-ps-10-ps'
+# folder_md = '600k-vel-18-ps-50-ps'
+# folder_md = '600k-vel-18-ps-1000-ps'
+temperature_set = 600
+# fit_start = 20000
+fit_start = 5000
+# fit_start = 0
+
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
 
-temperature_set = 600
 num_atoms = 192
 box_size = [15.08, 15.08, 9.68, 90, 90, 90]
 save_fig = True
@@ -86,7 +128,7 @@ plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 1
 # plotting_colors = ['b', 'g', 'r', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
 # xlim_1 = [0, (5103+200)/2]
 xlim_1 = [0, time_array[-1]]
-# xlim_1 = [0, 1500]
+# xlim_1 = [0, 1000]
 # ylim_1 = [0, 0.9]
 ylim_1 = [-0.02, 0.9]
 
@@ -159,12 +201,33 @@ if calc_distance:
                                                         universe.select_atoms('index {}'.format(polaron_atom_time[j+1])).positions,
                                                         box=box_size)
     polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
+    # print(polaron_distances)
+
+    # Remove polaron hops that occur within 50 fs of another hop
+    min_residence = 50
+    hops = polaron_distances > 0
+    hop_indices = np.where(hops)[0]
+    mask = np.ones_like(hop_indices, dtype=bool)
+    for i in range(len(hop_indices)):
+        if i < len(hop_indices) - 1:
+            if hop_indices[i + 1] - hop_indices[i] <= min_residence:
+                mask[i] = False
+        else:
+            if len(polaron_distances) - hop_indices[i] <= min_residence:
+                mask[i] = False
+    filtered_polaron_distances = polaron_distances.copy()
+    filtered_polaron_distances[hop_indices[~mask]] = 0
+    polaron_distances = filtered_polaron_distances
+
     polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
     polaron_indices = np.nonzero(polaron_distances)[0]
     # print('polaron_distance', polaron_distances)
     print('polaron_distances_hop', polaron_distances_hop)
     print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
     print('polaron hop index', polaron_indices)
+
+    print(np.shape(atoms_ti.positions))
+
     # print('polaron hop time', time_val_energy[polaron_indices])
 
     # Plot polaron distances
@@ -202,6 +265,7 @@ if calc_distance:
 
     site_multiplicity = 1
     diffusion_constant_analytical = (np.mean(hops_distance) ** 2 * site_multiplicity * rate_constant) / 2
+    print('diffusion_constant_analytical', diffusion_constant_analytical)
     mobility = (1.60217662e-19 * diffusion_constant_analytical) / (1.380649e-23 * temperature_set)
     print('mobility analytical', mobility, 'cm^2/(V·s)')
 
@@ -215,6 +279,7 @@ if calc_distance:
     mean_square_displacement = np.sum(hops_distance ** 2) / hops_time
     diffusion_constant_numerical = mean_square_displacement / 2
     mobility = (1.60217662e-19 * diffusion_constant_numerical) / (1.380649e-23 * temperature_set)
+    print('diffusion_constant_numerical', diffusion_constant_numerical)
     print('mobility numerical', mobility, 'cm^2/(V·s)')
 
     k_el = 1
@@ -235,16 +300,17 @@ if calc_distance:
                                 figsize=(18, 6), gridspec_kw={'height_ratios': [2, 1],  'hspace': 0.05})
     temp = np.zeros(num_timesteps)
     for j in range(num_atoms):
-        ax_plot_all[0].plot((time_val_1 - offset)/1e3, spin[:, j], '-', label='{}'.format(j + 1))
+        ax_plot_all[0].plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, spin[:int(xlim_1[1]), j], '-', label='{}'.format(j + 1))
     if draw_legend: ax_plot_all[0].legend(frameon=True)
     # ax_plot_all[0].set_xlabel('Time / fs')
     ax_plot_all[0].set_ylabel('Spin moment')
     ax_plot_all[0].set_xlim((np.array(xlim_1)-offset)/1000)
-    # ax_plot_all[0].set_ylim(ylim_1)
-    ax_plot_all[0].set_ylim([0, 0.8])
-    ax_plot_all[1].plot((time_val_1 - offset)/1e3, polaron_distances, 'kx-')
+    ax_plot_all[0].set_ylim(ylim_1)
+    # ax_plot_all[0].set_ylim([0, 0.8])
+    ax_plot_all[1].plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, polaron_distances, 'kx-')
     ax_plot_all[1].set_xlabel('Time / ps')
-    ax_plot_all[1].set_ylabel('Distance / A')
+    ax_plot_all[1].set_ylabel(r'Distance / $\mathrm{\AA}$')
+
     ax_plot_all[1].set_xlim((np.array(xlim_1)-offset)/1000)
     ax_plot_all[1].set_ylim([0, 3.3])
     fig_plot_all.tight_layout()
@@ -254,7 +320,7 @@ if calc_distance:
 # Plot total spin
 fig_spin2, ax_spin2 = plt.subplots(figsize=(10, 4))
 # fig_spin2, ax_spin2 = plt.subplots()
-ax_spin2.plot(time_array, np.sum(spin, axis=1), 'k-')
+ax_spin2.plot(time_array[:int(xlim_1[1])], np.sum(spin[:int(xlim_1[1])], axis=1), 'k-')
 ax_spin2.set_xlim(0, time_array[-1])
 ax_spin2.set_xlabel("Time / fs")
 ax_spin2.set_ylabel("Spin")
@@ -269,7 +335,7 @@ fig_spin2.tight_layout()
 fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
 # fig_spin1, ax_spin1 = plt.subplots()
 for i in range(num_atoms):
-    ax_spin1.plot(time_array, spin[:, i], '-')
+    ax_spin1.plot(time_array[:int(xlim_1[1])], spin[:int(xlim_1[1]), i], '-')
 # for j in range(polaron_atoms.shape[0]):
 #     print('(polaron_atoms[j]', polaron_atoms[j])
 #     ax_spin1.plot(time_array, spin[:, polaron_atoms[j]], '-', color=plotting_colors[j], label='{}'.format(polaron_atoms[j]+1))
@@ -286,6 +352,45 @@ fig_spin1.savefig("{}/dp_md_spin.png".format(folder), dpi=600)
 ax_spin1.set_xlim(xlim_1)
 fig_spin1.savefig("{}/dp_md_spin_lim.png".format(folder), dpi=600)
 fig_spin1.tight_layout()
+
+# Plot MSD = cumulative polaron hopping distance**2
+cumulative_sum = np.cumsum(polaron_distances**2)
+# cumulative_sum_m, cumulative_sum_c = np.polyfit(time_val_1, cumulative_sum, 1)
+# fitted_line = cumulative_sum_m * time_val_1 + cumulative_sum_c
+# cumulative_sum_m, _, _, _ = np.linalg.lstsq(time_val_1, cumulative_sum, rcond=None)
+
+# y = mx
+# cumulative_sum_m, _ = curve_fit(linear_func, time_val_1[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+# fitted_line = linear_func(time_val_1[fit_start:int(xlim_1[1])], cumulative_sum_m)
+
+# y = mx + c
+cumulative_sum_fit, _ = curve_fit(linear_func2, time_val_1[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+cumulative_sum_m = cumulative_sum_fit[0]
+cumulative_sum_c = cumulative_sum_fit[1]
+fitted_line = linear_func2(time_val_1[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
+
+print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
+print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
+diffusion_constant_msd = 0.1*cumulative_sum_m/2
+mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
+rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
+print('mobility from msd (units cm**2 / s)', mobility)
+print('rate constant from msd (units / s)', rate_constant)
+print('rate constant from msd (units e12 / s)', rate_constant/1e12)
+activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+print('activation_energy from msd (units meV)', activation_energy*1e3)
+
+fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+ax_msd.plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
+ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+ax_msd.set_xlim(0, time_array[-1])
+ax_msd.set_xlabel("Time / ps")
+ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+ax_msd.set_xlim(np.array(xlim_1)/1e3)
+ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
+fig_msd.tight_layout()
+fig_msd.savefig("{}/msd_cumulative.png".format(folder_save), dpi=600)
+fig_msd.tight_layout()
 
 # Plot RDF for Ti - O
 nbins = 300

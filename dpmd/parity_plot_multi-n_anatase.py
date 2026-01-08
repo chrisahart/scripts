@@ -153,7 +153,7 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.492, 0.492, 0.470. force md: 36, 37, 40
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.097, 0.101, 0.096. force md: 34, 37, 40
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.097, 0.101, 0.096. force md: 34, 37, 40 **
 
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.2-100_limit_pref-20-60',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy md: 0.220, 0.225, 0.202. force md: 37, 38, 42
