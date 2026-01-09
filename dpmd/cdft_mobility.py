@@ -84,9 +84,9 @@ ev_to_joules = 1.60218e-19
 # reorg = np.array([752]) / 1e3
 
 # deskinsElectronTransportPolaron2007
-# r_hop = np.array([2.96])
-# coupling = np.array([200]) / 1e3
-# reorg = np.array([1152]) / 1e3
+r_hop = np.array([2.96])
+coupling = np.array([200]) / 1e3
+reorg = np.array([1152]) / 1e3
 
 # moritaModelsPolaronTransport2023 linear
 # r_hop = np.array([2.96])
@@ -195,10 +195,15 @@ ev_to_joules = 1.60218e-19
 # coupling = np.array([250]) / 1e3
 # reorg = np.array([1680]) / 1e3
 
+# deskinsIntrinsicHoleMigration2009
+# r_hop = np.array([2.81388])
+# coupling = np.array([480]) / 1e3
+# reorg = np.array([2040]) / 1e3
+
 # Carey2021
-r_hop = np.array([2.81388])
-coupling = np.array([113]) / 1e3
-reorg = np.array([930]) / 1e3
+# r_hop = np.array([2.81388])
+# coupling = np.array([113]) / 1e3
+# reorg = np.array([930]) / 1e3
 
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
@@ -421,7 +426,7 @@ for i in range(0, np.shape(coupling)[0]):
     rate_spencer = calc_rate(vn, kb_t_au, transmission_coefficient, energy_spencer)
 
     # Carey2021
-    rate_spencer = 8.4e10
+    # rate_spencer = 8.4e10
 
     diffusion_spencer = calc_diffusion(multiplicity, r_hop[i], rate_spencer)
     mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)

@@ -41,7 +41,30 @@ def plot_force(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=Non
         if title is not None:
             ax.set_title(title)
     else:
-        ax.plot(dft.flatten(), dp.flatten(), '.', color=color_plot)
+        ax.plot([[-10, -10], [10, 10]], [[-10, -10], [10, 10]], 'k--')
+        dft = dft.flatten()
+        dp = dp.flatten()
+        dft2 = []
+        dp2 = []
+        for i in range(len(polaron_index)):
+            if polaron_index[i] == 1:
+                dft2.append(dft[i])
+                dp2.append(dp[i])
+        ax.plot(dft2, dp2, '.', color=color_plot)
+        ax.set_xlabel("DFT force (eV/Å)")
+        ax.set_ylabel("DP force (eV/Å)")
+        mae = mean_absolute_error(dft2, dp2) * 1000  # unit: meV/A
+        rmse = root_mean_squared_error(dft2, dp2) * 1000  # unit: meV/A
+        print('plot_force')
+        print('mean_absolute_error', mae)
+        print('root_mean_squared_error', rmse)
+        # ax.text(pos[0], pos[1], f"{text} MAE: {mae:.2f} meV/$\AA$", transform=ax.transAxes)
+        # ax.text(pos[0], pos[1], f"{text} RMSE: {rmse:.2f} meV/$\AA$", transform=ax.transAxes, color=color_plot)
+        ax.text(pos[0], pos[1], f"RMSE: {rmse:.3f} meV/Å", transform=ax.transAxes, color=color_plot)
+        min_val, max_val = min(dft.min(), dp.min()), max(dft.max(), dp.max())
+        ax.plot([min_val, max_val], [min_val, max_val], 'k--')
+        if title is not None:
+            ax.set_title(title)
 
 
 def plot_spin(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=None):
@@ -135,6 +158,13 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
     dft_total_spin = np.sum(dft, axis=1)
     dp_total_spin = np.sum(dp, axis=1)
 
+    mae = mean_absolute_error(dft_total_spin.flatten(), dp_total_spin.flatten())
+    rmse = root_mean_squared_error(dft_total_spin.flatten(), dp_total_spin.flatten())
+    print('plot_spin_time1_total')
+    print('plot_spin')
+    print('mean_absolute_error', mae)
+    print('root_mean_squared_error', rmse)
+
     ax.plot(time_array, dft_total_spin, '-', color=plotting_colors[0])
     ax.plot(time_array, dp_total_spin, '-', color=plotting_colors[1])
 
@@ -165,27 +195,40 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-rcut-4.5',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # energy md: 0.083, 0.081, 0.111. force md: 36, 38, 43
 
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.028, 0.028, 0.029
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # spin md 5 ps: 0.005, 0.006, 0.006. polaron:  0.021, 0.023, 0.025
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.8']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.023, 0.024, 0.024
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-10000-10']  # spin md 5 ps: 0.005, 0.006, 0.005. polaron:  0.023, 0.024, 0.024   **  not much difference between them all
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.028, 0.028, 0.029
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']  # spin md 5 ps: 0.005, 0.006, 0.006. polaron:  0.021, 0.023, 0.025
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.8']  # spin md 5 ps: 0.006, 0.006, 0.006. polaron:  0.023, 0.024, 0.024
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-10000-10']  # spin md 5 ps: 0.005, 0.006, 0.005. polaron:  0.023, 0.024, 0.024
+
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']    # Used for MD
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5']    # todo for MD, slightly better
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5-twostep-lr-1e-5-1e-8']    # todo for MD, spin conserved exactly
 
 spin_is_population = True
+do_concatonate = False
+# do_concatonate = True
 folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/hse-19-ts-md-9500-9900-removed'
-model_ener = ['{}/{}'.format(folder, model[0])] * 4
-model_spin = ['{}/{}'.format(folder, model[1])] * 4
-database = ['{}/database_ts/database_population_train/'.format(folder),
-            '{}/database_ts/database_population_test/1'.format(folder),
-            '{}/database_ts/database_population_test/2'.format(folder)]
-val = ['_0_', '_1_', '_2_']
-database = ['{}/database_md/database_population_train/'.format(folder),
-            '{}/database_md/database_population_test/1'.format(folder),
-            '{}/database_md/database_population_test/2'.format(folder)]
-val = ['_3_', '_4_', '_5_']
+model_ener = ['{}/{}'.format(folder, model[0])] * 6
+model_spin = ['{}/{}'.format(folder, model[1])] * 6
+# database = ['{}/database_ts/database_population_train/'.format(folder),
+#             '{}/database_ts/database_population_test/1'.format(folder),
+#             '{}/database_ts/database_population_test/2'.format(folder)]
+# val = ['_0_', '_1_', '_2_']
+# database += ['{}/database_md/database_population_train/'.format(folder),
+#             '{}/database_md/database_population_test/1'.format(folder),
+#             '{}/database_md/database_population_test/2'.format(folder)]
+# val += ['_3_', '_4_', '_5_']
+# database = ['{}/database_md/database_population_train/'.format(folder),
+#             '{}/database_md/database_population_test/1'.format(folder),
+#             '{}/database_md/database_population_test/2'.format(folder)]
+# val = ['_3_', '_4_', '_5_']
 database = ['{}/database_hse-19-5-ps/database_population_train/'.format(folder),
             '{}/database_hse-19-5-ps/database_population_test/1'.format(folder),
             '{}/database_hse-19-5-ps/database_population_test/2'.format(folder)]
@@ -263,7 +306,9 @@ num_atoms = 192
 # val = ['_0_', '_1_', '_2_']
 # num_atoms = 384
 
-axis_lim_y = np.array([0, 1])
+# axis_lim_y = np.array([0, 1])
+axis_lim_y = np.array([-0.02, 0.85])
+axis_lim_y = np.array([-0.08, 0.87])
 pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
 pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
@@ -319,6 +364,35 @@ for i in range(len(database)):
     if spin_is_population:
         dft_s.append(np.load("{}/set.000/atomic_spin.npy".format(database[i], val[i])))
 
+# Concatonate
+if do_concatonate:
+    merged_dft_e = []
+    merged_dft_f = []
+    merged_dft_polaron = []
+    merged_ener_1 = []
+    merged_force_1 = []
+    merged_spin_1 = []
+    merged_dft_s = []
+    for i in range(3):
+        merged_dft_e.append(np.concatenate((dft_e[i], dft_e[i+3])))
+        merged_dft_f.append(np.concatenate((dft_f[i], dft_f[i+3])))
+        merged_dft_polaron.append(np.concatenate((dft_polaron[i], dft_polaron[i+3])))
+        merged_ener_1.append(np.concatenate((ener_1[i], ener_1[i+3])))
+        merged_force_1.append(np.concatenate((force_1[i], force_1[i+3])))
+        merged_spin_1.append(np.concatenate((spin_1[i], spin_1[i+3])))
+        merged_dft_s.append(np.concatenate((dft_s[i], dft_s[i+3])))
+    dft_e = merged_dft_e
+    dft_f = merged_dft_f
+    dft_polaron = merged_dft_polaron
+    ener_1 = merged_ener_1
+    force_1 = merged_force_1
+    spin_1 = merged_spin_1
+    dft_s = merged_dft_s
+    database = ['{}/database_ts/database_population_train/'.format(folder),
+                '{}/database_ts/database_population_test/1'.format(folder),
+                '{}/database_ts/database_population_test/2'.format(folder)]
+    val = ['_0_', '_1_', '_2_']
+
 # Plot parity 2x3 subplots
 # fig, axes = plt.subplots(2, 3, figsize=(15, 6))
 # for i in range(len(database)):
@@ -339,6 +413,7 @@ for i in range(len(database)):
 #     plt.savefig("{}/fit_2x3_folders_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
 
 # Plot parity 1x3 subplot
+print('Plot parity 1x3 subplot')
 fig2, axes2 = plt.subplots(1, 3, figsize=(15, 5))
 for i in range(len(database)):
     print(i)
@@ -355,6 +430,7 @@ for i in range(len(database)):
 
 
 # Plot energy parity
+print('Plot energy parity')
 fig_energy, axes_energy = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
@@ -365,16 +441,29 @@ for i in range(len(database)):
     plt.savefig("{}/energy_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
 
 # Plot force parity
+print('Plot force parity')
 fig_force, axes_force = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
     plot_force(dft_f[i], force_1[i], axes_force, color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i])
 plt.tight_layout()
 for i in range(len(database)):
-    plt.savefig("{}/force_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
-    plt.savefig("{}/force_{}.png".format(model_ener[i], len(model_spin)), dpi=600)
+    plt.savefig("{}/force_{}_{}.png".format(model_spin[i], len(model_ener), val[0]), dpi=600)
+    plt.savefig("{}/force_{}_{}.png".format(model_ener[i], len(model_spin), val[0]), dpi=600)
 
-# Plot spin
+# Plot force parity polaron
+print('Plot force parity polaron')
+fig_force2, axes_force2 = plt.subplots(figsize=(5, 5))
+for i in range(len(database)):
+    print(i)
+    plot_force(dft_f[i], force_1[i], axes_force2, color_plot=color_plot_array[i], pos=pos_array_force[i], text=text_array[i], polaron_index=dft_polaron[i])
+plt.tight_layout()
+for i in range(len(database)):
+    plt.savefig("{}/force_polaron_{}_{}.png".format(model_spin[i], len(model_ener), val[0]), dpi=600)
+    plt.savefig("{}/force_polaron_{}_{}.png".format(model_ener[i], len(model_spin), val[0]), dpi=600)
+
+# Plot spin polaron
+print('Plot spin polaron')
 fig3, axes3 = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
@@ -383,7 +472,8 @@ plt.tight_layout()
 for i in range(len(database)):
     plt.savefig("{}/spin_moment_polaron_{}.png".format(model_spin[i], len(model_ener)), dpi=600)
 
-# Plot spin polaron
+# Plot spin
+print('Plot spin')
 fig4, axes4 = plt.subplots(figsize=(5, 5))
 for i in range(len(database)):
     print(i)
@@ -400,6 +490,7 @@ plot_force_time = True
 if plot_energy_time:
     
     # Plot energy time training
+    print('Plot energy time training')
     num_timesteps = int(dft_s[0][:, :, 0].shape[0])
     time_array = np.linspace(0, int(num_timesteps / 2), num=num_timesteps)
     fig_energy_time_train, axes_energy_time_train = plt.subplots()
@@ -435,6 +526,7 @@ if plot_energy_time:
 if plot_force_time:
     
     # Plot force time training
+    print('Plot force time training')
     dft_f_train = np.reshape(dft_f[0], (dft_f[0].shape[0], num_atoms, 3))
     force_error_train1 = force_1[0] - dft_f_train
     force_error_train2 = np.max(force_error_train1, axis=2)
@@ -480,10 +572,11 @@ if plot_force_time:
     plt.savefig("{}/force_time_test.png".format(model_spin[0]), dpi=600)
 
 # Plot spin moment training
-axis_lim_y = [-0.02, 1.0]
+# axis_lim_y = [-0.02, 1.0]
 plot_spin_time = True
 # plot_spin_time = False
 if plot_spin_time:
+    print('fig_spin_train')
     fig_spin_train, axes_spin_train = plt.subplots()
     plot_spin_time1((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
                     axes_spin_train, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
@@ -493,6 +586,7 @@ if plot_spin_time:
         plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
     plt.savefig("{}/spin_train_zoom{}.png".format(model_spin[0], transition_time_plot), dpi=600)
 
+    print('fig_spin_train_total')
     fig_spin_train_total, axes_spin_train_total = plt.subplots()
     plot_spin_time1_total((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
                     axes_spin_train_total, [0, 1.2], num_atoms=num_atoms, title="Energy, No-aparam")
@@ -501,6 +595,7 @@ if plot_spin_time:
 
 # Plot spin moment validation
 if plot_spin_time:
+    print('fig_spin_valid')
     fig_spin_valid, axes_spin_valid = plt.subplots()
     plot_spin_time1((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
                     axes_spin_valid, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
@@ -510,6 +605,7 @@ if plot_spin_time:
         plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
     plt.savefig("{}/spin_valid_zoom{}.png".format(model_spin[0], transition_time_plot), dpi=600)
 
+    print('fig_spin_valid_total')
     fig_spin_valid_total, axes_spin_valid_total = plt.subplots()
     plot_spin_time1_total((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
                     axes_spin_valid_total, [0, 1.2], num_atoms=num_atoms, title="Energy, No-aparam")
@@ -518,6 +614,7 @@ if plot_spin_time:
 
 # Plot spin moment test
 if plot_spin_time:
+    print('fig_spin_test')
     fig_spin_test, axes_spin_test = plt.subplots()
     plot_spin_time1((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
                     axes_spin_test, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
@@ -527,31 +624,36 @@ if plot_spin_time:
         plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
     plt.savefig("{}/spin_test_zoom{}.png".format(model_spin[0], transition_time_plot), dpi=600)
 
-    fig_spin_test_total, axes_spin_test_total = plt.subplots()
+    print('fig_spin_train_total')
+    fig_spin_train_total, axes_spin_train_total = plt.subplots()
     plot_spin_time1_total((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
-                    axes_spin_test_total, [0, 1.2], num_atoms=num_atoms, title="Energy, No-aparam")
+                    axes_spin_train_total, [0, 1.2], num_atoms=num_atoms, title="Energy, No-aparam")
     plt.tight_layout()
-    plt.savefig("{}/spin_test_total.png".format(model_spin[0]), dpi=600)
+    plt.savefig("{}/spin_train_total.png".format(model_spin[0]), dpi=600)
 
-# Plot alpha population training
-# axis_lim_y = [3.2, 3.52]
-# fig_population_alpha_train, axes_population_alpha_train = plt.subplots()
-# plot_spin_time1(dft_s[0][:, :, 0], spin_1[0][:, :, 0], axes_population_alpha_train, axis_lim_y, title="Energy, No-aparam")
-# plt.tight_layout()
-# plt.savefig("{}/population_alpha_train.png".format(model_spin[0]), dpi=600)
-# if zoom:
-#     plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-# plt.savefig("{}/population_alpha_train_zoom_{}.png".format(model_spin[0], transition_time_plot), dpi=600)
-#
-# # Plot beta population training
-# axis_lim_y = [3.25, 2.65]
-# fig_population_beta_train, axes_population_beta_train = plt.subplots()
-# plot_spin_time1(dft_s[0][:, :, 1], spin_1[0][:, :, 1], axes_population_beta_train, axis_lim_y, title="Energy, No-aparam")
-# plt.tight_layout()
-# plt.savefig("{}/population_beta_train.png".format(model_spin[0]), dpi=600)
-# if zoom:
-#     plt.xlim(axis_lim_x_zoom[0], axis_lim_x_zoom[1])
-# plt.savefig("{}/population_beta_train_zoom_{}.png".format(model_spin[0], transition_time_plot), dpi=600)
+    # population
+    print('fig_population_train_total')
+    fig_population_train_total, axes_population_train_total = plt.subplots()
+    plot_spin_time1_total((dft_s[0][:, :, 0] + dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] + spin_1[0][:, :, 1]),
+                          axes_population_train_total, [1535 - 0.5, 1535 + 0.5], num_atoms=num_atoms,
+                          title="Energy, No-aparam")
+    plt.tight_layout()
+    plt.savefig("{}/population_train_total.png".format(model_spin[0]), dpi=600)
+
+    print('fig_population_valid_total')
+    fig_population_valid_total, axes_population_valid_total = plt.subplots()
+    plot_spin_time1_total((dft_s[1][:, :, 0] + dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] + spin_1[1][:, :, 1]),
+                    axes_population_valid_total, [1535-0.5, 1535+0.5], num_atoms=num_atoms, title="Energy, No-aparam")
+    plt.tight_layout()
+    plt.savefig("{}/population_valid_total.png".format(model_spin[0]), dpi=600)
+
+    print('fig_population_test_total')
+    fig_population_test_total, axes_population_test_total = plt.subplots()
+    plot_spin_time1_total((dft_s[2][:, :, 0] + dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] + spin_1[2][:, :, 1]),
+                    axes_population_test_total, [1535-0.5, 1535+0.5], num_atoms=num_atoms, title="Energy, No-aparam")
+    plt.tight_layout()
+    plt.savefig("{}/population_test_total.png".format(model_spin[0]), dpi=600)
+
 
 if __name__ == "__main__":
     print('Finished.')

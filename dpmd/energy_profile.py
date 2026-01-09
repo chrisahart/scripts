@@ -26,11 +26,12 @@ def calc_energy_spencer(lambda_tot, v_ab):
 
 
 replica = np.linspace(start=1, stop=9, num=9)
-datapoints_fit = 4
 folder_save = '/Users/chris/Library/Mobile Documents/com~apple~CloudDocs/Work/Postdoc2/images/other'
 
 # Rutile 336
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/cdft-yungyu/cdft/atoms-78-79/hse-22-dz/neb/opt-loose'
+# folder_save = folder
+# datapoints_fit = 3
 # energy_linear = np.array(
 #     [-9762.753577167, -9762.752918532, -9762.751333435, -9762.749775396, -9762.749141520, -9762.749667441,
 #      -9762.751047882, -9762.752538172, -9762.753258105])
@@ -41,26 +42,30 @@ folder_save = '/Users/chris/Library/Mobile Documents/com~apple~CloudDocs/Work/Po
 # distances_neb = np.array([0, 0.153036, 0.158806, 0.160883, 0.159180, 0.160263, 0.165753, 0.161765, 0.155795])
 
 # Anatase 442 nn-1
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-yungyu/cdft/atoms-282-340/neb/opt-loose'
-folder_save = folder
-energy_linear = np.array(
-    [-11572.502128082     -11572.501140159     -11572.498538581     -11572.494347994     -11572.490913239     -11572.494324440     -11572.498551182     -11572.501235707     -11572.502215435  ])
-distances_linear = np.array([0, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995])
-energy_neb_au = np.array(
-    [ -11572.502122635     -11572.501932193     -11572.501205352     -11572.498275480     -11572.492368385     -11572.498609926     -11572.501212763     -11572.502021656     -11572.502231501  ])
-distances_neb = np.array([0, 0.172638, 0.175487, 0.181760, 0.180325, 0.184482, 0.178338, 0.172304, 0.172153])
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-yungyu/cdft/atoms-282-305/neb/opt-loose'
+# folder_save = folder
+# datapoints_fit = 4
+# energy_linear = np.array(
+#     [-11572.502128082, -11572.501140159, -11572.498538581, -11572.494347994, -11572.490913239, -11572.494324440,
+#      -11572.498551182, -11572.501235707, -11572.502215435])
+# distances_linear = np.array([0, 0.138637, 0.138637, 0.138637, 0.138637, 0.138637, 0.138637, 0.138637, 0.138637])
+# energy_neb_au = np.array(
+#     [-11572.502122635, -11572.501932193, -11572.501205352, -11572.498275480, -11572.492368385, -11572.498609926,
+#      -11572.501212763, -11572.502021656, -11572.502231501])
+# distances_neb = np.array([0, 0.156266, 0.155167, 0.156760, 0.159355, 0.201935, 0.180115, 0.170900, 0.159059])
 
 # Anatase 442 nn-2
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-yungyu/cdft/atoms-282-340/neb/opt-loose'
-# folder_save = folder
-# energy_linear = np.array(
-#     [-11572.502138208, -11572.501274767, -11572.499138112, -11572.496351278, -11572.494680470, -11572.496323467,
-#      -11572.499091583, -11572.501194533, -11572.502155607])
-# distances_linear = np.array([0, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995])
-# energy_neb_au = np.array(
-#     [-11572.502145486, -11572.501993647, -11572.501428642, -11572.499120237, -11572.496346942, -11572.499376534,
-#      -11572.501499010, -11572.502003350, -11572.502163805])
-# distances_neb = np.array([0, 0.172638, 0.175487, 0.181760, 0.180325, 0.184482, 0.178338, 0.172304, 0.172153])
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-442/cdft-yungyu/cdft/atoms-282-340/neb/opt-loose'
+folder_save = folder
+datapoints_fit = 4
+energy_linear = np.array(
+    [-11572.502138208, -11572.501274767, -11572.499138112, -11572.496351278, -11572.494680470, -11572.496323467,
+     -11572.499091583, -11572.501194533, -11572.502155607])
+distances_linear = np.array([0, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995, 0.134995])
+energy_neb_au = np.array(
+    [-11572.502145486, -11572.501993647, -11572.501428642, -11572.499120237, -11572.496346942, -11572.499376534,
+     -11572.501499010, -11572.502003350, -11572.502163805])
+distances_neb = np.array([0, 0.172638, 0.175487, 0.181760, 0.180325, 0.184482, 0.178338, 0.172304, 0.172153])
 
 # -----------------
 
