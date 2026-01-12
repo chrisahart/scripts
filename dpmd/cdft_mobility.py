@@ -1,5 +1,6 @@
 import numpy as np
 from general import parameters as param
+import scipy.constants as const
 
 """ Calculate hematite mobility. All units are au unless otherwise specified """
 
@@ -35,6 +36,11 @@ def calc_energy_na_spencer(lambda_tot):
     return lambda_tot / 4
 
 
+def calc_marcus_factor(lambda_tot, v_ab, kb_t):
+    """ Marcus pre-factor. """
+    return ((2*np.pi)/6.63e-34) * ((v_ab **2) / np.sqrt(4*np.pi*lambda_tot*kb_t))
+
+
 def calc_rate(vn, kb_t, k_el, energy):
     """ Calculate electron transfer rate constant [Spencer 2016]. """
     return vn * k_el * np.exp(-energy/kb_t)
@@ -56,21 +62,27 @@ def calc_mobility(diffusion, kb_t):
     return diffusion / kb_t
 
 
-# Parameters
-temp = 300  # K
-# temp = 600  # K
-multiplicity = 1  # Site multiplicity
-# vn = 1.85e13  # Effective nuclear frequency Fe-O
-vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
-vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
-
 # Constants
-kb_t_au = 8.617333262145E-5 * temp  # KbT in eV
-kb_t = 1.38e-23 * temp  # KbT in SI units
 planck = 6.63e-34  # Planck constant in SI units
 planck_au = 2 * np.pi  # Planck constant in SI units
 angstrom_to_cm = 1e-8
 ev_to_joules = 1.60218e-19
+
+# Parameters
+# temp = 300  # K
+temp = 600  # K
+multiplicity = 1  # Site multiplicity
+# vn = 1.85e13  # Effective nuclear frequency Fe-O
+# vn_ev = 98.8/1e3 # Dai et al from phonon spectra
+# vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+vn_ev = 0.11  # 0.10 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
+vn_s = vn_ev * ev_to_joules / planck
+vn = vn_s
+print('Effective nuclear frequency e13', vn_s/1e13)
+# vn = 2.42e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+# vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
+kb_t_au = 8.617333262145E-5 * temp  # KbT in eV
+kb_t = 1.38e-23 * temp  # KbT in SI units
 
 # Rutile Deskins Dupuis
 # rate_constant = 7.65e11
@@ -84,9 +96,9 @@ ev_to_joules = 1.60218e-19
 # reorg = np.array([752]) / 1e3
 
 # deskinsElectronTransportPolaron2007
-r_hop = np.array([2.96])
-coupling = np.array([200]) / 1e3
-reorg = np.array([1152]) / 1e3
+# r_hop = np.array([2.96])
+# coupling = np.array([200]) / 1e3
+# reorg = np.array([1152]) / 1e3
 
 # moritaModelsPolaronTransport2023 linear
 # r_hop = np.array([2.96])
@@ -201,9 +213,20 @@ reorg = np.array([1152]) / 1e3
 # reorg = np.array([2040]) / 1e3
 
 # Carey2021
+r_hop = np.array([2.44518])
+coupling = np.array([109]) / 1e3
+reorg = np.array([1230]) / 1e3
+omega = 320  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
+print('Pre-exponential factor:', omega*const.c * 100)
+print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
+
+# Carey2021
 # r_hop = np.array([2.81388])
 # coupling = np.array([113]) / 1e3
 # reorg = np.array([930]) / 1e3
+# omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
+# print('Pre-exponential factor:', omega*const.c * 100)
+# print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
@@ -394,6 +417,11 @@ reorg = np.array([1152]) / 1e3
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 for i in range(0, np.shape(coupling)[0]):
+
+    marcus_factor = calc_marcus_factor(reorg[i]*ev_to_joules, coupling[i]*ev_to_joules, kb_t)
+    print('Marcus pre-factor', marcus_factor)
+    print('Marcus pre-factor e12', marcus_factor/1e12)
+    # vn = marcus_factor
 
     adiabaticity_parameter = calc_adiabaticity(vn, kb_t, planck, reorg[i]*ev_to_joules, coupling[i]*ev_to_joules)
     lz_probability = calc_probability(vn, kb_t, planck, reorg[i]*ev_to_joules, coupling[i]*ev_to_joules)

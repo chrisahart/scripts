@@ -27,21 +27,22 @@ def linear_func2(x, m, c):
 # --- Parameters ---
 topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
 folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
-folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
-folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
 
-# folder_md = '50k-1000-ps-vel-9.3-ps-friction-0.001'  # 1 hops in 1000 ps, no polaron mobility
-# fit_start = int(400*1e3)
-# temperature_set = 50
+# folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
 
-# folder_md = '100k-10-ps-vel-9.3-ps-friction-0.001'  # 4 hops in 10 ps
-# folder_md = '100k-50-ps-vel-9.3-ps-friction-0.001'  # 9 hops in 50 ps
-# fit_start = 5000
-# temperature_set = 100
+folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1'
+folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
 
-# folder_md = '100k-1000-ps-vel-9.3-ps-friction-0.001'  # 109 hops in 1000 ps
-# fit_start = int(400*1e3)
-# temperature_set = 100
+# folder_md = '300k-50-ps-vel-9-ps'
+# folder_md = '300k-50-ps-vel-9.3-ps'
+# folder_md = '300k-50-ps-vel-9.4-ps'
+# folder_md = '300k-50-ps-vel-9.45-ps'
+# folder_md = '300k-50-ps-vel-9.5-ps'
+# folder_md = '300k-50-ps-vel-9.3-ps-friction-0.001'
+folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
+temperature_set = 300
+fit_start = 5000
 
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
 
@@ -61,23 +62,18 @@ time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
 
 # --- Convert Trajectory to XYZ (Chunked) ---
 pos_file = f'{folder}/tio2-pos-1.xyz'
-vel_file = f'{folder}/tio2-vel-1.xyz'
 
 # Delete old files
-for file in [pos_file, vel_file]:
+for file in [pos_file]:
     if os.path.exists(file):
         os.remove(file)
-
-# Write positions and velocities in chunks
 with Trajectory(f'{folder}/md.traj') as traj:
     for i, atoms in enumerate(traj):
         if i == 0:
             continue
         write(pos_file, atoms, format='xyz', append=(i > 1))
-        v_atoms = Atoms(symbols=atoms.get_chemical_symbols(), positions=atoms.get_velocities())
-        write(vel_file, v_atoms, format='xyz', append=(i > 1))
-        if i % 100 == 0:  # Free memory periodically
-            del atoms, v_atoms
+        if i % 100 == 0:
+            del atoms
 
 # --- MDAnalysis Setup ---
 universe = mda.Universe(topology_file, pos_file)
@@ -129,9 +125,9 @@ for j in range(len(hop_indices) - 1):
 polaron_distances[hop_indices[~mask]] = 0
 polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
 polaron_indices = np.nonzero(polaron_distances)[0]
-print('polaron_distances_hop', polaron_distances_hop)
+# print('polaron_distances_hop', polaron_distances_hop)
 print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
-print('polaron hop index', polaron_indices)
+# print('polaron hop index', polaron_indices)
 
 # --- Mobility and Diffusion ---
 hops_distance = polaron_distances[polaron_distances > 0] * 1e-8  # Angstrom to cm

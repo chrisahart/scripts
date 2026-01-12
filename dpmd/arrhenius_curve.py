@@ -22,14 +22,20 @@ temperature = temperature2
 
 folder3 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
 
-rate_constant3 = np.array([1463332478658.7344, 672956769482.8204, 241988029193.7231, 43152745244.30003])
-mobility3 = np.array([0.011144128372621817, 0.006315264815752413, 0.0028502005634936617, 0.0006294358382421668])
-temperature3 = np.array([600, 500, 400, 300])
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
+# rate_constant3 = np.array([1422749145062.692, 833346616448.9613, 403902936462.9768, 94455838920.67673])
+# mobility3 = np.array([0.010993409695600897, 0.007573700430471499, 0.004588796525929469, 0.001414400073473747])
+# temperature3 = np.array([600, 500, 400, 300])
 
-rate_constant3 = np.array([1422749145062.692, 833346616448.9613, 403902936462.9768, 94455838920.67673])
-mobility3 = np.array([0.010993409695600897, 0.007573700430471499, 0.004588796525929469, 0.001414400073473747])
-temperature3 = np.array([600, 500, 400, 300])
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5'
+# rate_constant3 = np.array([1531240835791.8442, 931905377310.2635, 455628998959.0827, 112557518910.90729])
+# mobility3 = np.array([0.011672085531292287, 0.008508652656509129, 0.005206972090464953, 0.0016916012658779792])
+# temperature3 = np.array([600, 500, 400, 300])
 
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5-twostep-lr-1e-5-1e-8'
+rate_constant3 = np.array([1503624403816.1074, 896123298214.007, 425681041881.4069, 104679543405.30695])
+mobility3 = np.array([0.0114328287435331, 0.008219924281108409, 0.00483449432398798, 0.0015799973199492336])
+temperature3 = np.array([600, 500, 400, 300])
 
 # folder = folder3
 # rate_constant = rate_constant3
@@ -92,13 +98,13 @@ fig_rate_constant_log.savefig("{}/arrhenius.png".format(folder), dpi=600)
 # fig_mobility.savefig("{}/mobility.png".format(folder), dpi=600)
 
 # Plot log(mobility) vs temperature
-# fig_mobility_log, ax_mobility_log = plt.subplots(figsize=(6, 6))
-# ax_mobility_log.plot(temperature, np.log10(mobility), 'bx-')
-# ax_mobility_log.plot(temperature3, np.log10(mobility3), 'rx-')
-# ax_mobility_log.set_xlabel("Temperature (K)")
-# ax_mobility_log.set_ylabel(r"Log [mobility (cm$^2$/Vs)]")
-# fig_mobility_log.tight_layout()
-# fig_mobility_log.savefig("{}/mobility_log.png".format(folder), dpi=600)
+fig_mobility_log, ax_mobility_log = plt.subplots(figsize=(6, 6))
+ax_mobility_log.plot(temperature, np.log10(mobility), 'bx-')
+ax_mobility_log.plot(temperature3, np.log10(mobility3), 'rx-')
+ax_mobility_log.set_xlabel("Temperature (K)")
+ax_mobility_log.set_ylabel(r"Log [mobility (cm$^2$/Vs)]")
+fig_mobility_log.tight_layout()
+fig_mobility_log.savefig("{}/mobility_log.png".format(folder), dpi=600)
 
 if __name__ == "__main__":
     print('Finished.')

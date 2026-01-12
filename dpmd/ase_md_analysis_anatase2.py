@@ -28,25 +28,22 @@ def linear_func2(x, m, c):
 topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete/combined/system.xyz'
 folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
 folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4.5-twostep-lr-1e-5-1e-8'
-folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5'
+folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-rcut-4.5-twostep-lr-1e-5-1e-8'
 
-# folder_md = '300k-vel-18-ps-10-ps'
-# folder_md = '300k-vel-18-ps-50-ps'
-folder_md = '300k-vel-18-ps-1000-ps'
-temperature_set = 300
+# folder_md = '300k-vel-18-ps-1000-ps'
+# temperature_set = 300
 
 # folder_md = '400k-vel-18-ps-1000-ps'
 # temperature_set = 400
 
-# folder_md = '500k-vel-18-ps-10-ps'
-# folder_md = '500k-vel-18-ps-50-ps'
-# folder_md = '500k-vel-18-ps-1000-ps'
-# temperature_set = 500
+folder_md = '500k-vel-18-ps-1000-ps'
+temperature_set = 500
 
 # folder_md = '600k-vel-18-ps-10-ps'
-# folder_md = '600k-vel-18-ps-50-ps'
-# folder_md = '600k-vel-18-ps-1000-ps'
-# temperature_set = 600
+folder_md = '600k-vel-18-ps-1000-ps'
+temperature_set = 600
 
 fit_start = 20000
 # fit_start = 5000
@@ -81,23 +78,18 @@ xlim_1 = [0, time_array[-1]]
 
 # --- Convert Trajectory to XYZ (Chunked) ---
 pos_file = f'{folder}/tio2-pos-1.xyz'
-vel_file = f'{folder}/tio2-vel-1.xyz'
 
 # Delete old files
-for file in [pos_file, vel_file]:
-    if os.path.exists(file):
-        os.remove(file)
-
-# Write positions and velocities in chunks
-with Trajectory(f'{folder}/md.traj') as traj:
-    for i, atoms in enumerate(traj):
-        if i == 0:
-            continue
-        write(pos_file, atoms, format='xyz', append=(i > 1))
-        v_atoms = Atoms(symbols=atoms.get_chemical_symbols(), positions=atoms.get_velocities())
-        write(vel_file, v_atoms, format='xyz', append=(i > 1))
-        if i % 100 == 0:  # Free memory periodically
-            del atoms, v_atoms
+# for file in [pos_file]:
+#     if os.path.exists(file):
+#         os.remove(file)
+# with Trajectory(f'{folder}/md.traj') as traj:
+#     for i, atoms in enumerate(traj):
+#         if i == 0:
+#             continue
+#         write(pos_file, atoms, format='xyz', append=(i > 1))
+#         if i % 100 == 0:
+#             del atoms
 
 # --- MDAnalysis Setup ---
 universe = mda.Universe(topology_file, pos_file)
@@ -149,10 +141,10 @@ for j in range(len(hop_indices) - 1):
 polaron_distances[hop_indices[~mask]] = 0
 polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
 polaron_indices = np.nonzero(polaron_distances)[0]
-print('polaron_distances_hop', polaron_distances_hop)
+# print('polaron_distances_hop', polaron_distances_hop)
 print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
 print('np.mean(polaron_distances_hop)', np.mean(polaron_distances_hop))
-print('polaron hop index', polaron_indices)
+# print('polaron hop index', polaron_indices)
 hops_time = (xlim_1[1] - xlim_1[0]) * 1e-15  # ps 1e-12 fs 1e-15
 print('hops per ps ', np.shape(polaron_distances_hop * 1e-8)[0] / hops_time * 1e-15 * 1e3)
 
