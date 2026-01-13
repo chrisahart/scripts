@@ -359,8 +359,8 @@ do_concatonate = False
 # num_atoms = 324
 
 # Bulk TiO2 336 hse-22-ts-md2
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # Good, forces slightly overfit
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # Good, forces slightly overfit
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # md 5 ps: 0.125, 44
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1-twostep-lr-1e-5-1e-8',
@@ -380,6 +380,9 @@ model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_li
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-10000-10-twostep-lr-1e-5-1e-8']  # md 5 ps: spin 0.003 polaron 0.027
 
+model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8',
+         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # DP-MD 1
+
 spin_is_population = True
 folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
 model_ener = ['{}/{}'.format(folder, model[0])] * 6
@@ -390,16 +393,16 @@ pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
 text_array = ['Train', 'Valid', 'Test']
 num_atoms = 324
-do_concatonate = False
-# do_concatonate = True
-# database = ['{}/database_ts/database_population_train/'.format(folder),
-#             '{}/database_ts/database_population_test/1'.format(folder),
-#             '{}/database_ts/database_population_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# database += ['{}/database_md/database_population_train/'.format(folder),
-#             '{}/database_md/database_population_test/1'.format(folder),
-#             '{}/database_md/database_population_test/2'.format(folder)]
-# val += ['_3_', '_4_', '_5_']
+# do_concatonate = False
+do_concatonate = True
+database = ['{}/database_ts/database_population_train/'.format(folder),
+            '{}/database_ts/database_population_test/1'.format(folder),
+            '{}/database_ts/database_population_test/2'.format(folder)]
+val = ['_0_', '_1_', '_2_']
+database += ['{}/database_md/database_population_train/'.format(folder),
+            '{}/database_md/database_population_test/1'.format(folder),
+            '{}/database_md/database_population_test/2'.format(folder)]
+val += ['_3_', '_4_', '_5_']
 # database = ['{}/database_md/database_population_train/'.format(folder),
 #             '{}/database_md/database_population_test/1'.format(folder),
 #             '{}/database_md/database_population_test/2'.format(folder)]
@@ -408,9 +411,9 @@ do_concatonate = False
 #             '{}/database_hse-22-10-ps-train-5-ps/database_population_test/1'.format(folder),
 #             '{}/database_hse-22-10-ps-train-5-ps/database_population_test/2'.format(folder)]
 # val = ['_6_', '_7_', '_8_']
-database = ['{}/database_hse-22-10-ps-train-9-ps/database_population_train/'.format(folder),
-            '{}/database_hse-22-10-ps-train-9-ps/database_population_test/2'.format(folder)]
-val = ['_9_', '_10_']
+# database = ['{}/database_hse-22-10-ps-train-9-ps/database_population_train/'.format(folder),
+#             '{}/database_hse-22-10-ps-train-9-ps/database_population_test/2'.format(folder)]
+# val = ['_9_', '_10_']
 
 # Bulk TiO2 336 hse-22 pbe-neutral
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
