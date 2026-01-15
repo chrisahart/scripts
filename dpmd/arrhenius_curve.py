@@ -19,9 +19,17 @@ def calc_mobility(diffusion, kb_t):
 
 
 folder_rutile = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
-rate_constant_rutile = np.array([2466806150140.934, 1922901242452.6802, 1193889820010.756, 563188642737.2736, 95850623481.80663])
-mobility_rutile = np.array([0.04392254697643786, 0.03992144978775102, 0.03061677378314711, 0.019304924800510884, 0.004902278090620809])
+
+# All hops
+# rate_constant_rutile = np.array([2466806150140.934, 1922901242452.6802, 1193889820010.756, 563188642737.2736, 95850623481.80663])
+# mobility_rutile = np.array([0.04392254697643786, 0.03992144978775102, 0.03061677378314711, 0.019304924800510884, 0.004902278090620809])
+# temperature_rutile = np.array([300, 250, 200, 150, 100])
+
+# Hops greater than 4 A removed
+rate_constant_rutile = np.array([2275753014439.75, 1868394642018.7478, 1188002204103.6323, 553257682674.263, 95850623481.80663])
+mobility_rutile = np.array([0.04052076352971199, 0.03878983550393645, 0.03046578849009147, 0.018964512330043627, 0.004902278090620809])
 temperature_rutile = np.array([300, 250, 200, 150, 100])
+
 rate_constant_rutile = rate_constant_rutile[:-1]
 mobility_rutile = mobility_rutile[:-1]
 temperature_rutile = temperature_rutile[:-1]
