@@ -35,11 +35,20 @@ folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-ma
 # folder_md = '300k-vel-18-ps-1000-ps'
 # temperature_set = 300
 
+# folder_md = '350k-vel-18-ps-1000-ps'
+# temperature_set = 350
+
 # folder_md = '400k-vel-18-ps-1000-ps'
 # temperature_set = 400
 
-folder_md = '500k-vel-18-ps-1000-ps'
-temperature_set = 500
+# folder_md = '450k-vel-18-ps-1000-ps'
+# temperature_set = 450
+
+# folder_md = '500k-vel-18-ps-1000-ps'
+# temperature_set = 500
+
+# folder_md = '550k-vel-18-ps-1000-ps'
+# temperature_set = 550
 
 # folder_md = '600k-vel-18-ps-10-ps'
 folder_md = '600k-vel-18-ps-1000-ps'
@@ -60,6 +69,8 @@ timestep = 1
 save_fig = True
 calc_distance = True
 plot_rdf = False
+plot_msd = False
+draw_legend = False
 
 k_el = 1
 temp = temperature_set
@@ -75,6 +86,9 @@ charge_state = np.load(f"{folder}/charge_state_history.npy", mmap_mode='r')
 num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
 xlim_1 = [0, time_array[-1]]
+xlim_1 = [0, 1e3]
+xlim_1 = [0, 700]
+offset = 0
 
 # --- Convert Trajectory to XYZ (Chunked) ---
 pos_file = f'{folder}/tio2-pos-1.xyz'
@@ -162,42 +176,43 @@ print('hops per ps ', np.shape(polaron_distances_hop * 1e-8)[0] / hops_time * 1e
 #     print(f"Hop at timestep {idx}: Atomic Index {atomic_index}")
 
 # --- Mobility and Diffusion ---
-hops_distance = polaron_distances[polaron_distances > 0] * 1e-8  # Angstrom to cm
-hops_time = num_timesteps * timestep * 1e-15  # Total time in seconds
-rate_constant = len(hops_distance) / hops_time
-diffusion_constant = (np.mean(hops_distance)**2 * rate_constant) / 2
-mobility = (1.60217662e-19 * diffusion_constant) / (1.380649e-23 * temperature_set)
+if plot_msd:
+    hops_distance = polaron_distances[polaron_distances > 0] * 1e-8  # Angstrom to cm
+    hops_time = num_timesteps * timestep * 1e-15  # Total time in seconds
+    rate_constant = len(hops_distance) / hops_time
+    diffusion_constant = (np.mean(hops_distance)**2 * rate_constant) / 2
+    mobility = (1.60217662e-19 * diffusion_constant) / (1.380649e-23 * temperature_set)
 
-# --- MSD Analysis ---
-draw_legend = False
-cumulative_sum = np.cumsum(polaron_distances**2)
-cumulative_sum_fit, _ = curve_fit(linear_func2, time_array[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
-cumulative_sum_m = cumulative_sum_fit[0]
-cumulative_sum_c = cumulative_sum_fit[1]
-fitted_line = linear_func2(time_array[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
+    # --- MSD Analysis ---
+    draw_legend = False
+    cumulative_sum = np.cumsum(polaron_distances**2)
+    cumulative_sum_fit, _ = curve_fit(linear_func2, time_array[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+    cumulative_sum_m = cumulative_sum_fit[0]
+    cumulative_sum_c = cumulative_sum_fit[1]
+    fitted_line = linear_func2(time_array[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
 
-print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
-print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
-diffusion_constant_msd = 0.1*cumulative_sum_m/2
-mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
-rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
-print('mobility from msd (units cm**2 / s)', mobility)
-print('rate constant from msd (units / s)', rate_constant)
-print('rate constant from msd (units e12 / s)', rate_constant/1e12)
-activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
-print('activation_energy from msd (units meV)', activation_energy*1e3)
+    print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
+    print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
+    diffusion_constant_msd = 0.1*cumulative_sum_m/2
+    mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
+    rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
+    print('mobility from msd (units cm**2 / s)', mobility)
+    print('rate constant from msd (units / s)', rate_constant)
+    print('rate constant from msd (units e12 / s)', rate_constant/1e12)
+    activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+    print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
-ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
-ax_msd.set_xlim(0, time_array[-1])
-ax_msd.set_xlabel("Time / ps")
-ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
-ax_msd.set_xlim(np.array(xlim_1)/1e3)
-ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
-fig_msd.tight_layout()
-fig_msd.savefig("{}/msd_cumulative.png".format(folder), dpi=600)
-fig_msd.tight_layout()
+    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
+    ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+    ax_msd.set_xlim(0, time_array[-1])
+    ax_msd.set_xlabel("Time / ps")
+    ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+    ax_msd.set_xlim(np.array(xlim_1)/1e3)
+    ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
+    fig_msd.tight_layout()
+    fig_msd.savefig("{}/msd_cumulative.png".format(folder), dpi=600)
+    fig_msd.tight_layout()
 
 # hirshfeld and distance subplot
 rows, cols = 2, 1
@@ -213,7 +228,7 @@ ax_plot_all[0].set_ylabel('Spin moment')
 ax_plot_all[0].set_xlim((np.array(xlim_1) - offset) / 1000)
 ax_plot_all[0].set_ylim(ylim_1)
 # ax_plot_all[0].set_ylim([0, 0.8])
-ax_plot_all[1].plot((time_array[:int(xlim_1[1])] - offset) / 1e3, polaron_distances, 'kx-')
+ax_plot_all[1].plot((time_array[:int(xlim_1[1])] - offset) / 1e3, polaron_distances[:int(xlim_1[1])], 'kx-')
 ax_plot_all[1].set_xlabel('Time / ps')
 ax_plot_all[1].set_ylabel(r'Distance / $\mathrm{\AA}$')
 ax_plot_all[1].set_xlim((np.array(xlim_1) - offset) / 1000)

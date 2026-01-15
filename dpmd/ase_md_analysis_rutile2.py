@@ -26,7 +26,8 @@ def linear_func2(x, m, c):
 
 # --- Parameters ---
 topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
+# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
+folder_1 = '/Users/chris/Documents/Storage/deepmd-md/hse-22-ts-md2'
 
 # folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
 # folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
@@ -34,17 +35,38 @@ folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/de
 folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1'
 folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
 
+folder_md = '100k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+temperature_set = 100
+fit_start = 20000
+
+# folder_md = '150k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 150
+# fit_start = 20000
+
+# folder_md = '200k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 200
+# fit_start = 20000
+
+# folder_md = '250k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 250
+# fit_start = 20000
+
+# folder_md = '300k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 300
+# fit_start = 20000
+
 # folder_md = '300k-50-ps-vel-9-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps'
 # folder_md = '300k-50-ps-vel-9.4-ps'
 # folder_md = '300k-50-ps-vel-9.45-ps'
 # folder_md = '300k-50-ps-vel-9.5-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps-friction-0.001'
-folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
-temperature_set = 300
-fit_start = 5000
+# folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 300
+# fit_start = 5000
 
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
+print(folder)
 
 num_atoms = 324
 box_size = [13.77, 13.77, 17.76, 90, 90, 90]
@@ -53,27 +75,32 @@ timestep = 1
 save_fig = True
 calc_distance = True
 plot_rdf = False
+plot_msd = False
+plot_msd = True
+draw_legend = False
 
 # --- Load Data ---
 spin = np.load(f"{folder}/spin_history.npy", mmap_mode='r')  # Memory-map large arrays
 charge_state = np.load(f"{folder}/charge_state_history.npy", mmap_mode='r')
 num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
+xlim_1 = [0, time_array[-1]]
+# xlim_1 = [0, 1e3]
+# xlim_1 = [0, 700]
+offset = 0
 
 # --- Convert Trajectory to XYZ (Chunked) ---
 pos_file = f'{folder}/tio2-pos-1.xyz'
 
 # Delete old files
-for file in [pos_file]:
-    if os.path.exists(file):
-        os.remove(file)
-with Trajectory(f'{folder}/md.traj') as traj:
-    for i, atoms in enumerate(traj):
-        if i == 0:
-            continue
-        write(pos_file, atoms, format='xyz', append=(i > 1))
-        if i % 100 == 0:
-            del atoms
+if not os.path.exists(pos_file):
+    with Trajectory(f'{folder}/md.traj') as traj:
+        for i, atoms in enumerate(traj):
+            if i == 0:
+                continue
+            write(pos_file, atoms, format='xyz', append=(i > 1))
+            if i % 100 == 0:
+                del atoms
 
 # --- MDAnalysis Setup ---
 universe = mda.Universe(topology_file, pos_file)
@@ -130,51 +157,84 @@ print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
 # print('polaron hop index', polaron_indices)
 
 # --- Mobility and Diffusion ---
-hops_distance = polaron_distances[polaron_distances > 0] * 1e-8  # Angstrom to cm
-hops_time = num_timesteps * timestep * 1e-15  # Total time in seconds
-rate_constant = len(hops_distance) / hops_time
-diffusion_constant = (np.mean(hops_distance)**2 * rate_constant) / 2
-mobility = (1.60217662e-19 * diffusion_constant) / (1.380649e-23 * temperature_set)
+if plot_msd:
+    hops_distance = polaron_distances[polaron_distances > 0] * 1e-8  # Angstrom to cm
+    hops_time = num_timesteps * timestep * 1e-15  # Total time in seconds
+    rate_constant = len(hops_distance) / hops_time
+    diffusion_constant = (np.mean(hops_distance)**2 * rate_constant) / 2
+    mobility = (1.60217662e-19 * diffusion_constant) / (1.380649e-23 * temperature_set)
 
-# --- MSD Analysis ---
-draw_legend = False
-k_el = 1
-temp = temperature_set
-kb_t_au = 8.617333262145E-5 * temperature_set  # KbT in eV
-kb_t = 1.38e-23 * temperature_set  # KbT in SI units
-vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+    # --- MSD Analysis ---
+    k_el = 1
+    temp = temperature_set
+    kb_t_au = 8.617333262145E-5 * temperature_set  # KbT in eV
+    kb_t = 1.38e-23 * temperature_set  # KbT in SI units
+    vn = 2.4e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 
-xlim_1 = [0, time_array[-1]]
-offset = 0
-cumulative_sum = np.cumsum(polaron_distances**2)
+    cumulative_sum = np.cumsum(polaron_distances**2)
+    cumulative_sum_fit, _ = curve_fit(linear_func2, time_array[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+    cumulative_sum_m = cumulative_sum_fit[0]
+    cumulative_sum_c = cumulative_sum_fit[1]
+    fitted_line = linear_func2(time_array[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
 
-cumulative_sum_fit, _ = curve_fit(linear_func2, time_array[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
-cumulative_sum_m = cumulative_sum_fit[0]
-cumulative_sum_c = cumulative_sum_fit[1]
-fitted_line = linear_func2(time_array[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
+    print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
+    print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
+    diffusion_constant_msd = 0.1*cumulative_sum_m/2
+    mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
+    rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
+    print('mobility from msd (units cm**2 / s)', mobility)
+    print('rate constant from msd (units / s)', rate_constant)
+    print('rate constant from msd (units e12 / s)', rate_constant/1e12)
+    activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+    print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
-print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
-diffusion_constant_msd = 0.1*cumulative_sum_m/2
-mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
-rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
-print('mobility from msd (units cm**2 / s)', mobility)
-print('rate constant from msd (units / s)', rate_constant)
-print('rate constant from msd (units e12 / s)', rate_constant/1e12)
-activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
-print('activation_energy from msd (units meV)', activation_energy*1e3)
+    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
+    ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+    ax_msd.set_xlim(0, time_array[-1])
+    ax_msd.set_xlabel("Time / ps")
+    ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+    ax_msd.set_xlim(np.array(xlim_1)/1e3)
+    ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
+    fig_msd.tight_layout()
+    fig_msd.savefig("{}/msd_cumulative.png".format(folder), dpi=600)
+    fig_msd.tight_layout()
+    
+    # Remove hop distances greater than 4
+    print('Removing hop distances greater than 4')
+    polaron_distances_clean = polaron_distances.copy()
+    polaron_distances_clean[polaron_distances_clean > 4] = 0
+    polaron_distances_hop_clean = polaron_distances_clean[np.nonzero(polaron_distances_clean)]
+    print('np.shape(polaron_distances_hop_clean)[0]', np.shape(polaron_distances_hop_clean)[0])
 
-fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
-ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
-ax_msd.set_xlim(0, time_array[-1])
-ax_msd.set_xlabel("Time / ps")
-ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
-ax_msd.set_xlim(np.array(xlim_1)/1e3)
-ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
-fig_msd.tight_layout()
-fig_msd.savefig("{}/msd_cumulative.png".format(folder), dpi=600)
-fig_msd.tight_layout()
+    cumulative_sum = np.cumsum(polaron_distances_clean**2)
+    cumulative_sum_fit, _ = curve_fit(linear_func2, time_array[fit_start:int(xlim_1[1])], cumulative_sum[fit_start:])
+    cumulative_sum_m = cumulative_sum_fit[0]
+    cumulative_sum_c = cumulative_sum_fit[1]
+    fitted_line = linear_func2(time_array[fit_start:int(xlim_1[1])], cumulative_sum_m, cumulative_sum_c)
+
+    print('diffusion coefficient from gradient msd (units A**2 / fs)', cumulative_sum_m/2)
+    print('diffusion coefficient from gradient msd (units cm**2 / s)', 0.1*cumulative_sum_m/2)
+    diffusion_constant_msd = 0.1*cumulative_sum_m/2
+    mobility = (1.60217662e-19 * diffusion_constant_msd) / (1.380649e-23 * temperature_set)
+    rate_constant = 2 * diffusion_constant_msd / np.mean(hops_distance)**2
+    print('mobility from msd (units cm**2 / s)', mobility)
+    print('rate constant from msd (units / s)', rate_constant)
+    print('rate constant from msd (units e12 / s)', rate_constant/1e12)
+    activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
+    print('activation_energy from msd (units meV)', activation_energy*1e3)
+
+    fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(4, 4))
+    ax_msd_clean.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
+    ax_msd_clean.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+    ax_msd_clean.set_xlim(0, time_array[-1])
+    ax_msd_clean.set_xlabel("Time / ps")
+    ax_msd_clean.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+    ax_msd_clean.set_xlim(np.array(xlim_1)/1e3)
+    ax_msd_clean.set_ylim([0, np.max(fitted_line)*1.02])
+    fig_msd_clean.tight_layout()
+    fig_msd_clean.savefig("{}/msd_cumulative_clean.png".format(folder), dpi=600)
+    fig_msd_clean.tight_layout()
 
 # hirshfeld and distance subplot
 ylim_1 = [-0.02, 0.8]
@@ -191,7 +251,7 @@ ax_plot_all[0].set_ylabel('Spin moment')
 ax_plot_all[0].set_xlim((np.array(xlim_1) - offset) / 1000)
 ax_plot_all[0].set_ylim(ylim_1)
 # ax_plot_all[0].set_ylim([0, 0.8])
-ax_plot_all[1].plot((time_array[:int(xlim_1[1])] - offset) / 1e3, polaron_distances, 'kx-')
+ax_plot_all[1].plot((time_array[:int(xlim_1[1])] - offset) / 1e3, polaron_distances[:int(xlim_1[1])], 'kx-')
 ax_plot_all[1].set_xlabel('Time / ps')
 ax_plot_all[1].set_ylabel(r'Distance / $\mathrm{\AA}$')
 ax_plot_all[1].set_xlim((np.array(xlim_1) - offset) / 1000)

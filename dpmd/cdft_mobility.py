@@ -75,7 +75,7 @@ multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn_ev = 98.8/1e3 # Dai et al from phonon spectra
 # vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
-vn_ev = 0.11  # 0.10 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
+vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
 vn_s = vn_ev * ev_to_joules / planck
 vn = vn_s
 print('Effective nuclear frequency e13', vn_s/1e13)
@@ -452,6 +452,12 @@ for i in range(0, np.shape(coupling)[0]):
     # energy_spencer = 13/1e3
 
     rate_spencer = calc_rate(vn, kb_t_au, transmission_coefficient, energy_spencer)
+
+    # Upper bound rutile
+    # r_hop = np.array([2.96])
+    r_hop = np.array([3.57])
+    rate_spencer = vn
+    multiplicity = 3
 
     # Carey2021
     # rate_spencer = 8.4e10
