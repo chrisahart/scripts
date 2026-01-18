@@ -312,8 +312,8 @@ folder_1 = '{}/trajectory_mdanalysis'.format(folder)
 # xlim_1 = [18000, 19000]
 # xlim_1 = [0, 10000]
 # xlim_1 = [10000, 20000]
-# xlim_1 = [0, 20000]
-xlim_1 = [10600, 11800]
+xlim_1 = [0, 20000]
+# xlim_1 = [10600, 11800]
 # xlim_1 = [11000, 11250]
 
 # xlim_1 = [19000, 20000]
@@ -396,8 +396,8 @@ calc_distance = False
 calc_distance = True
 save_fig = False
 save_fig = True
-# plot_msd = True
-# plot_msd_fit = True
+plot_msd = True
+plot_msd_fit = True
 # calc_distance = False
 if plot_hubbard:
     atoms_hubbard = num_atoms/3 * 2

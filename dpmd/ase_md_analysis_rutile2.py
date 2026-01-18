@@ -35,9 +35,13 @@ folder_1 = '/Users/chris/Documents/Storage/deepmd-md/hse-22-ts-md2'
 folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1'
 folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
 
-folder_md = '100k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
-temperature_set = 100
-fit_start = 20000
+folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed'
+folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
+
+# folder_md = '100k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# folder_md = '100k-1000-ps-vel-9.3-ps'
+# temperature_set = 100
+# fit_start = 20000
 
 # folder_md = '150k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
 # temperature_set = 150
@@ -51,9 +55,10 @@ fit_start = 20000
 # temperature_set = 250
 # fit_start = 20000
 
+folder_md = '300k-1000-ps-vel-9.3-ps-friction-0.001'
 # folder_md = '300k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
-# temperature_set = 300
-# fit_start = 20000
+temperature_set = 300
+fit_start = 20000
 
 # folder_md = '300k-50-ps-vel-9-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps'
