@@ -394,11 +394,11 @@ def read_energy(folder, filename):
 # the validation data contains 50 frames
 
 # Rutile 336
-# box = np.array([[13.77, 0, 0, 0, 13.77, 0, 0, 0, 17.76]])
-# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+box = np.array([[13.77, 0, 0, 0, 13.77, 0, 0, 0, 17.76]])
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz', 'tio2-frc-1.xyz']
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
-# num_atoms = 324
-# charged = True
+num_atoms = 324
+charged = True
 
 # HSE 22%
 # folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'
@@ -434,8 +434,10 @@ def read_energy(folder, filename):
 # the validation data contains 1000 frames
 
 # Transition states only
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good'
-# directory = '{}/combined'.format(folder)
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good'
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good'
+directory = '{}/combined'.format(folder)
+directory = '{}/combined2'.format(folder)
 
 # size_exclude_start = int(0*2)
 # size_exclude_end = int(0)
@@ -449,10 +451,10 @@ def read_energy(folder, filename):
 # the training data contains 360 frames
 # the validation data contains 40 frames
 
-# size_exclude_start = int(0)
-# size_exclude_end = int(0)
-# size_test = int(40)
-# size_validation = int(130)
+size_exclude_start = int(0)
+size_exclude_end = int(0)
+size_test = int(40)
+size_validation = int(130)
 
 # the data contains 440 frames
 # the data contains 440 frames after excluding the first and last frames
@@ -491,8 +493,10 @@ def read_energy(folder, filename):
 # the validation data contains 40 frames
 
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/md/'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/md/'
 # directory = '{}/combined'.format(folder)
-# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+# directory = '{}/combined2'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
 
 # size_exclude_start = int(0)
 # size_exclude_end = int(0)
@@ -507,9 +511,9 @@ def read_energy(folder, filename):
 # the validation data contains 100 frames
 
 # Anatase 441
-num_atoms = 192
-box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 9.68]])
-charged = True
+# num_atoms = 192
+# box = np.array([[15.08, 0, 0, 0, 15.08, 0, 0, 0, 9.68]])
+# charged = True
 
 # folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/reftraj/trajectory_mdanalysis/md'
 # directory = '{}/combined'.format(folder)
@@ -559,9 +563,9 @@ charged = True
 # the training data contains 1000 frames
 # the validation data contains 500 frames
 
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
-directory = '{}/hse-19-complete/trajectory_mdanalysis'.format(folder)
-files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/'
+# directory = '{}/hse-19-complete/trajectory_mdanalysis'.format(folder)
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz', 'tio2-vel-1-cleaned.xyz']
 
 # size_exclude_start = int(10000)
 # size_exclude_end = int(2438)
@@ -575,10 +579,10 @@ files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-
 # the training data contains 6438 frames
 # the validation data contains 1000 frames
 
-size_exclude_start = int(0)
-size_exclude_end = int(0)
-size_test = int(2438)
-size_validation = int(0)
+# size_exclude_start = int(0)
+# size_exclude_end = int(0)
+# size_test = int(2438)
+# size_validation = int(0)
 
 # the data contains 22438 frames
 # the data contains 22438 frames after excluding the first and last frames
@@ -792,6 +796,7 @@ np.save('{}/database_population_test/2/set.000/energy.npy'.format(directory), en
 # np.save('{}/database_spin_test/2/set.000/atom_ener.npy'.format(directory), hirshfeld_test.flatten())
 
 # Population
+print('np.shape(population_alpha_train)', np.shape(population_alpha_train))
 population_train = np.zeros((np.shape(population_alpha_train)[0], num_atoms, 2))
 for i in range(np.shape(population_alpha_train)[0]):
     for j in range(num_atoms):
@@ -807,17 +812,18 @@ for i in range(np.shape(population_alpha_test)[0]):
     for j in range(num_atoms):
         population_test[i, j, 0] = population_alpha_test[i, j]
         population_test[i, j, 1] = population_beta_test[i, j]
-np.save('{}/database_population_train/set.000/atomic_spin.npy'.format(directory), population_train)
-np.save('{}/database_population_test/1/set.000/atomic_spin.npy'.format(directory), population_valid)
-np.save('{}/database_population_test/2/set.000/atomic_spin.npy'.format(directory), population_test)
+np.save('{}/database_population_train/set.000/atomic_population.npy'.format(directory), population_train)
+np.save('{}/database_population_test/1/set.000/atomic_population.npy'.format(directory), population_valid)
+np.save('{}/database_population_test/2/set.000/atomic_population.npy'.format(directory), population_test)
 
 # Aparam
+print('np.shape(aparam_train)', np.shape(aparam_train))
 np.savetxt('{}/database_ener_force_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
-np.save('{}/database_ener_force_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
+np.save('{}/database_ener_force_train/set.000/aparam.npy'.format(directory), aparam_train)
 np.savetxt('{}/database_ener_force_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
-np.save('{}/database_ener_force_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
+np.save('{}/database_ener_force_test/1/set.000/aparam.npy'.format(directory), aparam_valid)
 np.savetxt('{}/database_ener_force_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
-np.save('{}/database_ener_force_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
+np.save('{}/database_ener_force_test/2/set.000/aparam.npy'.format(directory), aparam_test)
 # np.savetxt('{}/database_spin_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
 # np.save('{}/database_spin_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
 # np.savetxt('{}/database_spin_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
@@ -825,13 +831,14 @@ np.save('{}/database_ener_force_test/2/set.000/aparam.npy'.format(directory), ap
 # np.savetxt('{}/database_spin_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
 # np.save('{}/database_spin_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
 np.savetxt('{}/database_population_train/aparam.raw'.format(directory), aparam_train.flatten(), delimiter=' ')
-np.save('{}/database_population_train/set.000/aparam.npy'.format(directory), aparam_train.flatten())
+np.save('{}/database_population_train/set.000/aparam.npy'.format(directory), aparam_train)
 np.savetxt('{}/database_population_test/1/aparam.raw'.format(directory), aparam_valid.flatten(), delimiter=' ')
-np.save('{}/database_population_test/1/set.000/aparam.npy'.format(directory), aparam_valid.flatten())
+np.save('{}/database_population_test/1/set.000/aparam.npy'.format(directory), aparam_valid)
 np.savetxt('{}/database_population_test/2/aparam.raw'.format(directory), aparam_test.flatten(), delimiter=' ')
-np.save('{}/database_population_test/2/set.000/aparam.npy'.format(directory), aparam_test.flatten())
+np.save('{}/database_population_test/2/set.000/aparam.npy'.format(directory), aparam_test)
 
 # Coordinates
+print('np.shape(coordinates_train)', np.shape(coordinates_train))
 np.save('{}/database_ener_force_train/set.000/coord.npy'.format(directory), coordinates_train)
 np.save('{}/database_ener_force_test/1/set.000/coord.npy'.format(directory), coordinates_valid)
 np.save('{}/database_ener_force_test/2/set.000/coord.npy'.format(directory), coordinates_test)

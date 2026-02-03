@@ -16,6 +16,14 @@ from scipy.optimize import curve_fit
     Plot energy and forces for bulk hematite
 """
 
+# Standard
+# params = {'axes.formatter.limits': [-4, 4],
+#           'axes.labelsize': '14',
+#           'axes.titlesize': '16',
+#           'lines.markersize': '8',
+#           }
+
+# TOC graphic
 params = {'axes.formatter.limits': [-4, 4],
           'axes.labelsize': '14',
           'axes.titlesize': '16',
@@ -437,22 +445,23 @@ plot_msd = False
 # folder_1 = '/Volumes/Elements SE/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'  # FINISHED lifetime fs 188
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
-folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
+# folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
+folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
 files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis_wrap'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_vmd'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-vmd-wrap-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # xlim_1 = [0, 6645]
-# xlim_1 = [0, 10000]
-# plot_msd = True
+xlim_1 = [0, 10000]
+plot_msd = True
 # xlim_1 = [5000, 10000]
 # xlim_1 = [1000, 10000]
 # offset = 1000
 # xlim_1 = [6000, 7000]
-# xlim_1 = [9000, 10000]
+# xlim_1 = [9000-4, 10000]
 # xlim_1 = [1000, 5000]
-xlim_1 = [1000, 10000]
+# xlim_1 = [1000, 10000]
 # xlim_1 = [5520, 6088]
 # xlim_1 = [9300, 10000]
 # xlim_1 = [9600, 9820]
@@ -462,10 +471,11 @@ xlim_1 = [1000, 10000]
 # xlim_1 = [int(9076-40), int(9076+40)]  #  hop
 # xlim_1 = [int(9652-30), int(9652+30)]  #  hop
 # xlim_1 = [int(9734-40), int(9734+40)]  #  hop
+xlim_1 = np.array(xlim_1)
 num_atoms = 324
 box_size = [13.77, 13.77, 17.76, 90, 90, 90]
 temperature_set = 300
-xlim_auto = True
+# xlim_auto = True
 xlim_auto = False
 
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good/step-3937-eps-1e-7-stride-2'
@@ -535,7 +545,7 @@ num_timesteps2 = np.shape(time_per_step_1)[0]
 time_array2 = np.linspace(start=0, stop=num_timesteps*timestep, num=num_timesteps2)
 print('num_timesteps np.shape(hirshfeld_1_np)[0]', num_timesteps)
 print('num_timesteps2 np.shape(time_per_step_1)[0]', num_timesteps2)
-if xlim_auto: xlim_1 = [0, np.shape(hirshfeld_1_np)[0]]
+if xlim_auto: xlim_1 = np.array([0, np.shape(hirshfeld_1_np)[0]])
 
 if plot_mulliken:
     num_timesteps3 = np.shape(mulliken_1_np)[0]
@@ -604,7 +614,7 @@ chain_atoms = np.array([85, 93, 101, 104, 96, 88]) - 1
 print('time_calc', time_calc, time_array[time_calc], hirshfeld_1_np[time_calc, 5, chain_atoms])
 
 # Plot Hirshfeld spin of all atoms
-fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
+fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
 temp = np.zeros(num_timesteps)
 for j in range(num_atoms):
     ax_spin1.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '-', label='{}'.format(j+1))
@@ -621,21 +631,21 @@ if save_fig: fig_spin1.savefig('{}/hirshfeld_spin_all.png'.format(folder_save), 
 
 # Plot Hirshfeld spin of all atoms
 # fig_spin1_square, ax_spin1_square = plt.subplots(figsize=(7, 5))
-fig_spin1_square, ax_spin1_square = plt.subplots()
-temp = np.zeros(num_timesteps)
-for j in range(num_atoms):
-    # ax_spin1_square.plot(time_array-1, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
-    # ax_spin1_square.plot(time_array, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
-    ax_spin1_square.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
-# ax_spin1_square.plot(time_array, hirshfeld_1_np[:, 5, polaron_atom], 'k-',)
-if draw_legend: ax_spin1_square.legend(frameon=True)
-# ax_spin1_square.set_xlabel('Timestep')
-ax_spin1_square.set_xlabel('Time / ps')
-ax_spin1_square.set_ylabel('Spin moment')
-ax_spin1_square.set_xlim(np.array(xlim_1)/1e3)
-ax_spin1_square.set_ylim(ylim_1)
-fig_spin1_square.tight_layout()
-if save_fig: fig_spin1_square.savefig('{}/hirshfeld_spin_all2.png'.format(folder_save), dpi=param.save_dpi)
+# fig_spin1_square, ax_spin1_square = plt.subplots()
+# temp = np.zeros(num_timesteps)
+# for j in range(num_atoms):
+#     # ax_spin1_square.plot(time_array-1, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
+#     # ax_spin1_square.plot(time_array, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
+#     ax_spin1_square.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '.-', label='{}'.format(j+1))
+# # ax_spin1_square.plot(time_array, hirshfeld_1_np[:, 5, polaron_atom], 'k-',)
+# if draw_legend: ax_spin1_square.legend(frameon=True)
+# # ax_spin1_square.set_xlabel('Timestep')
+# ax_spin1_square.set_xlabel('Time / ps')
+# ax_spin1_square.set_ylabel('Spin moment')
+# ax_spin1_square.set_xlim(np.array(xlim_1)/1e3)
+# ax_spin1_square.set_ylim(ylim_1)
+# fig_spin1_square.tight_layout()
+# if save_fig: fig_spin1_square.savefig('{}/hirshfeld_spin_all2.png'.format(folder_save), dpi=param.save_dpi)
 
 # Plot Mulliken spin of all atoms
 if plot_mulliken:
@@ -697,17 +707,20 @@ if calc_distance:
 # Plot average of 6 Ti-O bonds
 if calc_distance:
     metric = np.zeros((num_atoms_ti, num_timesteps2))
-    fig_bonds_1, ax_bonds_1 = plt.subplots(figsize=(10, 4))
+    fig_bonds_1, ax_bonds_1 = plt.subplots(figsize=(18, 4))
     # fig_bonds_1, ax_bonds_1 = plt.subplots()
     for i in range(num_atoms_ti):
         # ax_bonds_1.plot(time_val_1 - time_val_1[0], np.sum(bond_lengths_time_sorted, axis=2)[:, i], '-', label='Fe {}'.format(i + 1))
-        ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, i], '-', label='Fe {}'.format(i + 1))
+        ax_bonds_1.plot((time_val_1 - time_val_1[0])/1e3, bond_lengths_time_sorted_mean[:, i], '-', label='Fe {}'.format(i + 1))
     # ax_bonds_1.plot(time_val_1 - time_val_1[0], bond_lengths_time_sorted_mean[:, polaron_atom], 'k-', label='Fe {}'.format(polaron_atom + 1))
-    ax_bonds_1.set_xlabel('Time / fs')
+    # ax_bonds_1.set_xlabel('Time / fs')
+    ax_bonds_1.set_xlabel('Time / ps')
     # ax_bonds_1.set_xlabel('Timestep')
-    ax_bonds_1.set_ylabel('Average of {} Ti-O bond lengths / A'.format(local_bonds))
+    # ax_bonds_1.set_ylabel('Average of {} Ti-O bond lengths / A'.format(local_bonds))
+    ax_bonds_1.set_ylabel(r'Average of 6 Ti-O bond lengths / $\mathrm{\AA}$')
+
     # # ax_bonds_1.set_xlim([0, len(universe.trajectory)])
-    ax_bonds_1.set_xlim(xlim_1)
+    ax_bonds_1.set_xlim(xlim_1/1e3)
     # ax_bonds_1.set_xlim([0, len(universe.trajectory) * timestep])
     # ax_bonds_1.set_ylim([0.06, -0.10])
     if save_fig: fig_bonds_1.savefig('{}/bond_lengths_average.png'.format(folder_save), dpi=param.save_dpi)
@@ -819,17 +832,19 @@ if calc_distance:
     # Plot polaron distances
     metric = np.zeros((num_atoms_ti, num_timesteps_mobility))
     # fig_bonds_2, ax_bonds_2 = plt.subplots()
-    fig_bonds_2, ax_bonds_2 = plt.subplots(figsize=(10, 2))
+    fig_bonds_2, ax_bonds_2 = plt.subplots(figsize=(18, 2))
     # ax_bonds_2.plot(time_val_1 - time_val_1[0] - offset, polaron_distances[:-1], 'kx-')
-    ax_bonds_2.plot(time_val_1[:int(xlim_1[1])] - time_val_1[0] - offset, polaron_distances, 'kx-')
-    ax_bonds_2.set_xlabel('Time / fs')
+    ax_bonds_2.plot((time_val_1[:int(xlim_1[1])] - time_val_1[0] - offset)/1e3, polaron_distances, 'kx-')
+    # ax_bonds_2.set_xlabel('Time / fs')
+    ax_bonds_2.set_xlabel('Time / ps')
     # ax_bonds_2.set_xlabel('Timestep')
-    ax_bonds_2.set_ylabel('Distance / A')
+    # ax_bonds_2.set_ylabel('Distance / A')
+    ax_bonds_2.set_ylabel(r'Distance / $\mathrm{\AA}$')
     # if draw_legend: ax_bonds_2.legend(frameon=True)
     # # ax_bonds_2.set_xlim([0, len(universe.trajectory)])
-    ax_bonds_2.set_xlim(xlim_1)
+    ax_bonds_2.set_xlim(xlim_1/1e3)
     # ax_bonds_2.set_xlim([0, len(universe.trajectory) * timestep])
-    # ax_bonds_2.set_ylim([0.06, -0.10])
+    ax_bonds_2.set_ylim([0, 3.3])
     if save_fig: fig_bonds_2.savefig('{}/polaron_hopping_distance.png'.format(folder_save), dpi=param.save_dpi)
     fig_bonds_2.tight_layout()
 
@@ -883,9 +898,11 @@ if calc_distance:
     #                             figsize=(10, 6), gridspec_kw={'height_ratios': [2, 1],  'hspace': 0.05})
     fig_plot_all, ax_plot_all = plt.subplots(rows, cols,sharex='col', sharey='row',
                                 figsize=(18, 6), gridspec_kw={'height_ratios': [2.2, 1],  'hspace': 0.05})
+    # fig_plot_all, ax_plot_all = plt.subplots(rows, cols,sharex='col', sharey='row',
+    #                             figsize=(18, 3), gridspec_kw={'height_ratios': [1, 1],  'hspace': 0.05})
     temp = np.zeros(num_timesteps)
     for j in range(num_atoms):
-        ax_plot_all[0].plot((time_val_1 - offset)/1e3, hirshfeld_mobility[:int(xlim_1[1]), 5, j], 'x-', label='{}'.format(j + 1))
+        ax_plot_all[0].plot((time_val_1 - offset)/1e3, hirshfeld_mobility[:int(xlim_1[1]), 5, j], '-', label='{}'.format(j + 1))
     if draw_legend: ax_plot_all[0].legend(frameon=True)
     # ax_plot_all[0].set_xlabel('Time / fs')
     ax_plot_all[0].set_ylabel('Spin moment')
@@ -894,7 +911,10 @@ if calc_distance:
     ax_plot_all[0].set_ylim([0, 0.8])
     ax_plot_all[1].plot((time_val_1 - offset)/1e3, polaron_distances, 'kx-')
     ax_plot_all[1].set_xlabel('Time / ps')
-    ax_plot_all[1].set_ylabel('Distance / A')
+    # ax_plot_all[1].set_ylabel('Distance / A')
+    ax_plot_all[1].set_ylabel(r'Distance / $\mathrm{\AA}$')
+
+    # xlim_1[0] = xlim_1[0] + 4
     ax_plot_all[1].set_xlim((np.array(xlim_1)-offset)/1000)
     ax_plot_all[1].set_ylim([0, 3.3])
     fig_plot_all.tight_layout()
@@ -924,12 +944,15 @@ if calc_distance:
     # if save_fig: fig_hirshfeld_energy.savefig('{}/polaron_energy_subplot.png'.format(folder_save), dpi=param.save_dpi)
 
     plot_ts = False
+    plot_ts = True
     if plot_ts:
-        fig_spin1_square_ts, ax_spin1_square_ts = plt.subplots()
+        # fig_spin1_square_ts, ax_spin1_square_ts = plt.subplots(figsize=(4, 4))
+        fig_spin1_square_ts, ax_spin1_square_ts = plt.subplots(figsize=(3, 2.3))
         temp = np.zeros(num_timesteps)
         # ts_plot_index = np.shape(polaron_distances_hop)[0] - 22
-        ts_plot_index = np.shape(polaron_distances_hop)[0] - 2
-        ts_plot_time = 20
+        # ts_plot_index = np.shape(polaron_distances_hop)[0] - 12
+        ts_plot_index = np.shape(polaron_distances_hop)[0] - 1
+        ts_plot_time = 40
         print('time value', time_val_energy[polaron_indices[ts_plot_index]])
         print('time index', polaron_indices[ts_plot_index])
         print('FIRST_SNAPSHOT', int(polaron_indices[ts_plot_index]-ts_plot_time))
@@ -938,7 +961,7 @@ if calc_distance:
         for j in range(num_atoms):
             # ax_spin1_square_ts.plot((time_val_1 - offset), hirshfeld_mobility[:int(xlim_1[1]), 5, j], '.-', label='{}'.format(j + 1))
             # ax_spin1_square_ts.plot((time_val_energy[:int(xlim_1[1])] - offset), hirshfeld_mobility[:int(xlim_1[1]), 5, j], '.-', label='{}'.format(j + 1))
-            ax_spin1_square_ts.plot((time_val_1[:int(xlim_1[1])] - offset), hirshfeld_mobility[:int(xlim_1[1]), 5, j], '.-', label='{}'.format(j + 1))
+            ax_spin1_square_ts.plot((time_val_1[:int(xlim_1[1])] - offset), hirshfeld_mobility[:int(xlim_1[1]), 5, j], '-', label='{}'.format(j + 1))
 
         # hirshfeld_1_np_ts = hirshfeld_1_np[:, 5, j][polaron_indices[ts_plot_index] - ts_plot_time:polaron_indices[ts_plot_index] + ts_plot_time]
         # for j in range(num_atoms):
@@ -953,7 +976,7 @@ if calc_distance:
         ax_spin1_square_ts.set_xlim(np.array([time_val_energy[polaron_indices[ts_plot_index]] - ts_plot_time, time_val_energy[polaron_indices[ts_plot_index]] + ts_plot_time]))
         ax_spin1_square_ts.set_ylim(ylim_1)
         fig_spin1_square_ts.tight_layout()
-        if save_fig: fig_spin1_square_ts.savefig('{}/hirshfeld_spin_ts_{}.png'.format(folder_save, time_val_energy[polaron_indices[ts_plot_index]]), dpi=param.save_dpi)
+        if save_fig: fig_spin1_square_ts.savefig('{}/hirshfeld_spin_ts_{}.png'.format(folder_save, time_val_energy[polaron_indices[ts_plot_index]]), dpi=900)
 
 
 # Plot MSD = cumulative polaron hopping distance**2
@@ -985,16 +1008,18 @@ if plot_msd:
     activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    # fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    fig_msd, ax_msd = plt.subplots(figsize=(3, 2.5))
+    ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd.plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-    ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
+    # ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
     ax_msd.set_xlim(0, time_array[-1])
     ax_msd.set_xlabel("Time / ps")
-    ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
+    ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}$")
     ax_msd.set_xlim(np.array(xlim_1)/1e3)
     ax_msd.set_ylim([0, np.max(fitted_line)*1.02])
     fig_msd.tight_layout()
-    fig_msd.savefig("{}/msd_cumulative.png".format(folder_save), dpi=param.save_dpi)
+    fig_msd.savefig("{}/msd_cumulative.png".format(folder_save), dpi=900)
     fig_msd.tight_layout()
 
 # Plot RDF for Ti - O

@@ -306,7 +306,8 @@ plot_msd = False
 # xlim_1 = [0, 11764]
 # xlim_1 = [0, 5000]
 
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
 folder_1 = '{}/combined'.format(folder)
 folder_1 = '{}/trajectory_mdanalysis'.format(folder)
 # xlim_1 = [18000, 19000]
@@ -842,8 +843,8 @@ if plot_msd:
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
     fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    if plot_msd_fit: ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd.plot((time_val_1[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-    if plot_msd_fit: ax_msd.plot((time_val_1[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
     ax_msd.set_xlim(0, time_array[-1])
     ax_msd.set_xlabel("Time / ps")
     ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")

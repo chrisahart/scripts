@@ -36,26 +36,26 @@ files = ['output.out'] * 5
 # box_size = [9.18, 9.18, 8.88, 90, 90, 90]
 # folder_use_hubbard = ['pbe-u-ti']
 # folder_use_hubbard = folder_use_hubbard[0]
-# folder_files_hubbard = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hubbard)]
+# folder_files_hubbard = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hubbard)]
 # hubbard_values_polaron = [2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 7.0, 8.0, 9.0]
 # skip_folders_hubbard = 4
 # folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
 # folder_use_hse = folder_use_hse[0]
-# folder_files_hse = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hse)]
+# folder_files_hse = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hse)]
 # hse_values_polaron = [12, 15, 18, 20, 21, 22, 23, 24, 25, 30]
 # skip_folders_hse_start = 0
 # folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 # folder_use_pbe0 = folder_use_pbe0[0]
-# folder_files_pbe0 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_pbe0)]
+# folder_files_pbe0 = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-223/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_pbe0)]
 # pbe0_values_polaron = [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]
 # skip_folders_pbe0 = 0
 
@@ -64,26 +64,26 @@ files = ['output.out'] * 5
 # box_size = [13.77, 13.77, 11.84, 90, 90, 90]
 # folder_use_hubbard = ['pbe-u-ti']
 # folder_use_hubbard = folder_use_hubbard[0]
-# folder_files_hubbard = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hubbard),
-#                         '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hubbard)]
+# folder_files_hubbard = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hubbard),
+#                         '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hubbard)]
 # hubbard_values_polaron = [2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 7.0, 8.0, 9.0]
 # skip_folders_hubbard = 0
 # folder_use_hse = ['hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
 # folder_use_hse = folder_use_hse[0]
-# folder_files_hse = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hse),
-#                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hse)]
+# folder_files_hse = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_hse),
+#                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_hse)]
 # hse_values_polaron = [12, 15, 18, 20, 21, 22, 23, 24, 25, 30]
 # skip_folders_hse_start = 3
 # folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 # folder_use_pbe0 = folder_use_pbe0[0]
-# folder_files_pbe0 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_pbe0),
-#                      '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_pbe0)]
+# folder_files_pbe0 = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/neutral-opt/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-neutral/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/electron/from-md-1/{}'.format(folder_use_pbe0),
+#                      '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-334/geo-opt-cell-opt/neutral/from-electron//{}'.format(folder_use_pbe0)]
 # pbe0_values_polaron = [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]
 # skip_folders_pbe0 = 3
 
@@ -91,28 +91,28 @@ files = ['output.out'] * 5
 # cell 336
 num_atoms = 324
 box_size = [13.8, 13.8, 17.76, 90, 90, 90]
-folder_files_hubbard = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/neutral-from-electron-opt',
-                        '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-from-neutral-from-electron-opt',
-                        '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-opt',
-                        '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/neutral-from-electron-opt']
+folder_files_hubbard = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/neutral-from-electron-opt',
+                        '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-from-neutral-from-electron-opt',
+                        '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/electron-opt',
+                        '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/md-struct/neutral-from-electron-opt']
 hubbard_values_polaron = [0, 2.0, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 8.0, 9.0]
 skip_folders_hubbard = 4
 folder_use_hse = ['hfx-schwarz-e-1e-4-f-1e-6-cfit11-cpfit3', 'hfx-schwarz-e-1e-4-f-1e-6-fit11-cpfit3',
                   'hfx-schwarz-e-1e-6-f-1e-6-fit9-cpfit3', 'hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3']
 folder_use_hse = folder_use_hse[3]
-folder_files_hse = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/neutral-opt/{}'.format(folder_use_hse),
-                    '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-neutral-opt/{}'.format(folder_use_hse),
-                    '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-u-4.0/{}'.format(folder_use_hse),
-                    '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/from-electron-opt/{}'.format(folder_use_hse)]
+folder_files_hse = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/neutral-opt/{}'.format(folder_use_hse),
+                    '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-neutral-opt/{}'.format(folder_use_hse),
+                    '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-u-4.0/{}'.format(folder_use_hse),
+                    '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/from-electron-opt/{}'.format(folder_use_hse)]
 hse_values_polaron = [12, 15, 18, 21, 22, 23, 24, 25, 30]
 skip_folders_hse_start = 4
 folder_use_pbe0 = ['pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3',
                    'pbe0-tz-tz2p-hfx-schwarz-e-1e-6-f-1e-6-fit9-pfit3-mckenna-input']
 folder_use_pbe0 = folder_use_pbe0[1]
-folder_files_pbe0 = ['/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/neutral-opt/{}'.format(folder_use_pbe0),
-                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-neutral-opt/{}'.format(folder_use_pbe0),
-                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-u-4.0/{}'.format(folder_use_pbe0),
-                     '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/from-electron-opt/{}'.format(folder_use_pbe0)]
+folder_files_pbe0 = ['/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/neutral-opt/{}'.format(folder_use_pbe0),
+                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-neutral-opt/{}'.format(folder_use_pbe0),
+                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/electron/from-u-4.0/{}'.format(folder_use_pbe0),
+                     '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/geo-opt/convergence/neutral/from-electron-opt/{}'.format(folder_use_pbe0)]
 pbe0_values_polaron = [10, 10.5, 11, 11.5, 12, 13, 14, 15, 25]
 skip_folders_pbe0 = 4
 

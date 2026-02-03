@@ -18,23 +18,25 @@ def calc_mobility(diffusion, kb_t):
     return (1.6e-19 * diffusion) / kb_t
 
 
-folder_rutile = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
+# folder_rutile = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
+folder_rutile = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
 
 # All hops
-# rate_constant_rutile = np.array([2466806150140.934, 1922901242452.6802, 1193889820010.756, 563188642737.2736, 95850623481.80663])
-# mobility_rutile = np.array([0.04392254697643786, 0.03992144978775102, 0.03061677378314711, 0.019304924800510884, 0.004902278090620809])
-# temperature_rutile = np.array([300, 250, 200, 150, 100])
+rate_constant_rutile = np.array([2466806150140.934, 1922901242452.6802, 1569191132130.0002, 1193889820010.756,  884322729360.7014, 563188642737.2736, 95850623481.80663])
+mobility_rutile = np.array([0.04392254697643786, 0.03992144978775102,  0.03597199922835163, 0.03061677378314711, 0.0259826664463655, 0.019304924800510884, 0.004902278090620809])
+temperature_rutile = np.array([300, 250, 225, 200, 175, 150, 100])
 
 # Hops greater than 4 A removed
-rate_constant_rutile = np.array([2275753014439.75, 1868394642018.7478, 1188002204103.6323, 553257682674.263, 95850623481.80663])
-mobility_rutile = np.array([0.04052076352971199, 0.03878983550393645, 0.03046578849009147, 0.018964512330043627, 0.004902278090620809])
-temperature_rutile = np.array([300, 250, 200, 150, 100])
+# rate_constant_rutile = np.array([2275753014439.75, 1868394642018.7478, 1549130645389.637, 1188002204103.6323, 865651732362.2189, 553257682674.263, 95850623481.80663])
+# mobility_rutile = np.array([0.04052076352971199, 0.03878983550393645, 0.03551213439814118, 0.03046578849009147,  0.025434085853414588, 0.018964512330043627, 0.004902278090620809])
+# temperature_rutile = np.array([300, 250, 225, 200, 175, 150, 100])
 
 rate_constant_rutile = rate_constant_rutile[:-1]
 mobility_rutile = mobility_rutile[:-1]
 temperature_rutile = temperature_rutile[:-1]
 
-folder3 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
+# folder3 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
+folder3 = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/anatase/deepmd/anatase/441/deepmd/hse-19-ts-md-9500-9900-removed'
 
 # folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
 # rate_constant3 = np.array([1422749145062.692, 833346616448.9613, 403902936462.9768, 94455838920.67673])
@@ -148,35 +150,32 @@ literature_rutile_tamaki = 1e-1
 # Plot subplot
 fig2, axes2 = plt.subplots(1, 2, figsize=(12, 6))
 
-axes2[0].plot(1/temperature_rutile, np.log(rate_constant_rutile), 'b*', label=r'e$^-$ This work', fillstyle='full')
-axes2[0].plot(1/temperature3, np.log(rate_constant3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
+axes2[0].plot(1/temperature_rutile, np.log(rate_constant_rutile), 'b*', fillstyle='full', markersize=10)
 axes2[0].plot(inv_T, ln_k_fit, 'b-', alpha=0.7, label=f'Fit: slope = {coeffs[0]:.2f}')
-axes2[0].plot(inv_T3, ln_k_fit3, 'r-', alpha=0.7, label=f'Fit: slope = {coeffs3[0]:.2f}')
 axes2[0].text(0.90, 0.90, text_str, transform=axes2[0].transAxes,
                           fontsize=12, color='black', weight='bold', ha='right', va='top')
+
+axes2[0].plot(1/temperature3, np.log(rate_constant3), 'r*', fillstyle='full', markersize=10)
+axes2[0].plot(inv_T3, ln_k_fit3, 'r-', alpha=0.7, label=f'Fit: slope = {coeffs3[0]:.2f}')
 axes2[0].text(0.4, 0.65, text_str3, transform=axes2[0].transAxes,
                           fontsize=12, color='black', weight='bold', ha='right', va='top')
-# axes2[0].plot(1/temperature_array_rutile, np.log(rutile_rate_analytical), 'k-')
-# axes2[0].plot(1/temperature3, np.log(anatase_rate_analytical), 'k-')
-axes2[0].set_xlabel("1 / Temperature (1 / K)")
-axes2[0].set_ylabel(r"Log [Rate constant (s$^{-1}$)] ")
 
 axes2[1].plot(temperature_rutile, np.log10(mobility_rutile), 'b*', label=r'e$^-$ This work', fillstyle='full')
-axes2[1].plot(temperature3, np.log10(mobility3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
 axes2[1].plot(temperature_array_rutile, np.log10(rutile_mobility_analytical*100**2), 'b-')
-axes2[1].plot(temperature_array_anatase, np.log10(anatase_mobility_analytical*100**2), 'r-')
 
 axes2[1].plot(300, np.log10(5.2E-02), 'bo', label=r'e$^-$ Deskins', fillstyle='full')
 axes2[1].plot(300, np.log10(5.3E-02), 'bs', label=r'e$^-$ Morita', fillstyle='full')
 axes2[1].plot(300, np.log10(7.6e-2), 'bv', label=r'e$^-$ Dai', fillstyle='full')
 # axes2[1].plot(300, np.log10(1.3), 'bD', label=r'e$^-$ Birschitzky', fillstyle='full')
-
-axes2[1].plot(300, np.log10(1.6e-3), 'ro', label=r'h$^+$ Deskins', fillstyle='full')
-axes2[1].plot(300, np.log10(1.3e-3), 'rs', label=r'h$^+$ Carey', fillstyle='full')
-
 # axes2[1].plot(300, np.log10(1), 'b^', label=r'e$^-$ Austin, Hendry', fillstyle='none')
+
 axes2[1].plot(300, np.log10(1E-02), 'bX', label=r'e$^-$ Yagi', fillstyle='none')
 axes2[1].plot(300, np.log10(1E-01), 'bP', label=r'e$^-$ Tamaki', fillstyle='none')
+
+axes2[1].plot(temperature3, np.log10(mobility3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
+axes2[1].plot(temperature_array_anatase, np.log10(anatase_mobility_analytical*100**2), 'r-')
+axes2[1].plot(300, np.log10(1.6e-3), 'ro', label=r'h$^+$ Deskins', fillstyle='full')
+axes2[1].plot(300, np.log10(1.3e-3), 'rs', label=r'h$^+$ Carey', fillstyle='full')
 
 # axes2[1].legend(frameon=True)
 # axes2[1].set_ylim([-4.4, 0.25])
@@ -184,6 +183,8 @@ axes2[1].plot(300, np.log10(1E-01), 'bP', label=r'e$^-$ Tamaki', fillstyle='none
 # axes2[1].legend(frameon=True, loc='upper right')
 # axes2[1].set_ylim([-3.3, 0.5])
 
+axes2[0].set_xlabel("1 / Temperature (1 / K)")
+axes2[0].set_ylabel(r"Log [Rate constant (s$^{-1}$)] ")
 axes2[1].legend(frameon=True, loc='lower right')
 axes2[1].set_ylim([-5.2, 0.25])
 axes2[1].set_ylim([-3.2, -0.9])
@@ -194,6 +195,13 @@ axes2[1].set_ylabel(r"Log [mobility (cm$^2$/Vs)]")
 
 fig2.tight_layout()
 fig2.savefig("{}/subplot.png".format(folder_rutile), dpi=600)
+
+kb_t = 1.38e-23 * 300  # KbT in SI units
+anatase_rate_analytical = calc_rate(np.mean(anatase_freq), kb_t, 1.0, Ea3/1e3*ev_to_joules)
+anatase_diff_analytical = calc_diffusion(1.0, 2.81388e-10, anatase_rate_analytical)
+anatase_mobility_analytical = calc_mobility(anatase_diff_analytical, kb_t)
+print('anatase_rate_analytical/1e11', anatase_rate_analytical/1e11)
+print('anatase_mobility_analytical', anatase_mobility_analytical*100**2)
 
 if __name__ == "__main__":
     print('Finished.')

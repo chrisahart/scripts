@@ -32,8 +32,14 @@ def calc_energy_spencer(lambda_tot, v_ab):
 
 
 def calc_energy_na_spencer(lambda_tot):
+    """ Calculate activation energy using Marcus method. Non-adiabatic limit v_ab = 0 """
     """ Calculate non-adiabatic activation energy using Jochen preferred method [Spencer 2016]. """
     return lambda_tot / 4
+
+
+def calc_energy_weak_coupling(lambda_tot, v_ab):
+    """ Calculate activation energy using Walsh method. Weak coupling """
+    return lambda_tot / 4 - v_ab
 
 
 def calc_marcus_factor(lambda_tot, v_ab, kb_t):
@@ -69,16 +75,18 @@ angstrom_to_cm = 1e-8
 ev_to_joules = 1.60218e-19
 
 # Parameters
-# temp = 300  # K
-temp = 600  # K
+temp = 300  # K
+# temp = 600  # K
 multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn_ev = 98.8/1e3 # Dai et al from phonon spectra
 # vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
-vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
-vn_s = vn_ev * ev_to_joules / planck
-vn = vn_s
-print('Effective nuclear frequency e13', vn_s/1e13)
+# vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
+# vn_s = vn_ev * ev_to_joules / planck
+# vn = vn_s
+# print('Effective nuclear frequency e13', vn_s/1e13)
+# vn = 1.13e13  # rutile NNP-MD
+vn = 2.66e13  # anatase NNP-MD
 # vn = 2.42e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
 kb_t_au = 8.617333262145E-5 * temp  # KbT in eV
@@ -96,7 +104,7 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # reorg = np.array([752]) / 1e3
 
 # deskinsElectronTransportPolaron2007
-# r_hop = np.array([2.96])
+# r_hop = np.array([2.97])
 # coupling = np.array([200]) / 1e3
 # reorg = np.array([1152]) / 1e3
 
@@ -213,20 +221,20 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # reorg = np.array([2040]) / 1e3
 
 # Carey2021
-r_hop = np.array([2.44518])
-coupling = np.array([109]) / 1e3
-reorg = np.array([1230]) / 1e3
+# r_hop = np.array([2.44518])
+# coupling = np.array([109]) / 1e3
+# reorg = np.array([1230]) / 1e3
 omega = 320  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
-print('Pre-exponential factor:', omega*const.c * 100)
-print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
-
-# Carey2021
-# r_hop = np.array([2.81388])
-# coupling = np.array([113]) / 1e3
-# reorg = np.array([930]) / 1e3
-# omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
 # print('Pre-exponential factor:', omega*const.c * 100)
 # print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
+
+# Carey2021
+r_hop = np.array([2.81388])
+coupling = np.array([113]) / 1e3
+reorg = np.array([930]) / 1e3
+omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
+print('Pre-exponential factor:', omega*const.c * 100)
+print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
@@ -418,9 +426,9 @@ print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
 for i in range(0, np.shape(coupling)[0]):
 
-    marcus_factor = calc_marcus_factor(reorg[i]*ev_to_joules, coupling[i]*ev_to_joules, kb_t)
-    print('Marcus pre-factor', marcus_factor)
-    print('Marcus pre-factor e12', marcus_factor/1e12)
+    # marcus_factor = calc_marcus_factor(reorg[i]*ev_to_joules, coupling[i]*ev_to_joules, kb_t)
+    # print('Marcus pre-factor', marcus_factor)
+    # print('Marcus pre-factor e12', marcus_factor/1e12)
     # vn = marcus_factor
 
     adiabaticity_parameter = calc_adiabaticity(vn, kb_t, planck, reorg[i]*ev_to_joules, coupling[i]*ev_to_joules)
@@ -455,9 +463,9 @@ for i in range(0, np.shape(coupling)[0]):
 
     # Upper bound rutile
     # r_hop = np.array([2.96])
-    r_hop = np.array([3.57])
-    rate_spencer = vn
-    multiplicity = 3
+    # r_hop = np.array([3.57])
+    # rate_spencer = vn
+    # multiplicity = 3
 
     # Carey2021
     # rate_spencer = 8.4e10
@@ -474,8 +482,10 @@ for i in range(0, np.shape(coupling)[0]):
     # print("Landau-Zener transition probability (P_LZ): {0:.2}".format(lz_probability))
     print("Electronic transmission coefficient (k_el): {0:.1}".format(transmission_coefficient))
 
-    print("\nActivation energy (delta G*): {} meV".format(int(np.round(energy_spencer*1e3))))
-    print("Electron transfer rate constant (k_et): {0:.1E} s-1".format(rate_spencer))
+    print("\nActivation energy lambda/4: {} meV".format(int(np.round(calc_energy_na_spencer(reorg[i])*1e3))))
+    print("Activation energy lambda/4 - Hab: {} meV".format(int(np.round(calc_energy_weak_coupling(reorg[i], coupling[i])*1e3))))
+    print("Activation energy (delta G*): {} meV".format(int(np.round(energy_spencer*1e3))))
+    print("\nElectron transfer rate constant (k_et): {0:.1E} s-1".format(rate_spencer))
     print("1/Electron transfer rate constant (1/k_et): {} fs".format((1/rate_spencer)*1e15))
     print("1/Electron transfer rate constant (1/k_et) / 1e6: {} fs".format((1/rate_spencer)*1e15/1e6))
     # print("Mobility: {0:.2} cm2/V".format(mobility_spencer))

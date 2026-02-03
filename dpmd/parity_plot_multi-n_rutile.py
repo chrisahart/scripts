@@ -388,7 +388,9 @@ model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_li
 
 
 spin_is_population = True
-folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
+# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
+# folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
 model_ener = ['{}/{}'.format(folder, model[0])] * 6
 model_spin = ['{}/{}'.format(folder, model[1])] * 6
 axis_lim_y = np.array([-0.02, 0.805])
@@ -466,6 +468,15 @@ force_0 = []
 spin_1 = []
 ener_1 = []
 force_1 = []
+
+test = np.load("{}/database_ts/database_ener_force_train/set.000/aparam.npy".format(folder))
+print('test', test.shape)
+test2 = np.load("{}/database_ts/database_ener_force_train/set.000/force.npy".format(folder))
+print('test2', test2.shape)
+test3 = np.load("{}/database_ts/database_ener_force_train/set.000/energy.npy".format(folder))
+print('test3', test3.shape)
+test4 = np.load("{}/database_ts/database_ener_force_train/set.000/coord.npy".format(folder))
+print('test4', test4.shape)
 
 # test = np.load("{}/database_population_train/set.000/atomic_spin.npy".format(folder))
 # test = np.load("{}/database_population_test/1/set.000/atomic_spin.npy".format(folder))

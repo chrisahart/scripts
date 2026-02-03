@@ -8,6 +8,12 @@ import os
 from ase import Atoms
 from general import parameters as param
 
+params = {'axes.formatter.limits': [-4, 4],
+          'axes.labelsize': '14',
+          'axes.titlesize': '16',
+          'lines.markersize': '8',
+          }
+plt.rcParams.update(params)
 
 def compute_vacf(vels):
     v = vels.reshape(vels.shape[0], -1)
@@ -26,8 +32,9 @@ def linear_func2(x, m, c):
 
 # --- Parameters ---
 topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
+topology_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
-folder_1 = '/Users/chris/Documents/Storage/deepmd-md/hse-22-ts-md2'
+folder_1 = '/Users/chris/Documents/Storage/delete/deepmd-md/hse-22-ts-md2'
 
 # folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8'
 # folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1'
@@ -35,8 +42,8 @@ folder_1 = '/Users/chris/Documents/Storage/deepmd-md/hse-22-ts-md2'
 folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1'
 folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
 
-folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed'
-folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
+# folder_energy = 'single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed'
+# folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8'
 
 # folder_md = '100k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
 # folder_md = '100k-1000-ps-vel-9.3-ps'
@@ -47,18 +54,30 @@ folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-ma
 # temperature_set = 150
 # fit_start = 20000
 
+# folder_md = '175k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 175
+# fit_start = 20000
+
 # folder_md = '200k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
 # temperature_set = 200
+# fit_start = 20000
+
+# folder_md = '225k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 225
 # fit_start = 20000
 
 # folder_md = '250k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
 # temperature_set = 250
 # fit_start = 20000
 
-folder_md = '300k-1000-ps-vel-9.3-ps-friction-0.001'
+# folder_md = '275k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 275
+# fit_start = 20000
+
+# folder_md = '300k-1000-ps-vel-9.3-ps-friction-0.001'
 # folder_md = '300k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
-temperature_set = 300
-fit_start = 20000
+# temperature_set = 300
+# fit_start = 20000
 
 # folder_md = '300k-50-ps-vel-9-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps'
@@ -66,9 +85,9 @@ fit_start = 20000
 # folder_md = '300k-50-ps-vel-9.45-ps'
 # folder_md = '300k-50-ps-vel-9.5-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps-friction-0.001'
-# folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
-# temperature_set = 300
-# fit_start = 5000
+folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
+temperature_set = 300
+fit_start = 5000
 
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
 print(folder)
@@ -81,7 +100,7 @@ save_fig = True
 calc_distance = True
 plot_rdf = False
 plot_msd = False
-plot_msd = True
+# plot_msd = True
 draw_legend = False
 
 # --- Load Data ---
@@ -89,9 +108,9 @@ spin = np.load(f"{folder}/spin_history.npy", mmap_mode='r')  # Memory-map large 
 charge_state = np.load(f"{folder}/charge_state_history.npy", mmap_mode='r')
 num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
-xlim_1 = [0, time_array[-1]]
+# xlim_1 = [0, time_array[-1]]
 # xlim_1 = [0, 1e3]
-# xlim_1 = [0, 700]
+xlim_1 = [0, 700]
 offset = 0
 
 # --- Convert Trajectory to XYZ (Chunked) ---
@@ -265,6 +284,18 @@ fig_plot_all.tight_layout()
 fig_plot_all.subplots_adjust(hspace=0.05)
 if save_fig: fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder), dpi=300)
 
+# Plot spin only
+fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+for j in range(num_atoms):
+    ax_spin1.plot((time_array[:int(xlim_1[1])] - offset) / 1e3, spin[:int(xlim_1[1]), j], '-',
+                        label='{}'.format(j + 1))
+ax_spin1.set_ylabel('Spin moment')
+ax_spin1.set_xlabel('Time / ps')
+ax_spin1.set_xlim((np.array(xlim_1) - offset) / 1000)
+ax_spin1.set_ylim(ylim_1)
+fig_spin1.tight_layout()
+fig_spin1.subplots_adjust(hspace=0.05)
+if save_fig: fig_spin1.savefig('{}/polaron_hirshfeld.png'.format(folder), dpi=300)
 
 # --- Cleanup ---
 del bond_lengths_time, bond_lengths_time_sorted_mean, polaron_distances, spin

@@ -260,37 +260,27 @@ def read_leopold(folder, filename, num_atoms):
     return file_spec1, hirsh_data, species
 
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/dataset'
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/leopold_analysis'
 name = 'train'
 # name = 'valid'
 # name = 'test'
-data = '{}_clean.xyz'.format(name)
+folder_data1 = 'database_{}'.format(name)
+data = 'data/{}_clean.xyz'.format(name)
 num_atoms = 288
-box_size = np.array([12.9730319977, 12.9730319977, 17.7244205475, 90, 90, 90])
 box = np.array([[12.9730319977, 0, 0, 0, 12.9730319977, 0, 0, 0, 17.7244205475]])
-
-plot_zoom = True
-topology_file = '{}/system.xyz'.format(folder)
+topology_file = '{}/data/system.xyz'.format(folder)
 
 # Read leopold file
-# grep 'energy=' train.xyz  | awk -F 'energy=' '{print $2}'  | awk '{print $1}' > train_energy.txt
-# sed '/Lattice=/d' train.xyz > train_clean.xyz
 leopold_1_df, leopold_1_np, species = read_leopold(folder, data, num_atoms)
-energy_clean = np.loadtxt('{}/{}_energy.txt'.format(folder, name))
-print('leopold_1_np.shape', leopold_1_np.shape)
+energy_clean = np.loadtxt('{}/data/{}_energy.txt'.format(folder, name))
 
 num_timesteps = np.shape(leopold_1_np)[0]
 leopold_index = np.linspace(start=0, stop=num_timesteps-1, num=num_timesteps)
-time_array = np.linspace(start=0, stop=num_timesteps-1, num=num_timesteps)
-local_bonds = 6
-timestep = 1
-
-# print(leopold_index)
 
 # Print leopold to CP2K file coordinate .xyz file
 coord = leopold_1_np[:, :3, :]
 forces = leopold_1_np[:, 4:7, :]
-trajectory_file = '{}/{}-pos-1-cleaned.xyz'.format(folder, name)
+trajectory_file = '{}/data/{}-pos-1-cleaned.xyz'.format(folder, name)
 write_xyz(trajectory_file, coord, species, num_atoms, leopold_index, energy_clean)
 
 # Spin moment as atom_ener and charge state as aparam
@@ -298,7 +288,6 @@ population_alpha = leopold_1_np[:, -2, :]
 population_beta = leopold_1_np[:, -1, :]
 spin_moment = population_alpha-population_beta
 aparam = leopold_1_np[:, 3, :]
-# print(aparam)
 
 # Convert
 coord = np.transpose(coord, axes=(0, 2, 1))
@@ -306,10 +295,6 @@ forces = np.transpose(forces, axes=(0, 2, 1))
 coord = coord.reshape(num_timesteps, num_atoms*3)
 forces = forces.reshape(num_timesteps, num_atoms*3)
 energy = np.reshape(energy_clean, (num_timesteps, 1))
-# print(coord.shape)
-# print(forces.shape)
-# print(forces)
-# print(energy.shape)
 box_array = np.zeros((num_timesteps, 9))
 for i in range(box_array.shape[0]):
     box_array[i, :] = box
@@ -319,24 +304,13 @@ for i in range(np.shape(population_alpha)[0]):
         population[i, j, 0] = population_alpha[i, j]
         population[i, j, 1] = population_beta[i, j]
 
-# print(num_timesteps)
-# print(population_alpha.shape)
-# print(population_beta.shape)
-# print(population.shape)
-
-# print(population_alpha)
-
 # Training
-# folder_data1 = 'database_train'
-# folder_data1 = 'database_test/1'
-folder_data1 = 'database_test/2'
 np.save('{}/{}/set.000/energy.npy'.format(folder, folder_data1), energy)
 np.save('{}/{}/set.000/coord.npy'.format(folder, folder_data1), coord)
 np.save('{}/{}/set.000/force.npy'.format(folder, folder_data1), forces)
 np.save('{}/{}/set.000/box.npy'.format(folder, folder_data1), box_array)
-np.savetxt('{}/{}/aparam.raw'.format(folder, folder_data1), aparam.flatten(), delimiter=' ')
-np.save('{}/{}/set.000/aparam.npy'.format(folder, folder_data1), aparam.flatten())
-np.save('{}/{}/set.000/atomic_spin.npy'.format(folder, folder_data1), population)
+np.save('{}/{}/set.000/aparam.npy'.format(folder, folder_data1), aparam)
+np.save('{}/{}/set.000/atomic_population.npy'.format(folder, folder_data1), population)
 
 if __name__ == "__main__":
     print('Finished.')
