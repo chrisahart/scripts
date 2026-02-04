@@ -44,6 +44,7 @@ def plot_force(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=Non
         ax.plot([[-10, -10], [10, 10]], [[-10, -10], [10, 10]], 'k--')
         dft = dft.flatten()
         dp = dp.flatten()
+        polaron_index = polaron_index.flatten()
         dft2 = []
         dp2 = []
         for i in range(len(polaron_index)):
@@ -91,6 +92,7 @@ def plot_spin(dft, dp, ax, color_plot, pos, text, polaron_index=None, title=None
         ax.plot([[-10, -10], [10, 10]], [[-10, -10], [10, 10]], 'k--')
         dft = dft.flatten()
         dp = dp.flatten()
+        polaron_index = polaron_index.flatten()
         dft2 = []
         dp2 = []
         for i in range(len(polaron_index)):
@@ -175,60 +177,13 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
     # ax.legend()
 
 
+# do_concatenate = False
 
-do_concatonate = False
-
-# Bulk TiO2 leopold
-# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
-# model = ['single-fit-ener-dpa2', 'single-fit-m-dpa2']
-# model = ['single-fit-ener-dpa2-finetune', 'single-fit-m-dpa2-finetune']
-# model = ['single-fit-ener-dpa3-6-default', 'single-fit-m-dpa3-6-default']
-# model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
-# model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
+# Bulk TiO2 leopold leopold-fixed2
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']
 # spin_is_population = True
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_train/'.format(folder),
-#             '{}/database_test/1'.format(folder),
-#             '{}/database_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# axis_lim_y = np.array([0, 1])
-# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
-# pos_array_force = np.array(([0.55, 0.25], [0.55, 0.15], [0.55, 0.05]))
-# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
-# text_array = ['Train', 'Valid', 'Test']
-# num_atoms = 288
-
-# Bulk TiO2 leopold
-# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
-# model = ['single-fit-ener-dpa2', 'single-fit-m-dpa2']
-# model = ['single-fit-ener-dpa2-finetune', 'single-fit-m-dpa2-finetune']
-# model = ['single-fit-ener-dpa3-6-default', 'single-fit-m-dpa3-6-default']
-# model = ['single-fit-ener-dpa3-16-official', 'single-fit-m-dpa3-16-official']
-# model = ['single-fit-ener-dpa3-16-official-finetune', 'single-fit-m-dpa3-16-official-finetune']
-# spin_is_population = True
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_train/'.format(folder),
-#             '{}/database_test/1'.format(folder),
-#             '{}/database_test/2'.format(folder)]
-# val = ['_0_', '_1_', '_2_']
-# axis_lim_y = np.array([0, 1])
-# pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
-# pos_array_force = np.array(([0.55, 0.25], [0.55, 0.15], [0.55, 0.05]))
-# pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
-# text_array = ['Train', 'Valid', 'Test']
-# num_atoms = 288
-
-# Bulk TiO2 336 25% hse-25-3-ps (no hops)
-# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
-# model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
-# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
-# model = ['multi-task-dpa3', 'multi-task-dpa3']
-# spin_is_population = True
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-25-3-ps'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold-fixed2'
 # model_ener = ['{}/{}'.format(folder, model[0])] * 4
 # model_spin = ['{}/{}'.format(folder, model[1])] * 4
 # database = ['{}/database_population_train/'.format(folder),
@@ -240,15 +195,13 @@ do_concatonate = False
 # pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 # pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
 # text_array = ['Train', 'Valid', 'Test']
-# num_atoms = 324
+# num_atoms = 288
 
-# Bulk TiO2 336 25% hse-25-4-ps (many hops)
-# model = ['single-fit-ener-se_e2_a', 'single-fit-m-se_e2_a']
-# model = ['multi-task-se_e2_a', 'multi-task-se_e2_a']
-# model = ['single-fit-ener-dpa3', 'single-fit-m-dpa3']
-# model = ['multi-task-dpa3', 'multi-task-dpa3']
+# Bulk TiO2 leopold leopold-fixed3
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']
 # spin_is_population = True
-# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/hse-25-4-ps'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold-fixed3'
 # model_ener = ['{}/{}'.format(folder, model[0])] * 4
 # model_spin = ['{}/{}'.format(folder, model[1])] * 4
 # database = ['{}/database_population_train/'.format(folder),
@@ -260,7 +213,7 @@ do_concatonate = False
 # pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 # pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
 # text_array = ['Train', 'Valid', 'Test']
-# num_atoms = 324
+# num_atoms = 288
 
 # Bulk TiO2 336 hse-22-10-ps-train-5-ps
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
@@ -332,7 +285,7 @@ do_concatonate = False
 # text_array = ['Train', 'Valid', 'Test']
 # num_atoms = 324
 
-# Bulk TiO2 336 hse-22-10-ps-train-9-ps TODO
+# Bulk TiO2 336 hse-22-10-ps-train-9-ps
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # decent, force 40, spin 0.014
 # spin_is_population = True
@@ -379,76 +332,39 @@ do_concatonate = False
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-rcut-4',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # DP-MD 2
 
-model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed',
-         'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # good
+# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed',
+#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # good
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed-decay_steps-50000',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # bad
 # model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1-fixed-lr-1e-5-1e-8',
 #          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1-twostep-lr-1e-5-1e-8']  # bad
 
 
-spin_is_population = True
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
-folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
-# folder = '/Volumes/Elements/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md2'
-model_ener = ['{}/{}'.format(folder, model[0])] * 6
-model_spin = ['{}/{}'.format(folder, model[1])] * 6
-axis_lim_y = np.array([-0.02, 0.805])
-pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
-pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
-pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
-text_array = ['Train', 'Valid', 'Test']
-num_atoms = 324
-# do_concatonate = False
-do_concatonate = True
-database = ['{}/database_ts/database_population_train/'.format(folder),
-            '{}/database_ts/database_population_test/1'.format(folder),
-            '{}/database_ts/database_population_test/2'.format(folder)]
-val = ['_0_', '_1_', '_2_']
-database += ['{}/database_md/database_population_train/'.format(folder),
-            '{}/database_md/database_population_test/1'.format(folder),
-            '{}/database_md/database_population_test/2'.format(folder)]
-val += ['_3_', '_4_', '_5_']
-# database = ['{}/database_md/database_population_train/'.format(folder),
-#             '{}/database_md/database_population_test/1'.format(folder),
-#             '{}/database_md/database_population_test/2'.format(folder)]
-# val = ['_3_', '_4_', '_5_']
-# database = ['{}/database_hse-22-10-ps-train-5-ps/database_population_train/'.format(folder),
-#             '{}/database_hse-22-10-ps-train-5-ps/database_population_test/1'.format(folder),
-#             '{}/database_hse-22-10-ps-train-5-ps/database_population_test/2'.format(folder)]
-# val = ['_6_', '_7_', '_8_']
-# database = ['{}/database_hse-22-10-ps-train-9-ps/database_population_train/'.format(folder),
-#             '{}/database_hse-22-10-ps-train-9-ps/database_population_test/2'.format(folder)]
-# val = ['_9_', '_10_']
-
-# Bulk TiO2 336 hse-22 pbe-neutral
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.02-1000_limit_pref-1-1',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: 0.040, 0.041, 0.043. force 30, 30, 31 **
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-0.2-100_limit_pref-20-60',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: 0.178, 0.179, 0.184. force 30, 30, 31
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-10-1_limit_pref-10-1',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: 0.123, 0.121, 0.158. force 38, 38, 40
-# model = ['single-fit-ener-dpa3-nlayers-6-official-v3.1.0-start_pref-1-1_limit_pref-1-1',
-#          'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-mae-pref-1-pref_pop-1000-1']  # energy: 0.465, 0.467, 0.457. force 31, 32, 32
-# model = ['single-fit-ener-se_e2_a-official-v3.1.0-sel-90-start_pref-0.02-1000_limit_pref-1-1',
-#          'single-fit-pop-se_e2_a-v3.1.0-dev-polaron-sel-90']  # energy: 0.367, 0.372, 0.484. force 135, 135, 134
-# model = ['single-fit-ener-se_e2_a-official-v3.1.0-sel-90-start_pref-0.2-100_limit_pref-20-60',
-#          'single-fit-pop-se_e2_a-v3.1.0-dev-polaron-sel-90']  # energy: 0.310, 0.304, 0.390. force 122, 123, 122 **
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/pbe-neutral'
-# model_ener = ['{}/{}'.format(folder, model[0])] * 4
-# model_spin = ['{}/{}'.format(folder, model[1])] * 4
-# database = ['{}/database_population_train/'.format(folder),
-#             '{}/database_population_test/1'.format(folder),
-#             '{}/database_population_test/2'.format(folder)]
+# Bulk TiO2 336 hse-22-ts-md3
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/hse-22-ts-md3'
+# model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1', 'pop-dpa3-pref_pop-1000-1']
+# model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-1000-1-twostep-lr-1e-5-1e-8']
+# model = ['ener-dpa3-start_pref-1-1_limit_pref-1-1', 'pop-dpa3-pref_pop-10000-10']
+# model = ['ener-dpa3-start_pref-1-1_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-10000-10-twostep-lr-1e-5-1e-8']
+# model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-10000-10-twostep-lr-1e-5-1e-8']  # Best
+# model_ener = ['{}/{}'.format(folder, model[0])] * 6
+# model_spin = ['{}/{}'.format(folder, model[1])] * 6
+# database = ['{}/database_ts/database_population_train/'.format(folder),
+#             '{}/database_ts/database_population_test/1'.format(folder),
+#             '{}/database_ts/database_population_test/2'.format(folder)]
 # val = ['_0_', '_1_', '_2_']
-# axis_lim_y = np.array([0, 1])
+# database += ['{}/database_md/database_population_train/'.format(folder),
+#              '{}/database_md/database_population_test/1'.format(folder),
+#              '{}/database_md/database_population_test/2'.format(folder)]
+# val += ['_3_', '_4_', '_5_']
+# spin_is_population = True
+# do_concatenate = True
+# axis_lim_y = np.array([-0.02, 0.805])
 # pos_array_energy = np.array(([0.45, 0.25], [0.45, 0.15], [0.45, 0.05]))
 # pos_array_force = np.array(([0.6, 0.25], [0.6, 0.15], [0.6, 0.05]))
 # pos_array_spin = np.array(([0.72, 0.25], [0.72, 0.15], [0.72, 0.05]))
 # text_array = ['Train', 'Valid', 'Test']
 # num_atoms = 324
-# spin_is_population = True
-
 
 print('model', model)
 color_plot_array = ['r', 'g', 'b', 'm']
@@ -469,23 +385,6 @@ spin_1 = []
 ener_1 = []
 force_1 = []
 
-test = np.load("{}/database_ts/database_ener_force_train/set.000/aparam.npy".format(folder))
-print('test', test.shape)
-test2 = np.load("{}/database_ts/database_ener_force_train/set.000/force.npy".format(folder))
-print('test2', test2.shape)
-test3 = np.load("{}/database_ts/database_ener_force_train/set.000/energy.npy".format(folder))
-print('test3', test3.shape)
-test4 = np.load("{}/database_ts/database_ener_force_train/set.000/coord.npy".format(folder))
-print('test4', test4.shape)
-
-# test = np.load("{}/database_population_train/set.000/atomic_spin.npy".format(folder))
-# test = np.load("{}/database_population_test/1/set.000/atomic_spin.npy".format(folder))
-# test = np.load("{}/database_train/set.000/atomic_spin.npy".format(folder))
-# print('test', test[0, :, :])
-# test = np.load("{}/database_train/set.000/force.npy".format(folder))
-# print('test', test.shape)
-# print('test', test[0, :])
-
 for i in range(len(database)):
     dft_e.append(np.load("{}/set.000/energy.npy".format(database[i], val[i])))
     dft_f.append(np.load("{}/set.000/force.npy".format(database[i], val[i])))
@@ -499,10 +398,10 @@ for i in range(len(database)):
     if not spin_is_population:
         dft_s.append(np.load("{}/set.000/atom_ener.npy".format(database[i], val[i])))
     if spin_is_population:
-        dft_s.append(np.load("{}/set.000/atomic_spin.npy".format(database[i], val[i])))
+        dft_s.append(np.load("{}/set.000/atomic_population.npy".format(database[i], val[i])))
 
-# Concatonate
-if do_concatonate:
+# Concatenate
+if do_concatenate:
     merged_dft_e = []
     merged_dft_f = []
     merged_dft_polaron = []

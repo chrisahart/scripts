@@ -89,6 +89,12 @@ forces = forces[:num_frames]
 box_array = box_array[:num_frames]
 aparam = aparam[:num_frames]
 population = population[:num_frames]
+print(np.shape(energy))
+print(np.shape(coord))
+print(np.shape(forces))
+print(np.shape(box_array))
+print(np.shape(aparam))
+print(np.shape(population))
 
 # Training
 np.save('{}/{}/set.000/energy.npy'.format(folder, folder_data1), energy)
