@@ -440,21 +440,30 @@ plot_msd = False
 # box_size = [13.77, 13.77, 17.76, 90, 90, 90]
 # temperature_set = 300
 
+# PBE0
+folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-pbe0-mckenna'
+files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+num_atoms = 324
+box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+temperature_set = 300
+xlim_auto = True
+# xlim_1 = [0, 200]
+
 # Finished
 # folder_1 = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'  # FINISHED lifetime fs 188
 # folder_1 = '/Volumes/Elements SE/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-hse-22-complete'  # FINISHED lifetime fs 188
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
-folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
-files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+# folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
+# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis_wrap'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_vmd'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-vmd-wrap-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # xlim_1 = [0, 6645]
-xlim_1 = [0, 10000]
-plot_msd = True
+# xlim_1 = [0, 10000]
+# plot_msd = True
 # xlim_1 = [5000, 10000]
 # xlim_1 = [1000, 10000]
 # offset = 1000
@@ -471,12 +480,12 @@ plot_msd = True
 # xlim_1 = [int(9076-40), int(9076+40)]  #  hop
 # xlim_1 = [int(9652-30), int(9652+30)]  #  hop
 # xlim_1 = [int(9734-40), int(9734+40)]  #  hop
-xlim_1 = np.array(xlim_1)
-num_atoms = 324
-box_size = [13.77, 13.77, 17.76, 90, 90, 90]
-temperature_set = 300
+# xlim_1 = np.array(xlim_1)
+# num_atoms = 324
+# box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+# temperature_set = 300
 # xlim_auto = True
-xlim_auto = False
+# xlim_auto = False
 
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good/step-3937-eps-1e-7-stride-2'
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/reftraj/trajectory_mdanalysis/ts/good/combined'
@@ -591,27 +600,27 @@ if save_fig: fig_energy_potential.savefig('{}/energy_potential.png'.format(folde
 
 # Calculate Hirshfeld statistics
 # Extract the spin moments for all atoms at each timestep
-spin_moments = hirshfeld_1_np[int(xlim_1[0]):int(xlim_1[1]), 5, :]
-sorted_spins = np.sort(spin_moments, axis=1)  # sort along the atom axis
-top3_spins = sorted_spins[:, -3:]  # shape: (num_timesteps, 3)
-average_1st = np.mean(top3_spins[:, 2])
-average_2nd = np.mean(top3_spins[:, 1])
-average_3rd = np.mean(top3_spins[:, 0])
-std_1st = np.std(top3_spins[:, 2])
-std_2nd = np.std(top3_spins[:, 1])
-std_3rd = np.std(top3_spins[:, 0])
-
-print("1st largest spin: average =", average_1st, ", 1 std =", std_1st)
-print("2nd largest spin: average =", average_2nd, ", 1 std =", std_2nd)
-print("3rd largest spin: average =", average_3rd, ", 1 std =", std_3rd)
-
-time_calc = 9074 + 2
-time_calc = 9655 - 3
-time_calc = 9734
+# spin_moments = hirshfeld_1_np[int(xlim_1[0]):int(xlim_1[1]), 5, :]
+# sorted_spins = np.sort(spin_moments, axis=1)  # sort along the atom axis
+# top3_spins = sorted_spins[:, -3:]  # shape: (num_timesteps, 3)
+# average_1st = np.mean(top3_spins[:, 2])
+# average_2nd = np.mean(top3_spins[:, 1])
+# average_3rd = np.mean(top3_spins[:, 0])
+# std_1st = np.std(top3_spins[:, 2])
+# std_2nd = np.std(top3_spins[:, 1])
+# std_3rd = np.std(top3_spins[:, 0])
+#
+# print("1st largest spin: average =", average_1st, ", 1 std =", std_1st)
+# print("2nd largest spin: average =", average_2nd, ", 1 std =", std_2nd)
+# print("3rd largest spin: average =", average_3rd, ", 1 std =", std_3rd)
+#
 # time_calc = 9074 + 2
-chain_atoms = np.array([62, 70, 78, 79, 71, 63]) - 1
-chain_atoms = np.array([85, 93, 101, 104, 96, 88]) - 1
-print('time_calc', time_calc, time_array[time_calc], hirshfeld_1_np[time_calc, 5, chain_atoms])
+# time_calc = 9655 - 3
+# time_calc = 9734
+# # time_calc = 9074 + 2
+# chain_atoms = np.array([62, 70, 78, 79, 71, 63]) - 1
+# chain_atoms = np.array([85, 93, 101, 104, 96, 88]) - 1
+# print('time_calc', time_calc, time_array[time_calc], hirshfeld_1_np[time_calc, 5, chain_atoms])
 
 # Plot Hirshfeld spin of all atoms
 fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
@@ -767,7 +776,8 @@ if calc_distance:
     polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
 
     # Remove polaron hops that occur within 50 fs of another hop
-    min_residence = 50
+    min_residence = 1
+    # min_residence = 50
     hops = polaron_distances > 0
     hop_indices = np.where(hops)[0]
     mask = np.ones_like(hop_indices, dtype=bool)
@@ -800,34 +810,34 @@ if calc_distance:
     #     # print(polaron_ts_average[i])
 
     # polaron_indices = np.delete(polaron_indices, 25)
-    for i in range(np.shape(polaron_indices)[0]):
-        print('transition state: ', i, polaron_indices[i]+1+xlim_1[0])
-        print(spin_moments[polaron_indices[i], chain_atoms])
-        print(spin_moments[polaron_indices[i]+1, chain_atoms])
-
-        print(sorted_spins[polaron_indices[i], -1])
-        print(sorted_spins[polaron_indices[i], -2])
-
-        print(sorted_spins[polaron_indices[i]+1, -1])
-        print(sorted_spins[polaron_indices[i]+1, -2])
-
-    polaron_ts_mean_1 = np.mean(sorted_spins[polaron_indices, -1])
-    polaron_ts_mean_2 = np.mean(sorted_spins[polaron_indices, -2])
-    polaron_ts_mean_3 = np.mean(sorted_spins[polaron_indices+1, -1])
-    polaron_ts_mean_4 = np.mean(sorted_spins[polaron_indices+1, -2])
-    print('polaron_ts_mean_1', polaron_ts_mean_1)
-    print('polaron_ts_mean_2', polaron_ts_mean_2)
-    print('polaron_ts_mean_3', polaron_ts_mean_3)
-    print('polaron_ts_mean_4', polaron_ts_mean_4)
-    
-    polaron_ts_std_1 = np.std(sorted_spins[polaron_indices, -1])
-    polaron_ts_std_2 = np.std(sorted_spins[polaron_indices, -2])
-    polaron_ts_std_3 = np.std(sorted_spins[polaron_indices+1, -1])
-    polaron_ts_std_4 = np.std(sorted_spins[polaron_indices+1, -2])
-    print('polaron_ts_std_1', polaron_ts_std_1)
-    print('polaron_ts_std_2', polaron_ts_std_2)
-    print('polaron_ts_std_3', polaron_ts_std_3)
-    print('polaron_ts_std_4', polaron_ts_std_4)
+    # for i in range(np.shape(polaron_indices)[0]):
+    #     print('transition state: ', i, polaron_indices[i]+1+xlim_1[0])
+    #     print(spin_moments[polaron_indices[i], chain_atoms])
+    #     print(spin_moments[polaron_indices[i]+1, chain_atoms])
+    #
+    #     print(sorted_spins[polaron_indices[i], -1])
+    #     print(sorted_spins[polaron_indices[i], -2])
+    #
+    #     print(sorted_spins[polaron_indices[i]+1, -1])
+    #     print(sorted_spins[polaron_indices[i]+1, -2])
+    #
+    # polaron_ts_mean_1 = np.mean(sorted_spins[polaron_indices, -1])
+    # polaron_ts_mean_2 = np.mean(sorted_spins[polaron_indices, -2])
+    # polaron_ts_mean_3 = np.mean(sorted_spins[polaron_indices+1, -1])
+    # polaron_ts_mean_4 = np.mean(sorted_spins[polaron_indices+1, -2])
+    # print('polaron_ts_mean_1', polaron_ts_mean_1)
+    # print('polaron_ts_mean_2', polaron_ts_mean_2)
+    # print('polaron_ts_mean_3', polaron_ts_mean_3)
+    # print('polaron_ts_mean_4', polaron_ts_mean_4)
+    #
+    # polaron_ts_std_1 = np.std(sorted_spins[polaron_indices, -1])
+    # polaron_ts_std_2 = np.std(sorted_spins[polaron_indices, -2])
+    # polaron_ts_std_3 = np.std(sorted_spins[polaron_indices+1, -1])
+    # polaron_ts_std_4 = np.std(sorted_spins[polaron_indices+1, -2])
+    # print('polaron_ts_std_1', polaron_ts_std_1)
+    # print('polaron_ts_std_2', polaron_ts_std_2)
+    # print('polaron_ts_std_3', polaron_ts_std_3)
+    # print('polaron_ts_std_4', polaron_ts_std_4)
 
     # Plot polaron distances
     metric = np.zeros((num_atoms_ti, num_timesteps_mobility))

@@ -80,14 +80,17 @@ temp = 300  # K
 multiplicity = 1  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn_ev = 98.8/1e3 # Dai et al from phonon spectra
-# vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
-# vn_s = vn_ev * ev_to_joules / planck
-# vn = vn_s
-# print('Effective nuclear frequency e13', vn_s/1e13)
+vn_s = vn_ev * ev_to_joules / planck
+vn = vn_s
+print('Effective nuclear frequency e13 s-1', vn_s/1e13)
+print('Effective nuclear frequency fs', 1/vn_s * 1e15)
 # vn = 1.13e13  # rutile NNP-MD
-vn = 2.66e13  # anatase NNP-MD
+# vn = 2.66e13  # anatase NNP-MD
 # vn = 2.42e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+# Effective nuclear frequency e13 s-1 2.4165610859728504
+# Effective nuclear frequency fs 41.38111822641651
 # vn = 2.66e13  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
 kb_t_au = 8.617333262145E-5 * temp  # KbT in eV
 kb_t = 1.38e-23 * temp  # KbT in SI units
@@ -160,6 +163,27 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # energy_dft_gs = np.array([-9761.98275975738943])
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
+# TiO2 336 20% HFX 1st nearest neighbour 22% structure
+r_hop = np.array([2.96])
+coupling = np.array([19.268576644471]) * param.hartree_to_ev / 1e3
+energy_cdft_ts = np.array([-9763.806830063656889])
+energy_dft_gs = np.array([-9763.813834946744464])
+reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 336 20% HFX 1st nearest neighbour 22% structure
+# r_hop = np.array([2.96])
+# coupling = np.array([16.882923649607]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-9763.271748354749434])
+# energy_dft_gs = np.array([-9763.279092681907059])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
+# TiO2 336 25% HFX 1st nearest neighbour 22% structure
+# r_hop = np.array([2.96])
+# coupling = np.array([11.349954574289]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-9761.974273227267986])
+# energy_dft_gs = np.array([-9761.982560517284583])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+
 # TiO2 338 25% HFX 1st nearest neighbour
 # r_hop = np.array([2.96])
 # coupling = np.array([14.408699460995]) * param.hartree_to_ev / 1e3
@@ -224,17 +248,17 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # r_hop = np.array([2.44518])
 # coupling = np.array([109]) / 1e3
 # reorg = np.array([1230]) / 1e3
-omega = 320  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
+# omega = 320  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
 # print('Pre-exponential factor:', omega*const.c * 100)
 # print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
 # Carey2021
-r_hop = np.array([2.81388])
-coupling = np.array([113]) / 1e3
-reorg = np.array([930]) / 1e3
-omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
-print('Pre-exponential factor:', omega*const.c * 100)
-print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
+# r_hop = np.array([2.81388])
+# coupling = np.array([113]) / 1e3
+# reorg = np.array([930]) / 1e3
+# omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
+# print('Pre-exponential factor:', omega*const.c * 100)
+# print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
@@ -464,8 +488,9 @@ for i in range(0, np.shape(coupling)[0]):
     # Upper bound rutile
     # r_hop = np.array([2.96])
     # r_hop = np.array([3.57])
+    # r_hop = np.array([4.59])
     # rate_spencer = vn
-    # multiplicity = 3
+    # multiplicity = 1
 
     # Carey2021
     # rate_spencer = 8.4e10
