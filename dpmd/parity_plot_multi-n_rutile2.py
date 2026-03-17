@@ -174,23 +174,24 @@ def plot_spin_time1_total(dft, dp, ax, axis_lim_y, num_atoms, title=None):
     print('mean_absolute_error', mae)
     print('root_mean_squared_error', rmse)
 
-    # ax.plot(time_array, dft_total_spin, 'k-')
-    ax.plot(time_array, dft_total_spin, '-', color=plotting_colors[0], label='DFT')
-    ax.plot(time_array, dp_total_spin, '-', color=plotting_colors[1], label='NNP')
+    ax.plot(time_array, dft_total_spin, 'k-')
+    # ax.plot(time_array, dft_total_spin, '-', color=plotting_colors[0], label='DFT')
+    # ax.plot(time_array, dp_total_spin, '-', color=plotting_colors[1], label='NNP')
 
     ax.set_xlim(0, time_array.shape[0])
     ax.set_ylim([axis_lim_y[0], axis_lim_y[1]])
     # ax.set_xlabel("Frame")
     ax.set_xlabel("Time / fs")
-    ax.legend()
+    # ax.legend()
 
 
 # Bulk TiO2 leopold leopold-fixed3
-# model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1', 'pop-dpa3-pref_pop-1000-1']
-model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-1000-1-twostep-lr-1e-5-1e-8']
+model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1', 'pop-dpa3-pref_pop-1000-1']
+# model = ['ener-dpa3-start_pref-0.02-1000_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-1000-1-twostep-lr-1e-5-1e-8']
 # model = ['ener-dpa3-start_pref-1-1_limit_pref-1-1', 'pop-dpa3-pref_pop-10000-10']
 # model = ['ener-dpa3-start_pref-1-1_limit_pref-1-1-twostep-lr-1e-5-1e-8', 'pop-dpa3-pref_pop-10000-10-twostep-lr-1e-5-1e-8']
-folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold-fixed3'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/leopold-fixed3'
+folder = '/Users/chris/Documents/Storage/wiki_deeppolaron_backup/leopold/fitting/leopold-fixed3'
 model_ener = ['{}/{}'.format(folder, model[0])] * 3
 model_spin = ['{}/{}'.format(folder, model[1])] * 3
 database = ['{}/database_train/'.format(folder),
@@ -201,6 +202,7 @@ spin_is_population = True
 do_concatenate = False
 axis_lim_y = np.array([-0.02, 0.95])
 ylim_spin_time = [0, 1.6]
+ylim_spin_time = [0.9, 1.3]
 # num_electrons = 2593
 ylim_population_time = [239, 246]
 # ylim_population_time = [239, 245]
@@ -495,7 +497,7 @@ if plot_spin_time:
     fig_spin_train, axes_spin_train = plt.subplots()
     plot_spin_time1((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
                     axes_spin_train, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
-    axes_spin_train.set_ylabel("Total spin")
+    axes_spin_train.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_train.png".format(model_spin[0]), dpi=600)
     if zoom:
@@ -506,7 +508,7 @@ if plot_spin_time:
     fig_spin_train_total, axes_spin_train_total = plt.subplots()
     plot_spin_time1_total((dft_s[0][:, :, 0] - dft_s[0][:, :, 1]), (spin_1[0][:, :, 0] - spin_1[0][:, :, 1]),
                           axes_spin_train_total, ylim_spin_time, num_atoms=num_atoms, title="Energy, No-aparam")
-    axes_spin_train_total.set_ylabel("Total spin")
+    axes_spin_train_total.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_train_total.png".format(model_spin[0]), dpi=600)
 
@@ -516,7 +518,7 @@ if plot_spin_time:
     fig_spin_valid, axes_spin_valid = plt.subplots()
     plot_spin_time1((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
                     axes_spin_valid, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
-    axes_spin_valid.set_ylabel("Total spin")
+    axes_spin_valid.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_valid.png".format(model_spin[0]), dpi=600)
     if zoom:
@@ -527,6 +529,7 @@ if plot_spin_time:
     fig_spin_valid_total, axes_spin_valid_total = plt.subplots()
     plot_spin_time1_total((dft_s[1][:, :, 0] - dft_s[1][:, :, 1]), (spin_1[1][:, :, 0] - spin_1[1][:, :, 1]),
                           axes_spin_valid_total, ylim_spin_time, num_atoms=num_atoms, title="Energy, No-aparam")
+    axes_spin_valid_total.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_valid_total.png".format(model_spin[0]), dpi=600)
 
@@ -536,7 +539,7 @@ if plot_spin_time:
     fig_spin_test, axes_spin_test = plt.subplots()
     plot_spin_time1((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
                     axes_spin_test, axis_lim_y, num_atoms=num_atoms, title="Energy, No-aparam")
-    axes_spin_test.set_ylabel("Total spin")
+    axes_spin_test.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_test.png".format(model_spin[0]), dpi=600)
     if zoom:
@@ -547,6 +550,7 @@ if plot_spin_time:
     fig_spin_test_total, axes_spin_test_total = plt.subplots()
     plot_spin_time1_total((dft_s[2][:, :, 0] - dft_s[2][:, :, 1]), (spin_1[2][:, :, 0] - spin_1[2][:, :, 1]),
                           axes_spin_test_total, ylim_spin_time, num_atoms=num_atoms, title="Energy, No-aparam")
+    axes_spin_test_total.set_ylabel("Spin")
     plt.tight_layout()
     plt.savefig("{}/spin_test_total.png".format(model_spin[0]), dpi=600)
 

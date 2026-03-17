@@ -31,8 +31,7 @@ def linear_func2(x, m, c):
     return m * x + c
 
 # --- Parameters ---
-topology_file = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
-topology_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/system.xyz'
+topology_file = '/Users/chris/Documents/Storage/delete/deepmd-md/system.xyz'
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/rutile/deepmd/rutile/336/md-cell-opt/deepmd-md/hse-22-ts-md2'
 folder_1 = '/Users/chris/Documents/Storage/delete/deepmd-md/hse-22-ts-md2'
 
@@ -75,9 +74,9 @@ folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-ma
 # fit_start = 20000
 
 # folder_md = '300k-1000-ps-vel-9.3-ps-friction-0.001'
-# folder_md = '300k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
-# temperature_set = 300
-# fit_start = 20000
+folder_md = '300k-1000-ps-vel-9.3-ps-nose-tdamp-1000'
+temperature_set = 300
+fit_start = 0
 
 # folder_md = '300k-50-ps-vel-9-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps'
@@ -85,9 +84,9 @@ folder_spin = 'single-fit-pop-dpa3-nlayers-6-official-v3.1.0-dev-polaron-loss-ma
 # folder_md = '300k-50-ps-vel-9.45-ps'
 # folder_md = '300k-50-ps-vel-9.5-ps'
 # folder_md = '300k-50-ps-vel-9.3-ps-friction-0.001'
-folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
-temperature_set = 300
-fit_start = 5000
+# folder_md = '300k-50-ps-vel-9.3-ps-nose-tdamp-1000'
+# temperature_set = 300
+# fit_start = 5000
 
 folder = '{}/{}/{}/{}'.format(folder_1, folder_energy, folder_spin, folder_md)
 print(folder)
@@ -108,23 +107,25 @@ spin = np.load(f"{folder}/spin_history.npy", mmap_mode='r')  # Memory-map large 
 charge_state = np.load(f"{folder}/charge_state_history.npy", mmap_mode='r')
 num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
-# xlim_1 = [0, time_array[-1]]
+xlim_1 = [0, time_array[-1]]
 # xlim_1 = [0, 1e3]
-xlim_1 = [0, 700]
+xlim_1 = [999*1e3, 1000*1e3]
+# xlim_1 = [0, 2e3]
+# xlim_1 = [0, 700]
 offset = 0
 
 # --- Convert Trajectory to XYZ (Chunked) ---
 pos_file = f'{folder}/tio2-pos-1.xyz'
 
 # Delete old files
-if not os.path.exists(pos_file):
-    with Trajectory(f'{folder}/md.traj') as traj:
-        for i, atoms in enumerate(traj):
-            if i == 0:
-                continue
-            write(pos_file, atoms, format='xyz', append=(i > 1))
-            if i % 100 == 0:
-                del atoms
+# if not os.path.exists(pos_file):
+#     with Trajectory(f'{folder}/md.traj') as traj:
+#         for i, atoms in enumerate(traj):
+#             if i == 0:
+#                 continue
+#             write(pos_file, atoms, format='xyz', append=(i > 1))
+#             if i % 100 == 0:
+#                 del atoms
 
 # --- MDAnalysis Setup ---
 universe = mda.Universe(topology_file, pos_file)
@@ -212,9 +213,10 @@ if plot_msd:
     activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    # fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    fig_msd, ax_msd = plt.subplots(figsize=(3, 2.5))
+    ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-    ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
     ax_msd.set_xlim(0, time_array[-1])
     ax_msd.set_xlabel("Time / ps")
     ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
@@ -248,9 +250,10 @@ if plot_msd:
     activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-    fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(4, 4))
+    # fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(4, 4))
+    fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(3, 2.5))
+    ax_msd_clean.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd_clean.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
-    ax_msd_clean.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, '--', color='grey')
     ax_msd_clean.set_xlim(0, time_array[-1])
     ax_msd_clean.set_xlabel("Time / ps")
     ax_msd_clean.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
@@ -285,7 +288,9 @@ fig_plot_all.subplots_adjust(hspace=0.05)
 if save_fig: fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder), dpi=300)
 
 # Plot spin only
-fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+# fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
+ax_spin1.ticklabel_format(style='plain')
 for j in range(num_atoms):
     ax_spin1.plot((time_array[:int(xlim_1[1])] - offset) / 1e3, spin[:int(xlim_1[1]), j], '-',
                         label='{}'.format(j + 1))

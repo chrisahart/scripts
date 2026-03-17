@@ -8,7 +8,7 @@ filename = "/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/rutil
 box = np.array([13.9553247, 8.90701634, 31.33880111])  # Å
 z_min = -20
 z_max = 20
-nbins = 400
+nbins = 300
 top_ti_average = 4
 OH_cutoff = 1.25  # Å
 # ==============================================

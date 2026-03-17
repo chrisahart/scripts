@@ -260,7 +260,9 @@ def read_leopold(folder, filename, num_atoms):
     return file_spec1, hirsh_data, species
 
 
-folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/dataset'
+# folder = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/dataset'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/resources/other/leopold/data/TiO2/leopold_analysis/data'
+folder = '/Users/chris/Documents/Storage/wiki_deeppolaron_backup/leopold/data'
 name = 'train'
 # name = 'valid'
 # name = 'test'

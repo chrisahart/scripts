@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 from ase.io import read
 
 # ================= USER INPUT =================
-filename = "/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/rutile/bulk/100/selected-20-cp2k-md-rutile-100.xyz"
+filename = "/Users/chris/Documents/Storage/calculations/tio2-h2o/zeng/rutile/cp2k-aimd-bulk/100/md/zeng_input/optb88/tio2-pos-1.xyz"
 box = [13.9553247, 8.90701634, 31.33880111]  # Å
 z_min = -10
 z_max = 10
 nbins = 400
-top_ti_average = 4
+top_ti_average = 9
 # ==============================================
 
 atoms_list = read(filename, index=":")

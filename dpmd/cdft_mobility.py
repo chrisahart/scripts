@@ -77,16 +77,16 @@ ev_to_joules = 1.60218e-19
 # Parameters
 temp = 300  # K
 # temp = 600  # K
-multiplicity = 1  # Site multiplicity
+multiplicity = 0.8  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn_ev = 98.8/1e3 # Dai et al from phonon spectra
-vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+# vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
-vn_s = vn_ev * ev_to_joules / planck
-vn = vn_s
-print('Effective nuclear frequency e13 s-1', vn_s/1e13)
-print('Effective nuclear frequency fs', 1/vn_s * 1e15)
-# vn = 1.13e13  # rutile NNP-MD
+# vn_s = vn_ev * ev_to_joules / planck
+# vn = vn_s
+# print('Effective nuclear frequency e13 s-1', vn_s/1e13)
+# print('Effective nuclear frequency fs', 1/vn_s * 1e15)
+vn = 1.13e13  # rutile NNP-MD
 # vn = 2.66e13  # anatase NNP-MD
 # vn = 2.42e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # Effective nuclear frequency e13 s-1 2.4165610859728504
@@ -97,7 +97,7 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 
 # Rutile Deskins Dupuis
 # rate_constant = 7.65e11
-# diffusion_spencer = calc_diffusion(multiplicity, 2.970, rate_constant)
+# diffusion_spencer = calc_diffusion(4, 2.970, rate_constant)
 # print(diffusion_spencer*1e3)
 # diffusion_spencer = 1.35e-3
 # mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)
@@ -117,9 +117,9 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # reorg = np.array([330]) / 1e3
 
 # moritaModelsPolaronTransport2023 NEB
-# r_hop = np.array([2.96])
-# coupling = np.array([21]) / 1e3
-# reorg = np.array([230]) / 1e3
+r_hop = np.array([2.96])
+coupling = np.array([21]) / 1e3
+reorg = np.array([230]) / 1e3
 
 # TiO2 336 22% HFX 1st nearest neighbour rel-609 linear4
 # r_hop = np.array([2.96])
@@ -164,11 +164,11 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # TiO2 336 20% HFX 1st nearest neighbour 22% structure
-r_hop = np.array([2.96])
-coupling = np.array([19.268576644471]) * param.hartree_to_ev / 1e3
-energy_cdft_ts = np.array([-9763.806830063656889])
-energy_dft_gs = np.array([-9763.813834946744464])
-reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
+# r_hop = np.array([2.96])
+# coupling = np.array([19.268576644471]) * param.hartree_to_ev / 1e3
+# energy_cdft_ts = np.array([-9763.806830063656889])
+# energy_dft_gs = np.array([-9763.813834946744464])
+# reorg = (energy_cdft_ts - energy_dft_gs) * param.hartree_to_ev * 4
 
 # TiO2 336 20% HFX 1st nearest neighbour 22% structure
 # r_hop = np.array([2.96])
@@ -482,6 +482,32 @@ for i in range(0, np.shape(coupling)[0]):
 
     # daiIdentificationLargePolarons2024
     # energy_spencer = 13/1e3
+    # transmission_coefficient = 1.0
+
+    # morita_Models_2023
+    # energy_spencer = 56/1e3
+    # transmission_coefficient = 1.0
+
+    # yang_Intrinsic_2013
+    # energy_spencer = 24/1e3
+    # Mobility: 7.57E-02    cm2 / V
+    # energy_spencer = 19/1e3
+    # Mobility: 9.18E-02 cm2 / V
+    # energy_spencer = 29/1e3
+    # Mobility: 6.24E-02 cm2 / V
+    # transmission_coefficient = 1.0
+
+    # comparison to rutile NNP-MD
+    # energy_spencer = 39/1e3
+    # transmission_coefficient = 1.0
+
+    # carey_Hole_2021
+    # energy_spencer = 133/1e3
+    # transmission_coefficient = 1.0
+
+    # comparison to anatase NNP-MD
+    # energy_spencer = 136/1e3
+    # transmission_coefficient = 1.0
 
     rate_spencer = calc_rate(vn, kb_t_au, transmission_coefficient, energy_spencer)
 
@@ -514,7 +540,7 @@ for i in range(0, np.shape(coupling)[0]):
     print("1/Electron transfer rate constant (1/k_et): {} fs".format((1/rate_spencer)*1e15))
     print("1/Electron transfer rate constant (1/k_et) / 1e6: {} fs".format((1/rate_spencer)*1e15/1e6))
     # print("Mobility: {0:.2} cm2/V".format(mobility_spencer))
-    print("Mobility: {0:.1E} cm2/V".format(mobility_spencer))
+    print("Mobility: {0:.2E} cm2/V".format(mobility_spencer))
 
     # print("\nAdiabatic electron transfer rate constant (k_et): {0:.1E} s-1".format(rate_spencer_ad))
     # print("Adiabatic mobility: {0:.2} cm2/V".format(mobility_spencer_ad))

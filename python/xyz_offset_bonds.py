@@ -109,22 +109,22 @@ def calc_distance(x1, y1, z1, x2, y2, z2):
 # }
 
 # atom hfo2-t
-folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/mengyu/tetragonal/geo_opt/neutral/pbe'
-folder_in = folder_out
-filename_in = 'last.xyz'
-# filename_out = 'last_center_atom_123.xyz'
-# filename_out = 'last_center_atom_230.xyz'
-filename_out = 'last_center_atom_122.xyz'
-change_bonds = True
-# labels = np.array([123, 96, 69, 15, 42]) - 1
-# labels = np.array([230, 68, 15, 96, 41]) - 1
-labels = np.array([122, 68, 14, 95, 41]) - 1
-bond_target = np.array([2.2, 2.2, 2.2, 2.2])
-cols = ['Species', 'X', 'Y', 'Z']
-mapping = {
-    'Hf': 0,
-    'O': 1
-}
+# folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/mengyu/tetragonal/geo_opt/neutral/pbe'
+# folder_in = folder_out
+# filename_in = 'last.xyz'
+# # filename_out = 'last_center_atom_123.xyz'
+# # filename_out = 'last_center_atom_230.xyz'
+# filename_out = 'last_center_atom_122.xyz'
+# change_bonds = True
+# # labels = np.array([123, 96, 69, 15, 42]) - 1
+# # labels = np.array([230, 68, 15, 96, 41]) - 1
+# labels = np.array([122, 68, 14, 95, 41]) - 1
+# bond_target = np.array([2.2, 2.2, 2.2, 2.2])
+# cols = ['Species', 'X', 'Y', 'Z']
+# mapping = {
+#     'Hf': 0,
+#     'O': 1
+# }
 
 # atom hfo2-po
 # folder_out = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/hfo2/polaron/po/geo_opt/neutral/pbe-mgrid-600'
@@ -142,34 +142,43 @@ mapping = {
 #     'O': 1
 # }
 
-
-# folder_out = '/Volumes/ELEMENTS/Storage/Postdoc2/Data/Work/calculations/mgo/structures'
-# folder_in = folder_out
-# filename_in = 'rocksalt_222.xyz'
-# filename_out = 'rocksalt_222-offset.xyz'
-# # filename_in = 'rocksalt_333.xyz'
-# # filename_out = 'rocksalt_333-offset.xyz'
-# cols = ['Species', 'X', 'Y', 'Z']
+# fe2o3 221
+folder_out = '/Users/chris/Documents/Storage/calculations/fe2o3/221/md/neutral/pbe/temptol-10-100k-200k-300k-csvr-1'
+folder_in = folder_out
+filename_in = 'last.xyz'
+# filename_in = 'system.xyz'
+# filename_out = 'last_offset_hole_13.xyz'
+filename_out = 'last_offset_electron_13.xyz'
+change_bonds = True
+# labels = np.array([123, 96, 69, 15, 42]) - 1
+# labels = np.array([230, 68, 15, 96, 41]) - 1
+labels = np.array([13, 50, 88, 108, 67, 61, 95]) - 1
+# bond_target = np.array([1.7, 1.7, 1.7, 1.9, 1.9, 1.9])
+bond_target = np.array([2.1, 2.1, 2.1, 2.3, 2.3, 2.3])
+cols = ['Species', 'X', 'Y', 'Z']
 # mapping = {
-#     'Mg': 0,
+#     'Fe': 0,
 #     'O': 1
 # }
+mapping = {
+    'Fe_a': 0,
+    'Fe_b': 1,
+    'O': 2
+}
 
 coordinates, coord_x, coord_y, coord_z, species, num_atoms, num_timesteps = load_coordinates.load_values_coord(
     folder_in, filename_in, cols)
 
-
-species_print = list(species)
-my_string = "\n".join(species_print)
-with open('{}/species.txt'.format(folder_out), 'w') as file:
-    file.write(my_string)
-
-
-converted_list = [mapping[item] for item in species_print]
-converted_string = "\n".join(map(str, converted_list))
-with open('{}/species_map.txt'.format(folder_out), 'w') as file:
-    file.write(converted_string)
-
+# species_print = list(species)
+# my_string = "\n".join(species_print)
+# with open('{}/species.txt'.format(folder_out), 'w') as file:
+#     file.write(my_string)
+# converted_list = [mapping[item] for item in species_print]
+# converted_string = "\n".join(map(str, converted_list))
+# with open('{}/species_map.txt'.format(folder_out), 'w') as file:
+#     file.write(converted_string)
+species = np.loadtxt('{}/species.txt'.format(folder_out), dtype='str')
+print(species)
 
 # atom 0
 # labels = np.array([13, 50, 88, 108, 67, 61, 95]) - 1

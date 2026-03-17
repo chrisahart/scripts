@@ -100,14 +100,14 @@ def write_xyz_all(base_filename, coordinates, species, num_atoms):
 # num_atoms = 354
 
 # rutile 100
-folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/rutile/bulk/100'
-filename_in = 'selected-20-cp2k-md-rutile-100.n2p2'
-filename_out = 'selected-20-cp2k-md-rutile-100.xyz'
-filename_out2 = 'all/selected-20-cp2k-md-rutile-100'
-box = np.array([[26.380576, 16.837460, 59.241590]])
-box = box * 0.529
-print(box)
-num_atoms = 354
+# folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/rutile/bulk/100'
+# filename_in = 'selected-20-cp2k-md-rutile-100.n2p2'
+# filename_out = 'selected-20-cp2k-md-rutile-100.xyz'
+# filename_out2 = 'all/selected-20-cp2k-md-rutile-100'
+# box = np.array([[26.380576, 16.837460, 59.241590]])
+# box = box * 0.529
+# print(box)
+# num_atoms = 354
 
 # rutile 110
 # folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/rutile/bulk/110'
@@ -140,14 +140,14 @@ num_atoms = 354
 # print(box)
 
 # anatase 100
-# folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/anatase/bulk/001'
-# filename_in = 'selected-20-cp2k-md-anatase-001.n2p2'
-# filename_out = 'selected-20-cp2k-md-anatase-001.xyz'
-# filename_out2 = 'all/selected-20-cp2k-md-anatase-001'
-# num_atoms = 300
-# box = np.array([[26.380576, 26.380576, 39.169298]])
-# box = box * 0.529
-# print(box)
+folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/anatase/bulk/001'
+filename_in = 'selected-20-cp2k-md-anatase-001.n2p2'
+filename_out = 'selected-20-cp2k-md-anatase-001.xyz'
+filename_out2 = 'all/selected-20-cp2k-md-anatase-001'
+num_atoms = 300
+box = np.array([[21.557995, 21.557995, 49.986657]])
+box = box * 0.529
+print(box)
 
 # anatase 101
 # folder = '/Users/chris/Documents/Storage/other/tio2_water/cp2k-aimd-bulk/anatase/bulk/101'
