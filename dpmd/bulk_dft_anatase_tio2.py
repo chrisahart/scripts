@@ -306,14 +306,14 @@ plot_msd = False
 # xlim_1 = [0, 11764]
 # xlim_1 = [0, 5000]
 
-# folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
-folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
 folder_1 = '{}/combined'.format(folder)
 folder_1 = '{}/trajectory_mdanalysis'.format(folder)
-# xlim_1 = [18000, 19000]
+xlim_1 = [18000, 19000]
 # xlim_1 = [0, 10000]
 # xlim_1 = [10000, 20000]
-xlim_1 = [0, 20000]
+# xlim_1 = [0, 20000]
 # xlim_1 = [10600, 11800]
 # xlim_1 = [11000, 11250]
 
@@ -397,8 +397,8 @@ calc_distance = False
 calc_distance = True
 save_fig = False
 save_fig = True
-plot_msd = True
-plot_msd_fit = True
+# plot_msd = True
+# plot_msd_fit = True
 # calc_distance = False
 if plot_hubbard:
     atoms_hubbard = num_atoms/3 * 2
@@ -623,6 +623,27 @@ if calc_distance:
                                                         universe.select_atoms('index {}'.format(polaron_atom_time[j+1])).positions,
                                                         box=box_size)
     polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
+
+    # Remove polaron hops that occur within 50 fs of another hop
+    # min_residence = 1
+    # min_residence = 50
+    # hops = polaron_distances > 0
+    # hop_indices = np.where(hops)[0]
+    # mask = np.ones_like(hop_indices, dtype=bool)
+    # for i in range(len(hop_indices)):
+    #     if i < len(hop_indices) - 1:
+    #         if hop_indices[i + 1] - hop_indices[i] <= min_residence:
+    #             mask[i] = False
+    #     else:
+    #         if len(polaron_distances) - hop_indices[i] <= min_residence:
+    #             mask[i] = False
+    # filtered_polaron_distances = polaron_distances.copy()
+    # filtered_polaron_distances[hop_indices[~mask]] = 0
+    # polaron_distances = filtered_polaron_distances
+    #
+    # # Remove hop distances greater than 4
+    # polaron_distances[polaron_distances > 4] = 0
+
     polaron_distances_hop = polaron_distances[np.nonzero(polaron_distances)]
     polaron_indices = np.nonzero(polaron_distances)[0]
 
@@ -631,6 +652,11 @@ if calc_distance:
     print('np.shape(polaron_distances_hop)[0]', np.shape(polaron_distances_hop)[0])
     print('polaron hop index', polaron_indices)
     print('polaron hop time', time_val_energy[polaron_indices])
+
+    for i in range(np.shape(polaron_distances_hop)[0]):
+        print('polaron_indices', polaron_indices[i],
+              'polaron hop time', time_val_energy[polaron_indices][i],
+              'polaron_distances_hop', polaron_distances_hop[i])
 
     # Plot polaron distances
     metric = np.zeros((num_atoms_o, num_timesteps_mobility))

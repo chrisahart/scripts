@@ -8,6 +8,12 @@ import os
 from ase import Atoms
 from general import parameters as param
 
+params = {'axes.formatter.limits': [-4, 4],
+          'axes.labelsize': '14',
+          'axes.titlesize': '16',
+          'lines.markersize': '8',
+          }
+plt.rcParams.update(params)
 
 def compute_vacf(vels):
     v = vels.reshape(vels.shape[0], -1)
@@ -88,6 +94,7 @@ num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
 xlim_1 = [0, time_array[-1]]
 # xlim_1 = [0, 1e3]
+# xlim_1 = [999*1e3, 1000*1e3]
 # xlim_1 = [0, 700]
 offset = 0
 
@@ -257,7 +264,8 @@ if plot_msd:
     fig_msd_clean.tight_layout()
 
 # hirshfeld and distance subplot
-ylim_1 = [-0.02, 0.9]
+# ylim_1 = [-0.02, 0.9]
+ylim_1 = [0, 0.9]
 rows, cols = 2, 1
 fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row',
                                          figsize=(18, 6), gridspec_kw={'height_ratios': [2, 1], 'hspace': 0.05})
@@ -281,7 +289,9 @@ fig_plot_all.subplots_adjust(hspace=0.05)
 if save_fig: fig_plot_all.savefig('{}/polaron_subplot.png'.format(folder), dpi=300)
 
 # Plot spin only
-fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+# fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
+ax_spin1.ticklabel_format(style='plain')
 for j in range(num_atoms):
     ax_spin1.plot((time_array[:int(xlim_1[1])] - offset) / 1e3, spin[:int(xlim_1[1]), j], '-',
                   label='{}'.format(j + 1))

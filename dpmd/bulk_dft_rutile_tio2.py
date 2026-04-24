@@ -441,12 +441,12 @@ plot_msd = False
 # temperature_set = 300
 
 # PBE0
-folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-pbe0-mckenna'
-files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
-num_atoms = 324
-box_size = [13.77, 13.77, 17.76, 90, 90, 90]
-temperature_set = 300
-xlim_auto = True
+# folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/rutile/archer/rutile/cell-336/md-cell-opt/electron-u-ti-3.0-300k-rs-hse-25-rs-3ps-nose-rs-pbe0-mckenna'
+# files = ['tio2-1.ener', 'tio2-charges-1-clean.hirshfeld', 'tio2-pos-1.xyz', 'tio2-frc-1.xyz']
+# num_atoms = 324
+# box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+# temperature_set = 300
+# xlim_auto = True
 # xlim_1 = [0, 200]
 
 # Finished
@@ -455,14 +455,15 @@ xlim_auto = True
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
-# folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
-# files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
+folder_1 = '/Volumes/Elements/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis'  # FINISHED lifetime fs 188
+files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_mdanalysis_wrap'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # folder_1 = '/Volumes/Samsung/Data/Postdoc2/Data/Work/temp/files/trajectory_vmd'  # FINISHED lifetime fs 188
 # files = ['tio2-1-cleaned.ener', 'tio2-charges-1-clean-cleaned.hirshfeld', 'tio2-pos-1-vmd-wrap-cleaned.xyz', 'tio2-frc-1-cleaned.xyz']
 # xlim_1 = [0, 6645]
-# xlim_1 = [0, 10000]
+xlim_1 = [0, 10000]
+plot_msd = False
 # plot_msd = True
 # xlim_1 = [5000, 10000]
 # xlim_1 = [1000, 10000]
@@ -472,7 +473,7 @@ xlim_auto = True
 # xlim_1 = [1000, 5000]
 # xlim_1 = [1000, 10000]
 # xlim_1 = [5520, 6088]
-# xlim_1 = [9300, 10000]
+xlim_1 = [9300, 10000]
 # xlim_1 = [9600, 9820]
 # xlim_1 = [int(8596-40), int(8596+40)]  #  hop
 # xlim_1 = [int(8819-40), int(8819+40)]  #  hop
@@ -480,10 +481,10 @@ xlim_auto = True
 # xlim_1 = [int(9076-40), int(9076+40)]  #  hop
 # xlim_1 = [int(9652-30), int(9652+30)]  #  hop
 # xlim_1 = [int(9734-40), int(9734+40)]  #  hop
-# xlim_1 = np.array(xlim_1)
-# num_atoms = 324
-# box_size = [13.77, 13.77, 17.76, 90, 90, 90]
-# temperature_set = 300
+xlim_1 = np.array(xlim_1)
+num_atoms = 324
+box_size = [13.77, 13.77, 17.76, 90, 90, 90]
+temperature_set = 300
 # xlim_auto = True
 # xlim_auto = False
 
@@ -623,7 +624,8 @@ if save_fig: fig_energy_potential.savefig('{}/energy_potential.png'.format(folde
 # print('time_calc', time_calc, time_array[time_calc], hirshfeld_1_np[time_calc, 5, chain_atoms])
 
 # Plot Hirshfeld spin of all atoms
-fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+# fig_spin1, ax_spin1 = plt.subplots(figsize=(18, 4))
+fig_spin1, ax_spin1 = plt.subplots(figsize=(10, 4))
 temp = np.zeros(num_timesteps)
 for j in range(num_atoms):
     ax_spin1.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '-', label='{}'.format(j+1))
@@ -776,8 +778,8 @@ if calc_distance:
     polaron_distances = polaron_distances[xlim_1[0]:int(xlim_1[1])]
 
     # Remove polaron hops that occur within 50 fs of another hop
-    min_residence = 1
-    # min_residence = 50
+    # min_residence = 1
+    min_residence = 50
     hops = polaron_distances > 0
     hop_indices = np.where(hops)[0]
     mask = np.ones_like(hop_indices, dtype=bool)

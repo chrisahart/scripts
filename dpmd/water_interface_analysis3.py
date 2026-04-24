@@ -5,6 +5,8 @@ from ase.io import read
 # ================= USER INPUT =================
 filename = "/Users/chris/Documents/Storage/calculations/tio2-h2o/zeng/rutile/cp2k-aimd-bulk/100/md/zeng_input/optb88/tio2-pos-1.xyz"
 box = [13.9553247, 8.90701634, 31.33880111]  # Å
+# filename = "/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/slab/geo_opt/pbe-frozen-tio2/tio2_water.xyz"
+# box = [12.9824805, 17.76, 33.3469092]  # Å
 z_min = -10
 z_max = 10
 nbins = 400

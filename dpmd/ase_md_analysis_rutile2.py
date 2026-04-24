@@ -107,11 +107,11 @@ spin = np.load(f"{folder}/spin_history.npy", mmap_mode='r')  # Memory-map large 
 charge_state = np.load(f"{folder}/charge_state_history.npy", mmap_mode='r')
 num_timesteps = spin.shape[0]
 time_array = np.linspace(0, num_timesteps, num=num_timesteps, dtype=np.float32)
-xlim_1 = [0, time_array[-1]]
+# xlim_1 = [0, time_array[-1]]
 # xlim_1 = [0, 1e3]
-xlim_1 = [999*1e3, 1000*1e3]
+# xlim_1 = [999*1e3, 1000*1e3]
 # xlim_1 = [0, 2e3]
-# xlim_1 = [0, 700]
+xlim_1 = [0, 700]
 offset = 0
 
 # --- Convert Trajectory to XYZ (Chunked) ---
@@ -213,8 +213,8 @@ if plot_msd:
     activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-    # fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
-    fig_msd, ax_msd = plt.subplots(figsize=(3, 2.5))
+    fig_msd, ax_msd = plt.subplots(figsize=(4, 4))
+    # fig_msd, ax_msd = plt.subplots(figsize=(3, 2.5))
     ax_msd.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
     ax_msd.set_xlim(0, time_array[-1])
@@ -250,8 +250,8 @@ if plot_msd:
     activation_energy = -np.log(rate_constant / (vn * k_el)) * kb_t_au
     print('activation_energy from msd (units meV)', activation_energy*1e3)
 
-    # fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(4, 4))
-    fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(3, 2.5))
+    fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(4, 4))
+    # fig_msd_clean, ax_msd_clean = plt.subplots(figsize=(3, 2.5))
     ax_msd_clean.plot((time_array[fit_start:int(xlim_1[1])] - offset)/1e3, fitted_line, 'r-')
     ax_msd_clean.plot((time_array[:int(xlim_1[1])] - offset)/1e3, cumulative_sum, 'k-')
     ax_msd_clean.set_xlim(0, time_array[-1])
@@ -264,7 +264,7 @@ if plot_msd:
     fig_msd_clean.tight_layout()
 
 # hirshfeld and distance subplot
-ylim_1 = [-0.02, 0.8]
+ylim_1 = [0, 0.8]
 rows, cols = 2, 1
 fig_plot_all, ax_plot_all = plt.subplots(rows, cols, sharex='col', sharey='row',
                                          figsize=(18, 6), gridspec_kw={'height_ratios': [2, 1], 'hspace': 0.05})
