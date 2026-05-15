@@ -310,9 +310,9 @@ folder = '/Volumes/Samsung/Data/Postdoc2/Data/Work/calculations/tio2/anatase/arc
 # folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2/anatase/archer/anatase/cell-441/md-cell-opt-hse-20/hse-19-complete'
 folder_1 = '{}/combined'.format(folder)
 folder_1 = '{}/trajectory_mdanalysis'.format(folder)
-xlim_1 = [18000, 19000]
+# xlim_1 = [18000, 19000]
 # xlim_1 = [0, 10000]
-# xlim_1 = [10000, 20000]
+xlim_1 = [10000, 20000]
 # xlim_1 = [0, 20000]
 # xlim_1 = [10600, 11800]
 # xlim_1 = [11000, 11250]
@@ -394,7 +394,7 @@ if plot_mulliken:
 # plot_hubbard = True
 plot_hubbard = False
 calc_distance = False
-calc_distance = True
+# calc_distance = True
 save_fig = False
 save_fig = True
 # plot_msd = True
@@ -498,6 +498,22 @@ ax_spin1_square.set_xlim(xlim_1)
 ax_spin1_square.set_ylim(ylim_1)
 fig_spin1_square.tight_layout()
 if save_fig: fig_spin1_square.savefig('{}/hirshfeld_spin_all2.png'.format(folder_save), dpi=param.save_dpi)
+
+# Calculate Hirshfeld statistics
+# Extract the spin moments for all atoms at each timestep
+spin_moments = hirshfeld_1_np[int(xlim_1[0]):int(xlim_1[1]), 5, :]
+sorted_spins = np.sort(spin_moments, axis=1)  # sort along the atom axis
+top3_spins = sorted_spins[:, -3:]  # shape: (num_timesteps, 3)
+average_1st = np.mean(top3_spins[:, 2])
+average_2nd = np.mean(top3_spins[:, 1])
+average_3rd = np.mean(top3_spins[:, 0])
+std_1st = np.std(top3_spins[:, 2])
+std_2nd = np.std(top3_spins[:, 1])
+std_3rd = np.std(top3_spins[:, 0])
+
+print("1st largest spin: average =", average_1st, ", 1 std =", std_1st)
+print("2nd largest spin: average =", average_2nd, ", 1 std =", std_2nd)
+print("3rd largest spin: average =", average_3rd, ", 1 std =", std_3rd)
 
 # Plot Mulliken spin of all atoms
 if plot_mulliken:
@@ -817,18 +833,18 @@ if calc_distance:
 
 # Plot Hirshfeld spin of all atoms
 plotting_colors = ['r', 'g', 'b', 'm', 'grey', 'orange', 'brown', 'hotpink'] * 100
-print(polaron_atoms2)
-print(polaron_atoms2.shape[0])
-print(range(polaron_atoms2.shape[0]-10, polaron_atoms2.shape[0]))
+# print(polaron_atoms2)
+# print(polaron_atoms2.shape[0])
+# print(range(polaron_atoms2.shape[0]-10, polaron_atoms2.shape[0]))
 fig_spin10, ax_spin10 = plt.subplots(figsize=(10, 4))
 # fig_spin10, ax_spin10 = plt.subplots()
 temp = np.zeros(num_timesteps)
 for j in range(num_atoms):
     ax_spin10.plot(time_array/1e3, hirshfeld_1_np[:, 5, j], '-', label='{}'.format(j+1))
-for j in range(polaron_atoms2.shape[0]):
+# for j in range(polaron_atoms2.shape[0]):
 # for j in range(polaron_atoms.shape[0]-10, polaron_atoms.shape[0]):
 #     ax_spin10.plot(time_array, hirshfeld_1_np[:, 5, polaron_atoms[j]], '-', label='{}'.format(j+1), color=plotting_colors[j])
-    ax_spin10.plot(time_array/1e3, hirshfeld_1_np[:, 5, polaron_atoms2[j]], '-', label='{}'.format(j+1))
+#     ax_spin10.plot(time_array/1e3, hirshfeld_1_np[:, 5, polaron_atoms2[j]], '-', label='{}'.format(j+1))
 if draw_legend: ax_spin10.legend(frameon=True)
 ax_spin10.set_xlabel('Time / ps')
 ax_spin10.set_ylabel('Spin moment')

@@ -33,25 +33,26 @@ plt.rcParams.update(params)
 # TRAJ       = '{}/tio2-pos-1.xyz'.format(folder)
 # TRAJ_START = 0
 
-folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/archer/ahart/110/water/md/pbe-frozen-tio2/sep-o-3.2'
-BOX        = [12.9824805,  17.76,       32.23974714, 90.0, 90.0, 90.0]
-# TRAJ       = '{}/system.xyz'.format(folder)
-TRAJ       = '{}/tio2-pos-1.xyz'.format(folder)
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/archer/ahart/110/water/md/pbe-frozen-tio2/sep-o-3.2-center'
+BOX        = [12.9824805,  17.76,       32.239747139999999, 90.0, 90.0, 90.0]
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/archer/ahart/110/water/md/pbe-frozen-tio2/sep-o-3.4-center'
+BOX        = [12.9824805,  17.76,       32.639747139999997, 90.0, 90.0, 90.0]
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/archer/ahart/110/water/md/pbe-frozen-tio2/sep-o-3.6-center'
+BOX        = [12.9824805,  17.76,       33.039747140000003, 90.0, 90.0, 90.0]
+TRAJ       = '{}/system.xyz'.format(folder)
 TRAJ_START = 0
-
-# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/water/md/pbe-frozen-tio2'
-# BOX        = [12.9824805, 17.76, 33.3469092, 90.0, 90.0, 90.0]
-# TRAJ       = '{}/system.xyz'.format(folder)
-# TRAJ_START = 0
-# TRAJ       = '{}/tio2-pos-1.xyz'.format(folder)
-# TRAJ_START = 5000
+BULK_Z_MIN = 17
+BULK_Z_MAX = 27
+TRAJ       = '{}/tio2-pos-1.xyz'.format(folder)
+TRAJ_START = 700
+BULK_Z_MIN = 17
+BULK_Z_MAX = 27
 
 STRIDE = 1
 save_fig = True
 OUTDIR = folder
 
 # z is the surface-normal direction (longest box vector)
-# BOX[2] = 31.34 Å — slab + water layers
 SURF_NORMAL = 2  # index: 0=x, 1=y, 2=z
 box3 = np.array(BOX[:3])
 Lz = BOX[SURF_NORMAL]
@@ -121,13 +122,12 @@ tio2_O_indices = O_sel.indices[~is_water_O]
 waterO_sel = u.select_atoms('index ' + ' '.join(map(str, water_O_indices)))
 tio2O_sel = u.select_atoms('index ' + ' '.join(map(str, tio2_O_indices)))
 
-print(f"  Water O atoms : {len(waterO_sel)}")
-print(f"  TiO2 O atoms  : {len(tio2O_sel)}")
+print(f"  Water O atoms  : {len(waterO_sel)}")
+print(f"  TiO2 O atoms   : {len(tio2O_sel)}")
 print(f"  Water molecules: {len(waterO_sel)}")
 
 # ─────────────────────────────────────────────
-# FIND OUTERMOST Ti LAYER z POSITIONS
-# Average over production frames for robustness
+# FIND Ti LAYER POSITIONS
 # ─────────────────────────────────────────────
 print("\nLocating Ti layer positions...")
 
@@ -135,7 +135,6 @@ print("\nLocating Ti layer positions...")
 ti_z_sum = np.zeros(len(Ti_sel))
 for ts in u.trajectory[prod_slice]:
     ti_z_sum += Ti_sel.positions[:, SURF_NORMAL]
-    # print(Ti_sel.positions)
 ti_z_mean_pos = ti_z_sum / n_frames  # mean z per Ti atom
 
 # Find discrete Ti layers by greedy clustering:
@@ -162,16 +161,16 @@ z_ref_top = layers[-1]  # faces water above (larger z)
 print(f"  h=0 bottom face : {z_ref_bottom:.4f} Å")
 print(f"  h=0 top face    : {z_ref_top:.4f} Å")
 print(f"  Slab thickness  : {z_ref_top - z_ref_bottom:.4f} Å")
+
+# ─────────────────────────────────────────────
 # WATER DENSITY PROFILE
-# Bin water O atoms along z, then shift to h = z - z_Ti_surface
-# Average both surfaces (bottom and top) for statistics
+# Bin water O atoms along z, then shift to h from each Ti face
 # ─────────────────────────────────────────────
 print("\nCalculating water density profile (streaming)...")
 
-hist_raw = np.zeros(N_BINS)  # raw count in absolute z bins
+hist_raw = np.zeros(N_BINS)
 n_counted = 0
 
-Ti_idx = Ti_sel.indices
 waterO_idx = waterO_sel.indices
 
 for ts in u.trajectory[prod_slice]:
@@ -182,7 +181,6 @@ for ts in u.trajectory[prod_slice]:
     n_counted += 1
 
 # Normalise: number density (Å⁻³)
-# Each bin has volume = Lx * Ly * dz
 bin_vol = BOX[0] * BOX[1] * BIN_WIDTH  # Å³
 rho_bins = hist_raw / (n_counted * bin_vol)
 
@@ -193,16 +191,25 @@ rho_bins = hist_raw / (n_counted * bin_vol)
 #   top water:    z > z_ref_top     → h = z - z_ref_top     (h>0 into water)
 # ─────────────────────────────────────────────
 
-# Maximum h: distance from outermost Ti to box edge (water region)
-h_max_bot = z_ref_bottom - 0.5  # water below goes down to z~0
-h_max_top = (Lz - z_ref_top) - 0.5  # water above goes up to z~Lz
-h_max = min(h_max_bot, h_max_top)
+# Water region extents — account for PBC wrapping.
+# Bottom water: z < z_ref_bottom AND z > z_ref_top (wraps across boundary)
+# Top water:    z > z_ref_top (main water region)
+# Total water thickness on each side estimated from box geometry.
+water_bot_thickness = z_ref_bottom + (Lz - z_ref_top)  # wraps PBC
+water_top_thickness = Lz - z_ref_top
+h_max = min(water_bot_thickness, water_top_thickness) - 0.5
 
-# Bottom surface: water has smaller z than slab → h = z_ref_bottom - z
-h_bottom = z_ref_bottom - BIN_CENTERS
-mask_bot = (h_bottom >= -5.0) & (h_bottom <= h_max)
-h_b = h_bottom[mask_bot]
-rho_b = rho_bins[mask_bot]
+# Bottom surface: water wraps across PBC boundary
+# Bins with z < z_ref_bottom contribute h = z_ref_bottom - z  (normal)
+# Bins with z > z_ref_top contribute h = z_ref_bottom + (Lz - z) (wrapped)
+h_bottom_normal = z_ref_bottom - BIN_CENTERS  # z < z_ref_bottom
+h_bottom_wrapped = z_ref_bottom + (Lz - BIN_CENTERS)  # z > z_ref_top (PBC image)
+
+mask_bot_n = (h_bottom_normal >= 0.0) & (h_bottom_normal <= h_max)
+mask_bot_w = (h_bottom_wrapped >= 0.0) & (h_bottom_wrapped <= h_max)
+
+h_b = np.concatenate([h_bottom_normal[mask_bot_n], h_bottom_wrapped[mask_bot_w]])
+rho_b = np.concatenate([rho_bins[mask_bot_n], rho_bins[mask_bot_w]])
 sort_b = np.argsort(h_b)
 h_b = h_b[sort_b]
 rho_b = rho_b[sort_b]
@@ -216,17 +223,18 @@ sort_t = np.argsort(h_t)
 h_t = h_t[sort_t]
 rho_t = rho_t[sort_t]
 
-# Bulk water density reference (far from surface, h > 8 Å)
-h_bulk_mask = h_b > 8.0
-rho_bulk = rho_b[h_bulk_mask].mean() if h_bulk_mask.sum() > 0 else None
+bulk_mask = (BIN_CENTERS >= BULK_Z_MIN) & (BIN_CENTERS <= BULK_Z_MAX)
+rho_bulk = rho_bins[bulk_mask].mean() if bulk_mask.sum() > 0 else None
 
-print(f"  Bulk water number density : {rho_bulk:.4f} Å\u207b\u00b3" if rho_bulk else "  Not enough bulk region")
+print(f"  Bulk z range              : {BULK_Z_MIN} – {BULK_Z_MAX} Å  ({bulk_mask.sum()} bins)")
+print(f"  Bulk water number density : {rho_bulk:.4f} Å\u207b\u00b3" if rho_bulk else "  Not enough bins in bulk range")
 
 # Expected bulk water density ~0.0334 Å⁻³ (1 g/cm³)
 rho_ref = 0.03334  # Å⁻³
+
 # ─────────────────────────────────────────────
 # FIGURE 1: BOTH SURFACES OVERLAPPED
-# h=0 = mean z of all Ti on that face
+# h=0 at outermost Ti layer on each face
 # ─────────────────────────────────────────────
 fig_dens_both, ax_dens_both = plt.subplots(figsize=(7, 5))
 ax_dens_both.plot(h_b, rho_b, 'k-', lw=1.5, label='Bottom surface')
@@ -237,7 +245,7 @@ if rho_bulk:
 ax_dens_both.axhline(rho_ref, color='gray', ls=':', lw=1.2,
                      label=f'Ref = {rho_ref:.4f} Å\u207b\u00b3')
 ax_dens_both.axvline(0.0, color='lightgray', ls='-', lw=1, zorder=0)
-ax_dens_both.set_xlabel(r'h (Å)  [h=0 at mean Ti layer]')
+ax_dens_both.set_xlabel(r'h (Å)  [h=0 at outermost Ti layer]')
 ax_dens_both.set_ylabel(r'$\rho_{\mathrm{O}}$ (Å$^{-3}$)')
 ax_dens_both.set_xlim([-5, h_max])
 ax_dens_both.set_ylim(bottom=0)
@@ -268,45 +276,26 @@ ax_dens_full.set_ylim(bottom=0)
 fig_dens_full.tight_layout()
 if save_fig: fig_dens_full.savefig('{}/water_density_profile_full.png'.format(folder), dpi=300)
 
-# IDENTIFY ADSORPTION LAYER PEAKS
-# ─────────────────────────────────────────────
-# print("\nIdentifying adsorption layer peaks...")
-#
-# # Look for peaks in h > 0 region
-# from scipy.signal import find_peaks
-#
-# # Use bottom surface for peak detection (both surfaces equivalent)
-# h_pos_mask = h_b > 0.2
-# if h_pos_mask.sum() > 5:
-#     peaks_idx, props = find_peaks(rho_b[h_pos_mask], height=rho_ref * 0.5, distance=5)
-#     h_peaks = h_b[h_pos_mask][peaks_idx]
-#     rho_peaks = rho_b[h_pos_mask][peaks_idx]
-#     print(f"  Adsorption peaks found: {len(h_peaks)}")
-#     for i, (hp, rp) in enumerate(zip(h_peaks, rho_peaks)):
-#         print(f"    Layer {i + 1}: h = {hp:.2f} Å,  ρ = {rp:.4f} Å⁻³  ({rp / rho_ref:.2f} × bulk)")
-# else:
-#     print("  Not enough data for peak detection")
-
 # ─────────────────────────────────────────────
 # SUMMARY
 # ─────────────────────────────────────────────
 print("\n" + "=" * 60)
 print("SUMMARY")
 print("=" * 60)
-print(f"Total frames       : {n_frames_total}")
-print(f"Production frames  : {n_frames}  (stride={STRIDE})")
-print(f"Water O atoms      : {len(waterO_sel)}")
-print(f"TiO2 O atoms       : {len(tio2O_sel)}")
-print(f"Ti atoms           : {len(Ti_sel)}")
-print(f"Ti bottom face (h=0): {z_ref_bottom:.3f} Å")
-print(f"Ti top face (h=0)   : {z_ref_top:.3f} Å")
-print(f"Slab thickness      : {z_ref_top - z_ref_bottom:.3f} Å")
+print(f"Total frames        : {n_frames_total}")
+print(f"Production frames   : {n_frames}  (stride={STRIDE})")
+print(f"Water O atoms       : {len(waterO_sel)}")
+print(f"TiO2 O atoms        : {len(tio2O_sel)}")
+print(f"Ti atoms            : {len(Ti_sel)}")
+print(f"Ti layers           : {len(layers)}")
+print(f"Ti bottom face (h=0): {z_ref_bottom:.4f} Å")
+print(f"Ti top face (h=0)   : {z_ref_top:.4f} Å")
+print(f"Slab thickness      : {z_ref_top - z_ref_bottom:.4f} Å")
 if rho_bulk:
-    print(f"Bulk density       : {rho_bulk:.4f} Å⁻³  (ref: {rho_ref:.4f} Å⁻³)")
+    print(f"Bulk density        : {rho_bulk:.4f} Å⁻³  (ref: {rho_ref:.4f} Å⁻³)")
 print("=" * 60)
 print("\nFigures saved:")
-for f in ['water_density_profile.png',
-          'water_density_profile_full.png']:
+for f in ['water_density_profile.png', 'water_density_profile_full.png']:
     print(f"  {os.path.join(OUTDIR, f)}")
 
 if __name__ == "__main__":

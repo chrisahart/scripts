@@ -3,9 +3,10 @@ import numpy as np
 
 folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/monolayer/geo_opt/pbe-frozen-tio2'
 tio2_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/monolayer/geo_opt/pbe-frozen-tio2/system.xyz'
-water_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/temp-300/last_center_fixed.xyz'
-tio2_water_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/monolayer/geo_opt/pbe-frozen-tio2/tio2_water2.xyz'
-target_gap = 3.2
+# water_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/temp-300/last_center_fixed.xyz'
+water_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/pbe/from-tip3p-1-ns/last_center_fixed.xyz'
+target_gap = 3.6
+tio2_water_file = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/tio2-h2o/ahart/110/monolayer/geo_opt/pbe-frozen-tio2/tio2_water_pbe_gap_{}.xyz'.format(target_gap)
 
 # load structures
 slab = read(tio2_file)
@@ -50,16 +51,29 @@ combined_o_max = combined.positions[symbols_combined == 'O', 2].max()
 Lx = 12.9824805
 Ly = 17.76
 Lz = combined_o_max + target_gap - (22.26844-21.00265)
-# Lz = combined_o_max + 1
 
 cell = np.array([Lx, Ly, Lz, 90, 90, 90])
 print(cell)
+# =========================================================
+# Wrap water molecules AFTER translation (molecule-safe)
+# =========================================================
+Lx, Ly, Lz = cell[0], cell[1], cell[2]
+symbols_combined = np.array(combined.get_chemical_symbols())
+offset = len(slab)
+n_water_atoms = len(combined) - offset
+n_mol = n_water_atoms // 3
+for i in range(n_mol):
+    idx = offset + 3*i
+    ox, oy, oz = combined.positions[idx]
+    shift = np.array([
+        -np.floor(ox / Lx) * Lx,
+        -np.floor(oy / Ly) * Ly,
+        -np.floor(oz / Lz) * Lz
+    ])
+    combined.positions[offset + 3*i : offset + 3*i + 3] += shift
 
 combined.set_cell(cell)
 combined.set_pbc([False, False, True])
-
-# IMPORTANT: only ONE wrap, at the end (optional)
-# combined.translate([0,0,10])
 combined.wrap()
 
 # ----------------------------

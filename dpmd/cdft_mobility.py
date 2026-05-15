@@ -77,16 +77,17 @@ ev_to_joules = 1.60218e-19
 # Parameters
 temp = 300  # K
 # temp = 600  # K
-multiplicity = 0.8  # Site multiplicity
+multiplicity = 1  # Site multiplicity
+# multiplicity = 0.8  # Site multiplicity
 # vn = 1.85e13  # Effective nuclear frequency Fe-O
 # vn_ev = 98.8/1e3 # Dai et al from phonon spectra
-# vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
+vn_ev = 0.10  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # vn_ev = 0.11  # 0.11 eV to s^-1 Deskins Dupuis TiO2 anatase (optic-mode phonon frequencies)
-# vn_s = vn_ev * ev_to_joules / planck
-# vn = vn_s
+vn_s = vn_ev * ev_to_joules / planck
+vn = vn_s
 # print('Effective nuclear frequency e13 s-1', vn_s/1e13)
 # print('Effective nuclear frequency fs', 1/vn_s * 1e15)
-vn = 1.13e13  # rutile NNP-MD
+# vn = 1.13e13  # rutile NNP-MD
 # vn = 2.66e13  # anatase NNP-MD
 # vn = 2.42e13  # 0.10 eV to s^-1 Deskins Dupuis TiO2 rutile (optic-mode phonon frequencies)
 # Effective nuclear frequency e13 s-1 2.4165610859728504
@@ -117,9 +118,19 @@ kb_t = 1.38e-23 * temp  # KbT in SI units
 # reorg = np.array([330]) / 1e3
 
 # moritaModelsPolaronTransport2023 NEB
+# r_hop = np.array([2.96])
+# coupling = np.array([21]) / 1e3
+# reorg = np.array([230]) / 1e3
+
+# moritaModelsPolaronTransport2023 methodology Table S4 my work linear
 r_hop = np.array([2.96])
-coupling = np.array([21]) / 1e3
-reorg = np.array([230]) / 1e3
+coupling = np.array([97]) / 1e3
+reorg = np.array([801]) / 1e3
+
+# moritaModelsPolaronTransport2023 methodology Table S4 my work neb
+r_hop = np.array([2.96])
+coupling = np.array([12]) / 1e3
+reorg = np.array([347]) / 1e3
 
 # TiO2 336 22% HFX 1st nearest neighbour rel-609 linear4
 # r_hop = np.array([2.96])
@@ -244,7 +255,7 @@ reorg = np.array([230]) / 1e3
 # coupling = np.array([480]) / 1e3
 # reorg = np.array([2040]) / 1e3
 
-# Carey2021
+# Carey2021 nn 1
 # r_hop = np.array([2.44518])
 # coupling = np.array([109]) / 1e3
 # reorg = np.array([1230]) / 1e3
@@ -252,13 +263,23 @@ reorg = np.array([230]) / 1e3
 # print('Pre-exponential factor:', omega*const.c * 100)
 # print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
 
-# Carey2021
+# Carey2021 nn 2
 # r_hop = np.array([2.81388])
 # coupling = np.array([113]) / 1e3
 # reorg = np.array([930]) / 1e3
 # omega = 285  # Effective Optical Phonon Frequency for the Electron Transfer Process (Ω)
 # print('Pre-exponential factor:', omega*const.c * 100)
 # print('Pre-exponential factor 1e12:', omega*const.c * 100 / 1e12)
+
+# Carey2021 style semi-quantitative methodology nn 1 linear
+# r_hop = np.array([2.44518])
+# coupling = np.array([66]) / 1e3
+# reorg = np.array([1448]) / 1e3
+
+# Carey2021 style semi-quantitative methodology nn 2 linear
+# r_hop = np.array([2.81388])
+# coupling = np.array([60]) / 1e3
+# reorg = np.array([933]) / 1e3
 
 # TiO2 anatase 441 19% HFX i 2 (20% cell opt) rel-758-scf-1e-6
 # r_hop = np.array([2.44518])
@@ -468,7 +489,7 @@ for i in range(0, np.shape(coupling)[0]):
     print("Rosso Activation energy (delta G*): {} meV".format(energy_rosso*1e3))
     print("Rosso Electron transfer rate constant (k_et): {0:.2E} s-1".format(rate_rosso))
     print("Rosso Electron transfer rate constant (i k_et): {0:.2E} s-1".format(multiplicity * rate_rosso))
-    print("Rosso Mobility: {0:.2E} cm2/V".format(float(mobility_rosso)))
+    # print("Rosso Mobility: {0:.2E} cm2/V".format(float(mobility_rosso)))
 
     energy_spencer = calc_energy_spencer(reorg[i], coupling[i])
     rate_spencer_ad = calc_rate(vn, kb_t_au, 1, energy_spencer)
@@ -520,6 +541,9 @@ for i in range(0, np.shape(coupling)[0]):
 
     # Carey2021
     # rate_spencer = 8.4e10
+
+    # LEOPOLD test data
+    # rate_spencer = ((1980/4)*1e-15)**-1
 
     diffusion_spencer = calc_diffusion(multiplicity, r_hop[i], rate_spencer)
     mobility_spencer = calc_mobility(diffusion_spencer, kb_t_au)

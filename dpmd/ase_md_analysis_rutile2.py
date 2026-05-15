@@ -118,14 +118,14 @@ offset = 0
 pos_file = f'{folder}/tio2-pos-1.xyz'
 
 # Delete old files
-# if not os.path.exists(pos_file):
-#     with Trajectory(f'{folder}/md.traj') as traj:
-#         for i, atoms in enumerate(traj):
-#             if i == 0:
-#                 continue
-#             write(pos_file, atoms, format='xyz', append=(i > 1))
-#             if i % 100 == 0:
-#                 del atoms
+if not os.path.exists(pos_file):
+    with Trajectory(f'{folder}/md.traj') as traj:
+        for i, atoms in enumerate(traj):
+            if i == 0:
+                continue
+            write(pos_file, atoms, format='xyz', append=(i > 1))
+            if i % 100 == 0:
+                del atoms
 
 # --- MDAnalysis Setup ---
 universe = mda.Universe(topology_file, pos_file)

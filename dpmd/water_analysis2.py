@@ -35,9 +35,18 @@ TRAJ_START = 50000
 RDF_RMAX = box_cubic / 2
 N_WATERS = 128
 
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/pbe-d3-bj-c9-pbe/from-tip3p-1-ns'
+TRAJ = '{}/water-pos-1.xyz'.format(folder)
+box_cubic = 15.65
+BOX = [box_cubic, box_cubic, box_cubic, 90.0, 90.0, 90.0]
+TRAJ_START = 50000
+RDF_RMAX = box_cubic / 2
+N_WATERS = 128
+
 STRIDE = 1
 RDF_BINS = 200
 save_fig = True
+save_fig = False
 OUTDIR = folder
 box3 = np.array(BOX[:3])
 

@@ -132,6 +132,7 @@ for ts in universe.trajectory:
     del dist_matrix  # Free memory
 
 bond_lengths_time_sorted_mean = np.mean(bond_lengths_time, axis=2)
+print(bond_lengths_time_sorted_mean)
 
 # --- Polaron Analysis ---
 polaron_atom_time = np.argmax(spin, axis=1)
@@ -223,6 +224,7 @@ if plot_msd:
     ax_msd.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
     ax_msd.set_xlim(np.array(xlim_1) / 1e3)
     ax_msd.set_ylim([0, np.max(fitted_line) * 1.02])
+    ax_msd.ticklabel_format(axis='y', style='plain')
     fig_msd.tight_layout()
     fig_msd.savefig("{}/msd_cumulative.png".format(folder), dpi=600)
     fig_msd.tight_layout()
@@ -259,6 +261,7 @@ if plot_msd:
     ax_msd_clean.set_ylabel(r"MSD / $\mathrm{\AA}^2$")
     ax_msd_clean.set_xlim(np.array(xlim_1) / 1e3)
     ax_msd_clean.set_ylim([0, np.max(fitted_line) * 1.02])
+    ax_msd_clean.ticklabel_format(axis='y', style='plain')
     fig_msd_clean.tight_layout()
     fig_msd_clean.savefig("{}/msd_cumulative_clean.png".format(folder), dpi=600)
     fig_msd_clean.tight_layout()

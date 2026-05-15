@@ -3,7 +3,11 @@ import numpy as np
 
 folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/temp-300'
 input_file = f"{folder}/last.xyz"
-output_file = f"{folder}/last_center_fixed.xyz"
+output_file = f"{folder}/last_center_fixed2.xyz"
+
+# folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/pbe/from-tip3p-1-ns'
+# input_file = f"{folder}/last.xyz"
+# output_file = f"{folder}/last_center_fixed.xyz"
 
 # Box dimensions
 Lx, Ly, Lz = 12.9824805, 17.76, 16.6100492

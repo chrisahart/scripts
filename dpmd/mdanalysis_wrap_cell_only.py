@@ -28,6 +28,11 @@ filename_output = "{}/last_center.xyz".format(folder)
 filename_input = "{}/tio2-pos-1.xyz".format(folder)
 filename_output = "{}/tio2-pos-1_center.xyz".format(folder)
 
+folder = '/Volumes/Elements/Data/Postdoc2/Data/Work/calculations/h2o/packmol/tio2_water/110/md/equil/pbe/from-tip3p-1-ns'
+input_file = f"{folder}/last.xyz"
+output_file = f"{folder}/last_center.xyz"
+cell = [12.9824805, 17.76, 16.6100492, 90.0, 90.0, 90.0]
+
 u = mda.Universe(filename_input, format="XYZ")
 u.dimensions = np.array(cell)
 

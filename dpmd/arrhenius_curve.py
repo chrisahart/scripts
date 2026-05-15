@@ -150,48 +150,76 @@ literature_rutile_tamaki = 1e-1
 # Plot subplot
 fig2, axes2 = plt.subplots(1, 2, figsize=(12, 6))
 
-axes2[0].plot(1/temperature_rutile, np.log(rate_constant_rutile), 'b*', fillstyle='full', markersize=10)
-axes2[0].plot(inv_T, ln_k_fit, 'b-', alpha=0.7, label=f'Fit: slope = {coeffs[0]:.2f}')
+axes2[0].plot(1 / temperature_rutile, (rate_constant_rutile), 'b*', fillstyle='full', markersize=10)
+axes2[0].plot(inv_T, np.exp(ln_k_fit), 'b-', alpha=0.7, label=f'Fit: slope = {coeffs[0]:.2f}')
 axes2[0].text(0.90, 0.90, text_str, transform=axes2[0].transAxes,
-                          fontsize=12, color='black', weight='bold', ha='right', va='top')
+              fontsize=12, color='black', weight='bold', ha='right', va='top')
 
-axes2[0].plot(1/temperature3, np.log(rate_constant3), 'r*', fillstyle='full', markersize=10)
-axes2[0].plot(inv_T3, ln_k_fit3, 'r-', alpha=0.7, label=f'Fit: slope = {coeffs3[0]:.2f}')
+axes2[0].plot(1 / temperature3, (rate_constant3), 'r*', fillstyle='full', markersize=10)
+axes2[0].plot(inv_T3, np.exp(ln_k_fit3), 'r-', alpha=0.7, label=f'Fit: slope = {coeffs3[0]:.2f}')
 axes2[0].text(0.4, 0.65, text_str3, transform=axes2[0].transAxes,
-                          fontsize=12, color='black', weight='bold', ha='right', va='top')
+              fontsize=12, color='black', weight='bold', ha='right', va='top')
 
-axes2[1].plot(temperature_rutile, np.log10(mobility_rutile), 'b*', label=r'e$^-$ This work', fillstyle='full')
-axes2[1].plot(temperature_array_rutile, np.log10(rutile_mobility_analytical*100**2), 'b-')
+# axes2[0].plot(1/temperature_rutile, np.log(rate_constant_rutile), 'b*', fillstyle='full', markersize=10)
+# axes2[0].plot(inv_T, ln_k_fit, 'b-', alpha=0.7, label=f'Fit: slope = {coeffs[0]:.2f}')
+# axes2[0].text(0.90, 0.90, text_str, transform=axes2[0].transAxes,
+#                           fontsize=12, color='black', weight='bold', ha='right', va='top')
+#
+# axes2[0].plot(1/temperature3, np.log(rate_constant3), 'r*', fillstyle='full', markersize=10)
+# axes2[0].plot(inv_T3, ln_k_fit3, 'r-', alpha=0.7, label=f'Fit: slope = {coeffs3[0]:.2f}')
+# axes2[0].text(0.4, 0.65, text_str3, transform=axes2[0].transAxes,
+#                           fontsize=12, color='black', weight='bold', ha='right', va='top')
 
-axes2[1].plot(300, np.log10(5.2E-02), 'bo', label=r'e$^-$ Deskins', fillstyle='full')
-axes2[1].plot(300, np.log10(5.3E-02), 'bs', label=r'e$^-$ Morita', fillstyle='full')
-axes2[1].plot(300, np.log10(7.6e-2), 'bv', label=r'e$^-$ Dai', fillstyle='full')
-# axes2[1].plot(300, np.log10(1.3), 'bD', label=r'e$^-$ Birschitzky', fillstyle='full')
-# axes2[1].plot(300, np.log10(1), 'b^', label=r'e$^-$ Austin, Hendry', fillstyle='none')
+axes2[1].plot(temperature_rutile, (mobility_rutile), 'b*', label=r'e$^-$ This work', fillstyle='full')
+axes2[1].plot(temperature_array_rutile, (rutile_mobility_analytical*100**2), 'b-')
+axes2[1].plot(300, (5.2E-02), 'bo', label=r'e$^-$ Deskins', fillstyle='full')
+axes2[1].plot(300, (5.3E-02), 'bs', label=r'e$^-$ Morita', fillstyle='full')
+axes2[1].plot(300, (7.6e-2), 'bv', label=r'e$^-$ Dai', fillstyle='full')
+# axes2[1].plot(300, (1.3), 'bD', label=r'e$^-$ Birschitzky', fillstyle='full')
+# axes2[1].plot(300, (1), 'b^', label=r'e$^-$ Austin, Hendry', fillstyle='none')
+axes2[1].plot(300, (1E-02), 'bX', label=r'e$^-$ Yagi', fillstyle='none')
+axes2[1].plot(300, (1E-01), 'bP', label=r'e$^-$ Tamaki', fillstyle='none')
+axes2[1].plot(temperature3, (mobility3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
+axes2[1].plot(temperature_array_anatase, (anatase_mobility_analytical*100**2), 'r-')
+axes2[1].plot(300, (1.6e-3), 'ro', label=r'h$^+$ Deskins', fillstyle='full')
+axes2[1].plot(300, (1.3e-3), 'rs', label=r'h$^+$ Carey', fillstyle='full')
 
-axes2[1].plot(300, np.log10(1E-02), 'bX', label=r'e$^-$ Yagi', fillstyle='none')
-axes2[1].plot(300, np.log10(1E-01), 'bP', label=r'e$^-$ Tamaki', fillstyle='none')
-
-axes2[1].plot(temperature3, np.log10(mobility3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
-axes2[1].plot(temperature_array_anatase, np.log10(anatase_mobility_analytical*100**2), 'r-')
-axes2[1].plot(300, np.log10(1.6e-3), 'ro', label=r'h$^+$ Deskins', fillstyle='full')
-axes2[1].plot(300, np.log10(1.3e-3), 'rs', label=r'h$^+$ Carey', fillstyle='full')
-
+# axes2[1].plot(temperature_rutile, np.log10(mobility_rutile), 'b*', label=r'e$^-$ This work', fillstyle='full')
+# axes2[1].plot(temperature_array_rutile, np.log10(rutile_mobility_analytical*100**2), 'b-')
+# axes2[1].plot(300, np.log10(5.2E-02), 'bo', label=r'e$^-$ Deskins', fillstyle='full')
+# axes2[1].plot(300, np.log10(5.3E-02), 'bs', label=r'e$^-$ Morita', fillstyle='full')
+# axes2[1].plot(300, np.log10(7.6e-2), 'bv', label=r'e$^-$ Dai', fillstyle='full')
+# # axes2[1].plot(300, np.log10(1.3), 'bD', label=r'e$^-$ Birschitzky', fillstyle='full')
+# # axes2[1].plot(300, np.log10(1), 'b^', label=r'e$^-$ Austin, Hendry', fillstyle='none')
+# axes2[1].plot(300, np.log10(1E-02), 'bX', label=r'e$^-$ Yagi', fillstyle='none')
+# axes2[1].plot(300, np.log10(1E-01), 'bP', label=r'e$^-$ Tamaki', fillstyle='none')
+# axes2[1].plot(temperature3, np.log10(mobility3), 'r*',  label=r'h$^+$ This work', fillstyle='full')
+# axes2[1].plot(temperature_array_anatase, np.log10(anatase_mobility_analytical*100**2), 'r-')
+# axes2[1].plot(300, np.log10(1.6e-3), 'ro', label=r'h$^+$ Deskins', fillstyle='full')
+# axes2[1].plot(300, np.log10(1.3e-3), 'rs', label=r'h$^+$ Carey', fillstyle='full')
+#
 # axes2[1].legend(frameon=True)
 # axes2[1].set_ylim([-4.4, 0.25])
 
 # axes2[1].legend(frameon=True, loc='upper right')
 # axes2[1].set_ylim([-3.3, 0.5])
 
+axes2[0].set_yscale('log')
+axes2[1].set_yscale('log')
+
 axes2[0].set_xlabel("1 / Temperature (1 / K)")
-axes2[0].set_ylabel(r"Log [Rate constant (s$^{-1}$)] ")
+axes2[0].set_ylabel(r"Rate constant (s$^{-1}$) ")
 axes2[1].legend(frameon=True, loc='lower right')
-axes2[1].set_ylim([-5.2, 0.25])
-axes2[1].set_ylim([-3.2, -0.9])
+
+# axes2[1].set_ylim([-5.2, 0.25])
+# axes2[1].set_ylim([-3.2, -0.9])
+
+axes2[0].set_ylim([9.5e10, 3e12])
+axes2[1].set_ylim([5e-4, 0.12])
 
 axes2[1].set_xlim([100-20, 600+20])
 axes2[1].set_xlabel("Temperature (K)")
-axes2[1].set_ylabel(r"Log [mobility (cm$^2$/Vs)]")
+axes2[1].set_ylabel(r"Mobility (cm$^2$/Vs)")
 
 fig2.tight_layout()
 fig2.savefig("{}/subplot.png".format(folder_rutile), dpi=600)
